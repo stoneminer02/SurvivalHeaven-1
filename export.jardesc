@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="C:/Users/l0lkj/Desktop/Spigot_1.8_server/plugins/SurvivalHeaven1_8.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/SurvivalHeaven-CORE/export.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="true" overwrite="false" saveDescription="true" storeRefactorings="true" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="false" exportJavaFiles="true" exportOutputFolder="true">
+        <file path="/SurvivalHeaven-CORE/.project"/>
+        <file path="/SurvivalHeaven-CORE/export.jardesc"/>
+        <file path="/SurvivalHeaven-CORE/pom.xml"/>
+        <file path="/SurvivalHeaven-CORE/.classpath"/>
+        <folder path="/SurvivalHeaven-CORE/target"/>
+        <javaElement handleIdentifier="=SurvivalHeaven-CORE/src"/>
+    </selectedElements>
+</jardesc>
