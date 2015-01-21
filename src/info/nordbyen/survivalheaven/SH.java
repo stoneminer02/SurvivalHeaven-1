@@ -71,8 +71,10 @@ import org.bukkit.plugin.java.JavaPlugin;
  * The Class SurvivalHeaven.
  * 
  * Ask l0lkj about this plugin or if you plan to use it in any way! Contact
- * l0lkj on: Phone: 0047 48073448 Email: alexmsagen@gmail.com Skype: alex.l0lkj
- * 
+ * l0lkj on: Phone: 004748073448 Email: alexmsagen@gmail.com Skype: alex.l0lkj
+ *
+ * Enjoy! 
+ *
  * @author l0lkj
  */
 public class SH extends JavaPlugin implements ISH {
