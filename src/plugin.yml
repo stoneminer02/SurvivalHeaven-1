@@ -3,4 +3,5 @@ version: '0.1.4-SNAPSHOT ( impl: v1_8_R1 )'
 main: info.nordbyen.SurvivalHeaven.SH
 depend: [ WorldEdit, BlocksHub ] 
 commands:
-    infdisp:
+  infdisp: 
+    description: "Lager en uendelig dispenser"

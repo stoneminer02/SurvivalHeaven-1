@@ -35,6 +35,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -45,7 +47,7 @@ import org.bukkit.entity.Player;
 public final class PlayerDataManager implements IPlayerDataManager {
 
     /** The playerdatalist. */
-    private static ArrayList<IPlayerData> playerdatalist = new ArrayList<IPlayerData>();
+    private static HashMap<String, IPlayerData> playerdatalist = new HashMap<String, IPlayerData>();
 
     /*
      * (non-Javadoc)
@@ -96,7 +98,7 @@ public final class PlayerDataManager implements IPlayerDataManager {
                 final long money = rs.getInt("bank");
                 final int gamemode = rs.getInt("gamemode");
                 final PlayerData data = new PlayerData(id, name, ips, uuid, firstlogin, lastlogin, timeplayed, rank, badges, lastlocation, language, level, money, gamemode);
-                playerdatalist.add(data);
+                playerdatalist.put(data.getUUID(), data);
             }
         } catch (final SQLException e) {
             e.printStackTrace();
@@ -154,7 +156,7 @@ public final class PlayerDataManager implements IPlayerDataManager {
                 final long money = rs.getInt("bank");
                 final int gamemode = rs.getInt("gamemode");
                 final PlayerData data = new PlayerData(id, name, ips, uuid, firstlogin, lastlogin, timeplayed, rank, badges, lastlocation, language, level, money, gamemode);
-                playerdatalist.add(data);
+                playerdatalist.put(data.getUUID(), data);
             }
         } catch (final SQLException e) {
             e.printStackTrace();
@@ -170,13 +172,7 @@ public final class PlayerDataManager implements IPlayerDataManager {
      */
     @Override
     public IPlayerData getPlayerData(final String uuid) {
-        if (uuid == null)
-            return null;
-        for (final IPlayerData data : playerdatalist) {
-            if (data.getUUID().equalsIgnoreCase(uuid))
-                return data;
-        }
-        return null;
+        return playerdatalist.get(uuid);
     }
 
     /*
@@ -189,7 +185,8 @@ public final class PlayerDataManager implements IPlayerDataManager {
     public IPlayerData getPlayerDataFromName(final String name) {
         if (name == null)
             return null;
-        for (final IPlayerData data : playerdatalist) {
+        for (final Entry<String, IPlayerData> entry : playerdatalist.entrySet()) {
+            final IPlayerData data = entry.getValue();
             if (data.getName().equalsIgnoreCase(name))
                 return data;
         }
@@ -204,7 +201,8 @@ public final class PlayerDataManager implements IPlayerDataManager {
      */
     @Override
     public void saveDataToDatabase() {
-        for (final IPlayerData pd : playerdatalist) {
+        for (final Entry<String, IPlayerData> entry : playerdatalist.entrySet()) {
+            final IPlayerData pd = entry.getValue();
             try {
                 SH.getManager().getMysqlManager().query("UPDATE players SET " + "`name` = \"" + pd.getName() + "\", " + "`ips` = \"" + pd.getIpsAsString() + "\", " + "`gamemode` = " + pd.getGamemode() + ", " + "`lastlogin` = \"" + SH.getManager().getMysqlManager().getDate(pd.getLastlogin()) + "\", " + "`timeplayed` = " + pd.getTimeplayed() + ", " + "`bank` = " + pd.getMoney() + ", " + "`rank` = " + pd.getRank() + ", " + "`badges` = \"" + pd.getBadgesAsString() + "\", " + "`level` = " + pd.getLevel() + ", " + "`language` = \"" + pd.getLanguage() + "\" WHERE `uuid` = \"" + pd.getUUID() + "\";");
             } catch (final SQLException e) {
