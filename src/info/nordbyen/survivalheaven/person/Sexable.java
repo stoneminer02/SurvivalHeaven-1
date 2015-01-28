@@ -52,7 +52,7 @@ public interface Sexable {
         MALE,
         /** The female. */
         FEMALE,
-        /** The none. */
+        /** The unknown. */
         UNKNOWN;
     }
 }
