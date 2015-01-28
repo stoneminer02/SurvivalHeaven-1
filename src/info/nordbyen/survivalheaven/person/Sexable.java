@@ -53,6 +53,6 @@ public interface Sexable {
         /** The female. */
         FEMALE,
         /** The none. */
-        NONE;
+        UNKNOWN;
     }
 }
