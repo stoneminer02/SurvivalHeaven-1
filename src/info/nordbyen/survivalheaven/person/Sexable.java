@@ -45,7 +45,7 @@ public interface Sexable {
     public void setSex(Sex sex);
 
     /**
-     * The Enum Sex. HAHAHAH
+     * The Enum Sex.
      */
     public enum Sex {
         /** The male. */
