@@ -36,6 +36,7 @@ import info.nordbyen.survivalheaven.api.subplugin.IAnnoSubPluginManager;
 import info.nordbyen.survivalheaven.api.subplugin.ISubPluginManager;
 import info.nordbyen.survivalheaven.api.util.Translator;
 import info.nordbyen.survivalheaven.api.wand.IWandManager;
+import info.nordbyen.survivalheaven.gui.GUISubPlugin;
 import info.nordbyen.survivalheaven.subplugins.DenyPlayerMode.DenyPlayerMode;
 import info.nordbyen.survivalheaven.subplugins.bitly.plugin.ShortLink;
 import info.nordbyen.survivalheaven.subplugins.blockdata.IBlockManager;
@@ -409,6 +410,7 @@ public class SH extends JavaPlugin implements ISH {
         getSubPluginManager().addSubPlugin(new ShortLink("BitLy_UrlShortener"));
         getSubPluginManager().addSubPlugin(new BlockProtection("BlockProtection"));
         getSubPluginManager().addSubPlugin(new PlayerDataManagerPlugin("PlayerDataManager"));
+        getSubPluginManager().addSubPlugin(new GUISubPlugin("Graphical-User-Interface"));
         // spm.addSubPlugin(new RemoteBukkitPlugin("RemoteConsole"));
         // spm.addSubPlugin( new Ligg( "LiggTester" ) );
         getAnnoSubPluginManager().addClass(InfinityDispenser.class);

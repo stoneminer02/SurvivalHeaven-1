@@ -136,9 +136,9 @@ public enum Translator {
         transfile.mkdirs();
         if (!transfile.exists()) {
             try {
-                throw new FileNotFoundException("Finner ikke filen: " + transfile.getAbsolutePath());
-            } catch (final FileNotFoundException e) {
-                e.printStackTrace();
+                transfile.createNewFile();
+            } catch (final IOException e1) {
+                e1.printStackTrace();
             }
             return;
         }

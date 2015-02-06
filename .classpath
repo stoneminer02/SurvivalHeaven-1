@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="//SERVER/kode/java/Spigot_1.8.1/Spigot/Spigot-API/target/spigot-api-1.8-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="//SERVER/kode/java/Spigot_1.8_server/plugins/BlocksHub.jar"/>
+	<classpathentry kind="lib" path="//SERVER/kode/java/Spigot_1.8_server/plugins/PermissionsEx.jar"/>
+	<classpathentry kind="lib" path="//SERVER/kode/java/Spigot_1.8_server/plugins/ProtocolLib.jar"/>
+	<classpathentry kind="lib" path="//SERVER/kode/java/Spigot_1.8_server/plugins/worldedit-bukkit-6.0.2-SNAPSHOT-dist.jar"/>
+	<classpathentry kind="lib" path="//SERVER/kode/java/Spigot_1.8_server/spigot-1.8-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

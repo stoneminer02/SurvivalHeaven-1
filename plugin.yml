@@ -1,6 +1,6 @@
 name: SurvivalHeaven-CORE
 version: '0.1.5-SNAPSHOT ( impl: v1_8_R1 )'
-main: info.nordbyen.SurvivalHeaven.SH
+main: info.nordbyen.survivalheaven.SH
 depend: [ WorldEdit, BlocksHub ] 
 commands:
   infdisp: 
