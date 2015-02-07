@@ -43,7 +43,7 @@ public class RegionTeleportCommand extends AbstractCommand {
      * Instantiates a new server command.
      */
     public RegionTeleportCommand() {
-        super("nord", "/<command>", "En gruppe med administrative kommandoer", Arrays.asList(new String[] { "sør", "nord", "øst", "vest" }));
+        super("nord", "/<command>", "Kommandoer for å teleportere til utpostene", Arrays.asList(new String[] { "sør", "nord", "øst", "vest" }));
         register();
     }
 
