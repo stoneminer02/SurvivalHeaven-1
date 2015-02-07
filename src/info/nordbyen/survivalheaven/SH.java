@@ -53,7 +53,7 @@ import info.nordbyen.survivalheaven.subplugins.playerdata.WarningManager;
 import info.nordbyen.survivalheaven.subplugins.preliminary.Preliminary;
 import info.nordbyen.survivalheaven.subplugins.rankmanager.RankManager;
 import info.nordbyen.survivalheaven.subplugins.regions.RegionManager;
-import info.nordbyen.survivalheaven.subplugins.regionupdater.RegionUpdater;
+import info.nordbyen.survivalheaven.subplugins.regions.RegionUpdater;
 import info.nordbyen.survivalheaven.subplugins.serverutil.ServerUtils;
 import info.nordbyen.survivalheaven.subplugins.shop.ShopHandler;
 import info.nordbyen.survivalheaven.subplugins.subplugin.AnnoSubPluginLoader;

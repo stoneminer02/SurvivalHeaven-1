@@ -24,12 +24,13 @@
  * THE SOFTWARE.
  */
 
-package info.nordbyen.survivalheaven.subplugins.regionupdater;
+package info.nordbyen.survivalheaven.subplugins.regions;
 
 import info.nordbyen.survivalheaven.SH;
 import info.nordbyen.survivalheaven.api.regions.RegionData;
 import info.nordbyen.survivalheaven.api.subplugin.SubPlugin;
 import info.nordbyen.survivalheaven.api.util.FancyMessages;
+import info.nordbyen.survivalheaven.subplugins.regions.teleports.RegionTeleportCommand;
 
 import java.util.HashMap;
 
@@ -111,6 +112,7 @@ public class RegionUpdater extends SubPlugin {
             }
         }, 1L);
         Bukkit.getPluginManager().registerEvents(new RegionUpdaterListener(), getPlugin());
+        new RegionTeleportCommand();
     }
 
     /**
