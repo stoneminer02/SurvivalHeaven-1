@@ -30,21 +30,21 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RankManagerCommand.
  */
 public class RankManagerCommand implements CommandExecutor {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
-     * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
-     */
-    @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String arg, final String[] args) {
-        return true;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
+	 */
+	@Override
+	public boolean onCommand(final CommandSender sender, final Command command,
+			final String arg, final String[] args) {
+		return true;
+	}
 }

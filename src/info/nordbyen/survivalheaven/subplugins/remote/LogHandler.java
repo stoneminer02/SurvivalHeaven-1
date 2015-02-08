@@ -31,49 +31,53 @@ import java.util.Date;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LogHandler.
  */
 public class LogHandler extends Handler {
 
-    /** The plugin. */
-    private final RemoteBukkitPlugin plugin;
+	/** The plugin. */
+	private final RemoteBukkitPlugin plugin;
 
-    /**
-     * Instantiates a new log handler.
-     * 
-     * @param plugin the plugin
-     */
-    public LogHandler(final RemoteBukkitPlugin plugin) {
-        this.plugin = plugin;
-    }
+	/**
+	 * Instantiates a new log handler.
+	 * 
+	 * @param plugin
+	 *            the plugin
+	 */
+	public LogHandler(final RemoteBukkitPlugin plugin) {
+		this.plugin = plugin;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.util.logging.Handler#close()
-     */
-    @Override
-    public void close() throws SecurityException {
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.logging.Handler#close()
+	 */
+	@Override
+	public void close() throws SecurityException {
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.util.logging.Handler#flush()
-     */
-    @Override
-    public void flush() {
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.logging.Handler#flush()
+	 */
+	@Override
+	public void flush() {
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.util.logging.Handler#publish(java.util.logging.LogRecord)
-     */
-    @Override
-    public synchronized void publish(final LogRecord record) {
-        this.plugin.broadcast(new SimpleDateFormat("hh:mm a").format(new Date(record.getMillis())) + " [" + record.getLevel().toString() + "] " + record.getMessage());
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.logging.Handler#publish(java.util.logging.LogRecord)
+	 */
+	@Override
+	public synchronized void publish(final LogRecord record) {
+		this.plugin.broadcast(new SimpleDateFormat("hh:mm a").format(new Date(
+				record.getMillis()))
+				+ " ["
+				+ record.getLevel().toString()
+				+ "] " + record.getMessage());
+	}
 }

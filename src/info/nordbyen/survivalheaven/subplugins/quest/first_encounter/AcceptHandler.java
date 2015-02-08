@@ -34,25 +34,25 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AcceptHandler.
  */
 public class AcceptHandler implements Acceptable {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.survivalheaven.subplugins.quest.Acceptable#executedAccept
-     * (java.lang.String )
-     */
-    @Override
-    public void executedAccept(final String uuid) {
-        if (FirstEncounter.getWaitingPlayers().contains(uuid)) {
-            final IPlayerData pd = SH.getManager().getPlayerDataManager().getPlayerData(uuid);
-            final Player p = Bukkit.getPlayer(pd.getName());
-            p.sendMessage(ChatColor.BLUE + "Yay :D");
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.survivalheaven.subplugins.quest.Acceptable#executedAccept
+	 * (java.lang.String )
+	 */
+	@Override
+	public void executedAccept(final String uuid) {
+		if (FirstEncounter.getWaitingPlayers().contains(uuid)) {
+			final IPlayerData pd = SH.getManager().getPlayerDataManager()
+					.getPlayerData(uuid);
+			final Player p = Bukkit.getPlayer(pd.getName());
+			p.sendMessage(ChatColor.BLUE + "Yay :D");
+		}
+	}
 }

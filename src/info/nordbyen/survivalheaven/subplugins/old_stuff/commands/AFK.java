@@ -36,40 +36,42 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AFK.
  */
 public class AFK implements CommandExecutor {
 
-    /** The hashmap. */
-    public static List<String> hashmap = new ArrayList<String>();
+	/** The hashmap. */
+	public static List<String> hashmap = new ArrayList<String>();
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
-     * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
-     */
-    @Override
-    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED + "Du må være en spiller.");
-            return true;
-        }
-        if ((sender instanceof Player)) {
-            final String player = sender.getName();
-            if (!hashmap.contains(player)) {
-                hashmap.add(player);
-                Bukkit.broadcastMessage(ChatColor.DARK_RED + player + ChatColor.RED + " er nå AFK.");
-                return true;
-            } else {
-                hashmap.remove(player);
-                Bukkit.broadcastMessage(ChatColor.DARK_GREEN + player + ChatColor.GREEN + " er ikke lenger AFK.");
-                return true;
-            }
-        }
-        return false;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
+	 */
+	@Override
+	public boolean onCommand(final CommandSender sender, final Command cmd,
+			final String label, final String[] args) {
+		if (!(sender instanceof Player)) {
+			sender.sendMessage(ChatColor.RED + "Du må være en spiller.");
+			return true;
+		}
+		if ((sender instanceof Player)) {
+			final String player = sender.getName();
+			if (!hashmap.contains(player)) {
+				hashmap.add(player);
+				Bukkit.broadcastMessage(ChatColor.DARK_RED + player
+						+ ChatColor.RED + " er nå AFK.");
+				return true;
+			} else {
+				hashmap.remove(player);
+				Bukkit.broadcastMessage(ChatColor.DARK_GREEN + player
+						+ ChatColor.GREEN + " er ikke lenger AFK.");
+				return true;
+			}
+		}
+		return false;
+	}
 }

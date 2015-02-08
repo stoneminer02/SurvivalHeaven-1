@@ -25,40 +25,44 @@
  */
 
 package info.nordbyen.Ziputils;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ZipException.
  */
 public class ZipException extends RuntimeException {
 
-    /** The Constant serialVersionUID. */
-    private static final long serialVersionUID = 5571111112619349468L;
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 5571111112619349468L;
 
-    /**
-     * Instantiates a new zip exception.
-     * 
-     * @param e the e
-     */
-    public ZipException(Exception e) {
-        super(e);
-    }
+	/**
+	 * Instantiates a new zip exception.
+	 * 
+	 * @param e
+	 *            the e
+	 */
+	public ZipException(Exception e) {
+		super(e);
+	}
 
-    /**
-     * Instantiates a new zip exception.
-     * 
-     * @param msg the msg
-     */
-    public ZipException(String msg) {
-        super(msg);
-    }
+	/**
+	 * Instantiates a new zip exception.
+	 * 
+	 * @param msg
+	 *            the msg
+	 */
+	public ZipException(String msg) {
+		super(msg);
+	}
 
-    /**
-     * Instantiates a new zip exception.
-     * 
-     * @param msg the msg
-     * @param cause the cause
-     */
-    public ZipException(String msg, Throwable cause) {
-        super(msg, cause);
-    }
+	/**
+	 * Instantiates a new zip exception.
+	 * 
+	 * @param msg
+	 *            the msg
+	 * @param cause
+	 *            the cause
+	 */
+	public ZipException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
 }

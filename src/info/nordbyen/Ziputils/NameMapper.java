@@ -25,17 +25,18 @@
  */
 
 package info.nordbyen.Ziputils;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface NameMapper.
  */
 public interface NameMapper {
 
-    /**
-     * Map.
-     * 
-     * @param name the name
-     * @return the string
-     */
-    String map(String name);
+	/**
+	 * Map.
+	 * 
+	 * @param name
+	 *            the name
+	 * @return the string
+	 */
+	String map(String name);
 }

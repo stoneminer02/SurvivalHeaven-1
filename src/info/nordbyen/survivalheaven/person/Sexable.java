@@ -25,35 +25,36 @@
  */
 
 package info.nordbyen.survivalheaven.person;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface Sexable.
  */
 public interface Sexable {
 
-    /**
-     * Gets the sex.
-     * 
-     * @return the sex
-     */
-    public Sex getSex();
+	/**
+	 * Gets the sex.
+	 * 
+	 * @return the sex
+	 */
+	public Sex getSex();
 
-    /**
-     * Sets the sex.
-     * 
-     * @param sex the new sex
-     */
-    public void setSex(Sex sex);
+	/**
+	 * Sets the sex.
+	 * 
+	 * @param sex
+	 *            the new sex
+	 */
+	public void setSex(Sex sex);
 
-    /**
-     * The Enum Sex.
-     */
-    public enum Sex {
-        /** The male. */
-        MALE,
-        /** The female. */
-        FEMALE,
-        /** The unknown. */
-        UNKNOWN;
-    }
+	/**
+	 * The Enum Sex.
+	 */
+	public enum Sex {
+		/** The male. */
+		MALE,
+		/** The female. */
+		FEMALE,
+		/** The unknown. */
+		UNKNOWN;
+	}
 }

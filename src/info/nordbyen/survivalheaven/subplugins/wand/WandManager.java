@@ -40,114 +40,116 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class WandManager.
  */
 public class WandManager implements IWandManager {
 
-    /** The Wands. */
-    @SuppressWarnings("rawtypes")
-    private static HashMap Wands = new HashMap();
+	/** The Wands. */
+	@SuppressWarnings("rawtypes")
+	private static HashMap Wands = new HashMap();
 
-    /**
-     * Instantiates a new wand manager.
-     */
-    public WandManager() {
-        Bukkit.getPluginManager().registerEvents(new WandListener(), SH.getPlugin());
-    }
+	/**
+	 * Instantiates a new wand manager.
+	 */
+	public WandManager() {
+		Bukkit.getPluginManager().registerEvents(new WandListener(),
+				SH.getPlugin());
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.survivalheaven.api.wand.IWandManager#add(info.nordbyen.
-     * SurvivalHeaven.api.wand.Wand)
-     */
-    @Override
-    @SuppressWarnings("unchecked")
-    public void add(final Wand wand) {
-        Wands.put(wand.getName(), wand);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.survivalheaven.api.wand.IWandManager#add(info.nordbyen.
+	 * SurvivalHeaven.api.wand.Wand)
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public void add(final Wand wand) {
+		Wands.put(wand.getName(), wand);
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.survivalheaven.api.wand.IWandManager#createWand(org.bukkit
-     * .inventory.ItemStack , info.nordbyen.survivalheaven.api.wand.Wand,
-     * org.bukkit.entity.Player)
-     */
-    @Override
-    public boolean createWand(final ItemStack target, final Wand wand, final Player player) {
-        if (isWand(target))
-            return false;
-        if (wand.canCreate(target, player)) {
-            final ItemMeta meta = target.getItemMeta();
-            meta.setDisplayName(ChatColor.RESET.toString() + ChatColor.DARK_PURPLE.toString() + "Stav");
-            List<String> data = new ArrayList<String>();
-            if (meta.hasLore()) {
-                data = meta.getLore();
-            }
-            if (!data.contains(wand.getName())) {
-                data.add(wand.getName());
-            }
-            meta.setLore(data);
-            target.setItemMeta(meta);
-            return true;
-        }
-        return false;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.survivalheaven.api.wand.IWandManager#createWand(org.bukkit
+	 * .inventory.ItemStack , info.nordbyen.survivalheaven.api.wand.Wand,
+	 * org.bukkit.entity.Player)
+	 */
+	@Override
+	public boolean createWand(final ItemStack target, final Wand wand,
+			final Player player) {
+		if (isWand(target))
+			return false;
+		if (wand.canCreate(target, player)) {
+			final ItemMeta meta = target.getItemMeta();
+			meta.setDisplayName(ChatColor.RESET.toString()
+					+ ChatColor.DARK_PURPLE.toString() + "Stav");
+			List<String> data = new ArrayList<String>();
+			if (meta.hasLore()) {
+				data = meta.getLore();
+			}
+			if (!data.contains(wand.getName())) {
+				data.add(wand.getName());
+			}
+			meta.setLore(data);
+			target.setItemMeta(meta);
+			return true;
+		}
+		return false;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.survivalheaven.api.wand.IWandManager#get(java.lang.String)
-     */
-    @Override
-    public Wand get(final String id) {
-        if (Wands.containsKey(id))
-            return (Wand) Wands.get(id);
-        return null;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.survivalheaven.api.wand.IWandManager#get(java.lang.String)
+	 */
+	@Override
+	public Wand get(final String id) {
+		if (Wands.containsKey(id))
+			return (Wand) Wands.get(id);
+		return null;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.survivalheaven.api.wand.IWandManager#isWand(org.bukkit.
-     * inventory .ItemStack )
-     */
-    @Override
-    public boolean isWand(final ItemStack itemStack) {
-        for (final Object o : Wands.keySet()) {
-            final String s = o.toString();
-            if (itemStack == null)
-                return false;
-            final ItemMeta meta = itemStack.getItemMeta();
-            if (meta.hasLore()) {
-                if (meta.getLore().contains(s))
-                    return true;
-            }
-        }
-        return false;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.survivalheaven.api.wand.IWandManager#isWand(org.bukkit.
+	 * inventory .ItemStack )
+	 */
+	@Override
+	public boolean isWand(final ItemStack itemStack) {
+		for (final Object o : Wands.keySet()) {
+			final String s = o.toString();
+			if (itemStack == null)
+				return false;
+			final ItemMeta meta = itemStack.getItemMeta();
+			if (meta.hasLore()) {
+				if (meta.getLore().contains(s))
+					return true;
+			}
+		}
+		return false;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.survivalheaven.api.wand.IWandManager#search(org.bukkit.
-     * inventory .ItemStack )
-     */
-    @Override
-    public Wand search(final ItemStack itemStack) {
-        for (final Object o : Wands.keySet()) {
-            final String s = o.toString();
-            if (itemStack.getItemMeta().getLore().contains(s))
-                return get(s);
-        }
-        return null;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.survivalheaven.api.wand.IWandManager#search(org.bukkit.
+	 * inventory .ItemStack )
+	 */
+	@Override
+	public Wand search(final ItemStack itemStack) {
+		for (final Object o : Wands.keySet()) {
+			final String s = o.toString();
+			if (itemStack.getItemMeta().getLore().contains(s))
+				return get(s);
+		}
+		return null;
+	}
 }

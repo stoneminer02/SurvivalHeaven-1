@@ -25,20 +25,23 @@
  */
 
 package info.nordbyen.survivalheaven.subplugins.bitly.util;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Jmp.
  */
 public class Jmp {
 
-    /**
-     * As.
-     * 
-     * @param user the user
-     * @param apiKey the api key
-     * @return the bitly. provider
-     */
-    public static Bitly.Provider as(final String user, final String apiKey) {
-        return new SimpleProvider("http://j.mp/", user, apiKey, "http://api.j.mp/v3/");
-    }
+	/**
+	 * As.
+	 * 
+	 * @param user
+	 *            the user
+	 * @param apiKey
+	 *            the api key
+	 * @return the bitly. provider
+	 */
+	public static Bitly.Provider as(final String user, final String apiKey) {
+		return new SimpleProvider("http://j.mp/", user, apiKey,
+				"http://api.j.mp/v3/");
+	}
 }

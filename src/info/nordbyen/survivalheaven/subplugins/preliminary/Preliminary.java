@@ -35,53 +35,56 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Preliminary.
  */
 public class Preliminary extends SubPlugin {
 
-    /** The fire. */
-    public static boolean fire = false;
+	/** The fire. */
+	public static boolean fire = false;
 
-    /**
-     * Instantiates a new preliminary.
-     * 
-     * @param name the name
-     */
-    public Preliminary(final String name) {
-        super(name);
-    }
+	/**
+	 * Instantiates a new preliminary.
+	 * 
+	 * @param name
+	 *            the name
+	 */
+	public Preliminary(final String name) {
+		super(name);
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
-     */
-    @Override
-    public void disable() {
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
+	 */
+	@Override
+	public void disable() {
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
-     */
-    @Override
-    public void enable() {
-        SH.getManager().getWandManager().add(AdminWand.getInstance());
-        Bukkit.getPluginManager().registerEvents(new PreliminaryListener(), getPlugin());
-        final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-        scheduler.scheduleSyncRepeatingTask(getPlugin(), new Runnable() {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
+	 */
+	@Override
+	public void enable() {
+		SH.getManager().getWandManager().add(AdminWand.getInstance());
+		Bukkit.getPluginManager().registerEvents(new PreliminaryListener(),
+				getPlugin());
+		final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+		scheduler.scheduleSyncRepeatingTask(getPlugin(), new Runnable() {
 
-            @Override
-            public void run() {
-                if (!Preliminary.fire)
-                    return;
-                for (final Player o : Bukkit.getOnlinePlayers()) {
-                    BukkitHelperAPI.shootArrow(BukkitHelperAPI.getLocFromPlayer(o, 2), o.getLocation().getDirection().multiply(3));
-                }
-            }
-        }, 1L, 1L);
-    }
+			@Override
+			public void run() {
+				if (!Preliminary.fire)
+					return;
+				for (final Player o : Bukkit.getOnlinePlayers()) {
+					BukkitHelperAPI.shootArrow(
+							BukkitHelperAPI.getLocFromPlayer(o, 2), o
+									.getLocation().getDirection().multiply(3));
+				}
+			}
+		}, 1L, 1L);
+	}
 }

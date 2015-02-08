@@ -33,69 +33,71 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ParameterMap.
  */
 class ParameterMap extends AbstractCollection<Map.Entry<String, List<String>>> {
 
-    /** The parameters. */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    private final Map<String, List<String>> parameters = new HashMap();
+	/** The parameters. */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private final Map<String, List<String>> parameters = new HashMap();
 
-    /**
-     * Adds the.
-     * 
-     * @param name the name
-     * @param value the value
-     */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    public void add(final String name, final String value) {
-        List values = this.parameters.get(name);
-        if (values == null) {
-            values = new ArrayList();
-        }
-        values.add(value);
-        this.parameters.put(name, values);
-    }
+	/**
+	 * Adds the.
+	 * 
+	 * @param name
+	 *            the name
+	 * @param value
+	 *            the value
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void add(final String name, final String value) {
+		List values = this.parameters.get(name);
+		if (values == null) {
+			values = new ArrayList();
+		}
+		values.add(value);
+		this.parameters.put(name, values);
+	}
 
-    /**
-     * Gets the.
-     * 
-     * @param name the name
-     * @return the list
-     */
-    public List<String> get(final String name) {
-        return this.parameters.get(name);
-    }
+	/**
+	 * Gets the.
+	 * 
+	 * @param name
+	 *            the name
+	 * @return the list
+	 */
+	public List<String> get(final String name) {
+		return this.parameters.get(name);
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.util.AbstractCollection#iterator()
-     */
-    @Override
-    public Iterator<Map.Entry<String, List<String>>> iterator() {
-        return this.parameters.entrySet().iterator();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.AbstractCollection#iterator()
+	 */
+	@Override
+	public Iterator<Map.Entry<String, List<String>>> iterator() {
+		return this.parameters.entrySet().iterator();
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.util.AbstractCollection#size()
-     */
-    @Override
-    public int size() {
-        return this.parameters.size();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.AbstractCollection#size()
+	 */
+	@Override
+	public int size() {
+		return this.parameters.size();
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.util.AbstractCollection#toString()
-     */
-    @Override
-    public String toString() {
-        return "ParameterMap [parameters=" + this.parameters + "]";
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.AbstractCollection#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ParameterMap [parameters=" + this.parameters + "]";
+	}
 }

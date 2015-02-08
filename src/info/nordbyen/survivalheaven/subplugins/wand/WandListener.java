@@ -34,7 +34,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving wand events. The class that is
  * interested in processing a wand event implements this interface, and the
@@ -47,20 +46,26 @@ import org.bukkit.event.player.PlayerInteractEvent;
  */
 public class WandListener implements Listener {
 
-    /**
-     * On wand interact.
-     * 
-     * @param event the event
-     */
-    @EventHandler
-    public void onWandInteract(final PlayerInteractEvent event) {
-        if (SH.getManager().getWandManager().isWand(event.getItem())) {
-            final Wand wand = SH.getManager().getWandManager().search(event.getItem());
-            if ((event.getAction() == Action.LEFT_CLICK_AIR) || (event.getAction() == Action.LEFT_CLICK_BLOCK)) {
-                wand.onLeftClick(event.getItem(), event.getPlayer(), event.getClickedBlock(), event.getBlockFace());
-            } else if ((event.getAction() == Action.RIGHT_CLICK_AIR) || (event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
-                wand.onRightClick(event.getItem(), event.getPlayer(), event.getClickedBlock(), event.getBlockFace());
-            }
-        }
-    }
+	/**
+	 * On wand interact.
+	 * 
+	 * @param event
+	 *            the event
+	 */
+	@EventHandler
+	public void onWandInteract(final PlayerInteractEvent event) {
+		if (SH.getManager().getWandManager().isWand(event.getItem())) {
+			final Wand wand = SH.getManager().getWandManager()
+					.search(event.getItem());
+			if ((event.getAction() == Action.LEFT_CLICK_AIR)
+					|| (event.getAction() == Action.LEFT_CLICK_BLOCK)) {
+				wand.onLeftClick(event.getItem(), event.getPlayer(),
+						event.getClickedBlock(), event.getBlockFace());
+			} else if ((event.getAction() == Action.RIGHT_CLICK_AIR)
+					|| (event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
+				wand.onRightClick(event.getItem(), event.getPlayer(),
+						event.getClickedBlock(), event.getBlockFace());
+			}
+		}
+	}
 }

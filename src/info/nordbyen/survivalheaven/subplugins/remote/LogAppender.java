@@ -32,35 +32,40 @@ import java.util.Date;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.appender.AbstractAppender;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LogAppender.
  */
 public class LogAppender extends AbstractAppender {
 
-    /** The plugin. */
-    private final RemoteBukkitPlugin plugin;
+	/** The plugin. */
+	private final RemoteBukkitPlugin plugin;
 
-    /**
-     * Instantiates a new log appender.
-     * 
-     * @param plugin the plugin
-     */
-    public LogAppender(final RemoteBukkitPlugin plugin) {
-        super("RemoteController", null, null);
-        this.plugin = plugin;
-        start();
-    }
+	/**
+	 * Instantiates a new log appender.
+	 * 
+	 * @param plugin
+	 *            the plugin
+	 */
+	public LogAppender(final RemoteBukkitPlugin plugin) {
+		super("RemoteController", null, null);
+		this.plugin = plugin;
+		start();
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.apache.logging.log4j.core.Appender#append(org.apache.logging.log4j
-     * .core.LogEvent)
-     */
-    @Override
-    public void append(final LogEvent event) {
-        this.plugin.broadcast(new SimpleDateFormat("hh:mm a").format(new Date(event.getMillis())) + " [" + event.getLevel().toString() + "] " + event.getMessage().getFormattedMessage());
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.apache.logging.log4j.core.Appender#append(org.apache.logging.log4j
+	 * .core.LogEvent)
+	 */
+	@Override
+	public void append(final LogEvent event) {
+		this.plugin.broadcast(new SimpleDateFormat("hh:mm a").format(new Date(
+				event.getMillis()))
+				+ " ["
+				+ event.getLevel().toString()
+				+ "] "
+				+ event.getMessage().getFormattedMessage());
+	}
 }

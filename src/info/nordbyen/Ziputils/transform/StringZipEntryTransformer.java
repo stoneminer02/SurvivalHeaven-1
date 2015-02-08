@@ -34,54 +34,60 @@ import java.util.zip.ZipOutputStream;
 import info.nordbyen.Ziputils.ByteSource;
 import info.nordbyen.Ziputils.commons.IOUtils;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class StringZipEntryTransformer.
  */
 public abstract class StringZipEntryTransformer implements ZipEntryTransformer {
 
-    /** The encoding. */
-    private final String encoding;
+	/** The encoding. */
+	private final String encoding;
 
-    /**
-     * Instantiates a new string zip entry transformer.
-     */
-    public StringZipEntryTransformer() {
-        this(null);
-    }
+	/**
+	 * Instantiates a new string zip entry transformer.
+	 */
+	public StringZipEntryTransformer() {
+		this(null);
+	}
 
-    /**
-     * Instantiates a new string zip entry transformer.
-     * 
-     * @param encoding the encoding
-     */
-    public StringZipEntryTransformer(String encoding) {
-        this.encoding = encoding;
-    }
+	/**
+	 * Instantiates a new string zip entry transformer.
+	 * 
+	 * @param encoding
+	 *            the encoding
+	 */
+	public StringZipEntryTransformer(String encoding) {
+		this.encoding = encoding;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.Ziputils.transform.ZipEntryTransformer#transform(java.io
-     * .InputStream, java.util.zip.ZipEntry, java.util.zip.ZipOutputStream)
-     */
-    @Override
-    public void transform(InputStream in, ZipEntry zipEntry, ZipOutputStream out) throws IOException {
-        String data = IOUtils.toString(in, encoding);
-        data = transform(zipEntry, data);
-        byte[] bytes = encoding == null ? data.getBytes() : data.getBytes(encoding);
-        ByteSource source = new ByteSource(zipEntry.getName(), bytes);
-        ZipEntrySourceZipEntryTransformer.addEntry(source, out);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.Ziputils.transform.ZipEntryTransformer#transform(java.io
+	 * .InputStream, java.util.zip.ZipEntry, java.util.zip.ZipOutputStream)
+	 */
+	@Override
+	public void transform(InputStream in, ZipEntry zipEntry, ZipOutputStream out)
+			throws IOException {
+		String data = IOUtils.toString(in, encoding);
+		data = transform(zipEntry, data);
+		byte[] bytes = encoding == null ? data.getBytes() : data
+				.getBytes(encoding);
+		ByteSource source = new ByteSource(zipEntry.getName(), bytes);
+		ZipEntrySourceZipEntryTransformer.addEntry(source, out);
+	}
 
-    /**
-     * Transform.
-     * 
-     * @param zipEntry the zip entry
-     * @param input the input
-     * @return the string
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    protected abstract String transform(ZipEntry zipEntry, String input) throws IOException;
+	/**
+	 * Transform.
+	 * 
+	 * @param zipEntry
+	 *            the zip entry
+	 * @param input
+	 *            the input
+	 * @return the string
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	protected abstract String transform(ZipEntry zipEntry, String input)
+			throws IOException;
 }

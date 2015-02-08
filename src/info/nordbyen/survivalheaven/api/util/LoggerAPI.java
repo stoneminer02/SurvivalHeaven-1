@@ -30,62 +30,70 @@ import java.util.logging.Level;
 
 import org.bukkit.plugin.Plugin;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LoggerAPI.
  */
 public class LoggerAPI {
 
-    /** The logger. */
-    private static LoggerAPI logger = new LoggerAPI();
+	/** The logger. */
+	private static LoggerAPI logger = new LoggerAPI();
 
-    /**
-     * Gets the logger.
-     * 
-     * @return the logger
-     */
-    public static LoggerAPI getLogger() {
-        return logger;
-    }
+	/**
+	 * Gets the logger.
+	 * 
+	 * @return the logger
+	 */
+	public static LoggerAPI getLogger() {
+		return logger;
+	}
 
-    /**
-     * Info.
-     * 
-     * @param plugin the plugin
-     * @param message the message
-     */
-    public void info(final Plugin plugin, final String message) {
-        log(plugin, Level.INFO, message);
-    }
+	/**
+	 * Info.
+	 * 
+	 * @param plugin
+	 *            the plugin
+	 * @param message
+	 *            the message
+	 */
+	public void info(final Plugin plugin, final String message) {
+		log(plugin, Level.INFO, message);
+	}
 
-    /**
-     * Log.
-     * 
-     * @param plugin the plugin
-     * @param level the level
-     * @param message the message
-     */
-    public void log(final Plugin plugin, final Level level, final String message) {
-        plugin.getLogger().log(level, message);
-    }
+	/**
+	 * Log.
+	 * 
+	 * @param plugin
+	 *            the plugin
+	 * @param level
+	 *            the level
+	 * @param message
+	 *            the message
+	 */
+	public void log(final Plugin plugin, final Level level, final String message) {
+		plugin.getLogger().log(level, message);
+	}
 
-    /**
-     * Severe.
-     * 
-     * @param plugin the plugin
-     * @param message the message
-     */
-    public void severe(final Plugin plugin, final String message) {
-        log(plugin, Level.SEVERE, message);
-    }
+	/**
+	 * Severe.
+	 * 
+	 * @param plugin
+	 *            the plugin
+	 * @param message
+	 *            the message
+	 */
+	public void severe(final Plugin plugin, final String message) {
+		log(plugin, Level.SEVERE, message);
+	}
 
-    /**
-     * Warn.
-     * 
-     * @param plugin the plugin
-     * @param message the message
-     */
-    public void warn(final Plugin plugin, final String message) {
-        log(plugin, Level.WARNING, message);
-    }
+	/**
+	 * Warn.
+	 * 
+	 * @param plugin
+	 *            the plugin
+	 * @param message
+	 *            the message
+	 */
+	public void warn(final Plugin plugin, final String message) {
+		log(plugin, Level.WARNING, message);
+	}
 }

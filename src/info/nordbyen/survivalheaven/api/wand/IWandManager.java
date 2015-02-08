@@ -29,50 +29,56 @@ package info.nordbyen.survivalheaven.api.wand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IWandManager.
  */
 public interface IWandManager {
 
-    /**
-     * Adds the.
-     * 
-     * @param wand the wand
-     */
-    void add(Wand wand);
+	/**
+	 * Adds the.
+	 * 
+	 * @param wand
+	 *            the wand
+	 */
+	void add(Wand wand);
 
-    /**
-     * Creates the wand.
-     * 
-     * @param target the target
-     * @param wand the wand
-     * @param player the player
-     * @return true, if successful
-     */
-    boolean createWand(ItemStack target, Wand wand, Player player);
+	/**
+	 * Creates the wand.
+	 * 
+	 * @param target
+	 *            the target
+	 * @param wand
+	 *            the wand
+	 * @param player
+	 *            the player
+	 * @return true, if successful
+	 */
+	boolean createWand(ItemStack target, Wand wand, Player player);
 
-    /**
-     * Gets the.
-     * 
-     * @param id the id
-     * @return the wand
-     */
-    Wand get(String id);
+	/**
+	 * Gets the.
+	 * 
+	 * @param id
+	 *            the id
+	 * @return the wand
+	 */
+	Wand get(String id);
 
-    /**
-     * Checks if is wand.
-     * 
-     * @param itemStack the item stack
-     * @return true, if is wand
-     */
-    boolean isWand(ItemStack itemStack);
+	/**
+	 * Checks if is wand.
+	 * 
+	 * @param itemStack
+	 *            the item stack
+	 * @return true, if is wand
+	 */
+	boolean isWand(ItemStack itemStack);
 
-    /**
-     * Search.
-     * 
-     * @param itemStack the item stack
-     * @return the wand
-     */
-    Wand search(ItemStack itemStack);
+	/**
+	 * Search.
+	 * 
+	 * @param itemStack
+	 *            the item stack
+	 * @return the wand
+	 */
+	Wand search(ItemStack itemStack);
 }

@@ -25,69 +25,71 @@
  */
 
 package info.nordbyen.survivalheaven.api.scheduler;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class L0lTaskWrapper.
  */
 public final class L0lTaskWrapper {
 
-    /** The task. */
-    private L0lTask task;
-    /** The delay. */
-    private final int delay;
-    /** The loops_done. */
-    private int loops_done = 0;
+	/** The task. */
+	private L0lTask task;
+	/** The delay. */
+	private final int delay;
+	/** The loops_done. */
+	private int loops_done = 0;
 
-    /**
-     * Instantiates a new l0l task wrapper.
-     * 
-     * @param task the task
-     * @param delay the delay
-     */
-    public L0lTaskWrapper(final L0lTask task, final int delay) {
-        this.task = task;
-        this.delay = delay;
-    }
+	/**
+	 * Instantiates a new l0l task wrapper.
+	 * 
+	 * @param task
+	 *            the task
+	 * @param delay
+	 *            the delay
+	 */
+	public L0lTaskWrapper(final L0lTask task, final int delay) {
+		this.task = task;
+		this.delay = delay;
+	}
 
-    /**
-     * Execute task.
-     */
-    public void executeTask() {
-        task.taskToDo(loops_done);
-        loops_done++;
-    }
+	/**
+	 * Execute task.
+	 */
+	public void executeTask() {
+		task.taskToDo(loops_done);
+		loops_done++;
+	}
 
-    /**
-     * Gets the delay.
-     * 
-     * @return the delay
-     */
-    public int getDelay() {
-        return delay;
-    }
+	/**
+	 * Gets the delay.
+	 * 
+	 * @return the delay
+	 */
+	public int getDelay() {
+		return delay;
+	}
 
-    /**
-     * Gets the task.
-     * 
-     * @return the task
-     */
-    public L0lTask getTask() {
-        return task;
-    }
+	/**
+	 * Gets the task.
+	 * 
+	 * @return the task
+	 */
+	public L0lTask getTask() {
+		return task;
+	}
 
-    /**
-     * Checks if is done.
-     * 
-     * @return true, if is done
-     */
-    public boolean isDone() {
-        return !task.shouldContinue(loops_done);
-    }
+	/**
+	 * Checks if is done.
+	 * 
+	 * @return true, if is done
+	 */
+	public boolean isDone() {
+		return !task.shouldContinue(loops_done);
+	}
 
-    /**
-     * Null all.
-     */
-    public void nullAll() {
-        task = null;
-    }
+	/**
+	 * Null all.
+	 */
+	public void nullAll() {
+		task = null;
+	}
 }

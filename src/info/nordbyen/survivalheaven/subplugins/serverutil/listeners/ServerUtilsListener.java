@@ -31,7 +31,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
 
-// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving serverUtils events. The class that is
  * interested in processing a serverUtils event implements this interface, and
@@ -44,18 +43,20 @@ import org.bukkit.event.block.SignChangeEvent;
  */
 public class ServerUtilsListener implements Listener {
 
-    /**
-     * On sign change.
-     * 
-     * @param e the e
-     */
-    @EventHandler
-    public void onSignChange(final SignChangeEvent e) {
-        if (e.getPlayer().hasPermission("sh.colorsign")) {
-            final String[] lines = e.getLines();
-            for (int i = 0; i < lines.length; i++) {
-                e.setLine(i, ChatColor.translateAlternateColorCodes('&', lines[i]));
-            }
-        }
-    }
+	/**
+	 * On sign change.
+	 * 
+	 * @param e
+	 *            the e
+	 */
+	@EventHandler
+	public void onSignChange(final SignChangeEvent e) {
+		if (e.getPlayer().hasPermission("sh.colorsign")) {
+			final String[] lines = e.getLines();
+			for (int i = 0; i < lines.length; i++) {
+				e.setLine(i,
+						ChatColor.translateAlternateColorCodes('&', lines[i]));
+			}
+		}
+	}
 }

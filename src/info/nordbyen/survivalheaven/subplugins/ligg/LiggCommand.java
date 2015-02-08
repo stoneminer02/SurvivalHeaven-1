@@ -32,59 +32,60 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LiggCommand.
  */
 public class LiggCommand extends AbstractCommand {
 
-    /** The instance. */
-    private static LiggCommand instance;
+	/** The instance. */
+	private static LiggCommand instance;
 
-    /**
-     * Clear command.
-     */
-    public static void clearCommand() {
-        instance = null;
-    }
+	/**
+	 * Clear command.
+	 */
+	public static void clearCommand() {
+		instance = null;
+	}
 
-    /**
-     * Inits the command.
-     */
-    public static void initCommand() {
-        if (instance == null) {
-            instance = new LiggCommand("ligg");
-        }
-    }
+	/**
+	 * Inits the command.
+	 */
+	public static void initCommand() {
+		if (instance == null) {
+			instance = new LiggCommand("ligg");
+		}
+	}
 
-    /**
-     * Instantiates a new ligg command.
-     * 
-     * @param command the command
-     */
-    public LiggCommand(final String command) {
-        super(command);
-    }
+	/**
+	 * Instantiates a new ligg command.
+	 * 
+	 * @param command
+	 *            the command
+	 */
+	public LiggCommand(final String command) {
+		super(command);
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.survivalheaven.api.command.AbstractCommand#onCommand(org.
-     * bukkit.command .CommandSender, org.bukkit.command.Command,
-     * java.lang.String, java.lang.String[])
-     */
-    @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
-        if (args.length > 0) {
-            sender.sendMessage("This command doesn't accept any arguments.");
-            return true;
-        }
-        if (sender instanceof Player) {
-            Ligg.getInstance().performAction((Player) sender);
-        } else {
-            Ligg.getInstance().performAction(sender);
-        }
-        return true;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.survivalheaven.api.command.AbstractCommand#onCommand(org.
+	 * bukkit.command .CommandSender, org.bukkit.command.Command,
+	 * java.lang.String, java.lang.String[])
+	 */
+	@Override
+	public boolean onCommand(final CommandSender sender, final Command command,
+			final String label, final String[] args) {
+		if (args.length > 0) {
+			sender.sendMessage("This command doesn't accept any arguments.");
+			return true;
+		}
+		if (sender instanceof Player) {
+			Ligg.getInstance().performAction((Player) sender);
+		} else {
+			Ligg.getInstance().performAction(sender);
+		}
+		return true;
+	}
 }

@@ -33,45 +33,56 @@ import info.nordbyen.survivalheaven.subplugins.playerdata.PlayerData;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IBlockManager.
  */
 public interface IBlockManager {
 
-    /**
-     * Gets the owner.
-     * 
-     * @param b the b
-     * @return the owner
-     */
-    public IPlayerData getOwner(Block b);
+	/**
+	 * Gets the owner.
+	 * 
+	 * @param b
+	 *            the b
+	 * @return the owner
+	 */
+	public IPlayerData getOwner(Block b);
 
-    /**
-     * Sets the block owner.
-     * 
-     * @param b the b
-     * @param owner the owner
-     * @param type the type
-     */
-    public void setBlockOwner(Block b, Player owner, BlockPlacedType type);
+	/**
+	 * Sets the block owner.
+	 * 
+	 * @param b
+	 *            the b
+	 * @param owner
+	 *            the owner
+	 * @param type
+	 *            the type
+	 */
+	public void setBlockOwner(Block b, Player owner, BlockPlacedType type);
 
-    /**
-     * Sets the block owner.
-     * 
-     * @param b the b
-     * @param owner the owner
-     * @param type the type
-     */
-    public void setBlockOwner(Block b, PlayerData owner, BlockPlacedType type);
+	/**
+	 * Sets the block owner.
+	 * 
+	 * @param b
+	 *            the b
+	 * @param owner
+	 *            the owner
+	 * @param type
+	 *            the type
+	 */
+	public void setBlockOwner(Block b, PlayerData owner, BlockPlacedType type);
 
-    /**
-     * Sets the block owner.
-     * 
-     * @param b the b
-     * @param uuid the uuid
-     * @param name the name
-     * @param type the type
-     */
-    public void setBlockOwner(Block b, String uuid, String name, BlockPlacedType type);
+	/**
+	 * Sets the block owner.
+	 * 
+	 * @param b
+	 *            the b
+	 * @param uuid
+	 *            the uuid
+	 * @param name
+	 *            the name
+	 * @param type
+	 *            the type
+	 */
+	public void setBlockOwner(Block b, String uuid, String name,
+			BlockPlacedType type);
 }

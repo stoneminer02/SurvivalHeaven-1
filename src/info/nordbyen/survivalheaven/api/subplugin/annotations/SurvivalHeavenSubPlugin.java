@@ -31,7 +31,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface SurvivalHeavenSubPlugin.
  */
@@ -39,10 +38,10 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface SurvivalHeavenSubPlugin {
 
-    /**
-     * Name.
-     * 
-     * @return the string
-     */
-    public String name();
+	/**
+	 * Name.
+	 * 
+	 * @return the string
+	 */
+	public String name();
 }

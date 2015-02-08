@@ -25,7 +25,9 @@
  */
 
 package info.nordbyen.survivalheaven.api.playerrelation;
+
 /**
  * The Interface IPlayerRelationManager.
  */
-public interface IPlayerRelationManager {}
+public interface IPlayerRelationManager {
+}

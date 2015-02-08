@@ -25,7 +25,10 @@
  */
 
 package info.nordbyen.survivalheaven.person;
+
 /**
  * The Class Person.
  */
-public abstract class Person implements Hungerable, Sleepable, Ageable, Positionable, Talkable, Nameable, Sexable {}
+public abstract class Person implements Hungerable, Sleepable, Ageable,
+		Positionable, Talkable, Nameable, Sexable {
+}

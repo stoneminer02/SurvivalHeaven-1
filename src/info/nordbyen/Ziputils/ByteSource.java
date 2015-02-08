@@ -31,87 +31,91 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ByteSource.
  */
 public class ByteSource implements ZipEntrySource {
 
-    /** The path. */
-    private final String path;
-    /** The bytes. */
-    private final byte[] bytes;
-    /** The time. */
-    private final long time;
+	/** The path. */
+	private final String path;
+	/** The bytes. */
+	private final byte[] bytes;
+	/** The time. */
+	private final long time;
 
-    /**
-     * Instantiates a new byte source.
-     * 
-     * @param path the path
-     * @param bytes the bytes
-     */
-    public ByteSource(final String path, final byte[] bytes) {
-        this(path, bytes, System.currentTimeMillis());
-    }
+	/**
+	 * Instantiates a new byte source.
+	 * 
+	 * @param path
+	 *            the path
+	 * @param bytes
+	 *            the bytes
+	 */
+	public ByteSource(final String path, final byte[] bytes) {
+		this(path, bytes, System.currentTimeMillis());
+	}
 
-    /**
-     * Instantiates a new byte source.
-     * 
-     * @param path the path
-     * @param bytes the bytes
-     * @param time the time
-     */
-    public ByteSource(final String path, final byte[] bytes, final long time) {
-        this.path = path;
-        this.bytes = bytes.clone();
-        this.time = time;
-    }
+	/**
+	 * Instantiates a new byte source.
+	 * 
+	 * @param path
+	 *            the path
+	 * @param bytes
+	 *            the bytes
+	 * @param time
+	 *            the time
+	 */
+	public ByteSource(final String path, final byte[] bytes, final long time) {
+		this.path = path;
+		this.bytes = bytes.clone();
+		this.time = time;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.Ziputils.ZipEntrySource#getEntry()
-     */
-    @Override
-    public ZipEntry getEntry() {
-        final ZipEntry entry = new ZipEntry(path);
-        if (bytes != null) {
-            entry.setSize(bytes.length);
-        }
-        entry.setTime(time);
-        return entry;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.Ziputils.ZipEntrySource#getEntry()
+	 */
+	@Override
+	public ZipEntry getEntry() {
+		final ZipEntry entry = new ZipEntry(path);
+		if (bytes != null) {
+			entry.setSize(bytes.length);
+		}
+		entry.setTime(time);
+		return entry;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.Ziputils.ZipEntrySource#getInputStream()
-     */
-    @Override
-    public InputStream getInputStream() throws IOException {
-        if (bytes == null)
-            return null;
-        else
-            return new ByteArrayInputStream(bytes);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.Ziputils.ZipEntrySource#getInputStream()
+	 */
+	@Override
+	public InputStream getInputStream() throws IOException {
+		if (bytes == null)
+			return null;
+		else
+			return new ByteArrayInputStream(bytes);
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.Ziputils.ZipEntrySource#getPath()
-     */
-    @Override
-    public String getPath() {
-        return path;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.Ziputils.ZipEntrySource#getPath()
+	 */
+	@Override
+	public String getPath() {
+		return path;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return "ByteSource[" + path + "]";
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ByteSource[" + path + "]";
+	}
 }

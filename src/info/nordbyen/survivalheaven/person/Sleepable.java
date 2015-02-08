@@ -25,21 +25,21 @@
  */
 
 package info.nordbyen.survivalheaven.person;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface Sleepable.
  */
 public interface Sleepable {
 
-    /**
-     * Checks if is sleeping.
-     * 
-     * @return true, if is sleeping
-     */
-    public boolean isSleeping();
+	/**
+	 * Checks if is sleeping.
+	 * 
+	 * @return true, if is sleeping
+	 */
+	public boolean isSleeping();
 
-    /**
-     * Sets the sleeping.
-     */
-    public void setSleeping();
+	/**
+	 * Sets the sleeping.
+	 */
+	public void setSleeping();
 }

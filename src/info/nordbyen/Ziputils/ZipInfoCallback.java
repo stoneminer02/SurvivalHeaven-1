@@ -29,17 +29,18 @@ package info.nordbyen.Ziputils;
 import java.io.IOException;
 import java.util.zip.ZipEntry;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface ZipInfoCallback.
  */
 public interface ZipInfoCallback {
 
-    /**
-     * Process.
-     * 
-     * @param zipEntry the zip entry
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    void process(ZipEntry zipEntry) throws IOException;
+	/**
+	 * Process.
+	 * 
+	 * @param zipEntry
+	 *            the zip entry
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	void process(ZipEntry zipEntry) throws IOException;
 }

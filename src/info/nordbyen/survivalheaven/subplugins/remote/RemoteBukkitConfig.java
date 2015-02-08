@@ -32,55 +32,54 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RemoteBukkitConfig.
  */
 public class RemoteBukkitConfig extends CustomConfiguration {
 
-    /** The cfg. */
-    private static RemoteBukkitConfig cfg;
+	/** The cfg. */
+	private static RemoteBukkitConfig cfg;
 
-    /**
-     * Gets the single instance of RemoteBukkitConfig.
-     * 
-     * @return single instance of RemoteBukkitConfig
-     */
-    public static RemoteBukkitConfig getInstance() {
-        if (cfg == null) {
-            cfg = new RemoteBukkitConfig();
-        }
-        return cfg;
-    }
+	/**
+	 * Gets the single instance of RemoteBukkitConfig.
+	 * 
+	 * @return single instance of RemoteBukkitConfig
+	 */
+	public static RemoteBukkitConfig getInstance() {
+		if (cfg == null) {
+			cfg = new RemoteBukkitConfig();
+		}
+		return cfg;
+	}
 
-    /**
-     * Instantiates a new remote bukkit config.
-     */
-    public RemoteBukkitConfig() {
-        super(new File("./plugins/SurvivalHeaven/remoteconsole.yml"));
-        cfg = this;
-        load();
-        save();
-        saveDefault();
-    }
+	/**
+	 * Instantiates a new remote bukkit config.
+	 */
+	public RemoteBukkitConfig() {
+		super(new File("./plugins/SurvivalHeaven/remoteconsole.yml"));
+		cfg = this;
+		load();
+		save();
+		saveDefault();
+	}
 
-    /**
-     * Save default.
-     */
-    private void saveDefault() {
-        if (!contains("port")) {
-            set("port", "25564");
-        }
-        if (!contains("verbose")) {
-            set("verbose", true);
-        }
-        if (!contains("logsize")) {
-            set("logsize", 500);
-        }
-        final ArrayList<Map<String, String>> users = new ArrayList<Map<String, String>>();
-        if (!contains("users")) {
-            set("user", users);
-        }
-        save();
-    }
+	/**
+	 * Save default.
+	 */
+	private void saveDefault() {
+		if (!contains("port")) {
+			set("port", "25564");
+		}
+		if (!contains("verbose")) {
+			set("verbose", true);
+		}
+		if (!contains("logsize")) {
+			set("logsize", 500);
+		}
+		final ArrayList<Map<String, String>> users = new ArrayList<Map<String, String>>();
+		if (!contains("users")) {
+			set("user", users);
+		}
+		save();
+	}
 }

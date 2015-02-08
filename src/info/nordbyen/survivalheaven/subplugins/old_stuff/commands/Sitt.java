@@ -32,32 +32,33 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Sitt.
  */
 public class Sitt implements CommandExecutor {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
-     * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
-     */
-    @Override
-    public boolean onCommand(final CommandSender Sender, final Command command, final String commandLabel, final String args[]) {
-        if (Sender instanceof Player) {
-            if (command.getName().equalsIgnoreCase("sitt")) {
-                if (Sender.hasPermission("sh.kick")) {
-                    if (args.length == 1) {
-                        final Player p = Bukkit.getPlayer(args[0]);
-                        @SuppressWarnings("unused") final Player tg = (Player) Sender;
-                        p.setPassenger(p);
-                    }
-                }
-            }
-        }
-        return false;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
+	 */
+	@Override
+	public boolean onCommand(final CommandSender Sender, final Command command,
+			final String commandLabel, final String args[]) {
+		if (Sender instanceof Player) {
+			if (command.getName().equalsIgnoreCase("sitt")) {
+				if (Sender.hasPermission("sh.kick")) {
+					if (args.length == 1) {
+						final Player p = Bukkit.getPlayer(args[0]);
+						@SuppressWarnings("unused")
+						final Player tg = (Player) Sender;
+						p.setPassenger(p);
+					}
+				}
+			}
+		}
+		return false;
+	}
 }

@@ -37,7 +37,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.SignChangeEvent;
 
-// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving block events. The class that is
  * interested in processing a block event implements this interface, and the
@@ -50,36 +49,42 @@ import org.bukkit.event.block.SignChangeEvent;
  */
 public class BlockListener implements Listener {
 
-    /**
-     * On dispenser break.
-     * 
-     * @param event the event
-     */
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onDispenserBreak(final BlockBreakEvent event) {
-        if ((event.isCancelled()) || (!(event.getBlock().getState() instanceof Dispenser)) || (!(event.getBlock().getState() instanceof Dropper)))
-            return;
-        Dispensers.getInstance();
-        if (Dispensers.isDispenser(event.getBlock().getLocation())) {
-            Dispensers.getInstance().getList("dispensers").remove(event.getBlock().getLocation().toString());
-            Dispensers.getInstance().save();
-        }
-    }
+	/**
+	 * On dispenser break.
+	 * 
+	 * @param event
+	 *            the event
+	 */
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onDispenserBreak(final BlockBreakEvent event) {
+		if ((event.isCancelled())
+				|| (!(event.getBlock().getState() instanceof Dispenser))
+				|| (!(event.getBlock().getState() instanceof Dropper)))
+			return;
+		Dispensers.getInstance();
+		if (Dispensers.isDispenser(event.getBlock().getLocation())) {
+			Dispensers.getInstance().getList("dispensers")
+					.remove(event.getBlock().getLocation().toString());
+			Dispensers.getInstance().save();
+		}
+	}
 
-    /**
-     * On sign change.
-     * 
-     * @param event the event
-     */
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onSignChange(final SignChangeEvent event) {
-        if ((event.isCancelled()) || (event.getPlayer() == null))
-            return;
-        if (event.getPlayer().hasPermission("infdispenser.signs"))
-            return;
-        if (event.getLines()[0].equalsIgnoreCase("[infdisp]")) {
-            event.getPlayer().sendMessage(SH.PREFIX + "Du har ikke nok rettigheter til dette");
-            event.setCancelled(true);
-        }
-    }
+	/**
+	 * On sign change.
+	 * 
+	 * @param event
+	 *            the event
+	 */
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onSignChange(final SignChangeEvent event) {
+		if ((event.isCancelled()) || (event.getPlayer() == null))
+			return;
+		if (event.getPlayer().hasPermission("infdispenser.signs"))
+			return;
+		if (event.getLines()[0].equalsIgnoreCase("[infdisp]")) {
+			event.getPlayer().sendMessage(
+					SH.PREFIX + "Du har ikke nok rettigheter til dette");
+			event.setCancelled(true);
+		}
+	}
 }

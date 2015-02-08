@@ -71,7 +71,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SurvivalHeaven.
  * 
@@ -82,368 +81,391 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class SH extends JavaPlugin implements ISH {
 
-    /** The commands. */
-    public HashMap<String, AbstractCommand> commands = new HashMap<String, AbstractCommand>();
-    /** The Constant MOTTO. */
-    public static final String MOTTO = ChatColor.LIGHT_PURPLE + "Skapt for spillerne";
-    /** The Constant PREFIX. */
-    public static final String PREFIX = ChatColor.RED + "S" + ChatColor.GRAY + "H ";
-    /** The Constant PATH_TO_CONFIG_FOLDER. */
-    public static final String PATH_TO_CONFIG_FOLDER = "./plugins/SurvivalHeaven/";
-    /** The Constant NAME. */
-    public static final String NAME = ChatColor.RED + "Survival" + ChatColor.GRAY + "Heaven" + ChatColor.RESET;
-    /** The i survival heaven. */
-    private static ISH iSurvivalHeaven;
-    /** The plugin. */
-    private static JavaPlugin plugin;
-    /** The senter. */
-    private Location senter = null;
-    /** The Constant debug. */
-    private final boolean debug = false; // TODO
-    /** The Constant spam. */
-    private final boolean spam = false; // TODO
-    /** The version. */
-    private String version = null;
-    /** The name. */
-    private String name = null;
-    /** The note manager. */
-    private INoteManager noteManager;
-    /** The warning manager. */
-    private IWarningManager warningManager;
-    /** The block manager. */
-    private IBlockManager blockManager;
-    /** The mysql manager. */
-    private IMysqlManager mysqlManager;
-    /** The wand manager. */
-    private IWandManager wandManager;
-    /** The player data manager. */
-    private IPlayerDataManager playerDataManager;
-    /** The rank manager. */
-    private IRankManager rankManager;
-    /** The subplugin manager. */
-    private ISubPluginManager subpluginManager;
-    /** The anno sub plugin manager. */
-    private IAnnoSubPluginManager annoSubPluginManager;
-    /** The region manager. */
-    private IRegionManager regionManager;
+	/** The commands. */
+	public HashMap<String, AbstractCommand> commands = new HashMap<String, AbstractCommand>();
+	/** The Constant MOTTO. */
+	public static final String MOTTO = ChatColor.LIGHT_PURPLE
+			+ "Skapt for spillerne";
+	/** The Constant PREFIX. */
+	public static final String PREFIX = ChatColor.RED + "S" + ChatColor.GRAY
+			+ "H ";
+	/** The Constant PATH_TO_CONFIG_FOLDER. */
+	public static final String PATH_TO_CONFIG_FOLDER = "./plugins/SurvivalHeaven/";
+	/** The Constant NAME. */
+	public static final String NAME = ChatColor.RED + "Survival"
+			+ ChatColor.GRAY + "Heaven" + ChatColor.RESET;
+	/** The i survival heaven. */
+	private static ISH iSurvivalHeaven;
+	/** The plugin. */
+	private static JavaPlugin plugin;
+	/** The senter. */
+	private Location senter = null;
+	/** The Constant debug. */
+	private final boolean debug = false; // TODO
+	/** The Constant spam. */
+	private final boolean spam = false; // TODO
+	/** The version. */
+	private String version = null;
+	/** The name. */
+	private String name = null;
+	/** The note manager. */
+	private INoteManager noteManager;
+	/** The warning manager. */
+	private IWarningManager warningManager;
+	/** The block manager. */
+	private IBlockManager blockManager;
+	/** The mysql manager. */
+	private IMysqlManager mysqlManager;
+	/** The wand manager. */
+	private IWandManager wandManager;
+	/** The player data manager. */
+	private IPlayerDataManager playerDataManager;
+	/** The rank manager. */
+	private IRankManager rankManager;
+	/** The subplugin manager. */
+	private ISubPluginManager subpluginManager;
+	/** The anno sub plugin manager. */
+	private IAnnoSubPluginManager annoSubPluginManager;
+	/** The region manager. */
+	private IRegionManager regionManager;
 
-    /**
-     * Gets the manager.
-     * 
-     * @return the manager
-     */
-    public static ISH getManager() {
-        return iSurvivalHeaven;
-    }
+	/**
+	 * Gets the manager.
+	 * 
+	 * @return the manager
+	 */
+	public static ISH getManager() {
+		return iSurvivalHeaven;
+	}
 
-    /**
-     * Gets the plugin.
-     * 
-     * @return the plugin
-     */
-    public static JavaPlugin getPlugin() {
-        return plugin;
-    }
+	/**
+	 * Gets the plugin.
+	 * 
+	 * @return the plugin
+	 */
+	public static JavaPlugin getPlugin() {
+		return plugin;
+	}
 
-    /**
-     * Debug.
-     * 
-     * @param strings the strings
-     */
-    @Override
-    public void debug(final Object... strings) {
-        if (!debug)
-            return;
-        for (final Object s : strings) {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.LIGHT_PURPLE + "[DEBUG] " + ChatColor.GRAY + s);
-        }
-    }
+	/**
+	 * Debug.
+	 * 
+	 * @param strings
+	 *            the strings
+	 */
+	@Override
+	public void debug(final Object... strings) {
+		if (!debug)
+			return;
+		for (final Object s : strings) {
+			Bukkit.getConsoleSender().sendMessage(
+					ChatColor.LIGHT_PURPLE + "[DEBUG] " + ChatColor.GRAY + s);
+		}
+	}
 
-    /**
-     * Gets the senter.
-     * 
-     * @return the senter
-     */
-    @Override
-    public final Location getSenter() {
-        if (senter == null) {
-            senter = new Location(Bukkit.getWorlds().get(0), 140, 0, 89);
-        }
-        return senter;
-    }
+	/**
+	 * Gets the senter.
+	 * 
+	 * @return the senter
+	 */
+	@Override
+	public final Location getSenter() {
+		if (senter == null) {
+			senter = new Location(Bukkit.getWorlds().get(0), 140, 0, 89);
+		}
+		return senter;
+	}
 
-    /**
-     * Gets the anno sub plugin manager.
-     * 
-     * @return the anno sub plugin manager
-     */
-    @Override
-    public IAnnoSubPluginManager getAnnoSubPluginManager() {
-        if (annoSubPluginManager == null) {
-            annoSubPluginManager = new AnnoSubPluginManager();
-        }
-        return annoSubPluginManager;
-    }
+	/**
+	 * Gets the anno sub plugin manager.
+	 * 
+	 * @return the anno sub plugin manager
+	 */
+	@Override
+	public IAnnoSubPluginManager getAnnoSubPluginManager() {
+		if (annoSubPluginManager == null) {
+			annoSubPluginManager = new AnnoSubPluginManager();
+		}
+		return annoSubPluginManager;
+	}
 
-    /**
-     * Gets the block manager.
-     * 
-     * @return the block manager
-     */
-    @Override
-    public IBlockManager getBlockManager() {
-        if (blockManager == null) {
-            blockManager = new BlockManager();
-        }
-        return blockManager;
-    }
+	/**
+	 * Gets the block manager.
+	 * 
+	 * @return the block manager
+	 */
+	@Override
+	public IBlockManager getBlockManager() {
+		if (blockManager == null) {
+			blockManager = new BlockManager();
+		}
+		return blockManager;
+	}
 
-    /**
-     * Gets the mysql manager.
-     * 
-     * @return the mysql manager
-     */
-    @Override
-    public IMysqlManager getMysqlManager() {
-        if (mysqlManager == null) {
-            mysqlManager = new MysqlManager();
-        }
-        return mysqlManager;
-    }
+	/**
+	 * Gets the mysql manager.
+	 * 
+	 * @return the mysql manager
+	 */
+	@Override
+	public IMysqlManager getMysqlManager() {
+		if (mysqlManager == null) {
+			mysqlManager = new MysqlManager();
+		}
+		return mysqlManager;
+	}
 
-    /**
-     * Gets the note manager.
-     * 
-     * @return the note manager
-     */
-    @Override
-    public INoteManager getNoteManager() {
-        if (noteManager == null) {
-            noteManager = new NoteManager();
-        }
-        return noteManager;
-    }
+	/**
+	 * Gets the note manager.
+	 * 
+	 * @return the note manager
+	 */
+	@Override
+	public INoteManager getNoteManager() {
+		if (noteManager == null) {
+			noteManager = new NoteManager();
+		}
+		return noteManager;
+	}
 
-    /**
-     * Gets the player data manager.
-     * 
-     * @return the player data manager
-     */
-    @Override
-    public IPlayerDataManager getPlayerDataManager() {
-        if (playerDataManager == null) {
-            playerDataManager = new PlayerDataManager();
-        }
-        return playerDataManager;
-    }
+	/**
+	 * Gets the player data manager.
+	 * 
+	 * @return the player data manager
+	 */
+	@Override
+	public IPlayerDataManager getPlayerDataManager() {
+		if (playerDataManager == null) {
+			playerDataManager = new PlayerDataManager();
+		}
+		return playerDataManager;
+	}
 
-    /**
-     * Gets the rank manager.
-     * 
-     * @return the rank manager
-     */
-    @Override
-    public IRankManager getRankManager() {
-        if (rankManager == null) {
-            rankManager = new RankManager();
-        }
-        return rankManager;
-    }
+	/**
+	 * Gets the rank manager.
+	 * 
+	 * @return the rank manager
+	 */
+	@Override
+	public IRankManager getRankManager() {
+		if (rankManager == null) {
+			rankManager = new RankManager();
+		}
+		return rankManager;
+	}
 
-    /**
-     * Gets the region manager.
-     * 
-     * @return the region manager
-     */
-    @Override
-    public IRegionManager getRegionManager() {
-        if (regionManager == null) {
-            regionManager = new RegionManager();
-        }
-        return regionManager;
-    }
+	/**
+	 * Gets the region manager.
+	 * 
+	 * @return the region manager
+	 */
+	@Override
+	public IRegionManager getRegionManager() {
+		if (regionManager == null) {
+			regionManager = new RegionManager();
+		}
+		return regionManager;
+	}
 
-    /**
-     * Gets the sub plugin manager.
-     * 
-     * @return the sub plugin manager
-     */
-    @Override
-    public ISubPluginManager getSubPluginManager() {
-        if (subpluginManager == null) {
-            subpluginManager = new SubPluginManager();
-        }
-        return subpluginManager;
-    }
+	/**
+	 * Gets the sub plugin manager.
+	 * 
+	 * @return the sub plugin manager
+	 */
+	@Override
+	public ISubPluginManager getSubPluginManager() {
+		if (subpluginManager == null) {
+			subpluginManager = new SubPluginManager();
+		}
+		return subpluginManager;
+	}
 
-    /**
-     * Gets the wand manager.
-     * 
-     * @return the wand manager
-     */
-    @Override
-    public IWandManager getWandManager() {
-        if (wandManager == null) {
-            wandManager = new WandManager();
-        }
-        return wandManager;
-    }
+	/**
+	 * Gets the wand manager.
+	 * 
+	 * @return the wand manager
+	 */
+	@Override
+	public IWandManager getWandManager() {
+		if (wandManager == null) {
+			wandManager = new WandManager();
+		}
+		return wandManager;
+	}
 
-    /**
-     * Gets the warning manager.
-     * 
-     * @return the warning manager
-     */
-    @Override
-    public IWarningManager getWarningManager() {
-        if (warningManager == null) {
-            warningManager = new WarningManager();
-        }
-        return warningManager;
-    }
+	/**
+	 * Gets the warning manager.
+	 * 
+	 * @return the warning manager
+	 */
+	@Override
+	public IWarningManager getWarningManager() {
+		if (warningManager == null) {
+			warningManager = new WarningManager();
+		}
+		return warningManager;
+	}
 
-    /**
-     * Spam.
-     * 
-     * @param strings the strings
-     */
-    public void spam(final Object... strings) {
-        if (!spam)
-            return;
-        for (final Object s : strings) {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_PURPLE + "[SPAM] " + ChatColor.GRAY + s);
-        }
-    }
+	/**
+	 * Spam.
+	 * 
+	 * @param strings
+	 *            the strings
+	 */
+	public void spam(final Object... strings) {
+		if (!spam)
+			return;
+		for (final Object s : strings) {
+			Bukkit.getConsoleSender().sendMessage(
+					ChatColor.DARK_PURPLE + "[SPAM] " + ChatColor.GRAY + s);
+		}
+	}
 
-    /**
-     * Gets the plugin name.
-     * 
-     * @return the plugin name
-     */
-    @Override
-    public String getPluginName() {
-        return name;
-    }
+	/**
+	 * Gets the plugin name.
+	 * 
+	 * @return the plugin name
+	 */
+	@Override
+	public String getPluginName() {
+		return name;
+	}
 
-    /**
-     * Gets the version.
-     * 
-     * @return the version
-     */
-    @Override
-    public String getVersion() {
-        return version;
-    }
+	/**
+	 * Gets the version.
+	 * 
+	 * @return the version
+	 */
+	@Override
+	public String getVersion() {
+		return version;
+	}
 
-    /**
-     * Disable sub plugins.
-     */
-    private void disableSubPlugins() {
-        getSubPluginManager().disableAll();
-        getAnnoSubPluginManager().disableAll();
-    }
+	/**
+	 * Disable sub plugins.
+	 */
+	private void disableSubPlugins() {
+		getSubPluginManager().disableAll();
+		getAnnoSubPluginManager().disableAll();
+	}
 
-    /**
-     * Enable sub plugins.
-     */
-    private void enableSubPlugins() {
-        getSubPluginManager().enableAll();
-        getAnnoSubPluginManager().enableAll();
-    }
+	/**
+	 * Enable sub plugins.
+	 */
+	private void enableSubPlugins() {
+		getSubPluginManager().enableAll();
+		getAnnoSubPluginManager().enableAll();
+	}
 
-    /**
-     * Load jars.
-     */
-    /*
-     * Functions for enabling the plugin
-     */
-    @SuppressWarnings("unused")
-    private void loadJars() {
-        AnnoSubPluginLoader.testLoadJars();
-    }
+	/**
+	 * Load jars.
+	 */
+	/*
+	 * Functions for enabling the plugin
+	 */
+	@SuppressWarnings("unused")
+	private void loadJars() {
+		AnnoSubPluginLoader.testLoadJars();
+	}
 
-    /**
-     * Load translations.
-     */
-    private void loadTranslations() {
-        Translator.loadTrans("translation");
-    }
+	/**
+	 * Load translations.
+	 */
+	private void loadTranslations() {
+		Translator.loadTrans("translation");
+	}
 
-    /*
-     * Functions for disabling the plugin
-     */
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.bukkit.plugin.java.JavaPlugin#onDisable()
-     */
-    @Override
-    public void onDisable() {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "STOPPER PLUGIN " + this.toString());
-        disableSubPlugins();
-        unregisterSubPlugins();
-        saveTranslations();
-    }
+	/*
+	 * Functions for disabling the plugin
+	 */
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.bukkit.plugin.java.JavaPlugin#onDisable()
+	 */
+	@Override
+	public void onDisable() {
+		Bukkit.getConsoleSender().sendMessage(
+				ChatColor.YELLOW + "STOPPER PLUGIN " + this.toString());
+		disableSubPlugins();
+		unregisterSubPlugins();
+		saveTranslations();
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.bukkit.plugin.java.JavaPlugin#onEnable()
-     */
-    @Override
-    public void onEnable() {
-        plugin = this;
-        iSurvivalHeaven = this;
-        version = this.getDescription().getVersion();
-        name = this.getDescription().getName();
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "STARTER PLUGIN " + this.toString());
-        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "******************************************************************");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.RESET + "Starter " + NAME + ChatColor.RESET + " v. " + ChatColor.YELLOW + version);
-        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "------------------------------------------------------------------");
-        loadTranslations();
-        // loadJars(); TODO Fikse error her
-        registerSubPlugins();
-        enableSubPlugins();
-        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "******************************************************************");
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.bukkit.plugin.java.JavaPlugin#onEnable()
+	 */
+	@Override
+	public void onEnable() {
+		plugin = this;
+		iSurvivalHeaven = this;
+		version = this.getDescription().getVersion();
+		name = this.getDescription().getName();
+		Bukkit.getConsoleSender().sendMessage(
+				ChatColor.YELLOW + "STARTER PLUGIN " + this.toString());
+		Bukkit.getConsoleSender()
+				.sendMessage(
+						ChatColor.GREEN
+								+ "******************************************************************");
+		Bukkit.getConsoleSender().sendMessage(
+				ChatColor.RESET + "Starter " + NAME + ChatColor.RESET + " v. "
+						+ ChatColor.YELLOW + version);
+		Bukkit.getConsoleSender()
+				.sendMessage(
+						ChatColor.GREEN
+								+ "------------------------------------------------------------------");
+		loadTranslations();
+		// loadJars(); TODO Fikse error her
+		registerSubPlugins();
+		enableSubPlugins();
+		Bukkit.getConsoleSender()
+				.sendMessage(
+						ChatColor.GREEN
+								+ "******************************************************************");
+	}
 
-    /**
-     * Register sub plugins.
-     */
-    private void registerSubPlugins() {
-        getSubPluginManager().addSubPlugin(new DenyPlayerMode("DenyPlayerMode"));
-        getSubPluginManager().addSubPlugin(new LoginMessage("LoginMessages"));
-        getSubPluginManager().addSubPlugin(new Preliminary("Prelimitary"));
-        getSubPluginManager().addSubPlugin(new Merchant("Merchant"));
-        getSubPluginManager().addSubPlugin(new ShopHandler("Shop"));
-        getSubPluginManager().addSubPlugin(new BossbarAPI("BossbarAPI"));
-        getSubPluginManager().addSubPlugin(new TitleAPI("TitleAPI"));
-        getSubPluginManager().addSubPlugin(new RegionUpdater("RegionUpdater"));
-        getSubPluginManager().addSubPlugin(new ShortLink("BitLy_UrlShortener"));
-        getSubPluginManager().addSubPlugin(new BlockProtection("BlockProtection"));
-        getSubPluginManager().addSubPlugin(new PlayerDataManagerPlugin("PlayerDataManager"));
-        getSubPluginManager().addSubPlugin(new OldStuff("Gamle-Kommandoer"));
-        // spm.addSubPlugin(new RemoteBukkitPlugin("RemoteConsole"));
-        // spm.addSubPlugin( new Ligg( "LiggTester" ) );
-        getAnnoSubPluginManager().addClass(InfinityDispenser.class);
-        getAnnoSubPluginManager().addClass(ServerUtils.class);
-        getAnnoSubPluginManager().addClass(NoteManager.class);
-        getAnnoSubPluginManager().addClass(WarningManager.class);
-        // AnnoSubPluginManager.addClass(EmployeeTest.class);
-        // AnnoSubPluginManager.addClass( QuestHandler.class );
-    }
+	/**
+	 * Register sub plugins.
+	 */
+	private void registerSubPlugins() {
+		getSubPluginManager()
+				.addSubPlugin(new DenyPlayerMode("DenyPlayerMode"));
+		getSubPluginManager().addSubPlugin(new LoginMessage("LoginMessages"));
+		getSubPluginManager().addSubPlugin(new Preliminary("Prelimitary"));
+		getSubPluginManager().addSubPlugin(new Merchant("Merchant"));
+		getSubPluginManager().addSubPlugin(new ShopHandler("Shop"));
+		getSubPluginManager().addSubPlugin(new BossbarAPI("BossbarAPI"));
+		getSubPluginManager().addSubPlugin(new TitleAPI("TitleAPI"));
+		getSubPluginManager().addSubPlugin(new RegionUpdater("RegionUpdater"));
+		getSubPluginManager().addSubPlugin(new ShortLink("BitLy_UrlShortener"));
+		getSubPluginManager().addSubPlugin(
+				new BlockProtection("BlockProtection"));
+		getSubPluginManager().addSubPlugin(
+				new PlayerDataManagerPlugin("PlayerDataManager"));
+		getSubPluginManager().addSubPlugin(new OldStuff("Gamle-Kommandoer"));
+		// spm.addSubPlugin(new RemoteBukkitPlugin("RemoteConsole"));
+		// spm.addSubPlugin( new Ligg( "LiggTester" ) );
+		getAnnoSubPluginManager().addClass(InfinityDispenser.class);
+		getAnnoSubPluginManager().addClass(ServerUtils.class);
+		getAnnoSubPluginManager().addClass(NoteManager.class);
+		getAnnoSubPluginManager().addClass(WarningManager.class);
+		// AnnoSubPluginManager.addClass(EmployeeTest.class);
+		// AnnoSubPluginManager.addClass( QuestHandler.class );
+	}
 
-    /**
-     * Save translations.
-     */
-    private void saveTranslations() {
-        Translator.saveTrans("translation");
-    }
+	/**
+	 * Save translations.
+	 */
+	private void saveTranslations() {
+		Translator.saveTrans("translation");
+	}
 
-    /**
-     * Unregister sub plugins.
-     */
-    private void unregisterSubPlugins() {
-        getSubPluginManager().unregisterAll();
-    }
+	/**
+	 * Unregister sub plugins.
+	 */
+	private void unregisterSubPlugins() {
+		getSubPluginManager().unregisterAll();
+	}
 }

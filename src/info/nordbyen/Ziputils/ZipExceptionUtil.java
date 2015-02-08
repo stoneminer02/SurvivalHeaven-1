@@ -28,19 +28,19 @@ package info.nordbyen.Ziputils;
 
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ZipExceptionUtil.
  */
 class ZipExceptionUtil {
 
-    /**
-     * Rethrow.
-     * 
-     * @param e the e
-     * @return the zip exception
-     */
-    static ZipException rethrow(IOException e) {
-        throw new ZipException(e);
-    }
+	/**
+	 * Rethrow.
+	 * 
+	 * @param e
+	 *            the e
+	 * @return the zip exception
+	 */
+	static ZipException rethrow(IOException e) {
+		throw new ZipException(e);
+	}
 }

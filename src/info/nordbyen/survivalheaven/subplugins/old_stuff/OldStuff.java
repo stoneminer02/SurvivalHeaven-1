@@ -52,7 +52,6 @@ import info.nordbyen.survivalheaven.subplugins.old_stuff.commands.TPH;
 import info.nordbyen.survivalheaven.subplugins.old_stuff.commands.WB;
 import info.nordbyen.survivalheaven.subplugins.old_stuff.commands.Who;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class OldStuff.
  * 
@@ -60,54 +59,55 @@ import info.nordbyen.survivalheaven.subplugins.old_stuff.commands.Who;
  */
 public class OldStuff extends SubPlugin {
 
-    /**
-     * Instantiates a new old stuff.
-     * 
-     * @param name the name
-     */
-    public OldStuff(final String name) {
-        super(name);
-    }
+	/**
+	 * Instantiates a new old stuff.
+	 * 
+	 * @param name
+	 *            the name
+	 */
+	public OldStuff(final String name) {
+		super(name);
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
-     */
-    @Override
-    protected void disable() {
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
+	 */
+	@Override
+	protected void disable() {
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
-     */
-    @Override
-    protected void enable() {
-        getPlugin().getCommand("jobb").setExecutor(new Jobb());
-        getPlugin().getCommand("fix").setExecutor(new Fix());
-        getPlugin().getCommand("wb").setExecutor(new WB());
-        getPlugin().getCommand("blokker").setExecutor(new Blokker());
-        getPlugin().getCommand("inv").setExecutor(new Inv());
-        getPlugin().getCommand("kick").setExecutor(new Kick());
-        getPlugin().getCommand("afk").setExecutor(new AFK());
-        getPlugin().getCommand("ss").setExecutor(new SS());
-        getPlugin().getCommand("sh").setExecutor(new SH());
-        getPlugin().getCommand("tp").setExecutor(new TP());
-        getPlugin().getCommand("tph").setExecutor(new TPH());
-        getPlugin().getCommand("k").setExecutor(new K());
-        getPlugin().getCommand("h").setExecutor(new H());
-        getPlugin().getCommand("s").setExecutor(new S());
-        getPlugin().getCommand("smelt").setExecutor(new Smelt());
-        getPlugin().getCommand("hatt").setExecutor(new Hatt());
-        getPlugin().getCommand("ec").setExecutor(new EC());
-        getPlugin().getCommand("who").setExecutor(new Who());
-        getPlugin().getCommand("fspeed").setExecutor(new FSpeed());
-        getPlugin().getCommand("killall").setExecutor(new Killall());
-        getPlugin().getCommand("bug").setExecutor(new BR());
-        getPlugin().getCommand("fly").setExecutor(new Fly());
-        getPlugin().getCommand("sitt").setExecutor(new Sitt());
-        getPlugin().getCommand("sudo").setExecutor(new Sudo());
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
+	 */
+	@Override
+	protected void enable() {
+		getPlugin().getCommand("jobb").setExecutor(new Jobb());
+		getPlugin().getCommand("fix").setExecutor(new Fix());
+		getPlugin().getCommand("wb").setExecutor(new WB());
+		getPlugin().getCommand("blokker").setExecutor(new Blokker());
+		getPlugin().getCommand("inv").setExecutor(new Inv());
+		getPlugin().getCommand("kick").setExecutor(new Kick());
+		getPlugin().getCommand("afk").setExecutor(new AFK());
+		getPlugin().getCommand("ss").setExecutor(new SS());
+		getPlugin().getCommand("sh").setExecutor(new SH());
+		getPlugin().getCommand("tp").setExecutor(new TP());
+		getPlugin().getCommand("tph").setExecutor(new TPH());
+		getPlugin().getCommand("k").setExecutor(new K());
+		getPlugin().getCommand("h").setExecutor(new H());
+		getPlugin().getCommand("s").setExecutor(new S());
+		getPlugin().getCommand("smelt").setExecutor(new Smelt());
+		getPlugin().getCommand("hatt").setExecutor(new Hatt());
+		getPlugin().getCommand("ec").setExecutor(new EC());
+		getPlugin().getCommand("who").setExecutor(new Who());
+		getPlugin().getCommand("fspeed").setExecutor(new FSpeed());
+		getPlugin().getCommand("killall").setExecutor(new Killall());
+		getPlugin().getCommand("bug").setExecutor(new BR());
+		getPlugin().getCommand("fly").setExecutor(new Fly());
+		getPlugin().getCommand("sitt").setExecutor(new Sitt());
+		getPlugin().getCommand("sudo").setExecutor(new Sudo());
+	}
 }

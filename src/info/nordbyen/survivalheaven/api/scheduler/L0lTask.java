@@ -25,24 +25,26 @@
  */
 
 package info.nordbyen.survivalheaven.api.scheduler;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface L0lTask.
  */
 public interface L0lTask {
 
-    /**
-     * Should continue.
-     * 
-     * @param loopNum the loop num
-     * @return true, if successful
-     */
-    public boolean shouldContinue(int loopNum);
+	/**
+	 * Should continue.
+	 * 
+	 * @param loopNum
+	 *            the loop num
+	 * @return true, if successful
+	 */
+	public boolean shouldContinue(int loopNum);
 
-    /**
-     * Task to do.
-     * 
-     * @param loopNum the loop num
-     */
-    public void taskToDo(int loopNum);
+	/**
+	 * Task to do.
+	 * 
+	 * @param loopNum
+	 *            the loop num
+	 */
+	public void taskToDo(int loopNum);
 }

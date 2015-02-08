@@ -31,45 +31,56 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface Wand.
  */
 public interface Wand {
 
-    /**
-     * Can create.
-     * 
-     * @param itemStack the item stack
-     * @param player the player
-     * @return true, if successful
-     */
-    public boolean canCreate(ItemStack itemStack, Player player);
+	/**
+	 * Can create.
+	 * 
+	 * @param itemStack
+	 *            the item stack
+	 * @param player
+	 *            the player
+	 * @return true, if successful
+	 */
+	public boolean canCreate(ItemStack itemStack, Player player);
 
-    /**
-     * Gets the name.
-     * 
-     * @return the name
-     */
-    public String getName();
+	/**
+	 * Gets the name.
+	 * 
+	 * @return the name
+	 */
+	public String getName();
 
-    /**
-     * On left click.
-     * 
-     * @param itemStack the item stack
-     * @param player the player
-     * @param bockedClick the bocked click
-     * @param face the face
-     */
-    public void onLeftClick(ItemStack itemStack, Player player, Block bockedClick, BlockFace face);
+	/**
+	 * On left click.
+	 * 
+	 * @param itemStack
+	 *            the item stack
+	 * @param player
+	 *            the player
+	 * @param bockedClick
+	 *            the bocked click
+	 * @param face
+	 *            the face
+	 */
+	public void onLeftClick(ItemStack itemStack, Player player,
+			Block bockedClick, BlockFace face);
 
-    /**
-     * On right click.
-     * 
-     * @param itemStack the item stack
-     * @param player the player
-     * @param bockedClick the bocked click
-     * @param face the face
-     */
-    public void onRightClick(ItemStack itemStack, Player player, Block bockedClick, BlockFace face);
+	/**
+	 * On right click.
+	 * 
+	 * @param itemStack
+	 *            the item stack
+	 * @param player
+	 *            the player
+	 * @param bockedClick
+	 *            the bocked click
+	 * @param face
+	 *            the face
+	 */
+	public void onRightClick(ItemStack itemStack, Player player,
+			Block bockedClick, BlockFace face);
 }

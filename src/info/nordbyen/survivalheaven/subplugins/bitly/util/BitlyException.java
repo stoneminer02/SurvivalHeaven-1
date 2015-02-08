@@ -25,31 +25,34 @@
  */
 
 package info.nordbyen.survivalheaven.subplugins.bitly.util;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class BitlyException.
  */
 public class BitlyException extends RuntimeException {
 
-    /** The Constant serialVersionUID. */
-    private static final long serialVersionUID = 8300631062123036696L;
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 8300631062123036696L;
 
-    /**
-     * Instantiates a new bitly exception.
-     * 
-     * @param message the message
-     */
-    BitlyException(final String message) {
-        super(message);
-    }
+	/**
+	 * Instantiates a new bitly exception.
+	 * 
+	 * @param message
+	 *            the message
+	 */
+	BitlyException(final String message) {
+		super(message);
+	}
 
-    /**
-     * Instantiates a new bitly exception.
-     * 
-     * @param message the message
-     * @param cause the cause
-     */
-    BitlyException(final String message, final Throwable cause) {
-        super(message, cause);
-    }
+	/**
+	 * Instantiates a new bitly exception.
+	 * 
+	 * @param message
+	 *            the message
+	 * @param cause
+	 *            the cause
+	 */
+	BitlyException(final String message, final Throwable cause) {
+		super(message, cause);
+	}
 }

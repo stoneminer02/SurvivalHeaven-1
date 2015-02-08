@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="lib" path="classpaths/spigot-api-1.8-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="classpaths/spigot-1.8-R0.1-SNAPSHOT.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="//SERVER/kode/java/Spigot_1.8.1/Spigot/Spigot-API/target/spigot-api-1.8-R0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/l0lkj/Desktop/SH_1_8_v2/spigot-1.8-R0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/l0lkj/Desktop/SH_1_8_v2/plugins/BlocksHub.jar"/>
-	<classpathentry kind="lib" path="C:/Users/l0lkj/Desktop/SH_1_8_v2/plugins/PermissionsEx.jar"/>
-	<classpathentry kind="lib" path="C:/Users/l0lkj/Desktop/SH_1_8_v2/plugins/ProtocolLib.jar"/>
-	<classpathentry kind="lib" path="//SERVER/kode/java/Spigot_1.8_server/plugins/worldedit-bukkit-6.0.2-SNAPSHOT-dist.jar"/>
+	<classpathentry kind="lib" path="classpaths/BlocksHub.jar"/>
+	<classpathentry kind="lib" path="classpaths/PermissionsEx.jar"/>
+	<classpathentry kind="lib" path="classpaths/ProtocolLib.jar"/>
+	<classpathentry kind="lib" path="classpaths/worldedit-bukkit-6.0.2-SNAPSHOT-dist.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

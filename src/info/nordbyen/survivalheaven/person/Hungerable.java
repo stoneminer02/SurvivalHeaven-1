@@ -25,23 +25,23 @@
  */
 
 package info.nordbyen.survivalheaven.person;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface Hungerable.
  */
 public interface Hungerable {
 
-    /**
-     * Gets the hunger.
-     * 
-     * @return the hunger
-     */
-    public int getHunger();
+	/**
+	 * Gets the hunger.
+	 * 
+	 * @return the hunger
+	 */
+	public int getHunger();
 
-    /**
-     * Sets the hunger.
-     * 
-     * @return the int
-     */
-    public int setHunger();
+	/**
+	 * Sets the hunger.
+	 * 
+	 * @return the int
+	 */
+	public int setHunger();
 }

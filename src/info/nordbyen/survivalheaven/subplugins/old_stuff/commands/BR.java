@@ -33,41 +33,43 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class BR.
  */
 public class BR implements CommandExecutor {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
-     * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
-     */
-    @Override
-    @SuppressWarnings("unused")
-    public boolean onCommand(final CommandSender Sender, final Command command, final String commandLabel, final String args[]) {
-        if (Sender instanceof Player) {
-            if (args.length > 0) {
-                final StringBuffer me = new StringBuffer();
-                for (int i = 0; i < args.length; i++) {
-                    me.append(args[i] + " ");
-                }
-                if (command.getName().equalsIgnoreCase("bug")) {
-                    for (final Player p : Bukkit.getOnlinePlayers()) {
-                        if (p.hasPermission("sh.kick")) {
-                            if (p != null) {
-                                p.sendMessage(ChatColor.RED + "[Bug] " + Sender.getName() + ": " + me);
-                            } else {
-                                p.sendMessage(ChatColor.RED + "Det er ingen i staben på");
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
+	 */
+	@Override
+	@SuppressWarnings("unused")
+	public boolean onCommand(final CommandSender Sender, final Command command,
+			final String commandLabel, final String args[]) {
+		if (Sender instanceof Player) {
+			if (args.length > 0) {
+				final StringBuffer me = new StringBuffer();
+				for (int i = 0; i < args.length; i++) {
+					me.append(args[i] + " ");
+				}
+				if (command.getName().equalsIgnoreCase("bug")) {
+					for (final Player p : Bukkit.getOnlinePlayers()) {
+						if (p.hasPermission("sh.kick")) {
+							if (p != null) {
+								p.sendMessage(ChatColor.RED + "[Bug] "
+										+ Sender.getName() + ": " + me);
+							} else {
+								p.sendMessage(ChatColor.RED
+										+ "Det er ingen i staben på");
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 }

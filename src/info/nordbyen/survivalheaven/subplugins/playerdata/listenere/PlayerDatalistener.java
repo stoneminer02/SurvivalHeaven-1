@@ -37,46 +37,50 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PlayerDatalistener.
  */
 public class PlayerDatalistener implements Listener {
 
-    /**
-     * On join.
-     * 
-     * @param e the e
-     */
-    @EventHandler
-    public void onJoin(final PlayerJoinEvent e) {
-        final Player p = e.getPlayer();
-        final IPlayerData pd = SH.getManager().getPlayerDataManager().getPlayerData(p.getUniqueId().toString());
-        if (pd != null) {
-            pd.setLastlogin(new Date());
-            pd.setName(p.getName());
-            pd.addIp(p.getAddress().toString().replace("/", "").split(":")[0]);
-        } else {
-            SH.getManager().getPlayerDataManager().createPlayerData(p);
-        }
-    }
+	/**
+	 * On join.
+	 * 
+	 * @param e
+	 *            the e
+	 */
+	@EventHandler
+	public void onJoin(final PlayerJoinEvent e) {
+		final Player p = e.getPlayer();
+		final IPlayerData pd = SH.getManager().getPlayerDataManager()
+				.getPlayerData(p.getUniqueId().toString());
+		if (pd != null) {
+			pd.setLastlogin(new Date());
+			pd.setName(p.getName());
+			pd.addIp(p.getAddress().toString().replace("/", "").split(":")[0]);
+		} else {
+			SH.getManager().getPlayerDataManager().createPlayerData(p);
+		}
+	}
 
-    /**
-     * On quit.
-     * 
-     * @param e the e
-     */
-    @SuppressWarnings("deprecation")
-    @EventHandler
-    public void onQuit(final PlayerQuitEvent e) {
-        final Player p = e.getPlayer();
-        final IPlayerData pd = SH.getManager().getPlayerDataManager().getPlayerData(p.getUniqueId().toString());
-        if (pd != null) {
-            pd.setGamemode(p.getGameMode().getValue());
-            pd.setLastlocation(p.getLocation());
-            pd.setTimeplayed((pd.getTimeplayed() + (new Date()).getTime()) - pd.getLastlogin().getTime());
-        } else {
-            SH.getManager().getPlayerDataManager().createPlayerData(p);
-        }
-    }
+	/**
+	 * On quit.
+	 * 
+	 * @param e
+	 *            the e
+	 */
+	@SuppressWarnings("deprecation")
+	@EventHandler
+	public void onQuit(final PlayerQuitEvent e) {
+		final Player p = e.getPlayer();
+		final IPlayerData pd = SH.getManager().getPlayerDataManager()
+				.getPlayerData(p.getUniqueId().toString());
+		if (pd != null) {
+			pd.setGamemode(p.getGameMode().getValue());
+			pd.setLastlocation(p.getLocation());
+			pd.setTimeplayed((pd.getTimeplayed() + (new Date()).getTime())
+					- pd.getLastlogin().getTime());
+		} else {
+			SH.getManager().getPlayerDataManager().createPlayerData(p);
+		}
+	}
 }

@@ -34,53 +34,58 @@ import java.util.zip.ZipOutputStream;
 import info.nordbyen.Ziputils.ZipEntrySource;
 import info.nordbyen.Ziputils.commons.IOUtils;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ZipEntrySourceZipEntryTransformer.
  */
 public class ZipEntrySourceZipEntryTransformer implements ZipEntryTransformer {
 
-    /**
-     * Adds the entry.
-     * 
-     * @param entry the entry
-     * @param out the out
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    static void addEntry(ZipEntrySource entry, ZipOutputStream out) throws IOException {
-        out.putNextEntry(entry.getEntry());
-        InputStream in = entry.getInputStream();
-        if (in != null) {
-            try {
-                IOUtils.copy(in, out);
-            } finally {
-                IOUtils.closeQuietly(in);
-            }
-        }
-        out.closeEntry();
-    }
+	/**
+	 * Adds the entry.
+	 * 
+	 * @param entry
+	 *            the entry
+	 * @param out
+	 *            the out
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	static void addEntry(ZipEntrySource entry, ZipOutputStream out)
+			throws IOException {
+		out.putNextEntry(entry.getEntry());
+		InputStream in = entry.getInputStream();
+		if (in != null) {
+			try {
+				IOUtils.copy(in, out);
+			} finally {
+				IOUtils.closeQuietly(in);
+			}
+		}
+		out.closeEntry();
+	}
 
-    /** The source. */
-    private final ZipEntrySource source;
+	/** The source. */
+	private final ZipEntrySource source;
 
-    /**
-     * Instantiates a new zip entry source zip entry transformer.
-     * 
-     * @param source the source
-     */
-    public ZipEntrySourceZipEntryTransformer(ZipEntrySource source) {
-        this.source = source;
-    }
+	/**
+	 * Instantiates a new zip entry source zip entry transformer.
+	 * 
+	 * @param source
+	 *            the source
+	 */
+	public ZipEntrySourceZipEntryTransformer(ZipEntrySource source) {
+		this.source = source;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.Ziputils.transform.ZipEntryTransformer#transform(java.io
-     * .InputStream, java.util.zip.ZipEntry, java.util.zip.ZipOutputStream)
-     */
-    @Override
-    public void transform(InputStream in, ZipEntry zipEntry, ZipOutputStream out) throws IOException {
-        addEntry(source, out);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.Ziputils.transform.ZipEntryTransformer#transform(java.io
+	 * .InputStream, java.util.zip.ZipEntry, java.util.zip.ZipOutputStream)
+	 */
+	@Override
+	public void transform(InputStream in, ZipEntry zipEntry, ZipOutputStream out)
+			throws IOException {
+		addEntry(source, out);
+	}
 }

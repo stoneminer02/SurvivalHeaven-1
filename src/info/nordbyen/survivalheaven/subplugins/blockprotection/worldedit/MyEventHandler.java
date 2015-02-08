@@ -31,23 +31,24 @@ import com.sk89q.worldedit.event.extent.EditSessionEvent;
 import com.sk89q.worldedit.extension.platform.Actor;
 import com.sk89q.worldedit.util.eventbus.Subscribe;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MyEventHandler.
  */
 public class MyEventHandler {
 
-    /**
-     * Wrap for logging.
-     * 
-     * @param event the event
-     */
-    @Subscribe
-    public void wrapForLogging(final EditSessionEvent event) {
-        final Actor actor = event.getActor();
-        if (event.getStage() != Stage.BEFORE_CHANGE)
-            if ((actor != null) && actor.isPlayer()) {
-                event.setExtent(new MyLogger(actor, event.getExtent(), event.getWorld()));
-            }
-    }
+	/**
+	 * Wrap for logging.
+	 * 
+	 * @param event
+	 *            the event
+	 */
+	@Subscribe
+	public void wrapForLogging(final EditSessionEvent event) {
+		final Actor actor = event.getActor();
+		if (event.getStage() != Stage.BEFORE_CHANGE)
+			if ((actor != null) && actor.isPlayer()) {
+				event.setExtent(new MyLogger(actor, event.getExtent(), event
+						.getWorld()));
+			}
+	}
 }

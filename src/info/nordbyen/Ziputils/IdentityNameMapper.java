@@ -25,28 +25,28 @@
  */
 
 package info.nordbyen.Ziputils;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class IdentityNameMapper.
  */
 final class IdentityNameMapper implements NameMapper {
 
-    /** The Constant INSTANCE. */
-    public static final NameMapper INSTANCE = new IdentityNameMapper();
+	/** The Constant INSTANCE. */
+	public static final NameMapper INSTANCE = new IdentityNameMapper();
 
-    /**
-     * Instantiates a new identity name mapper.
-     */
-    private IdentityNameMapper() {
-    }
+	/**
+	 * Instantiates a new identity name mapper.
+	 */
+	private IdentityNameMapper() {
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.Ziputils.NameMapper#map(java.lang.String)
-     */
-    @Override
-    public String map(final String name) {
-        return name;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.Ziputils.NameMapper#map(java.lang.String)
+	 */
+	@Override
+	public String map(final String name) {
+		return name;
+	}
 }

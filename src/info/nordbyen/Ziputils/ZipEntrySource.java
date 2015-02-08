@@ -30,31 +30,31 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface ZipEntrySource.
  */
 public interface ZipEntrySource {
 
-    /**
-     * Gets the entry.
-     * 
-     * @return the entry
-     */
-    ZipEntry getEntry();
+	/**
+	 * Gets the entry.
+	 * 
+	 * @return the entry
+	 */
+	ZipEntry getEntry();
 
-    /**
-     * Gets the input stream.
-     * 
-     * @return the input stream
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    InputStream getInputStream() throws IOException;
+	/**
+	 * Gets the input stream.
+	 * 
+	 * @return the input stream
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	InputStream getInputStream() throws IOException;
 
-    /**
-     * Gets the path.
-     * 
-     * @return the path
-     */
-    String getPath();
+	/**
+	 * Gets the path.
+	 * 
+	 * @return the path
+	 */
+	String getPath();
 }

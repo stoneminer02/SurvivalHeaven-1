@@ -28,45 +28,46 @@ package info.nordbyen.survivalheaven.api.subplugin;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface ISubPluginManager.
  */
 public interface ISubPluginManager {
 
-    /**
-     * Adds the sub plugin.
-     * 
-     * @param plugin the plugin
-     */
-    public void addSubPlugin(final SubPlugin plugin);
+	/**
+	 * Adds the sub plugin.
+	 * 
+	 * @param plugin
+	 *            the plugin
+	 */
+	public void addSubPlugin(final SubPlugin plugin);
 
-    /**
-     * Disable all.
-     */
-    public void disableAll();
+	/**
+	 * Disable all.
+	 */
+	public void disableAll();
 
-    /**
-     * Enable all.
-     */
-    public void enableAll();
+	/**
+	 * Enable all.
+	 */
+	public void enableAll();
 
-    /**
-     * Gets the subplugins.
-     * 
-     * @return the subplugins
-     */
-    public ArrayList<SubPlugin> getSubplugins();
+	/**
+	 * Gets the subplugins.
+	 * 
+	 * @return the subplugins
+	 */
+	public ArrayList<SubPlugin> getSubplugins();
 
-    /**
-     * Removes the sub plugin.
-     * 
-     * @param plugin the plugin
-     */
-    public void removeSubPlugin(final SubPlugin plugin);
+	/**
+	 * Removes the sub plugin.
+	 * 
+	 * @param plugin
+	 *            the plugin
+	 */
+	public void removeSubPlugin(final SubPlugin plugin);
 
-    /**
-     * Unregister all.
-     */
-    public void unregisterAll();
+	/**
+	 * Unregister all.
+	 */
+	public void unregisterAll();
 }

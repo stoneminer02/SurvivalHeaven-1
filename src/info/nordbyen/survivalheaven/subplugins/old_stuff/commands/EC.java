@@ -32,35 +32,35 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EC.
  */
 public class EC implements CommandExecutor {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
-     * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
-     */
-    @Override
-    public boolean onCommand(final CommandSender Sender, final Command command, final String commandLabel, final String[] args) {
-        if (Sender instanceof Player) {
-            final Player p = (Player) Sender;
-            if (p.hasPermission("sh.ec")) {
-                if (command.getName().equalsIgnoreCase("ec")) {
-                    if (args.length == 0) {
-                        p.openInventory(p.getEnderChest());
-                    } else {
-                        p.sendMessage(ChatColor.RED + "Feil bruk av kommando");
-                    }
-                }
-            } else {
-                p.sendMessage(ChatColor.RED + "Du har ikke permission!");
-            }
-        }
-        return true;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
+	 */
+	@Override
+	public boolean onCommand(final CommandSender Sender, final Command command,
+			final String commandLabel, final String[] args) {
+		if (Sender instanceof Player) {
+			final Player p = (Player) Sender;
+			if (p.hasPermission("sh.ec")) {
+				if (command.getName().equalsIgnoreCase("ec")) {
+					if (args.length == 0) {
+						p.openInventory(p.getEnderChest());
+					} else {
+						p.sendMessage(ChatColor.RED + "Feil bruk av kommando");
+					}
+				}
+			} else {
+				p.sendMessage(ChatColor.RED + "Du har ikke permission!");
+			}
+		}
+		return true;
+	}
 }

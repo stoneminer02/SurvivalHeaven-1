@@ -25,43 +25,45 @@
  */
 
 package info.nordbyen.survivalheaven.subplugins.remote;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class User.
  */
 public class User {
 
-    /** The username. */
-    private final String username;
-    /** The password. */
-    private final String password;
+	/** The username. */
+	private final String username;
+	/** The password. */
+	private final String password;
 
-    /**
-     * Instantiates a new user.
-     * 
-     * @param username the username
-     * @param password the password
-     */
-    public User(final String username, final String password) {
-        this.username = username;
-        this.password = password;
-    }
+	/**
+	 * Instantiates a new user.
+	 * 
+	 * @param username
+	 *            the username
+	 * @param password
+	 *            the password
+	 */
+	public User(final String username, final String password) {
+		this.username = username;
+		this.password = password;
+	}
 
-    /**
-     * Gets the password.
-     * 
-     * @return the password
-     */
-    public String getPassword() {
-        return this.password;
-    }
+	/**
+	 * Gets the password.
+	 * 
+	 * @return the password
+	 */
+	public String getPassword() {
+		return this.password;
+	}
 
-    /**
-     * Gets the username.
-     * 
-     * @return the username
-     */
-    public String getUsername() {
-        return this.username;
-    }
+	/**
+	 * Gets the username.
+	 * 
+	 * @return the username
+	 */
+	public String getUsername() {
+		return this.username;
+	}
 }

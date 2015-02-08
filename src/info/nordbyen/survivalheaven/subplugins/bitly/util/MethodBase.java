@@ -30,70 +30,76 @@ import info.nordbyen.survivalheaven.subplugins.bitly.util.data.Pair;
 
 import java.util.Arrays;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MethodBase.
  * 
- * @param <A> the generic type
+ * @param <A>
+ *            the generic type
  */
 public abstract class MethodBase<A> implements BitlyMethod<A> {
 
-    /** The name. */
-    private final String name;
-    /** The parameters. */
-    private final Iterable<Pair<String, String>> parameters;
+	/** The name. */
+	private final String name;
+	/** The parameters. */
+	private final Iterable<Pair<String, String>> parameters;
 
-    /**
-     * Instantiates a new method base.
-     * 
-     * @param name the name
-     * @param parameters the parameters
-     */
-    public MethodBase(final String name, final Iterable<Pair<String, String>> parameters) {
-        this.name = name;
-        this.parameters = parameters;
-    }
+	/**
+	 * Instantiates a new method base.
+	 * 
+	 * @param name
+	 *            the name
+	 * @param parameters
+	 *            the parameters
+	 */
+	public MethodBase(final String name,
+			final Iterable<Pair<String, String>> parameters) {
+		this.name = name;
+		this.parameters = parameters;
+	}
 
-    /**
-     * Instantiates a new method base.
-     * 
-     * @param name the name
-     * @param parameters the parameters
-     */
-    public MethodBase(final String name, final Pair<String, String>[] parameters) {
-        this(name, Arrays.asList(parameters));
-    }
+	/**
+	 * Instantiates a new method base.
+	 * 
+	 * @param name
+	 *            the name
+	 * @param parameters
+	 *            the parameters
+	 */
+	public MethodBase(final String name, final Pair<String, String>[] parameters) {
+		this(name, Arrays.asList(parameters));
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.survivalheaven.subplugins.bitly.util.BitlyMethod#getName()
-     */
-    @Override
-    public String getName() {
-        return this.name;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.survivalheaven.subplugins.bitly.util.BitlyMethod#getName()
+	 */
+	@Override
+	public String getName() {
+		return this.name;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.survivalheaven.subplugins.bitly.util.BitlyMethod#getParameters
-     * ()
-     */
-    @Override
-    public Iterable<Pair<String, String>> getParameters() {
-        return this.parameters;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.survivalheaven.subplugins.bitly.util.BitlyMethod#getParameters
+	 * ()
+	 */
+	@Override
+	public Iterable<Pair<String, String>> getParameters() {
+		return this.parameters;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + " [name=" + this.name + ", parameters=" + this.parameters + "]";
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + " [name=" + this.name
+				+ ", parameters=" + this.parameters + "]";
+	}
 }

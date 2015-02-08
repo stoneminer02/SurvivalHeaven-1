@@ -25,43 +25,46 @@
  */
 
 package info.nordbyen.survivalheaven.api.playerrelation;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class PlayerRelationSet.
  */
 public class PlayerRelationSet {
 
-    /** The friend relation. */
-    private final FriendRelation friendRelation;
-    /** The group relation. */
-    private final GroupRelation groupRelation;
+	/** The friend relation. */
+	private final FriendRelation friendRelation;
+	/** The group relation. */
+	private final GroupRelation groupRelation;
 
-    /**
-     * Instantiates a new player relation set.
-     * 
-     * @param friendRelation the friend relation
-     * @param groupRelation the group relation
-     */
-    public PlayerRelationSet(final FriendRelation friendRelation, final GroupRelation groupRelation) {
-        this.friendRelation = friendRelation;
-        this.groupRelation = groupRelation;
-    }
+	/**
+	 * Instantiates a new player relation set.
+	 * 
+	 * @param friendRelation
+	 *            the friend relation
+	 * @param groupRelation
+	 *            the group relation
+	 */
+	public PlayerRelationSet(final FriendRelation friendRelation,
+			final GroupRelation groupRelation) {
+		this.friendRelation = friendRelation;
+		this.groupRelation = groupRelation;
+	}
 
-    /**
-     * Gets the friend relation.
-     * 
-     * @return the friend relation
-     */
-    public FriendRelation getFriendRelation() {
-        return friendRelation;
-    }
+	/**
+	 * Gets the friend relation.
+	 * 
+	 * @return the friend relation
+	 */
+	public FriendRelation getFriendRelation() {
+		return friendRelation;
+	}
 
-    /**
-     * Gets the group relation.
-     * 
-     * @return the group relation
-     */
-    public GroupRelation getGroupRelation() {
-        return groupRelation;
-    }
+	/**
+	 * Gets the group relation.
+	 * 
+	 * @return the group relation
+	 */
+	public GroupRelation getGroupRelation() {
+		return groupRelation;
+	}
 }

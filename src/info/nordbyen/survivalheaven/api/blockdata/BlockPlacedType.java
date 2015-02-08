@@ -25,27 +25,28 @@
  */
 
 package info.nordbyen.survivalheaven.api.blockdata;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Enum BlockPlacedType.
  */
 public enum BlockPlacedType {
-    /** The survival. */
-    SURVIVAL("SURVIVAL"),
-    /** The creative. */
-    CREATIVE("CREATIVE"),
-    /** The worldedit. */
-    WORLDEDIT("WORLDEDIT");
+	/** The survival. */
+	SURVIVAL("SURVIVAL"),
+	/** The creative. */
+	CREATIVE("CREATIVE"),
+	/** The worldedit. */
+	WORLDEDIT("WORLDEDIT");
 
-    /** The name. */
-    public final String name;
+	/** The name. */
+	public final String name;
 
-    /**
-     * Instantiates a new block placed type.
-     * 
-     * @param name the name
-     */
-    private BlockPlacedType(final String name) {
-        this.name = name;
-    }
+	/**
+	 * Instantiates a new block placed type.
+	 * 
+	 * @param name
+	 *            the name
+	 */
+	private BlockPlacedType(final String name) {
+		this.name = name;
+	}
 }

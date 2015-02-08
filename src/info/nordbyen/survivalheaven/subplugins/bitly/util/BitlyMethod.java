@@ -30,34 +30,36 @@ import info.nordbyen.survivalheaven.subplugins.bitly.util.data.Pair;
 
 import org.w3c.dom.Document;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface BitlyMethod.
  * 
- * @param <A> the generic type
+ * @param <A>
+ *            the generic type
  */
 public abstract interface BitlyMethod<A> {
 
-    /**
-     * Apply.
-     * 
-     * @param paramProvider the param provider
-     * @param paramDocument the param document
-     * @return the a
-     */
-    public abstract A apply(Bitly.Provider paramProvider, Document paramDocument);
+	/**
+	 * Apply.
+	 * 
+	 * @param paramProvider
+	 *            the param provider
+	 * @param paramDocument
+	 *            the param document
+	 * @return the a
+	 */
+	public abstract A apply(Bitly.Provider paramProvider, Document paramDocument);
 
-    /**
-     * Gets the name.
-     * 
-     * @return the name
-     */
-    public abstract String getName();
+	/**
+	 * Gets the name.
+	 * 
+	 * @return the name
+	 */
+	public abstract String getName();
 
-    /**
-     * Gets the parameters.
-     * 
-     * @return the parameters
-     */
-    public abstract Iterable<Pair<String, String>> getParameters();
+	/**
+	 * Gets the parameters.
+	 * 
+	 * @return the parameters
+	 */
+	public abstract Iterable<Pair<String, String>> getParameters();
 }

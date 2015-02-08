@@ -25,16 +25,17 @@
  */
 
 package info.nordbyen.survivalheaven.subplugins.quest;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface Acceptable.
  */
 public interface Acceptable {
 
-    /**
-     * Executed accept.
-     * 
-     * @param uuid the uuid
-     */
-    public void executedAccept(String uuid);
+	/**
+	 * Executed accept.
+	 * 
+	 * @param uuid
+	 *            the uuid
+	 */
+	public void executedAccept(String uuid);
 }

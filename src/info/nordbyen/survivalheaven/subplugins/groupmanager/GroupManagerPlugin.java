@@ -31,50 +31,52 @@ import info.nordbyen.survivalheaven.api.subplugin.SubPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class GroupManagerPlugin.
  */
 public class GroupManagerPlugin extends SubPlugin {
 
-    /**
-     * The listener interface for receiving groupManagerPluging events. The
-     * class that is interested in processing a groupManagerPluging event
-     * implements this interface, and the object created with that class is
-     * registered with a component using the component's
-     * <code>addGroupManagerPlugingListener<code> method. When
-     * the groupManagerPluging event occurs, that object's appropriate
-     * method is invoked.
-     * 
-     * @see GroupManagerPlugingEvent
-     */
-    public class GroupManagerPlugingListener implements Listener {}
+	/**
+	 * The listener interface for receiving groupManagerPluging events. The
+	 * class that is interested in processing a groupManagerPluging event
+	 * implements this interface, and the object created with that class is
+	 * registered with a component using the component's
+	 * <code>addGroupManagerPlugingListener<code> method. When
+	 * the groupManagerPluging event occurs, that object's appropriate
+	 * method is invoked.
+	 * 
+	 * @see GroupManagerPlugingEvent
+	 */
+	public class GroupManagerPlugingListener implements Listener {
+	}
 
-    /**
-     * Instantiates a new group manager plugin.
-     * 
-     * @param name the name
-     */
-    public GroupManagerPlugin(final String name) {
-        super(name);
-    }
+	/**
+	 * Instantiates a new group manager plugin.
+	 * 
+	 * @param name
+	 *            the name
+	 */
+	public GroupManagerPlugin(final String name) {
+		super(name);
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
-     */
-    @Override
-    public void disable() {
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
+	 */
+	@Override
+	public void disable() {
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
-     */
-    @Override
-    public void enable() {
-        Bukkit.getPluginManager().registerEvents(new GroupManagerPlugingListener(), getPlugin());
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
+	 */
+	@Override
+	public void enable() {
+		Bukkit.getPluginManager().registerEvents(
+				new GroupManagerPlugingListener(), getPlugin());
+	}
 }

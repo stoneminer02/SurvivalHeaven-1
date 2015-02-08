@@ -32,34 +32,35 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Fix.
  */
 public class Fix implements CommandExecutor {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
-     * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
-     */
-    @Override
-    public boolean onCommand(final CommandSender Sender, final Command command, final String commandLabel, final String args[]) {
-        if (Sender instanceof Player) {
-            if (Sender.hasPermission("sh.fix")) {
-                if (args.length == 0) {
-                    ((Player) Sender).getItemInHand().setDurability((short) 0);
-                } else if (args.length == 1) {
-                    if (args[0].equalsIgnoreCase("alt")) {
-                        for (final ItemStack i : ((Player) Sender).getInventory().getContents()) {
-                            i.setDurability((short) 0);
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
+	 */
+	@Override
+	public boolean onCommand(final CommandSender Sender, final Command command,
+			final String commandLabel, final String args[]) {
+		if (Sender instanceof Player) {
+			if (Sender.hasPermission("sh.fix")) {
+				if (args.length == 0) {
+					((Player) Sender).getItemInHand().setDurability((short) 0);
+				} else if (args.length == 1) {
+					if (args[0].equalsIgnoreCase("alt")) {
+						for (final ItemStack i : ((Player) Sender)
+								.getInventory().getContents()) {
+							i.setDurability((short) 0);
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 }

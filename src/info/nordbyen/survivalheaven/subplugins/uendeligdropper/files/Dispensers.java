@@ -34,71 +34,73 @@ import java.util.List;
 
 import org.bukkit.Location;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Dispensers.
  */
 public class Dispensers extends CustomConfiguration {
 
-    /** The dispensers. */
-    private static Dispensers dispensers;
-    /** The empty list. */
-    private static List<String> emptyList = new ArrayList<String>();
+	/** The dispensers. */
+	private static Dispensers dispensers;
+	/** The empty list. */
+	private static List<String> emptyList = new ArrayList<String>();
 
-    /**
-     * Gets the single instance of Dispensers.
-     * 
-     * @return single instance of Dispensers
-     */
-    public static Dispensers getInstance() {
-        if (dispensers == null) {
-            dispensers = new Dispensers();
-        }
-        return dispensers;
-    }
+	/**
+	 * Gets the single instance of Dispensers.
+	 * 
+	 * @return single instance of Dispensers
+	 */
+	public static Dispensers getInstance() {
+		if (dispensers == null) {
+			dispensers = new Dispensers();
+		}
+		return dispensers;
+	}
 
-    /**
-     * Checks if is dispenser.
-     * 
-     * @param location the location
-     * @return true, if is dispenser
-     */
-    public static boolean isDispenser(final Location location) {
-        getInstance().reload();
-        if (getInstance().getList("dispensers").contains(location.toString()))
-            return true;
-        return false;
-    }
+	/**
+	 * Checks if is dispenser.
+	 * 
+	 * @param location
+	 *            the location
+	 * @return true, if is dispenser
+	 */
+	public static boolean isDispenser(final Location location) {
+		getInstance().reload();
+		if (getInstance().getList("dispensers").contains(location.toString()))
+			return true;
+		return false;
+	}
 
-    /**
-     * Sets the location.
-     * 
-     * @param location the new location
-     */
-    @SuppressWarnings("unchecked")
-    public static void setLocation(final Location location) {
-        ((ArrayList<String>) getInstance().getList("dispensers")).add(location.toString());
-        getInstance().save();
-    }
+	/**
+	 * Sets the location.
+	 * 
+	 * @param location
+	 *            the new location
+	 */
+	@SuppressWarnings("unchecked")
+	public static void setLocation(final Location location) {
+		((ArrayList<String>) getInstance().getList("dispensers")).add(location
+				.toString());
+		getInstance().save();
+	}
 
-    /**
-     * Instantiates a new dispensers.
-     */
-    public Dispensers() {
-        super(new File("./plugins/SurvivalHeaven/dispensers.yml"));
-        dispensers = this;
-        load();
-        save();
-        saveDefault();
-    }
+	/**
+	 * Instantiates a new dispensers.
+	 */
+	public Dispensers() {
+		super(new File("./plugins/SurvivalHeaven/dispensers.yml"));
+		dispensers = this;
+		load();
+		save();
+		saveDefault();
+	}
 
-    /**
-     * Save default.
-     */
-    private void saveDefault() {
-        if (!contains("dispensers")) {
-            set("dispensers", emptyList);
-            save();
-        }
-    }
+	/**
+	 * Save default.
+	 */
+	private void saveDefault() {
+		if (!contains("dispensers")) {
+			set("dispensers", emptyList);
+			save();
+		}
+	}
 }

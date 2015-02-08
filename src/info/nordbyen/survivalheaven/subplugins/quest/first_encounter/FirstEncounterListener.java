@@ -34,7 +34,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving firstEncounter events. The class that is
  * interested in processing a firstEncounter event implements this interface,
@@ -47,22 +46,28 @@ import org.bukkit.event.player.PlayerMoveEvent;
  */
 public class FirstEncounterListener implements Listener {
 
-    /**
-     * On move.
-     * 
-     * @param e the e
-     */
-    @EventHandler
-    public void onMove(final PlayerMoveEvent e) {
-        final Player p = e.getPlayer();
-        if (p.getName().equals("l0lkj")) {
-            if (FirstEncounter.isInside(e.getTo(), FirstEncounterConfig.getDoor1_1(), FirstEncounterConfig.getDoor1_2())) {
-                e.setCancelled(true);
-                if (Godta_Command.players.containsKey(p.getUniqueId().toString()))
-                    return;
-                p.sendMessage(ChatColor.RED + "Er du sikker på at du tør å gå inn her? skriv /godta for å gå inn.");
-                Godta_Command.players.put(p.getUniqueId().toString(), new AcceptHandler());
-            }
-        }
-    }
+	/**
+	 * On move.
+	 * 
+	 * @param e
+	 *            the e
+	 */
+	@EventHandler
+	public void onMove(final PlayerMoveEvent e) {
+		final Player p = e.getPlayer();
+		if (p.getName().equals("l0lkj")) {
+			if (FirstEncounter.isInside(e.getTo(),
+					FirstEncounterConfig.getDoor1_1(),
+					FirstEncounterConfig.getDoor1_2())) {
+				e.setCancelled(true);
+				if (Godta_Command.players.containsKey(p.getUniqueId()
+						.toString()))
+					return;
+				p.sendMessage(ChatColor.RED
+						+ "Er du sikker på at du tør å gå inn her? skriv /godta for å gå inn.");
+				Godta_Command.players.put(p.getUniqueId().toString(),
+						new AcceptHandler());
+			}
+		}
+	}
 }

@@ -25,66 +25,70 @@
  */
 
 package info.nordbyen.survivalheaven.subplugins.bitly.util;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class UrlInfo.
  */
 public class UrlInfo {
 
-    /** The url. */
-    private final Url url;
-    /** The created by. */
-    private final String createdBy;
-    /** The title. */
-    private final String title;
+	/** The url. */
+	private final Url url;
+	/** The created by. */
+	private final String createdBy;
+	/** The title. */
+	private final String title;
 
-    /**
-     * Instantiates a new url info.
-     * 
-     * @param url the url
-     * @param createdBy the created by
-     * @param title the title
-     */
-    UrlInfo(final Url url, final String createdBy, final String title) {
-        this.url = url;
-        this.createdBy = createdBy;
-        this.title = title;
-    }
+	/**
+	 * Instantiates a new url info.
+	 * 
+	 * @param url
+	 *            the url
+	 * @param createdBy
+	 *            the created by
+	 * @param title
+	 *            the title
+	 */
+	UrlInfo(final Url url, final String createdBy, final String title) {
+		this.url = url;
+		this.createdBy = createdBy;
+		this.title = title;
+	}
 
-    /**
-     * Gets the created by.
-     * 
-     * @return the created by
-     */
-    public String getCreatedBy() {
-        return this.createdBy;
-    }
+	/**
+	 * Gets the created by.
+	 * 
+	 * @return the created by
+	 */
+	public String getCreatedBy() {
+		return this.createdBy;
+	}
 
-    /**
-     * Gets the title.
-     * 
-     * @return the title
-     */
-    public String getTitle() {
-        return this.title;
-    }
+	/**
+	 * Gets the title.
+	 * 
+	 * @return the title
+	 */
+	public String getTitle() {
+		return this.title;
+	}
 
-    /**
-     * Gets the url.
-     * 
-     * @return the url
-     */
-    public Url getUrl() {
-        return this.url;
-    }
+	/**
+	 * Gets the url.
+	 * 
+	 * @return the url
+	 */
+	public Url getUrl() {
+		return this.url;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return "Info [createdBy=" + this.createdBy + ", title=" + this.title + ", url=" + this.url + "]";
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Info [createdBy=" + this.createdBy + ", title=" + this.title
+				+ ", url=" + this.url + "]";
+	}
 }

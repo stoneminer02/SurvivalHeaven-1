@@ -33,47 +33,53 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SH.
  */
 public class SH implements CommandExecutor {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
-     * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
-     */
-    @SuppressWarnings("unused")
-    @Override
-    public boolean onCommand(final CommandSender Sender, final Command command, final String CommandLabel, final String[] args) {
-        if (Sender instanceof Player) {
-            final Player p = (Player) Sender;
-            if (command.getName().equalsIgnoreCase("sh")) {
-                if (args.length > 0) {
-                    final StringBuffer msg = new StringBuffer();
-                    for (final String arg : args) {
-                        msg.append(arg + " ");
-                    }
-                    p.sendMessage(ChatColor.DARK_RED + "Meldingen din er sendt: " + ChatColor.RED + msg.toString());
-                    for (final Player r : Bukkit.getOnlinePlayers()) {
-                        if (r.hasPermission("sh.kick")) {
-                            if (r != null) {
-                                r.sendMessage(ChatColor.DARK_RED + "[StabHjelp] " + p.getName() + ": " + ChatColor.RED + msg.toString());
-                            } else {
-                                p.sendMessage(ChatColor.RED + "Finner ingen online stabmedlemmer");
-                            }
-                        }
-                    }
-                } else {
-                    Sender.sendMessage(ChatColor.RED + "Feil: Bruk /sh <melding>");
-                }
-            }
-        } else {
-            Sender.sendMessage(ChatColor.RED + "Du er ikke en in game spiller");
-        }
-        return true;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
+	 */
+	@SuppressWarnings("unused")
+	@Override
+	public boolean onCommand(final CommandSender Sender, final Command command,
+			final String CommandLabel, final String[] args) {
+		if (Sender instanceof Player) {
+			final Player p = (Player) Sender;
+			if (command.getName().equalsIgnoreCase("sh")) {
+				if (args.length > 0) {
+					final StringBuffer msg = new StringBuffer();
+					for (final String arg : args) {
+						msg.append(arg + " ");
+					}
+					p.sendMessage(ChatColor.DARK_RED
+							+ "Meldingen din er sendt: " + ChatColor.RED
+							+ msg.toString());
+					for (final Player r : Bukkit.getOnlinePlayers()) {
+						if (r.hasPermission("sh.kick")) {
+							if (r != null) {
+								r.sendMessage(ChatColor.DARK_RED
+										+ "[StabHjelp] " + p.getName() + ": "
+										+ ChatColor.RED + msg.toString());
+							} else {
+								p.sendMessage(ChatColor.RED
+										+ "Finner ingen online stabmedlemmer");
+							}
+						}
+					}
+				} else {
+					Sender.sendMessage(ChatColor.RED
+							+ "Feil: Bruk /sh <melding>");
+				}
+			}
+		} else {
+			Sender.sendMessage(ChatColor.RED + "Du er ikke en in game spiller");
+		}
+		return true;
+	}
 }

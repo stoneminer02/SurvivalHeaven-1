@@ -33,58 +33,59 @@ import info.nordbyen.survivalheaven.subplugins.serverutil.commands.ServerCommand
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ServerUtils.
  */
 @SurvivalHeavenSubPlugin(name = "ServerUtils")
 public final class ServerUtils {
 
-    /**
-     * Disable.
-     * 
-     * @param plugin the plugin
-     */
-    @SurvivalHeavenDisable
-    private static void disable(final JavaPlugin plugin) {
-        unregisterCommands();
-        unregisterListeners();
-    }
+	/**
+	 * Disable.
+	 * 
+	 * @param plugin
+	 *            the plugin
+	 */
+	@SurvivalHeavenDisable
+	private static void disable(final JavaPlugin plugin) {
+		unregisterCommands();
+		unregisterListeners();
+	}
 
-    /**
-     * Enable.
-     * 
-     * @param plugin the plugin
-     */
-    @SurvivalHeavenEnable
-    private static void enable(final JavaPlugin plugin) {
-        registerCommands();
-        registerListeners();
-    }
+	/**
+	 * Enable.
+	 * 
+	 * @param plugin
+	 *            the plugin
+	 */
+	@SurvivalHeavenEnable
+	private static void enable(final JavaPlugin plugin) {
+		registerCommands();
+		registerListeners();
+	}
 
-    /**
-     * Register commands.
-     */
-    private static void registerCommands() {
-        ServerCommand.initCommand();
-    }
+	/**
+	 * Register commands.
+	 */
+	private static void registerCommands() {
+		ServerCommand.initCommand();
+	}
 
-    /**
-     * Register listeners.
-     */
-    private static void registerListeners() {
-    }
+	/**
+	 * Register listeners.
+	 */
+	private static void registerListeners() {
+	}
 
-    /**
-     * Unregister commands.
-     */
-    private static void unregisterCommands() {
-        ServerCommand.clearCommand();
-    }
+	/**
+	 * Unregister commands.
+	 */
+	private static void unregisterCommands() {
+		ServerCommand.clearCommand();
+	}
 
-    /**
-     * Unregister listeners.
-     */
-    private static void unregisterListeners() {
-    }
+	/**
+	 * Unregister listeners.
+	 */
+	private static void unregisterListeners() {
+	}
 }

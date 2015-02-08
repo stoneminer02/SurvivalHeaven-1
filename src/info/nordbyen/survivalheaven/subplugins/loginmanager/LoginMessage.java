@@ -40,7 +40,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 
-// TODO: Auto-generated Javadoc
 /**
  * The listener to the LoginMessage plugin
  * 
@@ -48,24 +47,30 @@ import org.bukkit.event.server.ServerListPingEvent;
  */
 class LoginListener implements Listener {
 
-    @EventHandler
-    public void onJoin(final PlayerJoinEvent e) {
-        e.setJoinMessage(null);
-        BukkitHelperAPI.sendMessageToAll("login", false, e.getPlayer().getName());
-        FancyMessages.sendActionBar(e.getPlayer(), ChatColor.GREEN + "" + ChatColor.BOLD + "VELKOMMEN TIL " + SH.NAME);
-        FancyMessages.sendTitle(e.getPlayer(), 10, 70, 40, ChatColor.GREEN + "Velkommen til " + SH.NAME, SH.MOTTO);
-    }
+	@EventHandler
+	public void onJoin(final PlayerJoinEvent e) {
+		e.setJoinMessage(null);
+		BukkitHelperAPI.sendMessageToAll("login", false, e.getPlayer()
+				.getName());
+		FancyMessages.sendActionBar(e.getPlayer(), ChatColor.GREEN + ""
+				+ ChatColor.BOLD + "VELKOMMEN TIL " + SH.NAME);
+		FancyMessages.sendTitle(e.getPlayer(), 10, 70, 40, ChatColor.GREEN
+				+ "Velkommen til " + SH.NAME, SH.MOTTO);
+	}
 
-    @EventHandler
-    public void onPing(final ServerListPingEvent e) {
-        e.setMotd(ChatColor.GOLD + "X--===[ " + ChatColor.RED + "Survival" + ChatColor.GRAY + "Heaven " + ChatColor.DARK_GREEN + "1.8" + ChatColor.GOLD + " ]===--X");
-    }
+	@EventHandler
+	public void onPing(final ServerListPingEvent e) {
+		e.setMotd(ChatColor.GOLD + "X--===[ " + ChatColor.RED + "Survival"
+				+ ChatColor.GRAY + "Heaven " + ChatColor.DARK_GREEN + "1.8"
+				+ ChatColor.GOLD + " ]===--X");
+	}
 
-    @EventHandler
-    public void onQuit(final PlayerQuitEvent e) {
-        e.setQuitMessage(null);
-        BukkitHelperAPI.sendMessageToAll("logout", false, e.getPlayer().getName());
-    }
+	@EventHandler
+	public void onQuit(final PlayerQuitEvent e) {
+		e.setQuitMessage(null);
+		BukkitHelperAPI.sendMessageToAll("logout", false, e.getPlayer()
+				.getName());
+	}
 }
 
 /**
@@ -73,33 +78,36 @@ class LoginListener implements Listener {
  */
 public class LoginMessage extends SubPlugin {
 
-    /**
-     * Instantiates a new login message.
-     * 
-     * @param name the name
-     */
-    public LoginMessage(final String name) {
-        super(name);
-    }
+	/**
+	 * Instantiates a new login message.
+	 * 
+	 * @param name
+	 *            the name
+	 */
+	public LoginMessage(final String name) {
+		super(name);
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
-     */
-    @Override
-    public void disable() {
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
+	 */
+	@Override
+	public void disable() {
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
-     */
-    @Override
-    public void enable() {
-        Bukkit.getPluginManager().registerEvents(new LoginListener(), getPlugin());
-        Translator.addText("login", "&a{0} logget inn", "&a{0} joined the game");
-        Translator.addText("logout", "&c{0} logget ut", "&c{0} left the game");
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
+	 */
+	@Override
+	public void enable() {
+		Bukkit.getPluginManager().registerEvents(new LoginListener(),
+				getPlugin());
+		Translator
+				.addText("login", "&a{0} logget inn", "&a{0} joined the game");
+		Translator.addText("logout", "&c{0} logget ut", "&c{0} left the game");
+	}
 }

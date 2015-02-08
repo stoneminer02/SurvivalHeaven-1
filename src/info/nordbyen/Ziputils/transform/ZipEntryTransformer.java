@@ -31,19 +31,23 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface ZipEntryTransformer.
  */
 public interface ZipEntryTransformer {
 
-    /**
-     * Transform.
-     * 
-     * @param in the in
-     * @param zipEntry the zip entry
-     * @param out the out
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    void transform(InputStream in, ZipEntry zipEntry, ZipOutputStream out) throws IOException;
+	/**
+	 * Transform.
+	 * 
+	 * @param in
+	 *            the in
+	 * @param zipEntry
+	 *            the zip entry
+	 * @param out
+	 *            the out
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	void transform(InputStream in, ZipEntry zipEntry, ZipOutputStream out)
+			throws IOException;
 }

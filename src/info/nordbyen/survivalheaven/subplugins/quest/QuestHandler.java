@@ -35,31 +35,33 @@ import info.nordbyen.survivalheaven.subplugins.quest.first_encounter.FirstEncoun
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class QuestHandler.
  */
 @SurvivalHeavenSubPlugin(name = "QuestHandler")
 public class QuestHandler {
 
-    /**
-     * Disble.
-     * 
-     * @param plugin the plugin
-     */
-    @SurvivalHeavenDisable
-    private static void disble(final JavaPlugin plugin) {
-    }
+	/**
+	 * Disble.
+	 * 
+	 * @param plugin
+	 *            the plugin
+	 */
+	@SurvivalHeavenDisable
+	private static void disble(final JavaPlugin plugin) {
+	}
 
-    /**
-     * Enable.
-     * 
-     * @param plugin the plugin
-     */
-    @SurvivalHeavenEnable
-    private static void enable(final JavaPlugin plugin) {
-        FirstEncounterConfig.getInstance();
-        Bukkit.getPluginManager().registerEvents(new FirstEncounterListener(), plugin);
-        Godta_Command.initCommand();
-    }
+	/**
+	 * Enable.
+	 * 
+	 * @param plugin
+	 *            the plugin
+	 */
+	@SurvivalHeavenEnable
+	private static void enable(final JavaPlugin plugin) {
+		FirstEncounterConfig.getInstance();
+		Bukkit.getPluginManager().registerEvents(new FirstEncounterListener(),
+				plugin);
+		Godta_Command.initCommand();
+	}
 }

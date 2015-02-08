@@ -34,43 +34,45 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ServerCommand.
  */
 public class RegionTeleportCommand extends AbstractCommand {
 
-    /**
-     * Instantiates a new server command.
-     */
-    public RegionTeleportCommand() {
-        super("nord", "/<command>", "Kommandoer for å teleportere til utpostene", Arrays.asList(new String[] { "sør", "nord", "øst", "vest" }));
-        register();
-    }
+	/**
+	 * Instantiates a new server command.
+	 */
+	public RegionTeleportCommand() {
+		super("nord", "/<command>",
+				"Kommandoer for å teleportere til utpostene", Arrays
+						.asList(new String[] { "sør", "nord", "øst", "vest" }));
+		register();
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.survivalheaven.api.command.AbstractCommand#onCommand(org.
-     * bukkit.command .CommandSender, org.bukkit.command.Command,
-     * java.lang.String, java.lang.String[])
-     */
-    @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
-        if (label.equalsIgnoreCase("sør")) {
-            sender.sendMessage(ChatColor.GREEN + "Teleporterer til sør");
-            // TODO
-        } else if (label.equalsIgnoreCase("nord")) {
-            sender.sendMessage(ChatColor.GREEN + "Teleporterer til nord");
-            // TODO
-        } else if (label.equalsIgnoreCase("øst")) {
-            sender.sendMessage(ChatColor.GREEN + "Teleporterer til øst");
-            // TODO
-        } else if (label.equalsIgnoreCase("vest")) {
-            sender.sendMessage(ChatColor.GREEN + "Teleporterer til vest");
-            // TODO
-        }
-        return true;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.survivalheaven.api.command.AbstractCommand#onCommand(org.
+	 * bukkit.command .CommandSender, org.bukkit.command.Command,
+	 * java.lang.String, java.lang.String[])
+	 */
+	@Override
+	public boolean onCommand(final CommandSender sender, final Command command,
+			final String label, final String[] args) {
+		if (label.equalsIgnoreCase("sør")) {
+			sender.sendMessage(ChatColor.GREEN + "Teleporterer til sør");
+			// TODO
+		} else if (label.equalsIgnoreCase("nord")) {
+			sender.sendMessage(ChatColor.GREEN + "Teleporterer til nord");
+			// TODO
+		} else if (label.equalsIgnoreCase("øst")) {
+			sender.sendMessage(ChatColor.GREEN + "Teleporterer til øst");
+			// TODO
+		} else if (label.equalsIgnoreCase("vest")) {
+			sender.sendMessage(ChatColor.GREEN + "Teleporterer til vest");
+			// TODO
+		}
+		return true;
+	}
 }

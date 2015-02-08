@@ -25,17 +25,17 @@
  */
 
 package info.nordbyen.survivalheaven.api.playerrelation;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Enum GroupRelation.
  */
 public enum GroupRelation {
-    /** The none. */
-    NONE,
-    /** The member. */
-    MEMBER,
-    /** The trusted. */
-    TRUSTED,
-    /** The owner. */
-    OWNER;
+	/** The none. */
+	NONE,
+	/** The member. */
+	MEMBER,
+	/** The trusted. */
+	TRUSTED,
+	/** The owner. */
+	OWNER;
 }

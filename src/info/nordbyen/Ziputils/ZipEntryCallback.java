@@ -30,18 +30,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface ZipEntryCallback.
  */
 public interface ZipEntryCallback {
 
-    /**
-     * Process.
-     * 
-     * @param in the in
-     * @param zipEntry the zip entry
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    void process(InputStream in, ZipEntry zipEntry) throws IOException;
+	/**
+	 * Process.
+	 * 
+	 * @param in
+	 *            the in
+	 * @param zipEntry
+	 *            the zip entry
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	void process(InputStream in, ZipEntry zipEntry) throws IOException;
 }

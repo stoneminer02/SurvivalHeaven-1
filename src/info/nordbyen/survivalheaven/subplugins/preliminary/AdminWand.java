@@ -37,95 +37,102 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AdminWand.
  */
 public class AdminWand implements Wand {
 
-    /** The instance. */
-    private static AdminWand instance = null;
+	/** The instance. */
+	private static AdminWand instance = null;
 
-    /**
-     * Gets the single instance of AdminWand.
-     * 
-     * @return single instance of AdminWand
-     */
-    public static AdminWand getInstance() {
-        if (instance == null) {
-            instance = new AdminWand();
-        }
-        return instance;
-    }
+	/**
+	 * Gets the single instance of AdminWand.
+	 * 
+	 * @return single instance of AdminWand
+	 */
+	public static AdminWand getInstance() {
+		if (instance == null) {
+			instance = new AdminWand();
+		}
+		return instance;
+	}
 
-    /** The selections. */
-    public HashMap<String, WandSelection> selections = new HashMap<String, WandSelection>();
+	/** The selections. */
+	public HashMap<String, WandSelection> selections = new HashMap<String, WandSelection>();
 
-    /**
-     * Instantiates a new admin wand.
-     */
-    private AdminWand() {
-    }
+	/**
+	 * Instantiates a new admin wand.
+	 */
+	private AdminWand() {
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.survivalheaven.api.wand.Wand#canCreate(org.bukkit.inventory
-     * .ItemStack, org.bukkit.entity.Player)
-     */
-    @Override
-    public boolean canCreate(final ItemStack itemStack, final Player player) {
-        return true;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.survivalheaven.api.wand.Wand#canCreate(org.bukkit.inventory
+	 * .ItemStack, org.bukkit.entity.Player)
+	 */
+	@Override
+	public boolean canCreate(final ItemStack itemStack, final Player player) {
+		return true;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.survivalheaven.api.wand.Wand#getName()
-     */
-    @Override
-    public String getName() {
-        return ChatColor.GOLD + "Admin Stick";
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.api.wand.Wand#getName()
+	 */
+	@Override
+	public String getName() {
+		return ChatColor.GOLD + "Admin Stick";
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.survivalheaven.api.wand.Wand#onLeftClick(org.bukkit.inventory
-     * .ItemStack, org.bukkit.entity.Player, org.bukkit.block.Block,
-     * org.bukkit.block.BlockFace)
-     */
-    @Override
-    public void onLeftClick(final ItemStack itemStack, final Player player, final Block block, final BlockFace face) {
-        if (!selections.get(player.getUniqueId().toString()).getBlock2().getLocation().toString().equals(block.getLocation().toString()))
-            return;
-        player.sendMessage(ChatColor.GRAY + "Du klikket på " + block.toString());
-        if (selections.containsKey(player.getUniqueId().toString())) {
-            selections.get(player.getUniqueId().toString()).setBlock2(block);
-        } else {
-            selections.put(player.getUniqueId().toString(), new WandSelection(null, block));
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.survivalheaven.api.wand.Wand#onLeftClick(org.bukkit.inventory
+	 * .ItemStack, org.bukkit.entity.Player, org.bukkit.block.Block,
+	 * org.bukkit.block.BlockFace)
+	 */
+	@Override
+	public void onLeftClick(final ItemStack itemStack, final Player player,
+			final Block block, final BlockFace face) {
+		if (!selections.get(player.getUniqueId().toString()).getBlock2()
+				.getLocation().toString()
+				.equals(block.getLocation().toString()))
+			return;
+		player.sendMessage(ChatColor.GRAY + "Du klikket på " + block.toString());
+		if (selections.containsKey(player.getUniqueId().toString())) {
+			selections.get(player.getUniqueId().toString()).setBlock2(block);
+		} else {
+			selections.put(player.getUniqueId().toString(), new WandSelection(
+					null, block));
+		}
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.survivalheaven.api.wand.Wand#onRightClick(org.bukkit.inventory
-     * .ItemStack, org.bukkit.entity.Player, org.bukkit.block.Block,
-     * org.bukkit.block.BlockFace)
-     */
-    @Override
-    public void onRightClick(final ItemStack itemStack, final Player player, final Block block, final BlockFace face) {
-        if (!selections.get(player.getUniqueId().toString()).getBlock1().getLocation().toString().equals(block.getLocation().toString()))
-            return;
-        player.sendMessage(ChatColor.GRAY + "Du klikket på " + block.toString());
-        if (selections.containsKey(player.getUniqueId().toString())) {
-            selections.get(player.getUniqueId().toString()).setBlock1(block);
-        } else {
-            selections.put(player.getUniqueId().toString(), new WandSelection(block, null));
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.survivalheaven.api.wand.Wand#onRightClick(org.bukkit.inventory
+	 * .ItemStack, org.bukkit.entity.Player, org.bukkit.block.Block,
+	 * org.bukkit.block.BlockFace)
+	 */
+	@Override
+	public void onRightClick(final ItemStack itemStack, final Player player,
+			final Block block, final BlockFace face) {
+		if (!selections.get(player.getUniqueId().toString()).getBlock1()
+				.getLocation().toString()
+				.equals(block.getLocation().toString()))
+			return;
+		player.sendMessage(ChatColor.GRAY + "Du klikket på " + block.toString());
+		if (selections.containsKey(player.getUniqueId().toString())) {
+			selections.get(player.getUniqueId().toString()).setBlock1(block);
+		} else {
+			selections.put(player.getUniqueId().toString(), new WandSelection(
+					block, null));
+		}
+	}
 }

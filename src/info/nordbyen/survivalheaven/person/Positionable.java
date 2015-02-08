@@ -25,21 +25,21 @@
  */
 
 package info.nordbyen.survivalheaven.person;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface Positionable.
  */
 public interface Positionable {
 
-    /**
-     * Gets the location.
-     * 
-     * @return the location
-     */
-    public Vektor getLocation();
+	/**
+	 * Gets the location.
+	 * 
+	 * @return the location
+	 */
+	public Vektor getLocation();
 
-    /**
-     * Sets the location.
-     */
-    public void setLocation();
+	/**
+	 * Sets the location.
+	 */
+	public void setLocation();
 }

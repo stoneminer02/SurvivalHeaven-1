@@ -32,35 +32,40 @@ import java.io.OutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class StreamZipEntryTransformer.
  */
 public abstract class StreamZipEntryTransformer implements ZipEntryTransformer {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.Ziputils.transform.ZipEntryTransformer#transform(java.io
-     * .InputStream, java.util.zip.ZipEntry, java.util.zip.ZipOutputStream)
-     */
-    @Override
-    public void transform(InputStream in, ZipEntry zipEntry, ZipOutputStream out) throws IOException {
-        ZipEntry entry = new ZipEntry(zipEntry.getName());
-        entry.setTime(System.currentTimeMillis());
-        out.putNextEntry(entry);
-        transform(zipEntry, in, out);
-        out.closeEntry();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.Ziputils.transform.ZipEntryTransformer#transform(java.io
+	 * .InputStream, java.util.zip.ZipEntry, java.util.zip.ZipOutputStream)
+	 */
+	@Override
+	public void transform(InputStream in, ZipEntry zipEntry, ZipOutputStream out)
+			throws IOException {
+		ZipEntry entry = new ZipEntry(zipEntry.getName());
+		entry.setTime(System.currentTimeMillis());
+		out.putNextEntry(entry);
+		transform(zipEntry, in, out);
+		out.closeEntry();
+	}
 
-    /**
-     * Transform.
-     * 
-     * @param zipEntry the zip entry
-     * @param in the in
-     * @param out the out
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    protected abstract void transform(ZipEntry zipEntry, InputStream in, OutputStream out) throws IOException;
+	/**
+	 * Transform.
+	 * 
+	 * @param zipEntry
+	 *            the zip entry
+	 * @param in
+	 *            the in
+	 * @param out
+	 *            the out
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	protected abstract void transform(ZipEntry zipEntry, InputStream in,
+			OutputStream out) throws IOException;
 }

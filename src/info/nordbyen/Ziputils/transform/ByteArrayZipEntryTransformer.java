@@ -34,48 +34,54 @@ import java.util.zip.ZipOutputStream;
 import info.nordbyen.Ziputils.ByteSource;
 import info.nordbyen.Ziputils.commons.IOUtils;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ByteArrayZipEntryTransformer.
  */
-public abstract class ByteArrayZipEntryTransformer implements ZipEntryTransformer {
+public abstract class ByteArrayZipEntryTransformer implements
+		ZipEntryTransformer {
 
-    /**
-     * Preserve timestamps.
-     * 
-     * @return true, if successful
-     */
-    protected boolean preserveTimestamps() {
-        return false;
-    }
+	/**
+	 * Preserve timestamps.
+	 * 
+	 * @return true, if successful
+	 */
+	protected boolean preserveTimestamps() {
+		return false;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.Ziputils.transform.ZipEntryTransformer#transform(java.io
-     * .InputStream, java.util.zip.ZipEntry, java.util.zip.ZipOutputStream)
-     */
-    @Override
-    public void transform(InputStream in, ZipEntry zipEntry, ZipOutputStream out) throws IOException {
-        byte[] bytes = IOUtils.toByteArray(in);
-        bytes = transform(zipEntry, bytes);
-        ByteSource source;
-        if (preserveTimestamps()) {
-            source = new ByteSource(zipEntry.getName(), bytes, zipEntry.getTime());
-        } else {
-            source = new ByteSource(zipEntry.getName(), bytes);
-        }
-        ZipEntrySourceZipEntryTransformer.addEntry(source, out);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.Ziputils.transform.ZipEntryTransformer#transform(java.io
+	 * .InputStream, java.util.zip.ZipEntry, java.util.zip.ZipOutputStream)
+	 */
+	@Override
+	public void transform(InputStream in, ZipEntry zipEntry, ZipOutputStream out)
+			throws IOException {
+		byte[] bytes = IOUtils.toByteArray(in);
+		bytes = transform(zipEntry, bytes);
+		ByteSource source;
+		if (preserveTimestamps()) {
+			source = new ByteSource(zipEntry.getName(), bytes,
+					zipEntry.getTime());
+		} else {
+			source = new ByteSource(zipEntry.getName(), bytes);
+		}
+		ZipEntrySourceZipEntryTransformer.addEntry(source, out);
+	}
 
-    /**
-     * Transform.
-     * 
-     * @param zipEntry the zip entry
-     * @param input the input
-     * @return the byte[]
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    protected abstract byte[] transform(ZipEntry zipEntry, byte[] input) throws IOException;
+	/**
+	 * Transform.
+	 * 
+	 * @param zipEntry
+	 *            the zip entry
+	 * @param input
+	 *            the input
+	 * @return the byte[]
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	protected abstract byte[] transform(ZipEntry zipEntry, byte[] input)
+			throws IOException;
 }

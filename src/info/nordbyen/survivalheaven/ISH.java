@@ -39,7 +39,6 @@ import info.nordbyen.survivalheaven.subplugins.blockdata.IBlockManager;
 
 import org.bukkit.Location;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface ISH.
  * 
@@ -47,101 +46,102 @@ import org.bukkit.Location;
  */
 public interface ISH {
 
-    /**
-     * Debug.
-     * 
-     * @param strings the strings
-     */
-    void debug(final Object... strings);
+	/**
+	 * Debug.
+	 * 
+	 * @param strings
+	 *            the strings
+	 */
+	void debug(final Object... strings);
 
-    /**
-     * Gets the senter.
-     * 
-     * @return the senter
-     */
-    Location getSenter();
+	/**
+	 * Gets the senter.
+	 * 
+	 * @return the senter
+	 */
+	Location getSenter();
 
-    /**
-     * Gets the anno sub plugin manager.
-     * 
-     * @return the anno sub plugin manager
-     */
-    IAnnoSubPluginManager getAnnoSubPluginManager();
+	/**
+	 * Gets the anno sub plugin manager.
+	 * 
+	 * @return the anno sub plugin manager
+	 */
+	IAnnoSubPluginManager getAnnoSubPluginManager();
 
-    /**
-     * Gets the block manager.
-     * 
-     * @return the block manager
-     */
-    IBlockManager getBlockManager();
+	/**
+	 * Gets the block manager.
+	 * 
+	 * @return the block manager
+	 */
+	IBlockManager getBlockManager();
 
-    /**
-     * Gets the mysql manager.
-     * 
-     * @return the mysql manager
-     */
-    IMysqlManager getMysqlManager();
+	/**
+	 * Gets the mysql manager.
+	 * 
+	 * @return the mysql manager
+	 */
+	IMysqlManager getMysqlManager();
 
-    /**
-     * Gets the note manager.
-     * 
-     * @return the note manager
-     */
-    INoteManager getNoteManager();
+	/**
+	 * Gets the note manager.
+	 * 
+	 * @return the note manager
+	 */
+	INoteManager getNoteManager();
 
-    /**
-     * Gets the player data manager.
-     * 
-     * @return the player data manager
-     */
-    IPlayerDataManager getPlayerDataManager();
+	/**
+	 * Gets the player data manager.
+	 * 
+	 * @return the player data manager
+	 */
+	IPlayerDataManager getPlayerDataManager();
 
-    /**
-     * Gets the rank manager.
-     * 
-     * @return the rank manager
-     */
-    IRankManager getRankManager();
+	/**
+	 * Gets the rank manager.
+	 * 
+	 * @return the rank manager
+	 */
+	IRankManager getRankManager();
 
-    /**
-     * Gets the region manager.
-     * 
-     * @return the region manager
-     */
-    IRegionManager getRegionManager();
+	/**
+	 * Gets the region manager.
+	 * 
+	 * @return the region manager
+	 */
+	IRegionManager getRegionManager();
 
-    /**
-     * Gets the sub plugin manager.
-     * 
-     * @return the sub plugin manager
-     */
-    ISubPluginManager getSubPluginManager();
+	/**
+	 * Gets the sub plugin manager.
+	 * 
+	 * @return the sub plugin manager
+	 */
+	ISubPluginManager getSubPluginManager();
 
-    /**
-     * Gets the wand manager.
-     * 
-     * @return the wand manager
-     */
-    IWandManager getWandManager();
+	/**
+	 * Gets the wand manager.
+	 * 
+	 * @return the wand manager
+	 */
+	IWandManager getWandManager();
 
-    /**
-     * Gets the warning manager.
-     * 
-     * @return the warning manager
-     */
-    IWarningManager getWarningManager();
+	/**
+	 * Gets the warning manager.
+	 * 
+	 * @return the warning manager
+	 */
+	IWarningManager getWarningManager();
 
-    /**
-     * Gets the plugin name.
-     * 
-     * @return the plugin name
-     */
-    String getPluginName();
+	/**
+	 * Gets the plugin name.
+	 * 
+	 * @return the plugin name
+	 */
+	String getPluginName();
 
-    /**
-     * Gets the version.
-     * 
-     * @return the version
-     */
-    String getVersion();
+	/**
+	 * Gets the version.
+	 * 
+	 * @return the version
+	 */
+	String getVersion();
 }

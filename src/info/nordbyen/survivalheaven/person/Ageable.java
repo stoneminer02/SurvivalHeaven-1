@@ -25,23 +25,23 @@
  */
 
 package info.nordbyen.survivalheaven.person;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface Ageable.
  */
 public interface Ageable {
 
-    /**
-     * Gets the age.
-     * 
-     * @return the age
-     */
-    public int getAge();
+	/**
+	 * Gets the age.
+	 * 
+	 * @return the age
+	 */
+	public int getAge();
 
-    /**
-     * Sets the age.
-     * 
-     * @return the int
-     */
-    public int setAge();
+	/**
+	 * Sets the age.
+	 * 
+	 * @return the int
+	 */
+	public int setAge();
 }

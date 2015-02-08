@@ -28,31 +28,30 @@ package info.nordbyen.survivalheaven.person;
 
 import javax.annotation.Nullable;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface Nameable.
  */
 public interface Nameable {
 
-    /**
-     * Gets the first name.
-     * 
-     * @return the first name
-     */
-    public String getFirstName();
+	/**
+	 * Gets the first name.
+	 * 
+	 * @return the first name
+	 */
+	public String getFirstName();
 
-    /**
-     * Gets the middle names.
-     * 
-     * @return the middle names
-     */
-    @Nullable
-    public String[] getMiddleNames();
+	/**
+	 * Gets the middle names.
+	 * 
+	 * @return the middle names
+	 */
+	@Nullable
+	public String[] getMiddleNames();
 
-    /**
-     * Gets the last name.
-     * 
-     * @return the last name
-     */
-    public String getLastName();
+	/**
+	 * Gets the last name.
+	 * 
+	 * @return the last name
+	 */
+	public String getLastName();
 }

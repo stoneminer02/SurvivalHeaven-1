@@ -32,48 +32,52 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EventAPI.
  */
 public class EventAPI {
 
-    /** The events. */
-    private static HashMap<Listener, Plugin> events;
+	/** The events. */
+	private static HashMap<Listener, Plugin> events;
 
-    /**
-     * Instantiates a new event api.
-     */
-    public EventAPI() {
-        events = new HashMap<Listener, Plugin>();
-    }
+	/**
+	 * Instantiates a new event api.
+	 */
+	public EventAPI() {
+		events = new HashMap<Listener, Plugin>();
+	}
 
-    /**
-     * Adds the event.
-     * 
-     * @param listener the listener
-     * @param plugin the plugin
-     */
-    public void addEvent(final Listener listener, final Plugin plugin) {
-        events.put(listener, plugin);
-    }
+	/**
+	 * Adds the event.
+	 * 
+	 * @param listener
+	 *            the listener
+	 * @param plugin
+	 *            the plugin
+	 */
+	public void addEvent(final Listener listener, final Plugin plugin) {
+		events.put(listener, plugin);
+	}
 
-    /**
-     * Register event.
-     * 
-     * @param listener the listener
-     * @param plugin the plugin
-     */
-    public void registerEvent(final Listener listener, final Plugin plugin) {
-        Bukkit.getPluginManager().registerEvents(listener, plugin);
-    }
+	/**
+	 * Register event.
+	 * 
+	 * @param listener
+	 *            the listener
+	 * @param plugin
+	 *            the plugin
+	 */
+	public void registerEvent(final Listener listener, final Plugin plugin) {
+		Bukkit.getPluginManager().registerEvents(listener, plugin);
+	}
 
-    /**
-     * Register events.
-     */
-    public void registerEvents() {
-        for (final Listener listener : events.keySet()) {
-            Bukkit.getPluginManager().registerEvents(listener, events.get(listener));
-        }
-    }
+	/**
+	 * Register events.
+	 */
+	public void registerEvents() {
+		for (final Listener listener : events.keySet()) {
+			Bukkit.getPluginManager().registerEvents(listener,
+					events.get(listener));
+		}
+	}
 }

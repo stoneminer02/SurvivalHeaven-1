@@ -37,7 +37,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving rankManager events. The class that is
  * interested in processing a rankManager event implements this interface, and
@@ -50,36 +49,41 @@ import org.bukkit.event.player.PlayerJoinEvent;
  */
 public class RankManagerListener implements Listener {
 
-    /**
-     * On chat.
-     * 
-     * @param e the e
-     */
-    @EventHandler
-    public void onChat(final AsyncPlayerChatEvent e) {
-        SH.getManager().getRankManager().updateNames();
-        if (e.isCancelled())
-            return;
-        if (e.getMessage() == null)
-            return;
-        final Player p = e.getPlayer();
-        e.setCancelled(true);
-        for (final Player o : Bukkit.getOnlinePlayers()) {
-            o.sendMessage(p.getDisplayName() + ChatColor.RESET + ": " + ChatColor.GRAY + e.getMessage());
-        }
-        Bukkit.getConsoleSender().sendMessage(p.getDisplayName() + ChatColor.RESET + ": " + ChatColor.GRAY + e.getMessage());
-        for (final Player o : Bukkit.getOnlinePlayers()) {
-            FancyMessages.sendTabTitle(o, SH.NAME, SH.MOTTO);
-        }
-    }
+	/**
+	 * On chat.
+	 * 
+	 * @param e
+	 *            the e
+	 */
+	@EventHandler
+	public void onChat(final AsyncPlayerChatEvent e) {
+		SH.getManager().getRankManager().updateNames();
+		if (e.isCancelled())
+			return;
+		if (e.getMessage() == null)
+			return;
+		final Player p = e.getPlayer();
+		e.setCancelled(true);
+		for (final Player o : Bukkit.getOnlinePlayers()) {
+			o.sendMessage(p.getDisplayName() + ChatColor.RESET + ": "
+					+ ChatColor.GRAY + e.getMessage());
+		}
+		Bukkit.getConsoleSender().sendMessage(
+				p.getDisplayName() + ChatColor.RESET + ": " + ChatColor.GRAY
+						+ e.getMessage());
+		for (final Player o : Bukkit.getOnlinePlayers()) {
+			FancyMessages.sendTabTitle(o, SH.NAME, SH.MOTTO);
+		}
+	}
 
-    /**
-     * On join.
-     * 
-     * @param e the e
-     */
-    @EventHandler
-    public void onJoin(final PlayerJoinEvent e) {
-        SH.getManager().getRankManager().updateNames();
-    }
+	/**
+	 * On join.
+	 * 
+	 * @param e
+	 *            the e
+	 */
+	@EventHandler
+	public void onJoin(final PlayerJoinEvent e) {
+		SH.getManager().getRankManager().updateNames();
+	}
 }

@@ -28,37 +28,39 @@ package info.nordbyen.survivalheaven.api.playerdata;
 
 import org.bukkit.entity.Player;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IPlayerDataManager.
  */
 public interface IPlayerDataManager {
 
-    /**
-     * Creates the player data.
-     * 
-     * @param p the p
-     */
-    void createPlayerData(Player p);
+	/**
+	 * Creates the player data.
+	 * 
+	 * @param p
+	 *            the p
+	 */
+	void createPlayerData(Player p);
 
-    /**
-     * Gets the player data.
-     * 
-     * @param uuid the uuid
-     * @return the player data
-     */
-    IPlayerData getPlayerData(String uuid);
+	/**
+	 * Gets the player data.
+	 * 
+	 * @param uuid
+	 *            the uuid
+	 * @return the player data
+	 */
+	IPlayerData getPlayerData(String uuid);
 
-    /**
-     * Gets the player data from name.
-     * 
-     * @param name the name
-     * @return the player data from name
-     */
-    IPlayerData getPlayerDataFromName(String name);
+	/**
+	 * Gets the player data from name.
+	 * 
+	 * @param name
+	 *            the name
+	 * @return the player data from name
+	 */
+	IPlayerData getPlayerDataFromName(String name);
 
-    /**
-     * Save data to database.
-     */
-    void saveDataToDatabase();
+	/**
+	 * Save data to database.
+	 */
+	void saveDataToDatabase();
 }

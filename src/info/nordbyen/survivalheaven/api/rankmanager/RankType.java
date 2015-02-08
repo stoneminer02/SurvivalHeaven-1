@@ -30,101 +30,107 @@ import info.nordbyen.survivalheaven.SH;
 
 import org.bukkit.ChatColor;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Enum RankType.
  */
 public enum RankType {
-    /** The banned. */
-    BANNED(0, "BANNED", "", ChatColor.GRAY), // spillere som er bannet her
-    /** The bruker. */
-    BRUKER(1, "BRUKER", "", ChatColor.RESET),
-    /** The moderator. */
-    MODERATOR(2, "MODERATOR", "[Mod] ", ChatColor.BLUE),
-    /** The administrator. */
-    ADMINISTRATOR(3, "ADMINISTRATOR", "[Admin] ", ChatColor.GOLD);
+	/** The banned. */
+	BANNED(0, "BANNED", "", ChatColor.GRAY), // spillere som er bannet her
+	/** The bruker. */
+	BRUKER(1, "BRUKER", "", ChatColor.RESET),
+	/** The moderator. */
+	MODERATOR(2, "MODERATOR", "[Mod] ", ChatColor.BLUE),
+	/** The administrator. */
+	ADMINISTRATOR(3, "ADMINISTRATOR", "[Admin] ", ChatColor.GOLD);
 
-    /* Fjernet inntil vi trenger dem */
-    // SUPERMODERATOR( 4, "SUPERMODERATOR", "Mod+", ChatColor.BLUE ),
-    // SUPERADMINISTRATOR( 5, "SUPERADMINISTRATOR", "Admin+",
-    // ChatColor.YELLOW );
-    /**
-     * Gets the rank from id.
-     * 
-     * @param id the id
-     * @return the rank from id
-     */
-    public static RankType getRankFromId(final int id) {
-        if (id == 0)
-            return BANNED;
-        if (id == 1)
-            return BRUKER;
-        if (id == 2)
-            return MODERATOR;
-        if (id == 3)
-            return ADMINISTRATOR;
-        SH.getManager().debug("Fant ikke rank med id: " + id, "Printer stackstrace under...");
-        SH.getManager().debug((Object[]) (new Throwable()).getStackTrace());
-        return BRUKER;
-    }
+	/* Fjernet inntil vi trenger dem */
+	// SUPERMODERATOR( 4, "SUPERMODERATOR", "Mod+", ChatColor.BLUE ),
+	// SUPERADMINISTRATOR( 5, "SUPERADMINISTRATOR", "Admin+",
+	// ChatColor.YELLOW );
+	/**
+	 * Gets the rank from id.
+	 * 
+	 * @param id
+	 *            the id
+	 * @return the rank from id
+	 */
+	public static RankType getRankFromId(final int id) {
+		if (id == 0)
+			return BANNED;
+		if (id == 1)
+			return BRUKER;
+		if (id == 2)
+			return MODERATOR;
+		if (id == 3)
+			return ADMINISTRATOR;
+		SH.getManager().debug("Fant ikke rank med id: " + id,
+				"Printer stackstrace under...");
+		SH.getManager().debug((Object[]) (new Throwable()).getStackTrace());
+		return BRUKER;
+	}
 
-    /** The rank. */
-    private final int rank;
-    /** The name. */
-    private final String name;
-    /** The prefix. */
-    private final String prefix;
-    /** The color. */
-    private final ChatColor color;
+	/** The rank. */
+	private final int rank;
+	/** The name. */
+	private final String name;
+	/** The prefix. */
+	private final String prefix;
+	/** The color. */
+	private final ChatColor color;
 
-    /**
-     * Instantiates a new rank type.
-     * 
-     * @param rank the rank
-     * @param name the name
-     * @param prefix the prefix
-     * @param color the color
-     */
-    RankType(final int rank, final String name, final String prefix, final ChatColor color) {
-        this.rank = rank;
-        this.name = name;
-        this.prefix = prefix;
-        this.color = color;
-    }
+	/**
+	 * Instantiates a new rank type.
+	 * 
+	 * @param rank
+	 *            the rank
+	 * @param name
+	 *            the name
+	 * @param prefix
+	 *            the prefix
+	 * @param color
+	 *            the color
+	 */
+	RankType(final int rank, final String name, final String prefix,
+			final ChatColor color) {
+		this.rank = rank;
+		this.name = name;
+		this.prefix = prefix;
+		this.color = color;
+	}
 
-    /**
-     * Gets the color.
-     * 
-     * @return the color
-     */
-    public ChatColor getColor() {
-        return color;
-    }
+	/**
+	 * Gets the color.
+	 * 
+	 * @return the color
+	 */
+	public ChatColor getColor() {
+		return color;
+	}
 
-    /**
-     * Gets the id.
-     * 
-     * @return the id
-     */
-    public int getId() {
-        return rank;
-    }
+	/**
+	 * Gets the id.
+	 * 
+	 * @return the id
+	 */
+	public int getId() {
+		return rank;
+	}
 
-    /**
-     * Gets the name.
-     * 
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * Gets the name.
+	 * 
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Gets the prefix.
-     * 
-     * @return the prefix
-     */
-    public String getPrefix() {
-        return color + prefix;
-    }
+	/**
+	 * Gets the prefix.
+	 * 
+	 * @return the prefix
+	 */
+	public String getPrefix() {
+		return color + prefix;
+	}
 }

@@ -25,37 +25,39 @@
  */
 
 package info.nordbyen.Ziputils;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ZipBreakException.
  */
 public class ZipBreakException extends RuntimeException {
 
-    /** The Constant serialVersionUID. */
-    private static final long serialVersionUID = 1L;
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * Instantiates a new zip break exception.
-     */
-    public ZipBreakException() {
-        super();
-    }
+	/**
+	 * Instantiates a new zip break exception.
+	 */
+	public ZipBreakException() {
+		super();
+	}
 
-    /**
-     * Instantiates a new zip break exception.
-     * 
-     * @param e the e
-     */
-    public ZipBreakException(Exception e) {
-        super(e);
-    }
+	/**
+	 * Instantiates a new zip break exception.
+	 * 
+	 * @param e
+	 *            the e
+	 */
+	public ZipBreakException(Exception e) {
+		super(e);
+	}
 
-    /**
-     * Instantiates a new zip break exception.
-     * 
-     * @param msg the msg
-     */
-    public ZipBreakException(String msg) {
-        super(msg);
-    }
+	/**
+	 * Instantiates a new zip break exception.
+	 * 
+	 * @param msg
+	 *            the msg
+	 */
+	public ZipBreakException(String msg) {
+		super(msg);
+	}
 }

@@ -42,7 +42,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 
-// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving blockProtection events. The class that
  * is interested in processing a blockProtection event implements this
@@ -56,53 +55,58 @@ import org.bukkit.event.block.BlockPlaceEvent;
  */
 public class BlockProtectionListener implements Listener {
 
-    /**
-     * On break.
-     * 
-     * @param e the e
-     */
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onBreak(final BlockBreakEvent e) {
-        final Block b = e.getBlock();
-        final Player p = e.getPlayer();
-        if ((b.getType() != Material.AIR) && (b.getType() != Material.WATER) && (b.getType() != Material.LAVA)) // En
-        // fast
-        // blokk
-        {
-            final IPlayerData pd = SH.getManager().getBlockManager().getOwner(b);
-            if (pd != null) // En eier
-            {
-                // TODO Blokken er eid av noen
-                final String uuid = pd.getUUID();
-                if (!uuid.equals(p.getUniqueId().toString())) // Ikke samme
-                // eier
-                {
-                    final boolean canBreak = false; // TODO
-                    if (!canBreak) // Ikke kan ødelegge
-                    {
-                        FancyMessages.sendActionBar(p, ChatColor.RED + "Denne blokken er eid av " + pd.getName());// TODO
-                        // bruke
-                        // Translator
-                        e.setCancelled(true);
-                    }
-                }
-            }
-        }
-    }
+	/**
+	 * On break.
+	 * 
+	 * @param e
+	 *            the e
+	 */
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onBreak(final BlockBreakEvent e) {
+		final Block b = e.getBlock();
+		final Player p = e.getPlayer();
+		if ((b.getType() != Material.AIR) && (b.getType() != Material.WATER)
+				&& (b.getType() != Material.LAVA)) // En
+		// fast
+		// blokk
+		{
+			final IPlayerData pd = SH.getManager().getBlockManager()
+					.getOwner(b);
+			if (pd != null) // En eier
+			{
+				// TODO Blokken er eid av noen
+				final String uuid = pd.getUUID();
+				if (!uuid.equals(p.getUniqueId().toString())) // Ikke samme
+				// eier
+				{
+					final boolean canBreak = false; // TODO
+					if (!canBreak) // Ikke kan ødelegge
+					{
+						FancyMessages.sendActionBar(p, ChatColor.RED
+								+ "Denne blokken er eid av " + pd.getName());// TODO
+						// bruke
+						// Translator
+						e.setCancelled(true);
+					}
+				}
+			}
+		}
+	}
 
-    /**
-     * On place.
-     * 
-     * @param e the e
-     */
-    @EventHandler
-    public void onPlace(final BlockPlaceEvent e) {
-        final Block b = e.getBlock();
-        final Player p = e.getPlayer();
-        BlockPlacedType type = BlockPlacedType.SURVIVAL;
-        if (p.getGameMode().equals(GameMode.CREATIVE)) {
-            type = BlockPlacedType.CREATIVE;
-        }
-        SH.getManager().getBlockManager().setBlockOwner(b, p, type);
-    }
+	/**
+	 * On place.
+	 * 
+	 * @param e
+	 *            the e
+	 */
+	@EventHandler
+	public void onPlace(final BlockPlaceEvent e) {
+		final Block b = e.getBlock();
+		final Player p = e.getPlayer();
+		BlockPlacedType type = BlockPlacedType.SURVIVAL;
+		if (p.getGameMode().equals(GameMode.CREATIVE)) {
+			type = BlockPlacedType.CREATIVE;
+		}
+		SH.getManager().getBlockManager().setBlockOwner(b, p, type);
+	}
 }

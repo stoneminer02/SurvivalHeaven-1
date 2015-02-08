@@ -25,16 +25,17 @@
  */
 
 package info.nordbyen.survivalheaven.person;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface Talkable.
  */
 public interface Talkable {
 
-    /**
-     * Talk.
-     * 
-     * @param strings the strings
-     */
-    public void talk(String... strings);
+	/**
+	 * Talk.
+	 * 
+	 * @param strings
+	 *            the strings
+	 */
+	public void talk(String... strings);
 }

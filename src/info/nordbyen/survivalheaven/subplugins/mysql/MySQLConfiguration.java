@@ -30,107 +30,106 @@ import info.nordbyen.survivalheaven.api.config.CustomConfiguration;
 
 import java.io.File;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MySQLConfiguration.
  */
 public class MySQLConfiguration extends CustomConfiguration {
 
-    /** The cfg. */
-    private static MySQLConfiguration cfg;
+	/** The cfg. */
+	private static MySQLConfiguration cfg;
 
-    /**
-     * Gets the database name.
-     * 
-     * @return the database name
-     */
-    public static String getDatabaseName() {
-        getInstance().reload();
-        return getInstance().getString("database");
-    }
+	/**
+	 * Gets the database name.
+	 * 
+	 * @return the database name
+	 */
+	public static String getDatabaseName() {
+		getInstance().reload();
+		return getInstance().getString("database");
+	}
 
-    /**
-     * Gets the host name.
-     * 
-     * @return the host name
-     */
-    public static String getHostName() {
-        getInstance().reload();
-        return getInstance().getString("host");
-    }
+	/**
+	 * Gets the host name.
+	 * 
+	 * @return the host name
+	 */
+	public static String getHostName() {
+		getInstance().reload();
+		return getInstance().getString("host");
+	}
 
-    /**
-     * Gets the host port.
-     * 
-     * @return the host port
-     */
-    public static int getHostPort() {
-        getInstance().reload();
-        return getInstance().getInt("port");
-    }
+	/**
+	 * Gets the host port.
+	 * 
+	 * @return the host port
+	 */
+	public static int getHostPort() {
+		getInstance().reload();
+		return getInstance().getInt("port");
+	}
 
-    /**
-     * Gets the single instance of MySQLConfiguration.
-     * 
-     * @return single instance of MySQLConfiguration
-     */
-    public static MySQLConfiguration getInstance() {
-        if (cfg == null) {
-            cfg = new MySQLConfiguration();
-        }
-        return cfg;
-    }
+	/**
+	 * Gets the single instance of MySQLConfiguration.
+	 * 
+	 * @return single instance of MySQLConfiguration
+	 */
+	public static MySQLConfiguration getInstance() {
+		if (cfg == null) {
+			cfg = new MySQLConfiguration();
+		}
+		return cfg;
+	}
 
-    /**
-     * Gets the user name.
-     * 
-     * @return the user name
-     */
-    public static String getUserName() {
-        getInstance().reload();
-        return getInstance().getString("user");
-    }
+	/**
+	 * Gets the user name.
+	 * 
+	 * @return the user name
+	 */
+	public static String getUserName() {
+		getInstance().reload();
+		return getInstance().getString("user");
+	}
 
-    /**
-     * Gets the user password.
-     * 
-     * @return the user password
-     */
-    public static String getUserPassword() {
-        getInstance().reload();
-        return getInstance().getString("pass");
-    }
+	/**
+	 * Gets the user password.
+	 * 
+	 * @return the user password
+	 */
+	public static String getUserPassword() {
+		getInstance().reload();
+		return getInstance().getString("pass");
+	}
 
-    /**
-     * Instantiates a new my sql configuration.
-     */
-    public MySQLConfiguration() {
-        super(new File("./plugins/SurvivalHeaven/mysql.yml"));
-        cfg = this;
-        load();
-        save();
-        saveDefault();
-    }
+	/**
+	 * Instantiates a new my sql configuration.
+	 */
+	public MySQLConfiguration() {
+		super(new File("./plugins/SurvivalHeaven/mysql.yml"));
+		cfg = this;
+		load();
+		save();
+		saveDefault();
+	}
 
-    /**
-     * Save default.
-     */
-    private void saveDefault() {
-        if (!contains("host")) {
-            set("host", "localhost");
-        }
-        if (!contains("port")) {
-            set("port", 3306);
-        }
-        if (!contains("database")) {
-            set("database", "SurvivalHeaven");
-        }
-        if (!contains("user")) {
-            set("user", "root");
-        }
-        if (!contains("pass")) {
-            set("pass", "");
-        }
-        save();
-    }
+	/**
+	 * Save default.
+	 */
+	private void saveDefault() {
+		if (!contains("host")) {
+			set("host", "localhost");
+		}
+		if (!contains("port")) {
+			set("port", 3306);
+		}
+		if (!contains("database")) {
+			set("database", "SurvivalHeaven");
+		}
+		if (!contains("user")) {
+			set("user", "root");
+		}
+		if (!contains("pass")) {
+			set("pass", "");
+		}
+		save();
+	}
 }

@@ -33,7 +33,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving shop events. The class that is
  * interested in processing a shop event implements this interface, and the
@@ -46,28 +45,31 @@ import org.bukkit.inventory.ItemStack;
  */
 public class ShopListener implements Listener {
 
-    /**
-     * On click.
-     * 
-     * @param e the e
-     */
-    @EventHandler
-    public void onClick(final PlayerInteractEvent e) {
-        if (e.getPlayer().getName().equalsIgnoreCase("l0lkj")) {
-            // e.getPlayer().sendMessage( "Åpner shop" );
-            // e.getPlayer().openInventory( Shop.getShopInventory( ShopType.WOOD
-            // ) );
-        }
-    }
+	/**
+	 * On click.
+	 * 
+	 * @param e
+	 *            the e
+	 */
+	@EventHandler
+	public void onClick(final PlayerInteractEvent e) {
+		if (e.getPlayer().getName().equalsIgnoreCase("l0lkj")) {
+			// e.getPlayer().sendMessage( "Åpner shop" );
+			// e.getPlayer().openInventory( Shop.getShopInventory( ShopType.WOOD
+			// ) );
+		}
+	}
 
-    /**
-     * On inventory.
-     * 
-     * @param e the e
-     */
-    @EventHandler
-    public void onInventory(final InventoryClickEvent e) {
-        final Inventory inv = e.getClickedInventory();
-        @SuppressWarnings("unused") final ItemStack item = inv.getItem(e.getSlot());
-    }
+	/**
+	 * On inventory.
+	 * 
+	 * @param e
+	 *            the e
+	 */
+	@EventHandler
+	public void onInventory(final InventoryClickEvent e) {
+		final Inventory inv = e.getClickedInventory();
+		@SuppressWarnings("unused")
+		final ItemStack item = inv.getItem(e.getSlot());
+	}
 }

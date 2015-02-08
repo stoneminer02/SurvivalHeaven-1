@@ -39,59 +39,67 @@ import info.nordbyen.Ziputils.FileSource;
 import info.nordbyen.Ziputils.commons.FileUtils;
 import info.nordbyen.Ziputils.commons.IOUtils;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FileZipEntryTransformer.
  */
 public abstract class FileZipEntryTransformer implements ZipEntryTransformer {
 
-    /**
-     * Copy.
-     * 
-     * @param in the in
-     * @param file the file
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    private static void copy(InputStream in, File file) throws IOException {
-        OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
-        try {
-            IOUtils.copy(in, out);
-        } finally {
-            IOUtils.closeQuietly(out);
-        }
-    }
+	/**
+	 * Copy.
+	 * 
+	 * @param in
+	 *            the in
+	 * @param file
+	 *            the file
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	private static void copy(InputStream in, File file) throws IOException {
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
+		try {
+			IOUtils.copy(in, out);
+		} finally {
+			IOUtils.closeQuietly(out);
+		}
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * info.nordbyen.Ziputils.transform.ZipEntryTransformer#transform(java.io
-     * .InputStream, java.util.zip.ZipEntry, java.util.zip.ZipOutputStream)
-     */
-    @Override
-    public void transform(InputStream in, ZipEntry zipEntry, ZipOutputStream out) throws IOException {
-        File inFile = null;
-        File outFile = null;
-        try {
-            inFile = File.createTempFile("zip", null);
-            outFile = File.createTempFile("zip", null);
-            copy(in, inFile);
-            transform(zipEntry, inFile, outFile);
-            FileSource source = new FileSource(zipEntry.getName(), outFile);
-            ZipEntrySourceZipEntryTransformer.addEntry(source, out);
-        } finally {
-            FileUtils.deleteQuietly(inFile);
-            FileUtils.deleteQuietly(outFile);
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.Ziputils.transform.ZipEntryTransformer#transform(java.io
+	 * .InputStream, java.util.zip.ZipEntry, java.util.zip.ZipOutputStream)
+	 */
+	@Override
+	public void transform(InputStream in, ZipEntry zipEntry, ZipOutputStream out)
+			throws IOException {
+		File inFile = null;
+		File outFile = null;
+		try {
+			inFile = File.createTempFile("zip", null);
+			outFile = File.createTempFile("zip", null);
+			copy(in, inFile);
+			transform(zipEntry, inFile, outFile);
+			FileSource source = new FileSource(zipEntry.getName(), outFile);
+			ZipEntrySourceZipEntryTransformer.addEntry(source, out);
+		} finally {
+			FileUtils.deleteQuietly(inFile);
+			FileUtils.deleteQuietly(outFile);
+		}
+	}
 
-    /**
-     * Transform.
-     * 
-     * @param zipEntry the zip entry
-     * @param in the in
-     * @param out the out
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    protected abstract void transform(ZipEntry zipEntry, File in, File out) throws IOException;
+	/**
+	 * Transform.
+	 * 
+	 * @param zipEntry
+	 *            the zip entry
+	 * @param in
+	 *            the in
+	 * @param out
+	 *            the out
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	protected abstract void transform(ZipEntry zipEntry, File in, File out)
+			throws IOException;
 }

@@ -25,56 +25,59 @@
  */
 
 package info.nordbyen.survivalheaven.person;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Vektor.
  */
 public class Vektor {
 
-    /** The x. */
-    private final int x;
-    /** The y. */
-    private final int y;
-    /** The z. */
-    private final int z;
+	/** The x. */
+	private final int x;
+	/** The y. */
+	private final int y;
+	/** The z. */
+	private final int z;
 
-    /**
-     * Instantiates a new vektor.
-     * 
-     * @param x the x
-     * @param y the y
-     * @param z the z
-     */
-    public Vektor(final int x, final int y, final int z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
+	/**
+	 * Instantiates a new vektor.
+	 * 
+	 * @param x
+	 *            the x
+	 * @param y
+	 *            the y
+	 * @param z
+	 *            the z
+	 */
+	public Vektor(final int x, final int y, final int z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
 
-    /**
-     * Gets the x.
-     * 
-     * @return the x
-     */
-    public int getX() {
-        return x;
-    }
+	/**
+	 * Gets the x.
+	 * 
+	 * @return the x
+	 */
+	public int getX() {
+		return x;
+	}
 
-    /**
-     * Gets the y.
-     * 
-     * @return the y
-     */
-    public int getY() {
-        return y;
-    }
+	/**
+	 * Gets the y.
+	 * 
+	 * @return the y
+	 */
+	public int getY() {
+		return y;
+	}
 
-    /**
-     * Gets the z.
-     * 
-     * @return the z
-     */
-    public int getZ() {
-        return z;
-    }
+	/**
+	 * Gets the z.
+	 * 
+	 * @return the z
+	 */
+	public int getZ() {
+		return z;
+	}
 }

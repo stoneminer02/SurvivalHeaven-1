@@ -42,109 +42,136 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitScheduler;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RegionUpdater.
  */
 public class RegionUpdater extends SubPlugin {
 
-    /**
-     * The listener interface for receiving regionUpdater events. The class that
-     * is interested in processing a regionUpdater event implements this
-     * interface, and the object created with that class is registered with a
-     * component using the component's
-     * <code>addRegionUpdaterListener<code> method. When
-     * the regionUpdater event occurs, that object's appropriate
-     * method is invoked.
-     * 
-     * @see RegionUpdaterEvent
-     */
-    public class RegionUpdaterListener implements Listener {
+	/**
+	 * The listener interface for receiving regionUpdater events. The class that
+	 * is interested in processing a regionUpdater event implements this
+	 * interface, and the object created with that class is registered with a
+	 * component using the component's
+	 * <code>addRegionUpdaterListener<code> method. When
+	 * the regionUpdater event occurs, that object's appropriate
+	 * method is invoked.
+	 * 
+	 * @see RegionUpdaterEvent
+	 */
+	public class RegionUpdaterListener implements Listener {
 
-        /**
-         * On quit.
-         * 
-         * @param e the e
-         */
-        @EventHandler
-        public void onQuit(final PlayerQuitEvent e) {
-            playerRegions.remove(e.getPlayer().getUniqueId().toString());
-        }
-    }
+		/**
+		 * On quit.
+		 * 
+		 * @param e
+		 *            the e
+		 */
+		@EventHandler
+		public void onQuit(final PlayerQuitEvent e) {
+			playerRegions.remove(e.getPlayer().getUniqueId().toString());
+		}
+	}
 
-    /** The player regions. */
-    private final HashMap<String, RegionData> playerRegions = new HashMap<String, RegionData>();
+	/** The player regions. */
+	private final HashMap<String, RegionData> playerRegions = new HashMap<String, RegionData>();
 
-    /**
-     * Instantiates a new region updater.
-     * 
-     * @param name the name
-     */
-    public RegionUpdater(final String name) {
-        super(name);
-    }
+	/**
+	 * Instantiates a new region updater.
+	 * 
+	 * @param name
+	 *            the name
+	 */
+	public RegionUpdater(final String name) {
+		super(name);
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
-     */
-    @Override
-    protected void disable() {
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
+	 */
+	@Override
+	protected void disable() {
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
-     */
-    @Override
-    protected void enable() {
-        repeatingTask();
-        final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-        scheduler.scheduleSyncDelayedTask(getPlugin(), new Runnable() {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
+	 */
+	@Override
+	protected void enable() {
+		repeatingTask();
+		final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+		scheduler.scheduleSyncDelayedTask(getPlugin(), new Runnable() {
 
-            @Override
-            public void run() {
-                SH.getManager().getRegionManager().addRegion(RegionData.createRegion(SH.getManager().getSenter().clone(), "Midtgard", 230, 100, false, false, true, false));
-                SH.getManager().getRegionManager().addRegion(RegionData.createRegion(SH.getManager().getSenter().clone(), "Utkanten", 330, 95, false, false, true, false));
-                SH.getManager().getRegionManager().addRegion(RegionData.createRegion(SH.getManager().getSenter().clone(), "Fredens land", 6000, 90, false, true, true, false));
-                SH.getManager().getRegionManager().addRegion(RegionData.createRegion(SH.getManager().getSenter().clone(), "Krigens land", Integer.MAX_VALUE, Integer.MIN_VALUE, true, true, true, false));
-            }
-        }, 1L);
-        Bukkit.getPluginManager().registerEvents(new RegionUpdaterListener(), getPlugin());
-        new RegionTeleportCommand();
-    }
+			@Override
+			public void run() {
+				SH.getManager()
+						.getRegionManager()
+						.addRegion(
+								RegionData.createRegion(SH.getManager()
+										.getSenter().clone(), "Midtgard", 230,
+										100, false, false, true, false));
+				SH.getManager()
+						.getRegionManager()
+						.addRegion(
+								RegionData.createRegion(SH.getManager()
+										.getSenter().clone(), "Utkanten", 330,
+										95, false, false, true, false));
+				SH.getManager()
+						.getRegionManager()
+						.addRegion(
+								RegionData.createRegion(SH.getManager()
+										.getSenter().clone(), "Fredens land",
+										6000, 90, false, true, true, false));
+				SH.getManager()
+						.getRegionManager()
+						.addRegion(
+								RegionData.createRegion(SH.getManager()
+										.getSenter().clone(), "Krigens land",
+										Integer.MAX_VALUE, Integer.MIN_VALUE,
+										true, true, true, false));
+			}
+		}, 1L);
+		Bukkit.getPluginManager().registerEvents(new RegionUpdaterListener(),
+				getPlugin());
+		new RegionTeleportCommand();
+	}
 
-    /**
-     * Repeating task.
-     */
-    private void repeatingTask() {
-        final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-        scheduler.scheduleSyncRepeatingTask(getPlugin(), new Runnable() {
+	/**
+	 * Repeating task.
+	 */
+	private void repeatingTask() {
+		final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+		scheduler.scheduleSyncRepeatingTask(getPlugin(), new Runnable() {
 
-            @Override
-            public void run() {
-                for (final Player o : Bukkit.getOnlinePlayers()) {
-                    final RegionData region = SH.getManager().getRegionManager().getRegionAt(o.getLocation());
-                    if (region != playerRegions.get(o.getUniqueId().toString())) {
-                        sendRegionName(o, region);
-                    }
-                    playerRegions.put(o.getUniqueId().toString(), region);
-                }
-            }
-        }, 1L, 1L);
-    }
+			@Override
+			public void run() {
+				for (final Player o : Bukkit.getOnlinePlayers()) {
+					final RegionData region = SH.getManager()
+							.getRegionManager().getRegionAt(o.getLocation());
+					if (region != playerRegions.get(o.getUniqueId().toString())) {
+						sendRegionName(o, region);
+					}
+					playerRegions.put(o.getUniqueId().toString(), region);
+				}
+			}
+		}, 1L, 1L);
+	}
 
-    /**
-     * Send region name.
-     * 
-     * @param p the p
-     * @param region the region
-     */
-    public void sendRegionName(final Player p, final RegionData region) {
-        if (region == null)
-            return;
-        FancyMessages.sendActionBar(p, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "------[ " + region.getName() + " ]------");
-    }
+	/**
+	 * Send region name.
+	 * 
+	 * @param p
+	 *            the p
+	 * @param region
+	 *            the region
+	 */
+	public void sendRegionName(final Player p, final RegionData region) {
+		if (region == null)
+			return;
+		FancyMessages.sendActionBar(p, ChatColor.DARK_GREEN + ""
+				+ ChatColor.BOLD + "------[ " + region.getName() + " ]------");
+	}
 }

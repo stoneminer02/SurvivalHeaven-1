@@ -25,33 +25,35 @@
  */
 
 package info.nordbyen.survivalheaven.api.subplugin;
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface IAnnoSubPluginManager.
  */
 public interface IAnnoSubPluginManager {
 
-    /**
-     * Adds the class.
-     * 
-     * @param klass the klass
-     */
-    public void addClass(final Class<?> klass);
+	/**
+	 * Adds the class.
+	 * 
+	 * @param klass
+	 *            the klass
+	 */
+	public void addClass(final Class<?> klass);
 
-    /**
-     * Disable all.
-     */
-    public void disableAll();
+	/**
+	 * Disable all.
+	 */
+	public void disableAll();
 
-    /**
-     * Enable all.
-     */
-    public void enableAll();
+	/**
+	 * Enable all.
+	 */
+	public void enableAll();
 
-    /**
-     * Removes the class.
-     * 
-     * @param klass the klass
-     */
-    public void removeClass(final Class<?> klass);
+	/**
+	 * Removes the class.
+	 * 
+	 * @param klass
+	 *            the klass
+	 */
+	public void removeClass(final Class<?> klass);
 }
