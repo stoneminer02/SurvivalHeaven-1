@@ -29,6 +29,7 @@ package info.nordbyen.Ziputils;
 import java.io.IOException;
 import java.util.zip.ZipEntry;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Interface ZipInfoCallback.
  */

@@ -31,6 +31,7 @@ import net.minecraft.server.v1_8_R1.NBTTagCompound;
 
 import org.bukkit.enchantments.Enchantment;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class StoredEnchantment.
  */

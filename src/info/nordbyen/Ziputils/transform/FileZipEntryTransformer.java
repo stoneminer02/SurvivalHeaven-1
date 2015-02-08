@@ -39,6 +39,7 @@ import info.nordbyen.Ziputils.FileSource;
 import info.nordbyen.Ziputils.commons.FileUtils;
 import info.nordbyen.Ziputils.commons.IOUtils;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class FileZipEntryTransformer.
  */

@@ -30,6 +30,7 @@ import java.util.logging.Level;
 
 import org.bukkit.plugin.Plugin;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class LoggerAPI.
  */

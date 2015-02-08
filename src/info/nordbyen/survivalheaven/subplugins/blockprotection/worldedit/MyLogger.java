@@ -34,6 +34,7 @@ import com.sk89q.worldedit.extension.platform.Actor;
 import com.sk89q.worldedit.extent.Extent;
 import com.sk89q.worldedit.extent.logging.AbstractLoggingExtent;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class MyLogger.
  */

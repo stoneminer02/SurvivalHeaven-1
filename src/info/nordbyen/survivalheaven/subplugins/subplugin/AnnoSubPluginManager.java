@@ -44,6 +44,7 @@ import java.util.Map.Entry;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AnnoSubPluginManager.
  */

@@ -37,6 +37,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AdminWand.
  */

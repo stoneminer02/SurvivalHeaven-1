@@ -34,6 +34,7 @@ import java.util.zip.ZipOutputStream;
 import info.nordbyen.Ziputils.ByteSource;
 import info.nordbyen.Ziputils.commons.IOUtils;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class StringZipEntryTransformer.
  */

@@ -44,6 +44,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class WarningManager.
  */

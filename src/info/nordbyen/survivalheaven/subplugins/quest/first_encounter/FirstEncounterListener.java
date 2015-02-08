@@ -34,6 +34,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
+// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving firstEncounter events. The class that is
  * interested in processing a firstEncounter event implements this interface,

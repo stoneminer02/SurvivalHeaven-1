@@ -28,6 +28,7 @@ package info.nordbyen.survivalheaven.api.rankmanager;
 
 import org.bukkit.ChatColor;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Enum BadgeType.
  */

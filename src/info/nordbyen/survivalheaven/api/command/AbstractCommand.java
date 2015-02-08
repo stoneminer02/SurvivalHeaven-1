@@ -26,6 +26,8 @@
 
 package info.nordbyen.survivalheaven.api.command;
 
+import info.nordbyen.survivalheaven.SH;
+
 import java.lang.reflect.Field;
 import java.util.List;
 
@@ -37,6 +39,7 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AbstractCommand.
  */
@@ -283,6 +286,7 @@ public abstract class AbstractCommand implements TabExecutor {
      * Register.
      */
     public void register() {
+        ((SH) SH.getManager()).commands.put(command, this);
         final ReflectCommand cmd = new ReflectCommand(this.command);
         if (this.alias != null) {
             cmd.setAliases(this.alias);

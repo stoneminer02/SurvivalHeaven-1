@@ -35,6 +35,7 @@ import net.minecraft.server.v1_8_R1.PacketPlayOutChat;
 import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class FancyMessages.
  */

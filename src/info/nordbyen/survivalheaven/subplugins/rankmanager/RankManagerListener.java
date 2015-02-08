@@ -37,6 +37,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving rankManager events. The class that is
  * interested in processing a rankManager event implements this interface, and

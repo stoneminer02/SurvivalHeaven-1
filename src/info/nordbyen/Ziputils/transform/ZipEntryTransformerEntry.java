@@ -25,6 +25,7 @@
  */
 
 package info.nordbyen.Ziputils.transform;
+// TODO: Auto-generated Javadoc
 /**
  * The Class ZipEntryTransformerEntry.
  */

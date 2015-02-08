@@ -33,6 +33,7 @@ import java.util.Date;
 
 import org.bukkit.Location;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Interface IMysqlManager.
  */

@@ -5,3 +5,27 @@ depend: [ WorldEdit, BlocksHub ]
 commands:
   infdisp: 
     description: "Lager en uendelig dispenser"
+  jobb:
+  fix:
+  wb:
+  blokker:
+  inv:
+  kick:
+  afk:
+  ss:
+  sh:
+  tp:
+  tph:
+  k:
+  h:
+  s:
+  smelt:
+  hatt:
+  ec:
+  who:
+  fspeed:
+  killall:
+  bug:
+  fly:
+  sitt:
+  sudo:

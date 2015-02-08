@@ -25,6 +25,7 @@
  */
 
 package info.nordbyen.survivalheaven.api.rankmanager;
+// TODO: Auto-generated Javadoc
 /**
  * The Interface IRankManager.
  */

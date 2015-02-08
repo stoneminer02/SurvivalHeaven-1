@@ -25,6 +25,7 @@
  */
 
 package info.nordbyen.survivalheaven.api.playerrelation;
+// TODO: Auto-generated Javadoc
 /**
  * The Enum FriendRelation.
  */

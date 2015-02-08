@@ -40,6 +40,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 
+// TODO: Auto-generated Javadoc
 /**
  * The listener to the LoginMessage plugin
  * 

@@ -42,6 +42,7 @@ import java.util.Date;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class MysqlManager.
  */

@@ -40,6 +40,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class CustomShapelessRecipe.
  */

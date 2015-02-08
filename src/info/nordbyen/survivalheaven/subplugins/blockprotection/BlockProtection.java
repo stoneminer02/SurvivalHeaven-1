@@ -44,6 +44,7 @@ import org.bukkit.block.Block;
 
 import com.sk89q.worldedit.WorldEdit;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class BlockProtection.
  */

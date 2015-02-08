@@ -35,6 +35,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Enum Translator.
  */

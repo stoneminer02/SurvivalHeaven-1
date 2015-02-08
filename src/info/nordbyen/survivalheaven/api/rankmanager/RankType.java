@@ -30,6 +30,7 @@ import info.nordbyen.survivalheaven.SH;
 
 import org.bukkit.ChatColor;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Enum RankType.
  */

@@ -32,6 +32,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class LiggCommand.
  */

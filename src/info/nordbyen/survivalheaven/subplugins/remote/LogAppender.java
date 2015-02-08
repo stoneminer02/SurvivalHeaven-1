@@ -32,6 +32,7 @@ import java.util.Date;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.appender.AbstractAppender;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class LogAppender.
  */

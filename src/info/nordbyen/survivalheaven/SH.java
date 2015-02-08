@@ -26,6 +26,7 @@
 
 package info.nordbyen.survivalheaven;
 
+import info.nordbyen.survivalheaven.api.command.AbstractCommand;
 import info.nordbyen.survivalheaven.api.mysql.IMysqlManager;
 import info.nordbyen.survivalheaven.api.playerdata.IPlayerDataManager;
 import info.nordbyen.survivalheaven.api.playerdata.note.INoteManager;
@@ -36,7 +37,6 @@ import info.nordbyen.survivalheaven.api.subplugin.IAnnoSubPluginManager;
 import info.nordbyen.survivalheaven.api.subplugin.ISubPluginManager;
 import info.nordbyen.survivalheaven.api.util.Translator;
 import info.nordbyen.survivalheaven.api.wand.IWandManager;
-import info.nordbyen.survivalheaven.gui.GUISubPlugin;
 import info.nordbyen.survivalheaven.subplugins.DenyPlayerMode.DenyPlayerMode;
 import info.nordbyen.survivalheaven.subplugins.bitly.plugin.ShortLink;
 import info.nordbyen.survivalheaven.subplugins.blockdata.IBlockManager;
@@ -46,6 +46,7 @@ import info.nordbyen.survivalheaven.subplugins.bossbar.BossbarAPI;
 import info.nordbyen.survivalheaven.subplugins.loginmanager.LoginMessage;
 import info.nordbyen.survivalheaven.subplugins.merchant.Merchant;
 import info.nordbyen.survivalheaven.subplugins.mysql.MysqlManager;
+import info.nordbyen.survivalheaven.subplugins.old_stuff.OldStuff;
 import info.nordbyen.survivalheaven.subplugins.playerdata.NoteManager;
 import info.nordbyen.survivalheaven.subplugins.playerdata.PlayerDataManager;
 import info.nordbyen.survivalheaven.subplugins.playerdata.PlayerDataManagerPlugin;
@@ -63,11 +64,14 @@ import info.nordbyen.survivalheaven.subplugins.title.TitleAPI;
 import info.nordbyen.survivalheaven.subplugins.uendeligdropper.InfinityDispenser;
 import info.nordbyen.survivalheaven.subplugins.wand.WandManager;
 
+import java.util.HashMap;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class SurvivalHeaven.
  * 
@@ -78,22 +82,20 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class SH extends JavaPlugin implements ISH {
 
-    static ISH iSurvivalHeaven;
-    static JavaPlugin plugin;
-
-    public static ISH getManager() {
-        return iSurvivalHeaven;
-    }
-
-    /**
-     * Gets the plugin.
-     * 
-     * @return the plugin
-     */
-    public static JavaPlugin getPlugin() {
-        return plugin;
-    }
-
+    /** The commands. */
+    public HashMap<String, AbstractCommand> commands = new HashMap<String, AbstractCommand>();
+    /** The Constant MOTTO. */
+    public static final String MOTTO = ChatColor.LIGHT_PURPLE + "Skapt for spillerne";
+    /** The Constant PREFIX. */
+    public static final String PREFIX = ChatColor.RED + "S" + ChatColor.GRAY + "H ";
+    /** The Constant PATH_TO_CONFIG_FOLDER. */
+    public static final String PATH_TO_CONFIG_FOLDER = "./plugins/SurvivalHeaven/";
+    /** The Constant NAME. */
+    public static final String NAME = ChatColor.RED + "Survival" + ChatColor.GRAY + "Heaven" + ChatColor.RESET;
+    /** The i survival heaven. */
+    private static ISH iSurvivalHeaven;
+    /** The plugin. */
+    private static JavaPlugin plugin;
     /** The senter. */
     private Location senter = null;
     /** The Constant debug. */
@@ -104,14 +106,6 @@ public class SH extends JavaPlugin implements ISH {
     private String version = null;
     /** The name. */
     private String name = null;
-    /** The Constant MOTTO. */
-    public static final String MOTTO = ChatColor.LIGHT_PURPLE + "Skapt for spillerne";
-    /** The Constant PREFIX. */
-    public static final String PREFIX = ChatColor.RED + "S" + ChatColor.GRAY + "H ";
-    /** The Constant PATH_TO_CONFIG_FOLDER. */
-    public static final String PATH_TO_CONFIG_FOLDER = "./plugins/SurvivalHeaven/";
-    /** The Constant NAME. */
-    public static final String NAME = ChatColor.RED + "Survival" + ChatColor.GRAY + "Heaven" + ChatColor.RESET;
     /** The note manager. */
     private INoteManager noteManager;
     /** The warning manager. */
@@ -132,6 +126,24 @@ public class SH extends JavaPlugin implements ISH {
     private IAnnoSubPluginManager annoSubPluginManager;
     /** The region manager. */
     private IRegionManager regionManager;
+
+    /**
+     * Gets the manager.
+     * 
+     * @return the manager
+     */
+    public static ISH getManager() {
+        return iSurvivalHeaven;
+    }
+
+    /**
+     * Gets the plugin.
+     * 
+     * @return the plugin
+     */
+    public static JavaPlugin getPlugin() {
+        return plugin;
+    }
 
     /**
      * Debug.
@@ -410,7 +422,7 @@ public class SH extends JavaPlugin implements ISH {
         getSubPluginManager().addSubPlugin(new ShortLink("BitLy_UrlShortener"));
         getSubPluginManager().addSubPlugin(new BlockProtection("BlockProtection"));
         getSubPluginManager().addSubPlugin(new PlayerDataManagerPlugin("PlayerDataManager"));
-        getSubPluginManager().addSubPlugin(new GUISubPlugin("Graphical-User-Interface"));
+        getSubPluginManager().addSubPlugin(new OldStuff("Gamle-Kommandoer"));
         // spm.addSubPlugin(new RemoteBukkitPlugin("RemoteConsole"));
         // spm.addSubPlugin( new Ligg( "LiggTester" ) );
         getAnnoSubPluginManager().addClass(InfinityDispenser.class);

@@ -35,6 +35,7 @@ import info.nordbyen.survivalheaven.api.rankmanager.RankType;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class RankManager.
  */

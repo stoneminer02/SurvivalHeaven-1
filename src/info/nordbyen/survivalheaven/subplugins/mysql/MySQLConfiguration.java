@@ -30,6 +30,7 @@ import info.nordbyen.survivalheaven.api.config.CustomConfiguration;
 
 import java.io.File;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class MySQLConfiguration.
  */

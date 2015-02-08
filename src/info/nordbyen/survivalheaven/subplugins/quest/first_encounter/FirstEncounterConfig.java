@@ -33,6 +33,7 @@ import java.io.File;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class FirstEncounterConfig.
  */

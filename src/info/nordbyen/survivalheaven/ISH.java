@@ -1,9 +1,10 @@
 /**
- * This file is part of SurvivalHeaven, licensed under the MIT License (MIT).
+ * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
  *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org.org>
- * Copyright (c) nordbyen.info
- *
+ * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
+ * Copyright (c) NordByen.info <http://www.nordbyen.info>
+ * Copyright (c) l0lkj.info <http://www.l0lkj.info>
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -38,9 +39,11 @@ import info.nordbyen.survivalheaven.subplugins.blockdata.IBlockManager;
 
 import org.bukkit.Location;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author l0lkj
+ * The Interface ISH.
  * 
+ * @author l0lkj
  */
 public interface ISH {
 

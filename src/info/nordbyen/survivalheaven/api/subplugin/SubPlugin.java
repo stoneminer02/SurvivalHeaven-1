@@ -26,12 +26,14 @@
 
 package info.nordbyen.survivalheaven.api.subplugin;
 
+import info.nordbyen.survivalheaven.ISH;
 import info.nordbyen.survivalheaven.SH;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class SubPlugin.
  */
@@ -41,6 +43,8 @@ public abstract class SubPlugin {
     private final String name;
     /** The plugin. */
     private final JavaPlugin plugin;
+    /** The manager. */
+    private final ISH manager;
     /** The enabled. */
     private boolean enabled;
 
@@ -52,6 +56,7 @@ public abstract class SubPlugin {
     public SubPlugin(final String name) {
         this.name = name;
         this.plugin = SH.getPlugin();
+        this.manager = SH.getManager();
         Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "Enabling subplugin: " + ChatColor.YELLOW + name);
     }
 

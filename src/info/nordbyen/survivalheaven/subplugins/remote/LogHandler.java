@@ -31,6 +31,7 @@ import java.util.Date;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class LogHandler.
  */

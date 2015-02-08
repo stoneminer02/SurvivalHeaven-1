@@ -34,6 +34,7 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AcceptHandler.
  */

@@ -38,6 +38,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class CustomConfiguration.
  */

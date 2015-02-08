@@ -30,6 +30,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class RankManagerCommand.
  */

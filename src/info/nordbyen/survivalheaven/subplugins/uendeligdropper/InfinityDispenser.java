@@ -38,6 +38,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class InfinityDispenser.
  */

@@ -32,6 +32,7 @@ import java.util.ArrayList;
 
 import org.bukkit.Material;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class ShopHandler.
  */

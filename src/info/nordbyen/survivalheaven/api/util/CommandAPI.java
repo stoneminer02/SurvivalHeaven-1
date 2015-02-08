@@ -31,6 +31,7 @@ import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class CommandAPI.
  */

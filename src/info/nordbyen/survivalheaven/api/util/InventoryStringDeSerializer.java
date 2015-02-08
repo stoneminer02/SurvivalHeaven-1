@@ -35,6 +35,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class InventoryStringDeSerializer.
  */

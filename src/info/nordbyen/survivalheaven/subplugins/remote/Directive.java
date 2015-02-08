@@ -25,6 +25,7 @@
  */
 
 package info.nordbyen.survivalheaven.subplugins.remote;
+// TODO: Auto-generated Javadoc
 /**
  * The Enum Directive.
  */

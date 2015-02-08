@@ -29,6 +29,7 @@ package info.nordbyen.survivalheaven.api.wand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Interface IWandManager.
  */

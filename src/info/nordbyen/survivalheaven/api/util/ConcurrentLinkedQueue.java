@@ -35,6 +35,7 @@ import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 
+// TODO: Auto-generated Javadoc
 /**
  * An unbounded thread-safe {@linkplain Queue queue} based on linked nodes. This
  * queue orders elements FIFO (first-in-first-out). The <em>head</em> of the
@@ -78,6 +79,7 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
  */
 public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<E>, java.io.Serializable {
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 196745693267521676L;
 
     /*
@@ -94,60 +96,130 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
      * is no need to use "counted pointers" or related techniques seen in
      * versions used in non-GC'ed settings.
      */
+    /**
+     * The Class Node.
+     * 
+     * @param <E> the element type
+     */
     private static class Node<E> {
 
+        /** The item. */
         private volatile E item;
+        /** The next. */
         private volatile Node<E> next;
+        /** The Constant nextUpdater. */
         @SuppressWarnings("rawtypes")
         private static final AtomicReferenceFieldUpdater<Node, Node> nextUpdater = AtomicReferenceFieldUpdater.newUpdater(Node.class, Node.class, "next");
+        /** The Constant itemUpdater. */
         @SuppressWarnings("rawtypes")
         private static final AtomicReferenceFieldUpdater<Node, Object> itemUpdater = AtomicReferenceFieldUpdater.newUpdater(Node.class, Object.class, "item");
 
+        /**
+         * Instantiates a new node.
+         * 
+         * @param x the x
+         */
         @SuppressWarnings("unused")
         Node(final E x) {
             item = x;
         }
 
+        /**
+         * Instantiates a new node.
+         * 
+         * @param x the x
+         * @param n the n
+         */
         Node(final E x, final Node<E> n) {
             item = x;
             next = n;
         }
 
+        /**
+         * Gets the item.
+         * 
+         * @return the item
+         */
         E getItem() {
             return item;
         }
 
+        /**
+         * Cas item.
+         * 
+         * @param cmp the cmp
+         * @param val the val
+         * @return true, if successful
+         */
         boolean casItem(final E cmp, final E val) {
             return itemUpdater.compareAndSet(this, cmp, val);
         }
 
+        /**
+         * Sets the item.
+         * 
+         * @param val the new item
+         */
         void setItem(final E val) {
             itemUpdater.set(this, val);
         }
 
+        /**
+         * Gets the next.
+         * 
+         * @return the next
+         */
         Node<E> getNext() {
             return next;
         }
 
+        /**
+         * Cas next.
+         * 
+         * @param cmp the cmp
+         * @param val the val
+         * @return true, if successful
+         */
         boolean casNext(final Node<E> cmp, final Node<E> val) {
             return nextUpdater.compareAndSet(this, cmp, val);
         }
 
+        /**
+         * Sets the next.
+         * 
+         * @param val the new next
+         */
         @SuppressWarnings("unused")
         void setNext(final Node<E> val) {
             nextUpdater.set(this, val);
         }
     }
 
+    /** The Constant tailUpdater. */
     @SuppressWarnings("rawtypes")
     private static final AtomicReferenceFieldUpdater<ConcurrentLinkedQueue, Node> tailUpdater = AtomicReferenceFieldUpdater.newUpdater(ConcurrentLinkedQueue.class, Node.class, "tail");
+    /** The Constant headUpdater. */
     @SuppressWarnings("rawtypes")
     private static final AtomicReferenceFieldUpdater<ConcurrentLinkedQueue, Node> headUpdater = AtomicReferenceFieldUpdater.newUpdater(ConcurrentLinkedQueue.class, Node.class, "head");
 
+    /**
+     * Cas tail.
+     * 
+     * @param cmp the cmp
+     * @param val the val
+     * @return true, if successful
+     */
     private boolean casTail(final Node<E> cmp, final Node<E> val) {
         return tailUpdater.compareAndSet(this, cmp, val);
     }
 
+    /**
+     * Cas head.
+     * 
+     * @param cmp the cmp
+     * @param val the val
+     * @return true, if successful
+     */
     private boolean casHead(final Node<E> cmp, final Node<E> val) {
         return headUpdater.compareAndSet(this, cmp, val);
     }
@@ -157,7 +229,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
      * node is at head.getNext().
      */
     private transient volatile Node<E> head = new Node<E>(null, null);
-    /** Pointer to last node on list **/
+    /** Pointer to last node on list *. */
     private transient volatile Node<E> tail = head;
 
     /**
@@ -172,8 +244,6 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
      * collection's iterator.
      * 
      * @param c the collection of elements to initially contain
-     * @throws NullPointerException if the specified collection or any of its
-     *             elements are null
      */
     public ConcurrentLinkedQueue(final Collection<? extends E> c) {
         for (final Iterator<? extends E> it = c.iterator(); it.hasNext();) {
@@ -185,8 +255,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
     /**
      * Inserts the specified element at the tail of this queue.
      * 
+     * @param e the e
      * @return <tt>true</tt> (as specified by {@link Collection#add})
-     * @throws NullPointerException if the specified element is null
      */
     @Override
     public boolean add(final E e) {
@@ -196,8 +266,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
     /**
      * Inserts the specified element at the tail of this queue.
      * 
+     * @param e the e
      * @return <tt>true</tt> (as specified by {@link Queue#offer})
-     * @throws NullPointerException if the specified element is null
      */
     @Override
     public boolean offer(final E e) {
@@ -220,6 +290,11 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
         }
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.util.Queue#poll()
+     */
     @Override
     public E poll() {
         for (;;) {
@@ -245,6 +320,11 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
         }
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.util.Queue#peek()
+     */
     @Override
     public E peek() { // same as poll except don't remove item
         for (;;) {
@@ -274,6 +354,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
      * Returns the first actual (non-header) node on list. This is yet another
      * variant of poll/peek; here returning out the first node, not element (so
      * we cannot collapse with peek() without introducing race.)
+     * 
+     * @return the node
      */
     Node<E> first() {
         for (;;) {
@@ -437,20 +519,19 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
      * 
      * 
      * 
+     * 
+     * 
      * String[] y = x.toArray(new String[0]);
      * </pre>
      * 
      * Note that <tt>toArray(new Object[0])</tt> is identical in function to
      * <tt>toArray()</tt>.
      * 
+     * @param <T> the generic type
      * @param a the array into which the elements of the queue are to be stored,
      *            if it is big enough; otherwise, a new array of the same
      *            runtime type is allocated for this purpose
      * @return an array containing all of the elements in this queue
-     * @throws ArrayStoreException if the runtime type of the specified array is
-     *             not a supertype of the runtime type of every element in this
-     *             queue
-     * @throws NullPointerException if the specified array is null
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -496,6 +577,9 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
         return new Itr();
     }
 
+    /**
+     * The Class Itr.
+     */
     private class Itr implements Iterator<E> {
 
         /**
@@ -514,6 +598,9 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
          */
         private Node<E> lastRet;
 
+        /**
+         * Instantiates a new itr.
+         */
         Itr() {
             advance();
         }
@@ -521,6 +608,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
         /**
          * Moves to next valid node and returns item to return for next(), or
          * null if no such.
+         * 
+         * @return the e
          */
         private E advance() {
             lastRet = nextNode;
@@ -543,11 +632,21 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
             }
         }
 
+        /*
+         * (non-Javadoc)
+         * 
+         * @see java.util.Iterator#hasNext()
+         */
         @Override
         public boolean hasNext() {
             return nextNode != null;
         }
 
+        /*
+         * (non-Javadoc)
+         * 
+         * @see java.util.Iterator#next()
+         */
         @Override
         public E next() {
             if (nextNode == null)
@@ -555,6 +654,11 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
             return advance();
         }
 
+        /*
+         * (non-Javadoc)
+         * 
+         * @see java.util.Iterator#remove()
+         */
         @Override
         public void remove() {
             final Node<E> l = lastRet;
@@ -569,9 +673,10 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
     /**
      * Save the state to a stream (that is, serialize it).
      * 
+     * @param s the stream
+     * @throws IOException Signals that an I/O exception has occurred.
      * @serialData All of the elements (each an <tt>E</tt>) in the proper order,
      *             followed by a null
-     * @param s the stream
      */
     private void writeObject(final java.io.ObjectOutputStream s) throws java.io.IOException {
         // Write out any hidden stuff
@@ -591,6 +696,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<
      * Reconstitute the Queue instance from a stream (that is, deserialize it).
      * 
      * @param s the stream
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws ClassNotFoundException the class not found exception
      */
     private void readObject(final java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
         // Read in capacity, and any hidden stuff

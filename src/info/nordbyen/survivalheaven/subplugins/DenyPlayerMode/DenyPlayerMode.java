@@ -44,6 +44,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class DenyPlayerMode.
  */

@@ -33,6 +33,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving shop events. The class that is
  * interested in processing a shop event implements this interface, and the

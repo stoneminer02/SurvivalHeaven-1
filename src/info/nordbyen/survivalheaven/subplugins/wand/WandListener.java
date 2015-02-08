@@ -34,6 +34,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving wand events. The class that is
  * interested in processing a wand event implements this interface, and the

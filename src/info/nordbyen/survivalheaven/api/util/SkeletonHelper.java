@@ -39,6 +39,7 @@ import org.bukkit.craftbukkit.v1_8_R1.entity.CraftSkeleton;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Skeleton.SkeletonType;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class SkeletonHelper.
  */
