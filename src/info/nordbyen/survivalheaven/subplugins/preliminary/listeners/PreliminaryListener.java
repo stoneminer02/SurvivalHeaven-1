@@ -27,7 +27,6 @@
 package info.nordbyen.survivalheaven.subplugins.preliminary.listeners;
 
 import info.nordbyen.survivalheaven.SH;
-import info.nordbyen.survivalheaven.subplugins.preliminary.AdminWand;
 
 import java.util.Date;
 
@@ -170,8 +169,6 @@ public class PreliminaryListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onJoin(final PlayerJoinEvent e) throws Exception {
 		final ItemStack item = new ItemStack(Material.STICK);
-		SH.getManager().getWandManager()
-				.createWand(item, AdminWand.getInstance(), e.getPlayer());
 		e.getPlayer().getInventory().addItem(item);
 		e.getPlayer().sendMessage(ChatColor.BLUE + "Bli med på TeamSpeak!");
 		e.getPlayer().sendMessage(

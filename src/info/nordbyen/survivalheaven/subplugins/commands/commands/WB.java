@@ -24,65 +24,41 @@
  * THE SOFTWARE.
  */
 
-package info.nordbyen.survivalheaven.subplugins.preliminary;
+package info.nordbyen.survivalheaven.subplugins.commands.commands;
 
-import info.nordbyen.survivalheaven.api.subplugin.SubPlugin;
-import info.nordbyen.survivalheaven.api.util.BukkitHelperAPI;
-import info.nordbyen.survivalheaven.subplugins.preliminary.listeners.PreliminaryListener;
-
-import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitScheduler;
 
 /**
- * The Class Preliminary.
+ * The Class WB.
  */
-public class Preliminary extends SubPlugin {
-
-	/** The fire. */
-	public static boolean fire = false;
-
-	/**
-	 * Instantiates a new preliminary.
-	 * 
-	 * @param name
-	 *            the name
-	 */
-	public Preliminary(final String name) {
-		super(name);
-	}
+public class WB implements CommandExecutor {
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
 	 */
 	@Override
-	public void disable() {
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
-	 */
-	@Override
-	public void enable() {
-		Bukkit.getPluginManager().registerEvents(new PreliminaryListener(),
-				getPlugin());
-		final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-		scheduler.scheduleSyncRepeatingTask(getPlugin(), new Runnable() {
-
-			@Override
-			public void run() {
-				if (!Preliminary.fire)
-					return;
-				for (final Player o : Bukkit.getOnlinePlayers()) {
-					BukkitHelperAPI.shootArrow(
-							BukkitHelperAPI.getLocFromPlayer(o, 2), o
-									.getLocation().getDirection().multiply(3));
+	public boolean onCommand(final CommandSender Sender, final Command command,
+			final String CommandLabel, final String[] args) {
+		if (Sender instanceof Player) {
+			final Player p = (Player) Sender;
+			if (p.hasPermission("sh.wb")) {
+				if (command.getName().equalsIgnoreCase("wb")) {
+					if (args.length == 0) {
+						p.openWorkbench(p.getLocation(), true);
+					} else {
+						p.sendMessage(ChatColor.RED + "/wb");
+					}
 				}
 			}
-		}, 1L, 1L);
+		}
+		return true;
 	}
 }

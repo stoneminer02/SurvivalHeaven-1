@@ -29,7 +29,7 @@ package info.nordbyen.survivalheaven.subplugins.serverutil;
 import info.nordbyen.survivalheaven.api.subplugin.annotations.SurvivalHeavenDisable;
 import info.nordbyen.survivalheaven.api.subplugin.annotations.SurvivalHeavenEnable;
 import info.nordbyen.survivalheaven.api.subplugin.annotations.SurvivalHeavenSubPlugin;
-import info.nordbyen.survivalheaven.subplugins.serverutil.commands.ServerCommand;
+import info.nordbyen.survivalheaven.subplugins.commands.commands.ServerCommand;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

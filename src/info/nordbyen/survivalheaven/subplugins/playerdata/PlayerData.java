@@ -27,7 +27,6 @@
 package info.nordbyen.survivalheaven.subplugins.playerdata;
 
 import info.nordbyen.survivalheaven.api.playerdata.IPlayerData;
-import info.nordbyen.survivalheaven.api.util.Translator;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -61,8 +60,6 @@ public class PlayerData implements IPlayerData {
 	private int gamemode;
 	/** The lastlocation. */
 	private Location lastlocation;
-	/** The language. */
-	private Translator language;
 	/** The level. */
 	private int level;
 	/** The money. */
@@ -104,7 +101,7 @@ public class PlayerData implements IPlayerData {
 			final ArrayList<String> ips, final String uuid,
 			final Date firstlogin, final Date lastlogin, final long timeplayed,
 			final int rank, final ArrayList<Integer> badges,
-			final Location lastlocation, final Translator language,
+			final Location lastlocation, 
 			final int level, final long money, final int gamemode) {
 		this.setGamemode(gamemode);
 		this.id = id;
@@ -115,7 +112,6 @@ public class PlayerData implements IPlayerData {
 		this.setTimeplayed(timeplayed);
 		this.setRank(rank);
 		this.setLastlocation(lastlocation);
-		this.setLanguage(language);
 		this.setLevel(level);
 		this.setMoney(money);
 		this.ips = ips;
@@ -238,17 +234,6 @@ public class PlayerData implements IPlayerData {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * info.nordbyen.survivalheaven.api.playerdata.IPlayerData#getLanguage()
-	 */
-	@Override
-	public Translator getLanguage() {
-		return language;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
 	 * info.nordbyen.survivalheaven.api.playerdata.IPlayerData#getLastlocation()
 	 */
 	@Override
@@ -362,18 +347,6 @@ public class PlayerData implements IPlayerData {
 	@Override
 	public void setGamemode(final int gamemode) {
 		this.gamemode = gamemode;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * info.nordbyen.survivalheaven.api.playerdata.IPlayerData#setLanguage(info
-	 * .nordbyen.survivalheaven.api .util.Translator)
-	 */
-	@Override
-	public void setLanguage(final Translator language) {
-		this.language = language;
 	}
 
 	/*

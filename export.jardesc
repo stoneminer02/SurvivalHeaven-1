@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
 <jardesc>
-    <jar path="C:/Users/l0lkj/Desktop/SH_1_8_v2/plugins/SurvivalHeaven1_8.jar"/>
-    <options buildIfNeeded="true" compress="true" descriptionLocation="/SurvivalHeaven-CORE_git/export.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="true" overwrite="false" saveDescription="true" storeRefactorings="true" useSourceFolders="false"/>
+    <jar path="C:/Users/l0lkj/Desktop/SurvivalHeaven1_8.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/SurvivalHeaven-CORE_git/export.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="true" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
     <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
     <selectedProjects/>
     <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
@@ -10,7 +10,15 @@
             <packagesToUnSeal/>
         </sealing>
     </manifest>
-    <selectedElements exportClassFiles="false" exportJavaFiles="true" exportOutputFolder="true">
-        <javaElement handleIdentifier="=SurvivalHeaven-CORE_git"/>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/SurvivalHeaven-CORE_git/export.jardesc"/>
+        <file path="/SurvivalHeaven-CORE_git/.classpath"/>
+        <file path="/SurvivalHeaven-CORE_git/config.yml"/>
+        <file path="/SurvivalHeaven-CORE_git/README.md"/>
+        <file path="/SurvivalHeaven-CORE_git/plugin.yml"/>
+        <file path="/SurvivalHeaven-CORE_git/icon.png"/>
+        <file path="/SurvivalHeaven-CORE_git/HEADER"/>
+        <javaElement handleIdentifier="=SurvivalHeaven-CORE_git/src"/>
+        <file path="/SurvivalHeaven-CORE_git/.project"/>
     </selectedElements>
 </jardesc>

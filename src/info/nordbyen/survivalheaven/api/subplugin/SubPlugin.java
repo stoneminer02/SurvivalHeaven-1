@@ -43,6 +43,7 @@ public abstract class SubPlugin {
 	/** The plugin. */
 	private final JavaPlugin plugin;
 	/** The manager. */
+	@SuppressWarnings("unused")
 	private final ISH manager;
 	/** The enabled. */
 	private boolean enabled;

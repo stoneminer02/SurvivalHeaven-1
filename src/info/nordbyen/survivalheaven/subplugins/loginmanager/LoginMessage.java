@@ -28,9 +28,7 @@ package info.nordbyen.survivalheaven.subplugins.loginmanager;
 
 import info.nordbyen.survivalheaven.SH;
 import info.nordbyen.survivalheaven.api.subplugin.SubPlugin;
-import info.nordbyen.survivalheaven.api.util.BukkitHelperAPI;
 import info.nordbyen.survivalheaven.api.util.FancyMessages;
-import info.nordbyen.survivalheaven.api.util.Translator;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -50,8 +48,7 @@ class LoginListener implements Listener {
 	@EventHandler
 	public void onJoin(final PlayerJoinEvent e) {
 		e.setJoinMessage(null);
-		BukkitHelperAPI.sendMessageToAll("login", false, e.getPlayer()
-				.getName());
+		Bukkit.broadcastMessage( ChatColor.GREEN + e.getPlayer().getName() + " logget inn" );
 		FancyMessages.sendActionBar(e.getPlayer(), ChatColor.GREEN + ""
 				+ ChatColor.BOLD + "VELKOMMEN TIL " + SH.NAME);
 		FancyMessages.sendTitle(e.getPlayer(), 10, 70, 40, ChatColor.GREEN
@@ -68,8 +65,7 @@ class LoginListener implements Listener {
 	@EventHandler
 	public void onQuit(final PlayerQuitEvent e) {
 		e.setQuitMessage(null);
-		BukkitHelperAPI.sendMessageToAll("logout", false, e.getPlayer()
-				.getName());
+		Bukkit.broadcastMessage(ChatColor.RED + e.getPlayer().getName() + " logget av");
 	}
 }
 
@@ -106,8 +102,5 @@ public class LoginMessage extends SubPlugin {
 	public void enable() {
 		Bukkit.getPluginManager().registerEvents(new LoginListener(),
 				getPlugin());
-		Translator
-				.addText("login", "&a{0} logget inn", "&a{0} joined the game");
-		Translator.addText("logout", "&c{0} logget ut", "&c{0} left the game");
 	}
 }

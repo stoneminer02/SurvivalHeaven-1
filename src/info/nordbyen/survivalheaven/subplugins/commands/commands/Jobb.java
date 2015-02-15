@@ -24,65 +24,48 @@
  * THE SOFTWARE.
  */
 
-package info.nordbyen.survivalheaven.subplugins.preliminary;
-
-import info.nordbyen.survivalheaven.api.subplugin.SubPlugin;
-import info.nordbyen.survivalheaven.api.util.BukkitHelperAPI;
-import info.nordbyen.survivalheaven.subplugins.preliminary.listeners.PreliminaryListener;
+package info.nordbyen.survivalheaven.subplugins.commands.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 /**
- * The Class Preliminary.
+ * The Class Jobb.
  */
-public class Preliminary extends SubPlugin {
-
-	/** The fire. */
-	public static boolean fire = false;
-
-	/**
-	 * Instantiates a new preliminary.
-	 * 
-	 * @param name
-	 *            the name
-	 */
-	public Preliminary(final String name) {
-		super(name);
-	}
+public class Jobb implements CommandExecutor {
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
 	 */
 	@Override
-	public void disable() {
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
-	 */
-	@Override
-	public void enable() {
-		Bukkit.getPluginManager().registerEvents(new PreliminaryListener(),
-				getPlugin());
-		final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-		scheduler.scheduleSyncRepeatingTask(getPlugin(), new Runnable() {
-
-			@Override
-			public void run() {
-				if (!Preliminary.fire)
-					return;
-				for (final Player o : Bukkit.getOnlinePlayers()) {
-					BukkitHelperAPI.shootArrow(
-							BukkitHelperAPI.getLocFromPlayer(o, 2), o
-									.getLocation().getDirection().multiply(3));
+	public boolean onCommand(final CommandSender Sender, final Command command,
+			final String commandLabel, final String args[]) {
+		if (Sender instanceof Player) {
+			if (command.getName().equalsIgnoreCase("jobb")) {
+				if (Sender.hasPermission("sh.kick")) {
+					final Player p = (Player) Sender;
+					final Inventory i = Bukkit.createInventory(p, 9);
+					i.setItem(0, new ItemStack(Material.STICK));
+					i.setItem(1, new ItemStack(Material.COMPASS));
+					i.setItem(2, new ItemStack(Material.WOOD_AXE));
+					i.setItem(4, new ItemStack(Material.WATER));
+					i.setItem(6, new ItemStack(Material.LAVA));
+					i.setItem(7, new ItemStack(Material.FIRE));
+					i.setItem(8, new ItemStack(Material.BEDROCK));
+					p.openInventory(i);
 				}
 			}
-		}, 1L, 1L);
+		}
+		return false;
 	}
 }

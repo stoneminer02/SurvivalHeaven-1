@@ -13,7 +13,6 @@ commands:
   kick:
   afk:
   ss:
-  sh:
   tp:
   tph:
   k:
@@ -29,3 +28,4 @@ commands:
   fly:
   sitt:
   sudo:
+  adminstick:

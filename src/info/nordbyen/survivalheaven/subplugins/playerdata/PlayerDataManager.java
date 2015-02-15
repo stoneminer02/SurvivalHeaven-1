@@ -29,7 +29,6 @@ package info.nordbyen.survivalheaven.subplugins.playerdata;
 import info.nordbyen.survivalheaven.SH;
 import info.nordbyen.survivalheaven.api.playerdata.IPlayerData;
 import info.nordbyen.survivalheaven.api.playerdata.IPlayerDataManager;
-import info.nordbyen.survivalheaven.api.util.Translator;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -106,21 +105,12 @@ public final class PlayerDataManager implements IPlayerDataManager {
 				}
 				final Location lastlocation = SH.getManager().getMysqlManager()
 						.getLocation(rs.getString("lastlocation"));
-				Translator language;
-				final String ling = rs.getString("language");
-				if (ling.equalsIgnoreCase("norsk")) {
-					language = Translator.NORSK;
-				} else if (ling.equalsIgnoreCase("engelsk")) {
-					language = Translator.ENGELSK;
-				} else {
-					language = Translator.NORSK;
-				}
 				final int level = rs.getInt("level");
 				final long money = rs.getInt("bank");
 				final int gamemode = rs.getInt("gamemode");
 				final PlayerData data = new PlayerData(id, name, ips, uuid,
 						firstlogin, lastlogin, timeplayed, rank, badges,
-						lastlocation, language, level, money, gamemode);
+						lastlocation, level, money, gamemode);
 				playerdatalist.put(data.getUUID(), data);
 			}
 		} catch (final SQLException e) {
@@ -187,21 +177,12 @@ public final class PlayerDataManager implements IPlayerDataManager {
 				}
 				final Location lastlocation = SH.getManager().getMysqlManager()
 						.getLocation(rs.getString("lastlocation"));
-				Translator language;
-				final String ling = rs.getString("language");
-				if (ling.equalsIgnoreCase("norsk")) {
-					language = Translator.NORSK;
-				} else if (ling.equalsIgnoreCase("engelsk")) {
-					language = Translator.ENGELSK;
-				} else {
-					language = Translator.NORSK;
-				}
 				final int level = rs.getInt("level");
 				final long money = rs.getInt("bank");
 				final int gamemode = rs.getInt("gamemode");
 				final PlayerData data = new PlayerData(id, name, ips, uuid,
 						firstlogin, lastlogin, timeplayed, rank, badges,
-						lastlocation, language, level, money, gamemode);
+						lastlocation, level, money, gamemode);
 				playerdatalist.put(data.getUUID(), data);
 			}
 		} catch (final SQLException e) {
@@ -268,9 +249,8 @@ public final class PlayerDataManager implements IPlayerDataManager {
 								+ "`bank` = " + pd.getMoney() + ", "
 								+ "`rank` = " + pd.getRank() + ", "
 								+ "`badges` = \"" + pd.getBadgesAsString()
-								+ "\", " + "`level` = " + pd.getLevel() + ", "
-								+ "`language` = \"" + pd.getLanguage()
-								+ "\" WHERE `uuid` = \"" + pd.getUUID() + "\";");
+								+ "\", " + "`level` = " + pd.getLevel()
+								+ " WHERE `uuid` = \"" + pd.getUUID() + "\";");
 			} catch (final SQLException e) {
 				e.printStackTrace();
 			}

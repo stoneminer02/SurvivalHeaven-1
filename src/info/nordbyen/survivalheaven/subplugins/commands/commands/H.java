@@ -24,65 +24,56 @@
  * THE SOFTWARE.
  */
 
-package info.nordbyen.survivalheaven.subplugins.preliminary;
-
-import info.nordbyen.survivalheaven.api.subplugin.SubPlugin;
-import info.nordbyen.survivalheaven.api.util.BukkitHelperAPI;
-import info.nordbyen.survivalheaven.subplugins.preliminary.listeners.PreliminaryListener;
+package info.nordbyen.survivalheaven.subplugins.commands.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitScheduler;
 
 /**
- * The Class Preliminary.
+ * The Class H.
  */
-public class Preliminary extends SubPlugin {
-
-	/** The fire. */
-	public static boolean fire = false;
-
-	/**
-	 * Instantiates a new preliminary.
-	 * 
-	 * @param name
-	 *            the name
-	 */
-	public Preliminary(final String name) {
-		super(name);
-	}
+public class H implements CommandExecutor {
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
 	 */
 	@Override
-	public void disable() {
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
-	 */
-	@Override
-	public void enable() {
-		Bukkit.getPluginManager().registerEvents(new PreliminaryListener(),
-				getPlugin());
-		final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-		scheduler.scheduleSyncRepeatingTask(getPlugin(), new Runnable() {
-
-			@Override
-			public void run() {
-				if (!Preliminary.fire)
-					return;
-				for (final Player o : Bukkit.getOnlinePlayers()) {
-					BukkitHelperAPI.shootArrow(
-							BukkitHelperAPI.getLocFromPlayer(o, 2), o
-									.getLocation().getDirection().multiply(3));
+	public boolean onCommand(final CommandSender sender, final Command command,
+			final String commandLabel, final String[] args) {
+		final StringBuffer me = new StringBuffer();
+		for (final String arg : args) {
+			me.append(arg + " ");
+		}
+		if (sender.hasPermission("sh.h")) {
+			if (command.getName().equalsIgnoreCase("h")) {
+				if (args.length == 0) {
+					sender.sendMessage(ChatColor.RED + "/h <tekst>");
+				} else if (args.length >= 1) {
+					final Player p = (Player) sender;
+					Bukkit.broadcastMessage(ChatColor.DARK_GREEN
+							+ "["
+							+ ChatColor.GREEN
+							+ "Kjøp/Salg"
+							+ ChatColor.DARK_GREEN
+							+ "] "
+							+ ChatColor.DARK_GRAY
+							+ "("
+							+ ChatColor.GRAY
+							+ p.getWorld().getName()
+									.replaceAll("world", "Normal")
+							+ ChatColor.DARK_GRAY + ") " + ChatColor.YELLOW
+							+ sender.getName() + ChatColor.WHITE + ": " + me);
 				}
 			}
-		}, 1L, 1L);
+		}
+		return true;
 	}
 }

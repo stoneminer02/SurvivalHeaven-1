@@ -35,7 +35,6 @@ import info.nordbyen.survivalheaven.api.rankmanager.IRankManager;
 import info.nordbyen.survivalheaven.api.regions.IRegionManager;
 import info.nordbyen.survivalheaven.api.subplugin.IAnnoSubPluginManager;
 import info.nordbyen.survivalheaven.api.subplugin.ISubPluginManager;
-import info.nordbyen.survivalheaven.api.util.Translator;
 import info.nordbyen.survivalheaven.api.wand.IWandManager;
 import info.nordbyen.survivalheaven.subplugins.DenyPlayerMode.DenyPlayerMode;
 import info.nordbyen.survivalheaven.subplugins.bitly.plugin.ShortLink;
@@ -43,10 +42,10 @@ import info.nordbyen.survivalheaven.subplugins.blockdata.IBlockManager;
 import info.nordbyen.survivalheaven.subplugins.blockprotection.BlockManager;
 import info.nordbyen.survivalheaven.subplugins.blockprotection.BlockProtection;
 import info.nordbyen.survivalheaven.subplugins.bossbar.BossbarAPI;
+import info.nordbyen.survivalheaven.subplugins.commands.Commands;
 import info.nordbyen.survivalheaven.subplugins.loginmanager.LoginMessage;
 import info.nordbyen.survivalheaven.subplugins.merchant.Merchant;
 import info.nordbyen.survivalheaven.subplugins.mysql.MysqlManager;
-import info.nordbyen.survivalheaven.subplugins.old_stuff.OldStuff;
 import info.nordbyen.survivalheaven.subplugins.playerdata.NoteManager;
 import info.nordbyen.survivalheaven.subplugins.playerdata.PlayerDataManager;
 import info.nordbyen.survivalheaven.subplugins.playerdata.PlayerDataManagerPlugin;
@@ -101,7 +100,7 @@ public class SH extends JavaPlugin implements ISH {
 	/** The senter. */
 	private Location senter = null;
 	/** The Constant debug. */
-	private final boolean debug = false; // TODO
+	private final boolean debug = true; // TODO
 	/** The Constant spam. */
 	private final boolean spam = false; // TODO
 	/** The version. */
@@ -310,7 +309,7 @@ public class SH extends JavaPlugin implements ISH {
 	 * Spam.
 	 * 
 	 * @param strings
-	 *            the strings
+	 *            the stringse
 	 */
 	public void spam(final Object... strings) {
 		if (!spam)
@@ -368,13 +367,6 @@ public class SH extends JavaPlugin implements ISH {
 		AnnoSubPluginLoader.testLoadJars();
 	}
 
-	/**
-	 * Load translations.
-	 */
-	private void loadTranslations() {
-		Translator.loadTrans("translation");
-	}
-
 	/*
 	 * Functions for disabling the plugin
 	 */
@@ -389,7 +381,6 @@ public class SH extends JavaPlugin implements ISH {
 				ChatColor.YELLOW + "STOPPER PLUGIN " + this.toString());
 		disableSubPlugins();
 		unregisterSubPlugins();
-		saveTranslations();
 	}
 
 	/*
@@ -416,7 +407,13 @@ public class SH extends JavaPlugin implements ISH {
 				.sendMessage(
 						ChatColor.GREEN
 								+ "------------------------------------------------------------------");
-		loadTranslations();
+		getAnnoSubPluginManager();
+		getBlockManager();
+		getMysqlManager();
+		getNoteManager();
+		getPlayerDataManager();
+		getWandManager();
+		getWarningManager();
 		// loadJars(); TODO Fikse error her
 		registerSubPlugins();
 		enableSubPlugins();
@@ -444,7 +441,7 @@ public class SH extends JavaPlugin implements ISH {
 				new BlockProtection("BlockProtection"));
 		getSubPluginManager().addSubPlugin(
 				new PlayerDataManagerPlugin("PlayerDataManager"));
-		getSubPluginManager().addSubPlugin(new OldStuff("Gamle-Kommandoer"));
+		getSubPluginManager().addSubPlugin(new Commands("Kommandoer"));
 		// spm.addSubPlugin(new RemoteBukkitPlugin("RemoteConsole"));
 		// spm.addSubPlugin( new Ligg( "LiggTester" ) );
 		getAnnoSubPluginManager().addClass(InfinityDispenser.class);
@@ -453,13 +450,6 @@ public class SH extends JavaPlugin implements ISH {
 		getAnnoSubPluginManager().addClass(WarningManager.class);
 		// AnnoSubPluginManager.addClass(EmployeeTest.class);
 		// AnnoSubPluginManager.addClass( QuestHandler.class );
-	}
-
-	/**
-	 * Save translations.
-	 */
-	private void saveTranslations() {
-		Translator.saveTrans("translation");
 	}
 
 	/**

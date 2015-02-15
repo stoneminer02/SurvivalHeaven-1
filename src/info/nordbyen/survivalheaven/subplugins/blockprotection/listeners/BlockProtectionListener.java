@@ -66,26 +66,20 @@ public class BlockProtectionListener implements Listener {
 		final Block b = e.getBlock();
 		final Player p = e.getPlayer();
 		if ((b.getType() != Material.AIR) && (b.getType() != Material.WATER)
-				&& (b.getType() != Material.LAVA)) // En
-		// fast
-		// blokk
+				&& (b.getType() != Material.LAVA))
 		{
 			final IPlayerData pd = SH.getManager().getBlockManager()
 					.getOwner(b);
-			if (pd != null) // En eier
+			if (pd != null) // Har en eier
 			{
-				// TODO Blokken er eid av noen
 				final String uuid = pd.getUUID();
-				if (!uuid.equals(p.getUniqueId().toString())) // Ikke samme
-				// eier
+				if (!uuid.equals(p.getUniqueId().toString()))
 				{
-					final boolean canBreak = false; // TODO
-					if (!canBreak) // Ikke kan ødelegge
+					final boolean canBreak = false; // TODO: Kalkulere denne
+					if (!canBreak) // ikke ( venn eller workmode )
 					{
 						FancyMessages.sendActionBar(p, ChatColor.RED
-								+ "Denne blokken er eid av " + pd.getName());// TODO
-						// bruke
-						// Translator
+								+ "Denne blokken er eid av " + pd.getName());
 						e.setCancelled(true);
 					}
 				}

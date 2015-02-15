@@ -24,65 +24,47 @@
  * THE SOFTWARE.
  */
 
-package info.nordbyen.survivalheaven.subplugins.preliminary;
+package info.nordbyen.survivalheaven.subplugins.commands.commands;
 
-import info.nordbyen.survivalheaven.api.subplugin.SubPlugin;
-import info.nordbyen.survivalheaven.api.util.BukkitHelperAPI;
-import info.nordbyen.survivalheaven.subplugins.preliminary.listeners.PreliminaryListener;
-
-import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.inventory.ItemStack;
 
 /**
- * The Class Preliminary.
+ * The Class Hatt.
  */
-public class Preliminary extends SubPlugin {
-
-	/** The fire. */
-	public static boolean fire = false;
-
-	/**
-	 * Instantiates a new preliminary.
-	 * 
-	 * @param name
-	 *            the name
-	 */
-	public Preliminary(final String name) {
-		super(name);
-	}
+public class Hatt implements CommandExecutor {
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
 	 */
 	@Override
-	public void disable() {
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
-	 */
-	@Override
-	public void enable() {
-		Bukkit.getPluginManager().registerEvents(new PreliminaryListener(),
-				getPlugin());
-		final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-		scheduler.scheduleSyncRepeatingTask(getPlugin(), new Runnable() {
-
-			@Override
-			public void run() {
-				if (!Preliminary.fire)
-					return;
-				for (final Player o : Bukkit.getOnlinePlayers()) {
-					BukkitHelperAPI.shootArrow(
-							BukkitHelperAPI.getLocFromPlayer(o, 2), o
-									.getLocation().getDirection().multiply(3));
+	public boolean onCommand(final CommandSender sender, final Command command,
+			final String label, final String[] args) {
+		if (!(sender instanceof Player)) {
+			sender.sendMessage(ChatColor.RED
+					+ "Kan bare utf�res av In game spillere");
+			return true;
+		}
+		final Player p = (Player) sender;
+		final ItemStack helmet = p.getInventory().getItemInHand();
+		if (p.hasPermission("sh.hatt")) {
+			if (command.getName().equalsIgnoreCase("hatt")) {
+				if (args.length == 0) {
+					p.sendMessage(ChatColor.GREEN + "Hatt satt!");
+					p.getInventory()
+							.setItemInHand(p.getInventory().getHelmet());
+					p.getInventory().setHelmet(helmet);
 				}
 			}
-		}, 1L, 1L);
+		}
+		return true;
 	}
 }

@@ -35,7 +35,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -46,8 +45,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class WandManager implements IWandManager {
 
 	/** The Wands. */
-	@SuppressWarnings("rawtypes")
-	private static HashMap Wands = new HashMap();
+	private static HashMap<String, Wand> Wands = new HashMap<String, Wand>();
 
 	/**
 	 * Instantiates a new wand manager.
@@ -65,7 +63,6 @@ public class WandManager implements IWandManager {
 	 * SurvivalHeaven.api.wand.Wand)
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public void add(final Wand wand) {
 		Wands.put(wand.getName(), wand);
 	}
@@ -85,8 +82,7 @@ public class WandManager implements IWandManager {
 			return false;
 		if (wand.canCreate(target, player)) {
 			final ItemMeta meta = target.getItemMeta();
-			meta.setDisplayName(ChatColor.RESET.toString()
-					+ ChatColor.DARK_PURPLE.toString() + "Stav");
+			meta.setDisplayName(SH.NAME);
 			List<String> data = new ArrayList<String>();
 			if (meta.hasLore()) {
 				data = meta.getLore();
@@ -123,13 +119,12 @@ public class WandManager implements IWandManager {
 	 */
 	@Override
 	public boolean isWand(final ItemStack itemStack) {
-		for (final Object o : Wands.keySet()) {
-			final String s = o.toString();
+		for (final String o : Wands.keySet()) {
 			if (itemStack == null)
 				return false;
 			final ItemMeta meta = itemStack.getItemMeta();
 			if (meta.hasLore()) {
-				if (meta.getLore().contains(s))
+				if (meta.getLore().contains(o))
 					return true;
 			}
 		}

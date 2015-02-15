@@ -24,65 +24,43 @@
  * THE SOFTWARE.
  */
 
-package info.nordbyen.survivalheaven.subplugins.preliminary;
+package info.nordbyen.survivalheaven.subplugins.commands.commands;
 
-import info.nordbyen.survivalheaven.api.subplugin.SubPlugin;
-import info.nordbyen.survivalheaven.api.util.BukkitHelperAPI;
-import info.nordbyen.survivalheaven.subplugins.preliminary.listeners.PreliminaryListener;
-
-import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.inventory.ItemStack;
 
 /**
- * The Class Preliminary.
+ * The Class Fix.
  */
-public class Preliminary extends SubPlugin {
-
-	/** The fire. */
-	public static boolean fire = false;
-
-	/**
-	 * Instantiates a new preliminary.
-	 * 
-	 * @param name
-	 *            the name
-	 */
-	public Preliminary(final String name) {
-		super(name);
-	}
+public class Fix implements CommandExecutor {
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
 	 */
 	@Override
-	public void disable() {
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
-	 */
-	@Override
-	public void enable() {
-		Bukkit.getPluginManager().registerEvents(new PreliminaryListener(),
-				getPlugin());
-		final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-		scheduler.scheduleSyncRepeatingTask(getPlugin(), new Runnable() {
-
-			@Override
-			public void run() {
-				if (!Preliminary.fire)
-					return;
-				for (final Player o : Bukkit.getOnlinePlayers()) {
-					BukkitHelperAPI.shootArrow(
-							BukkitHelperAPI.getLocFromPlayer(o, 2), o
-									.getLocation().getDirection().multiply(3));
+	public boolean onCommand(final CommandSender Sender, final Command command,
+			final String commandLabel, final String args[]) {
+		if (Sender instanceof Player) {
+			if (Sender.hasPermission("sh.fix")) {
+				if (args.length == 0) {
+					((Player) Sender).getItemInHand().setDurability((short) 0);
+				} else if (args.length == 1) {
+					if (args[0].equalsIgnoreCase("alt")) {
+						for (final ItemStack i : ((Player) Sender)
+								.getInventory().getContents()) {
+							i.setDurability((short) 0);
+						}
+					}
 				}
 			}
-		}, 1L, 1L);
+		}
+		return false;
 	}
 }

@@ -24,65 +24,47 @@
  * THE SOFTWARE.
  */
 
-package info.nordbyen.survivalheaven.subplugins.preliminary;
+package info.nordbyen.survivalheaven.subplugins.commands.commands;
 
-import info.nordbyen.survivalheaven.api.subplugin.SubPlugin;
-import info.nordbyen.survivalheaven.api.util.BukkitHelperAPI;
-import info.nordbyen.survivalheaven.subplugins.preliminary.listeners.PreliminaryListener;
-
-import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitScheduler;
 
 /**
- * The Class Preliminary.
+ * The Class Inv.
  */
-public class Preliminary extends SubPlugin {
-
-	/** The fire. */
-	public static boolean fire = false;
+public class Inv implements CommandExecutor {
 
 	/**
-	 * Instantiates a new preliminary.
-	 * 
-	 * @param name
-	 *            the name
+	 * Instantiates a new inv.
 	 */
-	public Preliminary(final String name) {
-		super(name);
+	public Inv() {
+		// TODO Auto-generated constructor stub
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
 	 */
 	@Override
-	public void disable() {
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
-	 */
-	@Override
-	public void enable() {
-		Bukkit.getPluginManager().registerEvents(new PreliminaryListener(),
-				getPlugin());
-		final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-		scheduler.scheduleSyncRepeatingTask(getPlugin(), new Runnable() {
-
-			@Override
-			public void run() {
-				if (!Preliminary.fire)
-					return;
-				for (final Player o : Bukkit.getOnlinePlayers()) {
-					BukkitHelperAPI.shootArrow(
-							BukkitHelperAPI.getLocFromPlayer(o, 2), o
-									.getLocation().getDirection().multiply(3));
+	public boolean onCommand(final CommandSender Sender, final Command command,
+			final String commandLabel, final String[] args) {
+		final Player p = (Player) Sender;
+		final Player targetPlayer = p.getServer().getPlayer(args[0]);
+		if (p.hasPermission("cd.inv")) {
+			if (command.getName().equalsIgnoreCase("inv")) {
+				if (args.length == 0) {
+					p.sendMessage(ChatColor.RED + "/inv <spiller>");
+				} else if (args.length == 1) {
+					p.openInventory(targetPlayer.getInventory());
 				}
 			}
-		}, 1L, 1L);
+		}
+		return true;
 	}
 }

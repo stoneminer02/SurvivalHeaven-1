@@ -24,65 +24,54 @@
  * THE SOFTWARE.
  */
 
-package info.nordbyen.survivalheaven.subplugins.preliminary;
+package info.nordbyen.survivalheaven.subplugins.commands.commands;
 
-import info.nordbyen.survivalheaven.api.subplugin.SubPlugin;
-import info.nordbyen.survivalheaven.api.util.BukkitHelperAPI;
-import info.nordbyen.survivalheaven.subplugins.preliminary.listeners.PreliminaryListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitScheduler;
 
 /**
- * The Class Preliminary.
+ * The Class AFK.
  */
-public class Preliminary extends SubPlugin {
+public class AFK implements CommandExecutor {
 
-	/** The fire. */
-	public static boolean fire = false;
-
-	/**
-	 * Instantiates a new preliminary.
-	 * 
-	 * @param name
-	 *            the name
-	 */
-	public Preliminary(final String name) {
-		super(name);
-	}
+	/** The hashmap. */
+	public static List<String> hashmap = new ArrayList<String>();
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#disable()
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
 	 */
 	@Override
-	public void disable() {
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see info.nordbyen.survivalheaven.api.subplugin.SubPlugin#enable()
-	 */
-	@Override
-	public void enable() {
-		Bukkit.getPluginManager().registerEvents(new PreliminaryListener(),
-				getPlugin());
-		final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-		scheduler.scheduleSyncRepeatingTask(getPlugin(), new Runnable() {
-
-			@Override
-			public void run() {
-				if (!Preliminary.fire)
-					return;
-				for (final Player o : Bukkit.getOnlinePlayers()) {
-					BukkitHelperAPI.shootArrow(
-							BukkitHelperAPI.getLocFromPlayer(o, 2), o
-									.getLocation().getDirection().multiply(3));
-				}
+	public boolean onCommand(final CommandSender sender, final Command cmd,
+			final String label, final String[] args) {
+		if (!(sender instanceof Player)) {
+			sender.sendMessage(ChatColor.RED + "Du må være en spiller.");
+			return true;
+		}
+		if ((sender instanceof Player)) {
+			final String player = sender.getName();
+			if (!hashmap.contains(player)) {
+				hashmap.add(player);
+				Bukkit.broadcastMessage(ChatColor.DARK_RED + player
+						+ ChatColor.RED + " er nå AFK.");
+				return true;
+			} else {
+				hashmap.remove(player);
+				Bukkit.broadcastMessage(ChatColor.DARK_GREEN + player
+						+ ChatColor.GREEN + " er ikke lenger AFK.");
+				return true;
 			}
-		}, 1L, 1L);
+		}
+		return false;
 	}
 }

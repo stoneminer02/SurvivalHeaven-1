@@ -27,10 +27,8 @@
 package info.nordbyen.survivalheaven.api.util;
 
 import info.nordbyen.survivalheaven.SH;
-import info.nordbyen.survivalheaven.api.playerdata.IPlayerData;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -101,62 +99,6 @@ public class BukkitHelperAPI {
 		@SuppressWarnings("deprecation")
 		final Block b = p.getTargetBlock(null, 200);
 		return b;
-	}
-
-	/**
-	 * Send message.
-	 * 
-	 * @param p
-	 *            the p
-	 * @param key
-	 *            the key
-	 * @param prefixed
-	 *            the prefixed
-	 * @param replacements
-	 *            the replacements
-	 */
-	public static void sendMessage(final Player p, final String key,
-			final boolean prefixed, final String... replacements) {
-		final IPlayerData data = SH.getManager().getPlayerDataManager()
-				.getPlayerData(p.getUniqueId().toString());
-		String message = Translator.getText(key, data.getLanguage());
-		if (message == null)
-			return;
-		message = ChatColor.translateAlternateColorCodes('&', message);
-		int i = 0;
-		for (final String replace : replacements) {
-			message = message.replace("{" + i + "}", replace);
-			i++;
-		}
-		p.sendMessage((prefixed ? SH.PREFIX : "") + message);
-	}
-
-	/**
-	 * Send message to all.
-	 * 
-	 * @param key
-	 *            the key
-	 * @param prefixed
-	 *            the prefixed
-	 * @param replacements
-	 *            the replacements
-	 */
-	public static void sendMessageToAll(final String key,
-			final boolean prefixed, final String... replacements) {
-		String message = Translator.getText(key, Translator.NORSK);
-		if (message == null)
-			return;
-		message = ChatColor.translateAlternateColorCodes('&', message);
-		int i = 0;
-		for (final String replace : replacements) {
-			message = message.replace("{" + i + "}", replace);
-			i++;
-		}
-		for (final Player o : Bukkit.getOnlinePlayers()) {
-			o.sendMessage((prefixed ? SH.PREFIX : "") + message);
-		}
-		Bukkit.getConsoleSender().sendMessage(
-				(prefixed ? SH.PREFIX : "") + message);
 	}
 
 	/**

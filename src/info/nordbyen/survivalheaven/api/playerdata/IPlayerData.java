@@ -26,8 +26,6 @@
 
 package info.nordbyen.survivalheaven.api.playerdata;
 
-import info.nordbyen.survivalheaven.api.util.Translator;
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -102,13 +100,6 @@ public interface IPlayerData {
 	 * @return the ips as string
 	 */
 	public String getIpsAsString();
-
-	/**
-	 * Gets the language.
-	 * 
-	 * @return the language
-	 */
-	public Translator getLanguage();
 
 	/**
 	 * Gets the lastlocation.
@@ -189,14 +180,6 @@ public interface IPlayerData {
 	 *            the new gamemode
 	 */
 	public void setGamemode(int gamemode);
-
-	/**
-	 * Sets the language.
-	 * 
-	 * @param language
-	 *            the new language
-	 */
-	public void setLanguage(Translator language);
 
 	/**
 	 * Sets the lastlocation.
