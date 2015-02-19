@@ -30,7 +30,6 @@ import info.nordbyen.survivalheaven.SH;
 import info.nordbyen.survivalheaven.api.blockdata.BlockPlacedType;
 import info.nordbyen.survivalheaven.api.playerdata.IPlayerData;
 import info.nordbyen.survivalheaven.api.subplugin.SubPlugin;
-import info.nordbyen.survivalheaven.subplugins.blockprotection.listeners.BlockProtectionListener;
 import info.nordbyen.survivalheaven.subplugins.blockprotection.worldedit.MyEventHandler;
 import info.nordbyen.survivalheaven.subplugins.playerdata.PlayerData;
 

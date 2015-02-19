@@ -43,14 +43,13 @@ import info.nordbyen.survivalheaven.subplugins.blockprotection.BlockManager;
 import info.nordbyen.survivalheaven.subplugins.blockprotection.BlockProtection;
 import info.nordbyen.survivalheaven.subplugins.bossbar.BossbarAPI;
 import info.nordbyen.survivalheaven.subplugins.commands.Commands;
-import info.nordbyen.survivalheaven.subplugins.loginmanager.LoginMessage;
+import info.nordbyen.survivalheaven.subplugins.groupmanager.FriendManager;
 import info.nordbyen.survivalheaven.subplugins.merchant.Merchant;
 import info.nordbyen.survivalheaven.subplugins.mysql.MysqlManager;
 import info.nordbyen.survivalheaven.subplugins.playerdata.NoteManager;
 import info.nordbyen.survivalheaven.subplugins.playerdata.PlayerDataManager;
 import info.nordbyen.survivalheaven.subplugins.playerdata.PlayerDataManagerPlugin;
 import info.nordbyen.survivalheaven.subplugins.playerdata.WarningManager;
-import info.nordbyen.survivalheaven.subplugins.preliminary.Preliminary;
 import info.nordbyen.survivalheaven.subplugins.rankmanager.RankManager;
 import info.nordbyen.survivalheaven.subplugins.regions.RegionManager;
 import info.nordbyen.survivalheaven.subplugins.regions.RegionUpdater;
@@ -63,11 +62,24 @@ import info.nordbyen.survivalheaven.subplugins.title.TitleAPI;
 import info.nordbyen.survivalheaven.subplugins.uendeligdropper.InfinityDispenser;
 import info.nordbyen.survivalheaven.subplugins.wand.WandManager;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 import java.util.HashMap;
+import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
+import org.bukkit.plugin.InvalidDescriptionException;
+import org.bukkit.plugin.InvalidPluginException;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.UnknownDependencyException;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -97,10 +109,8 @@ public class SH extends JavaPlugin implements ISH {
 	private static ISH iSurvivalHeaven;
 	/** The plugin. */
 	private static JavaPlugin plugin;
-	/** The senter. */
-	private Location senter = null;
 	/** The Constant debug. */
-	private final boolean debug = true; // TODO
+	private final boolean debug = false; // TODO
 	/** The Constant spam. */
 	private final boolean spam = false; // TODO
 	/** The version. */
@@ -127,6 +137,8 @@ public class SH extends JavaPlugin implements ISH {
 	private IAnnoSubPluginManager annoSubPluginManager;
 	/** The region manager. */
 	private IRegionManager regionManager;
+	/** The friend manager. */
+	private FriendManager friendManager;
 
 	/**
 	 * Gets the manager.
@@ -160,19 +172,6 @@ public class SH extends JavaPlugin implements ISH {
 			Bukkit.getConsoleSender().sendMessage(
 					ChatColor.LIGHT_PURPLE + "[DEBUG] " + ChatColor.GRAY + s);
 		}
-	}
-
-	/**
-	 * Gets the senter.
-	 * 
-	 * @return the senter
-	 */
-	@Override
-	public final Location getSenter() {
-		if (senter == null) {
-			senter = new Location(Bukkit.getWorlds().get(0), 140, 0, 89);
-		}
-		return senter;
 	}
 
 	/**
@@ -306,6 +305,19 @@ public class SH extends JavaPlugin implements ISH {
 	}
 
 	/**
+	 * Gets the friend manager.
+	 * 
+	 * @return the friend manager
+	 */
+	@Override
+	public FriendManager getFriendManager() {
+		if (friendManager == null) {
+			friendManager = new FriendManager();
+		}
+		return friendManager;
+	}
+
+	/**
 	 * Spam.
 	 * 
 	 * @param strings
@@ -367,9 +379,41 @@ public class SH extends JavaPlugin implements ISH {
 		AnnoSubPluginLoader.testLoadJars();
 	}
 
-	/*
-	 * Functions for disabling the plugin
+	public void loadDependencies() {
+
+	}
+
+	/**
+	 * Register sub plugins.
 	 */
+	private void registerSubPlugins() {
+		getSubPluginManager().addSubPlugin(new DenyPlayerMode("DenyPlayerMode"));
+		getSubPluginManager().addSubPlugin(new Merchant("Merchant"));
+		getSubPluginManager().addSubPlugin(new ShopHandler("Shop"));
+		getSubPluginManager().addSubPlugin(new BossbarAPI("BossbarAPI"));
+		getSubPluginManager().addSubPlugin(new TitleAPI("TitleAPI"));
+		getSubPluginManager().addSubPlugin(new RegionUpdater("RegionUpdater"));
+		getSubPluginManager().addSubPlugin(new ShortLink("BitLy_UrlShortener"));
+		getSubPluginManager().addSubPlugin(new BlockProtection("BlockProtection"));
+		getSubPluginManager().addSubPlugin(new PlayerDataManagerPlugin("PlayerDataManager"));
+		getSubPluginManager().addSubPlugin(new Commands("Kommandoer"));
+		// spm.addSubPlugin(new RemoteBukkitPlugin("RemoteConsole"));
+		// spm.addSubPlugin( new Ligg( "LiggTester" ) );
+		getAnnoSubPluginManager().addClass(InfinityDispenser.class);
+		getAnnoSubPluginManager().addClass(ServerUtils.class);
+		getAnnoSubPluginManager().addClass(NoteManager.class);
+		getAnnoSubPluginManager().addClass(WarningManager.class);
+		// AnnoSubPluginManager.addClass(EmployeeTest.class);
+		// AnnoSubPluginManager.addClass( QuestHandler.class );
+	}
+
+	/**
+	 * Unregister sub plugins.
+	 */
+	private void unregisterSubPlugins() {
+		getSubPluginManager().unregisterAll();
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -397,16 +441,16 @@ public class SH extends JavaPlugin implements ISH {
 		Bukkit.getConsoleSender().sendMessage(
 				ChatColor.YELLOW + "STARTER PLUGIN " + this.toString());
 		Bukkit.getConsoleSender()
-				.sendMessage(
-						ChatColor.GREEN
-								+ "******************************************************************");
+		.sendMessage(
+				ChatColor.GREEN
+				+ "******************************************************************");
 		Bukkit.getConsoleSender().sendMessage(
 				ChatColor.RESET + "Starter " + NAME + ChatColor.RESET + " v. "
 						+ ChatColor.YELLOW + version);
 		Bukkit.getConsoleSender()
-				.sendMessage(
-						ChatColor.GREEN
-								+ "------------------------------------------------------------------");
+		.sendMessage(
+				ChatColor.GREEN
+				+ "------------------------------------------------------------------");
 		getAnnoSubPluginManager();
 		getBlockManager();
 		getMysqlManager();
@@ -414,48 +458,73 @@ public class SH extends JavaPlugin implements ISH {
 		getPlayerDataManager();
 		getWandManager();
 		getWarningManager();
+		getFriendManager();
 		// loadJars(); TODO Fikse error her
 		registerSubPlugins();
 		enableSubPlugins();
 		Bukkit.getConsoleSender()
-				.sendMessage(
-						ChatColor.GREEN
-								+ "******************************************************************");
+		.sendMessage(
+				ChatColor.GOLD
+				+ "Sjekker om alle nødvendige plugins er her...");
+		Plugin pex = Bukkit.getPluginManager().getPlugin( "PermissionsEx" );
+		if( pex == null ) {
+			Bukkit.getConsoleSender()
+			.sendMessage(
+					ChatColor.GOLD
+					+ "PermissionsEx mangler. Starter nedlasting....");
+			try {
+				downloadPlugin( "31279" );
+			} catch( Exception e ) {
+				e.printStackTrace();
+			}
+		}
+		Bukkit.getConsoleSender()
+		.sendMessage(
+				ChatColor.GREEN
+				+ "******************************************************************");
 	}
 
-	/**
-	 * Register sub plugins.
-	 */
-	private void registerSubPlugins() {
-		getSubPluginManager()
-				.addSubPlugin(new DenyPlayerMode("DenyPlayerMode"));
-		getSubPluginManager().addSubPlugin(new LoginMessage("LoginMessages"));
-		getSubPluginManager().addSubPlugin(new Preliminary("Prelimitary"));
-		getSubPluginManager().addSubPlugin(new Merchant("Merchant"));
-		getSubPluginManager().addSubPlugin(new ShopHandler("Shop"));
-		getSubPluginManager().addSubPlugin(new BossbarAPI("BossbarAPI"));
-		getSubPluginManager().addSubPlugin(new TitleAPI("TitleAPI"));
-		getSubPluginManager().addSubPlugin(new RegionUpdater("RegionUpdater"));
-		getSubPluginManager().addSubPlugin(new ShortLink("BitLy_UrlShortener"));
-		getSubPluginManager().addSubPlugin(
-				new BlockProtection("BlockProtection"));
-		getSubPluginManager().addSubPlugin(
-				new PlayerDataManagerPlugin("PlayerDataManager"));
-		getSubPluginManager().addSubPlugin(new Commands("Kommandoer"));
-		// spm.addSubPlugin(new RemoteBukkitPlugin("RemoteConsole"));
-		// spm.addSubPlugin( new Ligg( "LiggTester" ) );
-		getAnnoSubPluginManager().addClass(InfinityDispenser.class);
-		getAnnoSubPluginManager().addClass(ServerUtils.class);
-		getAnnoSubPluginManager().addClass(NoteManager.class);
-		getAnnoSubPluginManager().addClass(WarningManager.class);
-		// AnnoSubPluginManager.addClass(EmployeeTest.class);
-		// AnnoSubPluginManager.addClass( QuestHandler.class );
-	}
-
-	/**
-	 * Unregister sub plugins.
-	 */
-	private void unregisterSubPlugins() {
-		getSubPluginManager().unregisterAll();
+	public static boolean downloadPlugin(String id) {
+		InputStreamReader in = null;
+		try {
+			URL url = new URL("https://api.curseforge.com/servermods/files?projectIds=" + id);
+			URLConnection urlConnection = url.openConnection();
+			in = new InputStreamReader(urlConnection.getInputStream());
+			int numCharsRead;
+			char[] charArray = new char[1024];
+			StringBuilder sb = new StringBuilder();
+			while ((numCharsRead = in.read(charArray)) > 0) {
+				sb.append(charArray, 0, numCharsRead);
+			}
+			String result = sb.toString();
+			result = result.replace("\\/", "/").replaceAll(".*\"downloadUrl\":\"", "").split("\",\"")[0];
+			String[] split = result.split("/");
+			url = new URL(result);
+			final String path = plugin.getDataFolder().getParentFile().getAbsoluteFile() + "/" + split[split.length - 1];
+			ReadableByteChannel rbc = Channels.newChannel(url.openStream());
+			FileOutputStream fos = new FileOutputStream(path);
+			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+			Bukkit.getServer().getLogger().log(Level.INFO, "Finished downloading " + split[split.length - 1] + ". Loading dependecy");
+			Bukkit.getServer().getPluginManager().loadPlugin(new File(path));
+			fos.close();
+			return true;
+		} catch (MalformedURLException ex) {
+			ex.printStackTrace();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} catch (InvalidPluginException ex) {
+			ex.printStackTrace();
+		} catch (InvalidDescriptionException ex) {
+			ex.printStackTrace();
+		} catch (UnknownDependencyException ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				in.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return false;
 	}
 }

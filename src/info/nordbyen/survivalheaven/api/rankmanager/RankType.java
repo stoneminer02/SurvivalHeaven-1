@@ -68,6 +68,18 @@ public enum RankType {
 		SH.getManager().debug((Object[]) (new Throwable()).getStackTrace());
 		return BRUKER;
 	}
+	
+	public static RankType getRankFromName( String name ) {
+		if ( name.equalsIgnoreCase("banned") || name.equalsIgnoreCase("ban") )
+			return BANNED;
+		if ( name.equalsIgnoreCase("bruker") )
+			return BRUKER;
+		if ( name.equalsIgnoreCase("mod") || name.equalsIgnoreCase("moderator") )
+			return MODERATOR;
+		if ( name.equalsIgnoreCase("admin") || name.equalsIgnoreCase("administrator") )
+			return ADMINISTRATOR;
+		return null;
+	}
 
 	/** The rank. */
 	private final int rank;

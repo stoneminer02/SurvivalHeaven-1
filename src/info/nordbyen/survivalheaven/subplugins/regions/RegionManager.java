@@ -27,7 +27,6 @@
 package info.nordbyen.survivalheaven.subplugins.regions;
 
 import info.nordbyen.survivalheaven.api.regions.IRegionManager;
-import info.nordbyen.survivalheaven.api.regions.RegionData;
 
 import java.util.ArrayList;
 

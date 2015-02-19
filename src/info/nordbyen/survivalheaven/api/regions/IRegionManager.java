@@ -26,6 +26,8 @@
 
 package info.nordbyen.survivalheaven.api.regions;
 
+import info.nordbyen.survivalheaven.subplugins.regions.RegionData;
+
 import org.bukkit.Location;
 
 /**

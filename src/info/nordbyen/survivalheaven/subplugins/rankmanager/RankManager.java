@@ -31,8 +31,11 @@ import info.nordbyen.survivalheaven.api.playerdata.IPlayerData;
 import info.nordbyen.survivalheaven.api.rankmanager.BadgeType;
 import info.nordbyen.survivalheaven.api.rankmanager.IRankManager;
 import info.nordbyen.survivalheaven.api.rankmanager.RankType;
+import info.nordbyen.survivalheaven.api.regions.IRegionData;
+import info.nordbyen.survivalheaven.api.util.FancyMessages;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 /**
@@ -46,6 +49,7 @@ public class RankManager implements IRankManager {
 	public RankManager() {
 		Bukkit.getPluginManager().registerEvents(new RankManagerListener(),
 				SH.getPlugin());
+		SH.getPlugin().getCommand( "rank" ).setExecutor( new RankManagerCommand() );
 	}
 
 	/*
@@ -123,10 +127,15 @@ public class RankManager implements IRankManager {
 	@Override
 	public void updateNames() {
 		for (final Player o : Bukkit.getOnlinePlayers()) {
-			o.setPlayerListName(getRank(o.getUniqueId().toString()).getPrefix()
+			o.setPlayerListName(getRank(o.getUniqueId().toString()).getColor()
 					+ o.getName());
 			o.setDisplayName(getRank(o.getUniqueId().toString()).getPrefix()
-					+ o.getName());
+					+ o.getName());	
+			IRegionData rd = SH.getManager().getRegionManager().getRegionAt( o.getLocation() );
+			if( rd == null ) 
+				FancyMessages.sendTabTitle(o, SH.NAME, SH.MOTTO);
+			else
+				FancyMessages.sendTabTitle(o, SH.NAME, ChatColor.BLUE + "Område: " + ChatColor.GREEN + rd.getName() + ChatColor.BLUE + "\nPvP: " + (rd.isPvp() ? ChatColor.RED + "Ja" : ChatColor.GREEN + "Nei") );
 		}
 	}
 }

@@ -26,6 +26,9 @@
 
 package info.nordbyen.survivalheaven.subplugins.commands.commands;
 
+import info.nordbyen.survivalheaven.SH;
+import info.nordbyen.survivalheaven.api.rankmanager.RankType;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -46,10 +49,11 @@ public class SS implements CommandExecutor {
 	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
 	 */
 	@Override
-	public boolean onCommand(final CommandSender Sender, final Command command,
+	public boolean onCommand(final CommandSender sender, final Command command,
 			final String CommandLabel, final String[] args) {
-		if (!(Sender.hasPermission("sh.ss"))) {
-			Sender.sendMessage(ChatColor.RED
+		RankType rank = SH.getManager().getRankManager().getRank( ((Player)sender).getUniqueId().toString() );
+		if (rank != RankType.ADMINISTRATOR && rank != RankType.MODERATOR ) {
+			sender.sendMessage(ChatColor.RED
 					+ "Du har ikke tilgang til denne kommandoen");
 		}
 		if (command.getName().equalsIgnoreCase("ss")) {
@@ -61,18 +65,18 @@ public class SS implements CommandExecutor {
 				for (final Player b : Bukkit.getOnlinePlayers()) {
 					if (b.hasPermission("sh.ss.motta")) {
 						b.sendMessage(ChatColor.GOLD + "[Stabsamtale] "
-								+ ChatColor.RED + ((Player) Sender).getName()
+								+ ChatColor.RED + ((Player) sender).getName()
 								+ ": " + ChatColor.GRAY + msg.toString());
-						if (!(Sender instanceof Player)) {
+						if (!(sender instanceof Player)) {
 							System.out.println(ChatColor.GOLD
 									+ "[Stabsamtale] "
-									+ ((Player) Sender).getDisplayName() + ": "
+									+ ((Player) sender).getDisplayName() + ": "
 									+ ChatColor.GRAY + msg.toString());
 						}
 					}
 				}
 			} else {
-				Sender.sendMessage(ChatColor.RED + "Feil: Bruk /ss <melding>");
+				sender.sendMessage(ChatColor.RED + "Feil: Bruk /ss <melding>");
 			}
 		}
 		return false;

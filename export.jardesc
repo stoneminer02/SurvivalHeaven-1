@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
 <jardesc>
-    <jar path="C:/Users/l0lkj/Desktop/SurvivalHeaven1_8.jar"/>
+    <jar path="C:/Users/l0lkj/Desktop/SH_1_8_v2/plugins/SurvivalHeaven1_8.jar"/>
     <options buildIfNeeded="true" compress="true" descriptionLocation="/SurvivalHeaven-CORE_git/export.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="true" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
     <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
     <selectedProjects/>
@@ -10,7 +10,7 @@
             <packagesToUnSeal/>
         </sealing>
     </manifest>
-    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+    <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
         <file path="/SurvivalHeaven-CORE_git/export.jardesc"/>
         <file path="/SurvivalHeaven-CORE_git/.classpath"/>
         <file path="/SurvivalHeaven-CORE_git/config.yml"/>

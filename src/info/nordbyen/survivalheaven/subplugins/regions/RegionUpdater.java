@@ -27,7 +27,9 @@
 package info.nordbyen.survivalheaven.subplugins.regions;
 
 import info.nordbyen.survivalheaven.SH;
-import info.nordbyen.survivalheaven.api.regions.RegionData;
+import info.nordbyen.survivalheaven.api.rankmanager.IRankManager;
+import info.nordbyen.survivalheaven.api.rankmanager.RankType;
+import info.nordbyen.survivalheaven.api.regions.IRegionData;
 import info.nordbyen.survivalheaven.api.subplugin.SubPlugin;
 import info.nordbyen.survivalheaven.api.util.FancyMessages;
 import info.nordbyen.survivalheaven.subplugins.regions.teleports.RegionTeleportCommand;
@@ -36,9 +38,15 @@ import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitScheduler;
 
@@ -60,15 +68,65 @@ public class RegionUpdater extends SubPlugin {
 	 */
 	public class RegionUpdaterListener implements Listener {
 
-		/**
-		 * On quit.
-		 * 
-		 * @param e
-		 *            the e
-		 */
 		@EventHandler
 		public void onQuit(final PlayerQuitEvent e) {
 			playerRegions.remove(e.getPlayer().getUniqueId().toString());
+		}
+
+		@EventHandler
+		public void onInteract(final PlayerInteractEvent e) {
+			if( e.getClickedBlock() == null ) return;
+			IRegionData rd = SH.getManager().getRegionManager().getRegionAt( e.getClickedBlock().getLocation() );
+			if( rd == null ) return;
+			if( rd.isBreakable() ) return;
+			IRankManager rm = SH.getManager().getRankManager();
+			RankType rank = rm.getRank( e.getPlayer().getUniqueId().toString() );
+			if( rank != RankType.ADMINISTRATOR && rank != RankType.MODERATOR ) {
+				e.setCancelled( true );
+			}
+		}
+
+		@EventHandler
+		public void onDamage(final EntityDamageEvent  e) {
+			if( !( e.getEntity() instanceof Player ) ) return;
+			Player p = ( Player ) e.getEntity();
+			IRegionData rd = SH.getManager().getRegionManager().getRegionAt( p.getLocation() );
+			if( rd == null ) return;
+			if( !rd.isInvincible() ) return;
+			e.setCancelled( true );
+		}
+
+		@EventHandler
+		public void onPvP(final EntityDamageByEntityEvent  e) {
+			if( !( e.getEntity() instanceof Player ) ) return;
+			if( !( e.getDamager() instanceof Player ) ) return;
+			Player s = ( Player ) e.getEntity();
+			Player o = ( Player ) e.getDamager();
+			IRegionData rd1 = SH.getManager().getRegionManager().getRegionAt( o.getLocation() );
+			IRegionData rd2 = SH.getManager().getRegionManager().getRegionAt( s.getLocation() );
+			if( rd1 == null && rd2 == null ) return;
+			if( rd1.isPvp() && rd2.isPvp() ) return;
+			e.setCancelled( true );
+			FancyMessages.sendActionBar( s, ChatColor.RED + "PvP er av i denne regionen" );
+		}
+
+		@EventHandler
+		public void onMonsterSpawn( CreatureSpawnEvent e ) {
+			if( e.getEntityType() == EntityType.BLAZE ||
+					e.getEntityType() == EntityType.ZOMBIE ||
+					e.getEntityType() == EntityType.SKELETON ||
+					e.getEntityType() == EntityType.SLIME ||
+					e.getEntityType() == EntityType.SPIDER ||
+					e.getEntityType() == EntityType.CREEPER ||
+					e.getEntityType() == EntityType.ENDERMAN ||
+					e.getEntityType() == EntityType.GHAST ||
+					e.getEntityType() == EntityType.WITHER ||
+					e.getEntityType() == EntityType.GUARDIAN ) {
+				IRegionData rd = SH.getManager().getRegionManager().getRegionAt( e.getLocation() );
+				if( rd == null ) return;
+				if( rd.isMonsters() ) return;
+				e.setCancelled( true );
+			}
 		}
 	}
 
@@ -108,30 +166,45 @@ public class RegionUpdater extends SubPlugin {
 			@Override
 			public void run() {
 				SH.getManager()
-						.getRegionManager()
-						.addRegion(
-								RegionData.createRegion(SH.getManager()
-										.getSenter().clone(), "Midtgard", 230,
-										100, false, false, true, false));
+				.getRegionManager()
+				.addRegion(
+						RegionData.createRegion(new Location( Bukkit.getWorld("NyVerden"), -232, 0, -6071 ), "Nord-byen", 
+								150, 100, false, false, false, true));
 				SH.getManager()
-						.getRegionManager()
-						.addRegion(
-								RegionData.createRegion(SH.getManager()
-										.getSenter().clone(), "Utkanten", 330,
-										95, false, false, true, false));
+				.getRegionManager()
+				.addRegion(
+						RegionData.createRegion( new Location( Bukkit.getWorld( "NyVerden" ), 145, 0, 6234 ) , "Sør-byen",
+								150, 100, false, false, false, true)); 
 				SH.getManager()
-						.getRegionManager()
-						.addRegion(
-								RegionData.createRegion(SH.getManager()
-										.getSenter().clone(), "Fredens land",
-										6000, 90, false, true, true, false));
+				.getRegionManager()
+				.addRegion(
+						RegionData.createRegion( new Location( Bukkit.getWorld( "NyVerden" ), 6251, 0, 757 ), "Øst-byen",
+								200, 100, false, false, false, true)); 
 				SH.getManager()
-						.getRegionManager()
-						.addRegion(
-								RegionData.createRegion(SH.getManager()
-										.getSenter().clone(), "Krigens land",
-										Integer.MAX_VALUE, Integer.MIN_VALUE,
-										true, true, true, false));
+				.getRegionManager()
+				.addRegion(
+						RegionData.createRegion(new Location( Bukkit.getWorld( "NyVerden" ), -5774, 0, 95 ), "Vest-byen",
+								150, 100, false, false, false, true)); 
+				SH.getManager()
+				.getRegionManager()
+				.addRegion(
+						RegionData.createRegion(new Location( Bukkit.getWorld( "NyVerden" ), 140, 0, 89), "Spawn Sentrum", 
+								230, 100, false, false, false, true));
+				SH.getManager()
+				.getRegionManager()
+				.addRegion(
+						RegionData.createRegion( new Location( Bukkit.getWorld( "NyVerden" ), 140, 0, 89), "Spawn Utkant", 
+								330,95, false, false, true, false));
+				SH.getManager()
+				.getRegionManager()
+				.addRegion(
+						RegionData.createRegion( new Location( Bukkit.getWorld( "NyVerden" ), 140, 0, 89), "Survival",
+								6000, 90, false, true, true, false));
+				SH.getManager()
+				.getRegionManager()
+				.addRegion(
+						RegionData.createRegion( new Location( Bukkit.getWorld( "NyVerden" ), 140, 0, 89), "Villmark",
+								Integer.MAX_VALUE, Integer.MIN_VALUE, true, true, true, false));
 			}
 		}, 1L);
 		Bukkit.getPluginManager().registerEvents(new RegionUpdaterListener(),
@@ -169,9 +242,12 @@ public class RegionUpdater extends SubPlugin {
 	 *            the region
 	 */
 	public void sendRegionName(final Player p, final RegionData region) {
+		SH.getManager().getRankManager().updateNames();
 		if (region == null)
 			return;
-		FancyMessages.sendActionBar(p, ChatColor.DARK_GREEN + ""
-				+ ChatColor.BOLD + "------[ " + region.getName() + " ]------");
+		//FancyMessages.sendActionBar(p, ChatColor.DARK_GREEN + ""
+		//		+ ChatColor.BOLD + "------[ " + region.getName() + " ]------");
+		boolean pvp = region.isPvp();
+		FancyMessages.sendTitle( p, 20, 50, 20, ChatColor.GREEN + "---[ " + region.getName() + " ]---", pvp ? ChatColor.RED + "Her er det PvP!" : ChatColor.BLUE + "Her er du trygg fra andre spillere" );
 	}
 }

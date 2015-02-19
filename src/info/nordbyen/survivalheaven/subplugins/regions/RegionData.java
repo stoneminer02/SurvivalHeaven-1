@@ -24,9 +24,10 @@
  * THE SOFTWARE.
  */
 
-package info.nordbyen.survivalheaven.api.regions;
+package info.nordbyen.survivalheaven.subplugins.regions;
 
 import info.nordbyen.survivalheaven.SH;
+import info.nordbyen.survivalheaven.api.regions.IRegionData;
 
 import org.bukkit.Location;
 

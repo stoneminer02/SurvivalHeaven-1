@@ -36,8 +36,7 @@ import info.nordbyen.survivalheaven.api.subplugin.IAnnoSubPluginManager;
 import info.nordbyen.survivalheaven.api.subplugin.ISubPluginManager;
 import info.nordbyen.survivalheaven.api.wand.IWandManager;
 import info.nordbyen.survivalheaven.subplugins.blockdata.IBlockManager;
-
-import org.bukkit.Location;
+import info.nordbyen.survivalheaven.subplugins.groupmanager.FriendManager;
 
 /**
  * The Interface ISH.
@@ -53,13 +52,6 @@ public interface ISH {
 	 *            the strings
 	 */
 	void debug(final Object... strings);
-
-	/**
-	 * Gets the senter.
-	 * 
-	 * @return the senter
-	 */
-	Location getSenter();
 
 	/**
 	 * Gets the anno sub plugin manager.
@@ -144,4 +136,6 @@ public interface ISH {
 	 * @return the version
 	 */
 	String getVersion();
+
+	FriendManager getFriendManager();
 }

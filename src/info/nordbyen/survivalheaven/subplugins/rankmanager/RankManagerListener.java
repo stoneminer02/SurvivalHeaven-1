@@ -27,7 +27,6 @@
 package info.nordbyen.survivalheaven.subplugins.rankmanager;
 
 import info.nordbyen.survivalheaven.SH;
-import info.nordbyen.survivalheaven.api.util.FancyMessages;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -71,9 +70,6 @@ public class RankManagerListener implements Listener {
 		Bukkit.getConsoleSender().sendMessage(
 				p.getDisplayName() + ChatColor.RESET + ": " + ChatColor.GRAY
 						+ e.getMessage());
-		for (final Player o : Bukkit.getOnlinePlayers()) {
-			FancyMessages.sendTabTitle(o, SH.NAME, SH.MOTTO);
-		}
 	}
 
 	/**

@@ -26,15 +26,21 @@
 
 package info.nordbyen.survivalheaven.subplugins.commands.commands;
 
+import info.nordbyen.survivalheaven.SH;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 /**
  * The Class AFK.
@@ -44,6 +50,10 @@ public class AFK implements CommandExecutor {
 	/** The hashmap. */
 	public static List<String> hashmap = new ArrayList<String>();
 
+	public AFK() {
+		Bukkit.getPluginManager().registerEvents( new AFKListener(), SH.getPlugin() );
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -73,5 +83,18 @@ public class AFK implements CommandExecutor {
 			}
 		}
 		return false;
+	}
+	
+	public class AFKListener implements Listener {
+		@EventHandler
+		public void onMove( PlayerMoveEvent e ) {
+			Location from = e.getFrom();
+			Location to = e.getTo();
+			if( from.getX() == to.getX() ) return;
+			if( from.getY() == to.getY() ) return;
+			if( from.getZ() == to.getZ() ) return;
+			if( from.getWorld().getName().equals( to.getWorld().getName() ) ) return;
+			hashmap.remove( e.getPlayer().getName() );
+		}
 	}
 }
