@@ -36,9 +36,6 @@ import org.bukkit.entity.Player;
  */
 public class MessagingAPI {
 
-	/** The message api. */
-	private static MessagingAPI messageAPI = new MessagingAPI();
-
 	/**
 	 * Gets the messenger.
 	 * 
@@ -47,6 +44,9 @@ public class MessagingAPI {
 	public static MessagingAPI getMessenger() {
 		return messageAPI;
 	}
+
+	/** The message api. */
+	private static MessagingAPI messageAPI = new MessagingAPI();
 
 	/**
 	 * Broadcast.

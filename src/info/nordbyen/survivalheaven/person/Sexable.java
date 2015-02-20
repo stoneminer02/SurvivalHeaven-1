@@ -32,6 +32,18 @@ package info.nordbyen.survivalheaven.person;
 public interface Sexable {
 
 	/**
+	 * The Enum Sex.
+	 */
+	public enum Sex {
+		/** The male. */
+		MALE,
+		/** The female. */
+		FEMALE,
+		/** The unknown. */
+		UNKNOWN;
+	}
+
+	/**
 	 * Gets the sex.
 	 * 
 	 * @return the sex
@@ -45,16 +57,4 @@ public interface Sexable {
 	 *            the new sex
 	 */
 	public void setSex(Sex sex);
-
-	/**
-	 * The Enum Sex.
-	 */
-	public enum Sex {
-		/** The male. */
-		MALE,
-		/** The female. */
-		FEMALE,
-		/** The unknown. */
-		UNKNOWN;
-	}
 }

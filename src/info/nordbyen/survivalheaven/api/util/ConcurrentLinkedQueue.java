@@ -26,6 +26,7 @@
 
 package info.nordbyen.survivalheaven.api.util;
 
+import java.io.IOException;
 import java.util.AbstractQueue;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -80,8 +81,98 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 		Queue<E>, java.io.Serializable {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 196745693267521676L;
+	/**
+	 * The Class Itr.
+	 */
+	private class Itr implements Iterator<E> {
+
+		/**
+		 * Next node to return item for.
+		 */
+		private Node<E> nextNode;
+		/**
+		 * nextItem holds on to item fields because once we claim that an
+		 * element exists in hasNext(), we must return it in the following
+		 * next() call even if it was in the process of being removed when
+		 * hasNext() was called.
+		 */
+		private E nextItem;
+		/**
+		 * Node of the last returned item, to support remove.
+		 */
+		private Node<E> lastRet;
+
+		/**
+		 * Instantiates a new itr.
+		 */
+		Itr() {
+			advance();
+		}
+
+		/**
+		 * Moves to next valid node and returns item to return for next(), or
+		 * null if no such.
+		 * 
+		 * @return the e
+		 */
+		private E advance() {
+			lastRet = nextNode;
+			final E x = nextItem;
+			Node<E> p = (nextNode == null) ? first() : nextNode.getNext();
+			for (;;) {
+				if (p == null) {
+					nextNode = null;
+					nextItem = null;
+					return x;
+				}
+				final E item = p.getItem();
+				if (item != null) {
+					nextNode = p;
+					nextItem = item;
+					return x;
+				} else {
+					p = p.getNext();
+				}
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Iterator#hasNext()
+		 */
+		@Override
+		public boolean hasNext() {
+			return nextNode != null;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Iterator#next()
+		 */
+		@Override
+		public E next() {
+			if (nextNode == null)
+				throw new NoSuchElementException();
+			return advance();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Iterator#remove()
+		 */
+		@Override
+		public void remove() {
+			final Node<E> l = lastRet;
+			if (l == null)
+				throw new IllegalStateException();
+			// rely on a future traversal to relink.
+			l.setItem(null);
+			lastRet = null;
+		}
+	}
 
 	/*
 	 * This is a straight adaptation of Michael & Scott algorithm. For
@@ -143,15 +234,6 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 		}
 
 		/**
-		 * Gets the item.
-		 * 
-		 * @return the item
-		 */
-		E getItem() {
-			return item;
-		}
-
-		/**
 		 * Cas item.
 		 * 
 		 * @param cmp
@@ -162,25 +244,6 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 		 */
 		boolean casItem(final E cmp, final E val) {
 			return itemUpdater.compareAndSet(this, cmp, val);
-		}
-
-		/**
-		 * Sets the item.
-		 * 
-		 * @param val
-		 *            the new item
-		 */
-		void setItem(final E val) {
-			itemUpdater.set(this, val);
-		}
-
-		/**
-		 * Gets the next.
-		 * 
-		 * @return the next
-		 */
-		Node<E> getNext() {
-			return next;
 		}
 
 		/**
@@ -197,6 +260,34 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 		}
 
 		/**
+		 * Gets the item.
+		 * 
+		 * @return the item
+		 */
+		E getItem() {
+			return item;
+		}
+
+		/**
+		 * Gets the next.
+		 * 
+		 * @return the next
+		 */
+		Node<E> getNext() {
+			return next;
+		}
+
+		/**
+		 * Sets the item.
+		 * 
+		 * @param val
+		 *            the new item
+		 */
+		void setItem(final E val) {
+			itemUpdater.set(this, val);
+		}
+
+		/**
 		 * Sets the next.
 		 * 
 		 * @param val
@@ -208,46 +299,24 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 		}
 	}
 
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 196745693267521676L;
 	/** The Constant tailUpdater. */
 	@SuppressWarnings("rawtypes")
 	private static final AtomicReferenceFieldUpdater<ConcurrentLinkedQueue, Node> tailUpdater = AtomicReferenceFieldUpdater
 			.newUpdater(ConcurrentLinkedQueue.class, Node.class, "tail");
+
 	/** The Constant headUpdater. */
 	@SuppressWarnings("rawtypes")
 	private static final AtomicReferenceFieldUpdater<ConcurrentLinkedQueue, Node> headUpdater = AtomicReferenceFieldUpdater
 			.newUpdater(ConcurrentLinkedQueue.class, Node.class, "head");
 
 	/**
-	 * Cas tail.
-	 * 
-	 * @param cmp
-	 *            the cmp
-	 * @param val
-	 *            the val
-	 * @return true, if successful
-	 */
-	private boolean casTail(final Node<E> cmp, final Node<E> val) {
-		return tailUpdater.compareAndSet(this, cmp, val);
-	}
-
-	/**
-	 * Cas head.
-	 * 
-	 * @param cmp
-	 *            the cmp
-	 * @param val
-	 *            the val
-	 * @return true, if successful
-	 */
-	private boolean casHead(final Node<E> cmp, final Node<E> val) {
-		return headUpdater.compareAndSet(this, cmp, val);
-	}
-
-	/**
 	 * Pointer to header node, initialized to a dummy node. The first actual
 	 * node is at head.getNext().
 	 */
 	private transient volatile Node<E> head = new Node<E>(null, null);
+
 	/** Pointer to last node on list *. */
 	private transient volatile Node<E> tail = head;
 
@@ -285,91 +354,50 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 	}
 
 	/**
-	 * Inserts the specified element at the tail of this queue.
+	 * Cas head.
 	 * 
-	 * @param e
-	 *            the e
-	 * @return <tt>true</tt> (as specified by {@link Queue#offer})
+	 * @param cmp
+	 *            the cmp
+	 * @param val
+	 *            the val
+	 * @return true, if successful
 	 */
-	@Override
-	public boolean offer(final E e) {
-		if (e == null)
-			throw new NullPointerException();
-		final Node<E> n = new Node<E>(e, null);
-		for (;;) {
-			final Node<E> t = tail;
-			final Node<E> s = t.getNext();
-			if (t == tail) {
-				if (s == null) {
-					if (t.casNext(s, n)) {
-						casTail(t, n);
-						return true;
-					}
-				} else {
-					casTail(t, s);
-				}
-			}
-		}
+	private boolean casHead(final Node<E> cmp, final Node<E> val) {
+		return headUpdater.compareAndSet(this, cmp, val);
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Cas tail.
 	 * 
-	 * @see java.util.Queue#poll()
+	 * @param cmp
+	 *            the cmp
+	 * @param val
+	 *            the val
+	 * @return true, if successful
 	 */
-	@Override
-	public E poll() {
-		for (;;) {
-			final Node<E> h = head;
-			final Node<E> t = tail;
-			final Node<E> first = h.getNext();
-			if (h == head) {
-				if (h == t) {
-					if (first == null)
-						return null;
-					else {
-						casTail(t, first);
-					}
-				} else if (casHead(h, first)) {
-					final E item = first.getItem();
-					if (item != null) {
-						first.setItem(null);
-						return item;
-					}
-					// else skip over deleted item, continue loop,
-				}
-			}
-		}
+	private boolean casTail(final Node<E> cmp, final Node<E> val) {
+		return tailUpdater.compareAndSet(this, cmp, val);
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Returns <tt>true</tt> if this queue contains the specified element. More
+	 * formally, returns <tt>true</tt> if and only if this queue contains at
+	 * least one element <tt>e</tt> such that <tt>o.equals(e)</tt>.
 	 * 
-	 * @see java.util.Queue#peek()
+	 * @param o
+	 *            object to be checked for containment in this queue
+	 * @return <tt>true</tt> if this queue contains the specified element
 	 */
 	@Override
-	public E peek() { // same as poll except don't remove item
-		for (;;) {
-			final Node<E> h = head;
-			final Node<E> t = tail;
-			final Node<E> first = h.getNext();
-			if (h == head) {
-				if (h == t) {
-					if (first == null)
-						return null;
-					else {
-						casTail(t, first);
-					}
-				} else {
-					final E item = first.getItem();
-					if (item != null)
-						return item;
-					else {
-						casHead(h, first);
-					}
-				}
-			}
+	public boolean contains(final Object o) {
+		if (o == null)
+			return false;
+		for (Node<E> p = first(); p != null; p = p.getNext()) {
+			final E item = p.getItem();
+			if ((item != null) && o.equals(item))
+				return true;
 		}
+		return false;
 	}
 
 	/**
@@ -413,6 +441,160 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 	}
 
 	/**
+	 * Returns an iterator over the elements in this queue in proper sequence.
+	 * The returned iterator is a "weakly consistent" iterator that will never
+	 * throw {@link ConcurrentModificationException}, and guarantees to traverse
+	 * elements as they existed upon construction of the iterator, and may (but
+	 * is not guaranteed to) reflect any modifications subsequent to
+	 * construction.
+	 * 
+	 * @return an iterator over the elements in this queue in proper sequence
+	 */
+	@Override
+	public Iterator<E> iterator() {
+		return new Itr();
+	}
+
+	/**
+	 * Inserts the specified element at the tail of this queue.
+	 * 
+	 * @param e
+	 *            the e
+	 * @return <tt>true</tt> (as specified by {@link Queue#offer})
+	 */
+	@Override
+	public boolean offer(final E e) {
+		if (e == null)
+			throw new NullPointerException();
+		final Node<E> n = new Node<E>(e, null);
+		for (;;) {
+			final Node<E> t = tail;
+			final Node<E> s = t.getNext();
+			if (t == tail) {
+				if (s == null) {
+					if (t.casNext(s, n)) {
+						casTail(t, n);
+						return true;
+					}
+				} else {
+					casTail(t, s);
+				}
+			}
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Queue#peek()
+	 */
+	@Override
+	public E peek() { // same as poll except don't remove item
+		for (;;) {
+			final Node<E> h = head;
+			final Node<E> t = tail;
+			final Node<E> first = h.getNext();
+			if (h == head) {
+				if (h == t) {
+					if (first == null)
+						return null;
+					else {
+						casTail(t, first);
+					}
+				} else {
+					final E item = first.getItem();
+					if (item != null)
+						return item;
+					else {
+						casHead(h, first);
+					}
+				}
+			}
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Queue#poll()
+	 */
+	@Override
+	public E poll() {
+		for (;;) {
+			final Node<E> h = head;
+			final Node<E> t = tail;
+			final Node<E> first = h.getNext();
+			if (h == head) {
+				if (h == t) {
+					if (first == null)
+						return null;
+					else {
+						casTail(t, first);
+					}
+				} else if (casHead(h, first)) {
+					final E item = first.getItem();
+					if (item != null) {
+						first.setItem(null);
+						return item;
+					}
+					// else skip over deleted item, continue loop,
+				}
+			}
+		}
+	}
+
+	/**
+	 * Reconstitute the Queue instance from a stream (that is, deserialize it).
+	 * 
+	 * @param s
+	 *            the stream
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws ClassNotFoundException
+	 *             the class not found exception
+	 */
+	private void readObject(final java.io.ObjectInputStream s)
+			throws java.io.IOException, ClassNotFoundException {
+		// Read in capacity, and any hidden stuff
+		s.defaultReadObject();
+		head = new Node<E>(null, null);
+		tail = head;
+		// Read in all elements and place in queue
+		for (;;) {
+			@SuppressWarnings("unchecked")
+			final E item = (E) s.readObject();
+			if (item == null) {
+				break;
+			} else {
+				offer(item);
+			}
+		}
+	}
+
+	/**
+	 * Removes a single instance of the specified element from this queue, if it
+	 * is present. More formally, removes an element <tt>e</tt> such that
+	 * <tt>o.equals(e)</tt>, if this queue contains one or more such elements.
+	 * Returns <tt>true</tt> if this queue contained the specified element (or
+	 * equivalently, if this queue changed as a result of the call).
+	 * 
+	 * @param o
+	 *            element to be removed from this queue, if present
+	 * @return <tt>true</tt> if this queue changed as a result of the call
+	 */
+	@Override
+	public boolean remove(final Object o) {
+		if (o == null)
+			return false;
+		for (Node<E> p = first(); p != null; p = p.getNext()) {
+			final E item = p.getItem();
+			if ((item != null) && o.equals(item) && p.casItem(item, null))
+				return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Returns the number of elements in this queue. If this queue contains more
 	 * than <tt>Integer.MAX_VALUE</tt> elements, returns
 	 * <tt>Integer.MAX_VALUE</tt>.
@@ -437,50 +619,6 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 			}
 		}
 		return count;
-	}
-
-	/**
-	 * Returns <tt>true</tt> if this queue contains the specified element. More
-	 * formally, returns <tt>true</tt> if and only if this queue contains at
-	 * least one element <tt>e</tt> such that <tt>o.equals(e)</tt>.
-	 * 
-	 * @param o
-	 *            object to be checked for containment in this queue
-	 * @return <tt>true</tt> if this queue contains the specified element
-	 */
-	@Override
-	public boolean contains(final Object o) {
-		if (o == null)
-			return false;
-		for (Node<E> p = first(); p != null; p = p.getNext()) {
-			final E item = p.getItem();
-			if ((item != null) && o.equals(item))
-				return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Removes a single instance of the specified element from this queue, if it
-	 * is present. More formally, removes an element <tt>e</tt> such that
-	 * <tt>o.equals(e)</tt>, if this queue contains one or more such elements.
-	 * Returns <tt>true</tt> if this queue contained the specified element (or
-	 * equivalently, if this queue changed as a result of the call).
-	 * 
-	 * @param o
-	 *            element to be removed from this queue, if present
-	 * @return <tt>true</tt> if this queue changed as a result of the call
-	 */
-	@Override
-	public boolean remove(final Object o) {
-		if (o == null)
-			return false;
-		for (Node<E> p = first(); p != null; p = p.getNext()) {
-			final E item = p.getItem();
-			if ((item != null) && o.equals(item) && p.casItem(item, null))
-				return true;
-		}
-		return false;
 	}
 
 	/**
@@ -589,114 +727,6 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 	}
 
 	/**
-	 * Returns an iterator over the elements in this queue in proper sequence.
-	 * The returned iterator is a "weakly consistent" iterator that will never
-	 * throw {@link ConcurrentModificationException}, and guarantees to traverse
-	 * elements as they existed upon construction of the iterator, and may (but
-	 * is not guaranteed to) reflect any modifications subsequent to
-	 * construction.
-	 * 
-	 * @return an iterator over the elements in this queue in proper sequence
-	 */
-	@Override
-	public Iterator<E> iterator() {
-		return new Itr();
-	}
-
-	/**
-	 * The Class Itr.
-	 */
-	private class Itr implements Iterator<E> {
-
-		/**
-		 * Next node to return item for.
-		 */
-		private Node<E> nextNode;
-		/**
-		 * nextItem holds on to item fields because once we claim that an
-		 * element exists in hasNext(), we must return it in the following
-		 * next() call even if it was in the process of being removed when
-		 * hasNext() was called.
-		 */
-		private E nextItem;
-		/**
-		 * Node of the last returned item, to support remove.
-		 */
-		private Node<E> lastRet;
-
-		/**
-		 * Instantiates a new itr.
-		 */
-		Itr() {
-			advance();
-		}
-
-		/**
-		 * Moves to next valid node and returns item to return for next(), or
-		 * null if no such.
-		 * 
-		 * @return the e
-		 */
-		private E advance() {
-			lastRet = nextNode;
-			final E x = nextItem;
-			Node<E> p = (nextNode == null) ? first() : nextNode.getNext();
-			for (;;) {
-				if (p == null) {
-					nextNode = null;
-					nextItem = null;
-					return x;
-				}
-				final E item = p.getItem();
-				if (item != null) {
-					nextNode = p;
-					nextItem = item;
-					return x;
-				} else {
-					p = p.getNext();
-				}
-			}
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#hasNext()
-		 */
-		@Override
-		public boolean hasNext() {
-			return nextNode != null;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#next()
-		 */
-		@Override
-		public E next() {
-			if (nextNode == null)
-				throw new NoSuchElementException();
-			return advance();
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#remove()
-		 */
-		@Override
-		public void remove() {
-			final Node<E> l = lastRet;
-			if (l == null)
-				throw new IllegalStateException();
-			// rely on a future traversal to relink.
-			l.setItem(null);
-			lastRet = null;
-		}
-	}
-
-	/**
 	 * Save the state to a stream (that is, serialize it).
 	 * 
 	 * @param s
@@ -719,33 +749,5 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 		}
 		// Use trailing null as sentinel
 		s.writeObject(null);
-	}
-
-	/**
-	 * Reconstitute the Queue instance from a stream (that is, deserialize it).
-	 * 
-	 * @param s
-	 *            the stream
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 * @throws ClassNotFoundException
-	 *             the class not found exception
-	 */
-	private void readObject(final java.io.ObjectInputStream s)
-			throws java.io.IOException, ClassNotFoundException {
-		// Read in capacity, and any hidden stuff
-		s.defaultReadObject();
-		head = new Node<E>(null, null);
-		tail = head;
-		// Read in all elements and place in queue
-		for (;;) {
-			@SuppressWarnings("unchecked")
-			final E item = (E) s.readObject();
-			if (item == null) {
-				break;
-			} else {
-				offer(item);
-			}
-		}
 	}
 }

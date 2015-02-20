@@ -31,3 +31,7 @@ commands:
   adminstick:
   rank:
   venn:
+  homes:
+  home:
+  sethome:
+  delhome:

@@ -26,6 +26,11 @@
 
 package info.nordbyen.Ziputils;
 
+import info.nordbyen.Ziputils.commons.FileUtils;
+import info.nordbyen.Ziputils.commons.IOUtils;
+import info.nordbyen.Ziputils.transform.ZipEntryTransformer;
+import info.nordbyen.Ziputils.transform.ZipEntryTransformerEntry;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileFilter;
@@ -50,11 +55,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
-
-import info.nordbyen.Ziputils.commons.FileUtils;
-import info.nordbyen.Ziputils.commons.IOUtils;
-import info.nordbyen.Ziputils.transform.ZipEntryTransformer;
-import info.nordbyen.Ziputils.transform.ZipEntryTransformerEntry;
 
 /**
  * The Class Zips.

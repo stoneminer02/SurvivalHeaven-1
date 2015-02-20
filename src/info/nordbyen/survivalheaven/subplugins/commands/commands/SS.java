@@ -51,8 +51,9 @@ public class SS implements CommandExecutor {
 	@Override
 	public boolean onCommand(final CommandSender sender, final Command command,
 			final String CommandLabel, final String[] args) {
-		RankType rank = SH.getManager().getRankManager().getRank( ((Player)sender).getUniqueId().toString() );
-		if (rank != RankType.ADMINISTRATOR && rank != RankType.MODERATOR ) {
+		RankType rank = SH.getManager().getRankManager()
+				.getRank(((Player) sender).getUniqueId().toString());
+		if (rank != RankType.ADMINISTRATOR && rank != RankType.MODERATOR) {
 			sender.sendMessage(ChatColor.RED
 					+ "Du har ikke tilgang til denne kommandoen");
 		}

@@ -37,9 +37,6 @@ import org.bukkit.entity.Player;
  */
 public class LiggCommand extends AbstractCommand {
 
-	/** The instance. */
-	private static LiggCommand instance;
-
 	/**
 	 * Clear command.
 	 */
@@ -55,6 +52,9 @@ public class LiggCommand extends AbstractCommand {
 			instance = new LiggCommand("ligg");
 		}
 	}
+
+	/** The instance. */
+	private static LiggCommand instance;
 
 	/**
 	 * Instantiates a new ligg command.

@@ -35,15 +35,6 @@ import org.bukkit.inventory.ItemStack;
  */
 public class PrepareRecipeEvent extends Event {
 
-	/** The result. */
-	private ItemStack result;
-	/** The inv. */
-	private final ItemStack[] inv;
-	/** The name. */
-	private final String name;
-	/** The handlers. */
-	private static HandlerList handlers = new HandlerList();
-
 	/**
 	 * Gets the handler list.
 	 * 
@@ -52,6 +43,16 @@ public class PrepareRecipeEvent extends Event {
 	public static HandlerList getHandlerList() {
 		return handlers;
 	}
+
+	/** The result. */
+	private ItemStack result;
+	/** The inv. */
+	private final ItemStack[] inv;
+	/** The name. */
+	private final String name;
+
+	/** The handlers. */
+	private static HandlerList handlers = new HandlerList();
 
 	/**
 	 * Instantiates a new prepare recipe event.

@@ -58,6 +58,28 @@ import org.bukkit.inventory.ItemStack;
  */
 public class ShopListener implements Listener {
 
+	public HashMap<String, ArrayList<Long>> hash = new HashMap<String, ArrayList<Long>>();
+
+	public boolean timerIsRunning = false;
+
+	@EventHandler
+	public void mine(BlockBreakEvent e) {
+		if (e.getBlock().getType() == Material.GOLD_ORE
+				|| e.getBlock().getType() == Material.DIAMOND_ORE
+				|| e.getBlock().getType() == Material.IRON_ORE
+				|| e.getBlock().getType() == Material.REDSTONE_ORE) {
+			ArrayList<Long> blocktimelist = hash.get(e.getPlayer().getName());
+			if (blocktimelist == null) {
+				blocktimelist = new ArrayList<Long>();
+				hash.put(e.getPlayer().getName(), blocktimelist);
+			}
+			blocktimelist.add(System.currentTimeMillis());
+			Bukkit.broadcastMessage(ChatColor.GOLD + "DEBUG: "
+					+ e.getPlayer().getName() + ": " + blocktimelist.size());
+		}
+		return;
+	}
+
 	/**
 	 * On click.
 	 * 
@@ -86,68 +108,59 @@ public class ShopListener implements Listener {
 		final ItemStack item = inv.getItem(e.getSlot());
 	}
 
-	public HashMap<String, ArrayList<Long>> hash = new HashMap<String, ArrayList<Long>>();
-	public boolean timerIsRunning = false;
-	
 	@EventHandler
-	public void mine(BlockBreakEvent e) {
-		if (e.getBlock().getType() == Material.GOLD_ORE ||
-				e.getBlock().getType() == Material.DIAMOND_ORE ||
-				e.getBlock().getType() == Material.IRON_ORE ||
-				e.getBlock().getType() == Material.REDSTONE_ORE)
-		{
-			ArrayList<Long> blocktimelist = hash.get( e.getPlayer().getName() );
-			if( blocktimelist == null ) {
-				blocktimelist = new ArrayList< Long >();
-				hash.put(e.getPlayer().getName(), blocktimelist);
-			}
-			blocktimelist.add(System.currentTimeMillis());
-			Bukkit.broadcastMessage(ChatColor.GOLD + "DEBUG: " + e.getPlayer().getName() + ": " + blocktimelist.size());
-		}
-		return;
-	}
-
-	@EventHandler
-	public void onLeave( PlayerQuitEvent e ) {
-		hash.remove(e.getPlayer().getName());
-	}
-	
-	@EventHandler
-	public void onJoin( PlayerJoinEvent e ) {
+	public void onJoin(PlayerJoinEvent e) {
 		hash.put(e.getPlayer().getName(), new ArrayList<Long>());
 	}
-	
+
+	@EventHandler
+	public void onLeave(PlayerQuitEvent e) {
+		hash.remove(e.getPlayer().getName());
+	}
+
 	public void startTimer() {
 		Bukkit.broadcastMessage(ChatColor.GREEN + "PRØVER");
-		if( timerIsRunning ) return;
+		if (timerIsRunning)
+			return;
 		timerIsRunning = true;
 		Bukkit.broadcastMessage(ChatColor.GREEN + "STARTER");
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(SH.getPlugin(), new Runnable() {
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(SH.getPlugin(),
+				new Runnable() {
 
-			@Override
-			public void run() {
-				Bukkit.broadcastMessage(ChatColor.GREEN + "KJØRER");
-				for( Entry<String, ArrayList<Long>> entry : hash.entrySet() ) {
-					Bukkit.broadcastMessage(ChatColor.GREEN + "LOOPER: " + entry.getKey());
-					String name = entry.getKey();
-					ArrayList< Long > blocktimes = entry.getValue();
-					ArrayList<Long> remove = new ArrayList<Long>();
-					Bukkit.broadcastMessage(ChatColor.GREEN + "Antall: " + entry.getValue().size());
-					for( long time : blocktimes ) {
-						if( time < (System.currentTimeMillis() - 30*1000) ) {
-							remove.add(time);
+					@Override
+					public void run() {
+						Bukkit.broadcastMessage(ChatColor.GREEN + "KJØRER");
+						for (Entry<String, ArrayList<Long>> entry : hash
+								.entrySet()) {
+							Bukkit.broadcastMessage(ChatColor.GREEN
+									+ "LOOPER: " + entry.getKey());
+							String name = entry.getKey();
+							ArrayList<Long> blocktimes = entry.getValue();
+							ArrayList<Long> remove = new ArrayList<Long>();
+							Bukkit.broadcastMessage(ChatColor.GREEN
+									+ "Antall: " + entry.getValue().size());
+							for (long time : blocktimes) {
+								if (time < (System.currentTimeMillis() - 30 * 1000)) {
+									remove.add(time);
+								}
+							}
+							for (long rem : remove)
+								blocktimes.remove(rem);
+							Bukkit.broadcastMessage(ChatColor.GREEN
+									+ "Antall etter: "
+									+ entry.getValue().size());
+
+							if (blocktimes.size() >= 1) {
+								Bukkit.broadcast(ChatColor.YELLOW + name
+										+ ChatColor.GRAY + " har minet "
+										+ ChatColor.YELLOW + blocktimes.size()
+										+ ChatColor.GRAY
+										+ " de siste 30 sekundene",
+										"buildit.admin");
+							}
 						}
 					}
-					for( long rem : remove )
-						blocktimes.remove(rem);
-					Bukkit.broadcastMessage(ChatColor.GREEN + "Antall etter: " + entry.getValue().size());
-					
-					if( blocktimes.size() >= 1 ) {
-						Bukkit.broadcast(ChatColor.YELLOW + name + ChatColor.GRAY + " har minet " + ChatColor.YELLOW + blocktimes.size() + ChatColor.GRAY + " de siste 30 sekundene", "buildit.admin" );
-					}
-				}
-			}
-			
-		}, 20*30, 20*30); // 30 sec
+
+				}, 20 * 30, 20 * 30); // 30 sec
 	}
 }

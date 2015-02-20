@@ -42,70 +42,6 @@ import org.bukkit.entity.Player;
  */
 public class FDragon {
 
-	/** The packet play out spawn entity living. */
-	private static Constructor<?> packetPlayOutSpawnEntityLiving;
-	/** The entity enderdragon. */
-	private static Constructor<?> entityEnderdragon;
-	/** The set location. */
-	private static Method setLocation;
-	/** The set custom name. */
-	private static Method setCustomName;
-	/** The set health. */
-	private static Method setHealth;
-	/** The set invisible. */
-	private static Method setInvisible;
-	/** The get world handle. */
-	private static Method getWorldHandle;
-	/** The get player handle. */
-	private static Method getPlayerHandle;
-	/** The player connection. */
-	private static Field playerConnection;
-	/** The send packet. */
-	private static Method sendPacket;
-	/** The get datawatcher. */
-	private static Method getDatawatcher;
-	/** The a. */
-	private static Method a;
-	/** The d. */
-	private static Field d;
-	/** The player dragons. */
-	public static Map<String, Object> playerDragons = new HashMap<String, Object>();
-	/** The player text dragon. */
-	public static Map<String, String> playerTextDragon = new HashMap<String, String>();
-	static {
-		try {
-			packetPlayOutSpawnEntityLiving = getMCClass(
-					"PacketPlayOutSpawnEntityLiving").getConstructor(
-					getMCClass("EntityLiving"));
-			entityEnderdragon = getMCClass("EntityEnderDragon").getConstructor(
-					getMCClass("World"));
-			setLocation = getMCClass("EntityEnderDragon").getMethod(
-					"setLocation", double.class, double.class, double.class,
-					float.class, float.class);
-			setCustomName = getMCClass("EntityEnderDragon").getMethod(
-					"setCustomName", new Class<?>[] { String.class });
-			setHealth = getMCClass("EntityEnderDragon").getMethod("setHealth",
-					new Class<?>[] { float.class });
-			setInvisible = getMCClass("EntityEnderDragon").getMethod(
-					"setInvisible", new Class<?>[] { boolean.class });
-			getWorldHandle = getCraftClass("CraftWorld").getMethod("getHandle");
-			getPlayerHandle = getCraftClass("entity.CraftPlayer").getMethod(
-					"getHandle");
-			playerConnection = getMCClass("EntityPlayer").getDeclaredField(
-					"playerConnection");
-			sendPacket = getMCClass("PlayerConnection").getMethod("sendPacket",
-					getMCClass("Packet"));
-			getDatawatcher = getMCClass("EntityEnderDragon").getMethod(
-					"getDataWatcher");
-			a = getMCClass("DataWatcher").getMethod("a", int.class,
-					Object.class);
-			d = getMCClass("DataWatcher").getDeclaredField("d");
-			d.setAccessible(true);
-		} catch (final Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	/**
 	 * Change watcher.
 	 * 
@@ -360,6 +296,80 @@ public class FDragon {
 			final Object nms_player = getPlayerHandle.invoke(p);
 			final Object nms_connection = playerConnection.get(nms_player);
 			sendPacket.invoke(nms_connection, nms_packet);
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/** The packet play out spawn entity living. */
+	private static Constructor<?> packetPlayOutSpawnEntityLiving;
+	/** The entity enderdragon. */
+	private static Constructor<?> entityEnderdragon;
+	/** The set location. */
+	private static Method setLocation;
+	/** The set custom name. */
+	private static Method setCustomName;
+	/** The set health. */
+	private static Method setHealth;
+	/** The set invisible. */
+	private static Method setInvisible;
+
+	/** The get world handle. */
+	private static Method getWorldHandle;
+
+	/** The get player handle. */
+	private static Method getPlayerHandle;
+
+	/** The player connection. */
+	private static Field playerConnection;
+
+	/** The send packet. */
+	private static Method sendPacket;
+
+	/** The get datawatcher. */
+	private static Method getDatawatcher;
+
+	/** The a. */
+	private static Method a;
+
+	/** The d. */
+	private static Field d;
+
+	/** The player dragons. */
+	public static Map<String, Object> playerDragons = new HashMap<String, Object>();
+
+	/** The player text dragon. */
+	public static Map<String, String> playerTextDragon = new HashMap<String, String>();
+
+	static {
+		try {
+			packetPlayOutSpawnEntityLiving = getMCClass(
+					"PacketPlayOutSpawnEntityLiving").getConstructor(
+					getMCClass("EntityLiving"));
+			entityEnderdragon = getMCClass("EntityEnderDragon").getConstructor(
+					getMCClass("World"));
+			setLocation = getMCClass("EntityEnderDragon").getMethod(
+					"setLocation", double.class, double.class, double.class,
+					float.class, float.class);
+			setCustomName = getMCClass("EntityEnderDragon").getMethod(
+					"setCustomName", new Class<?>[] { String.class });
+			setHealth = getMCClass("EntityEnderDragon").getMethod("setHealth",
+					new Class<?>[] { float.class });
+			setInvisible = getMCClass("EntityEnderDragon").getMethod(
+					"setInvisible", new Class<?>[] { boolean.class });
+			getWorldHandle = getCraftClass("CraftWorld").getMethod("getHandle");
+			getPlayerHandle = getCraftClass("entity.CraftPlayer").getMethod(
+					"getHandle");
+			playerConnection = getMCClass("EntityPlayer").getDeclaredField(
+					"playerConnection");
+			sendPacket = getMCClass("PlayerConnection").getMethod("sendPacket",
+					getMCClass("Packet"));
+			getDatawatcher = getMCClass("EntityEnderDragon").getMethod(
+					"getDataWatcher");
+			a = getMCClass("DataWatcher").getMethod("a", int.class,
+					Object.class);
+			d = getMCClass("DataWatcher").getDeclaredField("d");
+			d.setAccessible(true);
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}

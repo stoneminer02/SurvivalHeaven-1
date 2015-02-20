@@ -106,7 +106,7 @@ public class WandManager implements IWandManager {
 	@Override
 	public Wand get(final String id) {
 		if (Wands.containsKey(id))
-			return (Wand) Wands.get(id);
+			return Wands.get(id);
 		return null;
 	}
 

@@ -26,13 +26,13 @@
 
 package info.nordbyen.Ziputils.transform;
 
+import info.nordbyen.Ziputils.ByteSource;
+import info.nordbyen.Ziputils.commons.IOUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import info.nordbyen.Ziputils.ByteSource;
-import info.nordbyen.Ziputils.commons.IOUtils;
 
 /**
  * The Class StringZipEntryTransformer.

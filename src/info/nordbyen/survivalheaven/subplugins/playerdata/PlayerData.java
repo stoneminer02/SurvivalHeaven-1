@@ -101,8 +101,8 @@ public class PlayerData implements IPlayerData {
 			final ArrayList<String> ips, final String uuid,
 			final Date firstlogin, final Date lastlogin, final long timeplayed,
 			final int rank, final ArrayList<Integer> badges,
-			final Location lastlocation, 
-			final int level, final long money, final int gamemode) {
+			final Location lastlocation, final int level, final long money,
+			final int gamemode) {
 		this.setGamemode(gamemode);
 		this.id = id;
 		this.setName(name);

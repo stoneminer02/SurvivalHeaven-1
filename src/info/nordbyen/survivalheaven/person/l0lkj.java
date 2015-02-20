@@ -34,91 +34,10 @@ public class l0lkj extends Person {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see info.nordbyen.survivalheaven.person.Hungerable#getHunger()
-	 */
-	@Override
-	public int getHunger() {
-		throw new org.apache.commons.lang.NotImplementedException(); // TODO
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see info.nordbyen.survivalheaven.person.Hungerable#setHunger()
-	 */
-	@Override
-	public int setHunger() {
-		throw new org.apache.commons.lang.NotImplementedException(); // TODO
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see info.nordbyen.survivalheaven.person.Sleepable#isSleeping()
-	 */
-	@Override
-	public boolean isSleeping() {
-		throw new org.apache.commons.lang.NotImplementedException(); // TODO
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see info.nordbyen.survivalheaven.person.Sleepable#setSleeping()
-	 */
-	@Override
-	public void setSleeping() {
-		throw new org.apache.commons.lang.NotImplementedException(); // TODO
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see info.nordbyen.survivalheaven.person.Ageable#getAge()
 	 */
 	@Override
 	public int getAge() {
-		throw new org.apache.commons.lang.NotImplementedException(); // TODO
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see info.nordbyen.survivalheaven.person.Ageable#setAge()
-	 */
-	@Override
-	public int setAge() {
-		throw new org.apache.commons.lang.NotImplementedException(); // TODO
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see info.nordbyen.survivalheaven.person.Positionable#getLocation()
-	 */
-	@Override
-	public Vektor getLocation() {
-		throw new org.apache.commons.lang.NotImplementedException(); // TODO
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see info.nordbyen.survivalheaven.person.Positionable#setLocation()
-	 */
-	@Override
-	public void setLocation() {
-		throw new org.apache.commons.lang.NotImplementedException(); // TODO
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * info.nordbyen.survivalheaven.person.Talkable#talk(java.lang.String[])
-	 */
-	@Override
-	public void talk(final String... strings) {
 		throw new org.apache.commons.lang.NotImplementedException(); // TODO
 	}
 
@@ -135,10 +54,10 @@ public class l0lkj extends Person {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see info.nordbyen.survivalheaven.person.Nameable#getMiddleNames()
+	 * @see info.nordbyen.survivalheaven.person.Hungerable#getHunger()
 	 */
 	@Override
-	public String[] getMiddleNames() {
+	public int getHunger() {
 		throw new org.apache.commons.lang.NotImplementedException(); // TODO
 	}
 
@@ -155,10 +74,70 @@ public class l0lkj extends Person {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see info.nordbyen.survivalheaven.person.Positionable#getLocation()
+	 */
+	@Override
+	public Vektor getLocation() {
+		throw new org.apache.commons.lang.NotImplementedException(); // TODO
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.person.Nameable#getMiddleNames()
+	 */
+	@Override
+	public String[] getMiddleNames() {
+		throw new org.apache.commons.lang.NotImplementedException(); // TODO
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see info.nordbyen.survivalheaven.person.Sexable#getSex()
 	 */
 	@Override
 	public Sex getSex() {
+		throw new org.apache.commons.lang.NotImplementedException(); // TODO
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.person.Sleepable#isSleeping()
+	 */
+	@Override
+	public boolean isSleeping() {
+		throw new org.apache.commons.lang.NotImplementedException(); // TODO
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.person.Ageable#setAge()
+	 */
+	@Override
+	public int setAge() {
+		throw new org.apache.commons.lang.NotImplementedException(); // TODO
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.person.Hungerable#setHunger()
+	 */
+	@Override
+	public int setHunger() {
+		throw new org.apache.commons.lang.NotImplementedException(); // TODO
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.person.Positionable#setLocation()
+	 */
+	@Override
+	public void setLocation() {
 		throw new org.apache.commons.lang.NotImplementedException(); // TODO
 	}
 
@@ -170,6 +149,27 @@ public class l0lkj extends Person {
 	 */
 	@Override
 	public void setSex(final Sex sex) {
+		throw new org.apache.commons.lang.NotImplementedException(); // TODO
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see info.nordbyen.survivalheaven.person.Sleepable#setSleeping()
+	 */
+	@Override
+	public void setSleeping() {
+		throw new org.apache.commons.lang.NotImplementedException(); // TODO
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * info.nordbyen.survivalheaven.person.Talkable#talk(java.lang.String[])
+	 */
+	@Override
+	public void talk(final String... strings) {
 		throw new org.apache.commons.lang.NotImplementedException(); // TODO
 	}
 }

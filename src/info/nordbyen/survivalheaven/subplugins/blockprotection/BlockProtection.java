@@ -48,9 +48,6 @@ import com.sk89q.worldedit.WorldEdit;
  */
 public final class BlockProtection extends SubPlugin {
 
-	/** The instance. */
-	private static BlockProtection instance;
-
 	/**
 	 * Gets the single instance of BlockProtection.
 	 * 
@@ -59,6 +56,9 @@ public final class BlockProtection extends SubPlugin {
 	static BlockProtection getInstance() {
 		return instance;
 	}
+
+	/** The instance. */
+	private static BlockProtection instance;
 
 	/** The registered worlds. */
 	private final ArrayList<String> registeredWorlds = new ArrayList<String>();

@@ -44,15 +44,6 @@ import java.util.List;
  */
 public class FileUtils {
 
-	/** The Constant ONE_KB. */
-	public static final long ONE_KB = 1024;
-	/** The Constant ONE_MB. */
-	public static final long ONE_MB = ONE_KB * ONE_KB;
-	/** The Constant ONE_GB. */
-	public static final long ONE_GB = ONE_KB * ONE_MB;
-	/** The Constant EMPTY_FILE_ARRAY. */
-	public static final File[] EMPTY_FILE_ARRAY = new File[0];
-
 	/**
 	 * Clean directory.
 	 * 
@@ -800,6 +791,18 @@ public class FileUtils {
 		}
 		return size;
 	}
+
+	/** The Constant ONE_KB. */
+	public static final long ONE_KB = 1024;
+
+	/** The Constant ONE_MB. */
+	public static final long ONE_MB = ONE_KB * ONE_KB;
+
+	/** The Constant ONE_GB. */
+	public static final long ONE_GB = ONE_KB * ONE_MB;
+
+	/** The Constant EMPTY_FILE_ARRAY. */
+	public static final File[] EMPTY_FILE_ARRAY = new File[0];
 
 	/**
 	 * Instantiates a new file utils.

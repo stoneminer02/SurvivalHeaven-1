@@ -43,15 +43,6 @@ import java.util.zip.ZipOutputStream;
  */
 class ZipFileUtil {
 
-	/** The Constant MISSING_METHOD_PLEASE_UPGRADE. */
-	private static final String MISSING_METHOD_PLEASE_UPGRADE = "Your JRE doesn't support the ZipFile Charset constructor. Please upgrade JRE to 1.7 use this feature. Tried constructor ZipFile(File, Charset).";
-	/** The Constant CONSTRUCTOR_MESSAGE_FOR_ZIPFILE. */
-	private static final String CONSTRUCTOR_MESSAGE_FOR_ZIPFILE = "Using constructor ZipFile(File, Charset) has failed: ";
-	/** The Constant CONSTRUCTOR_MESSAGE_FOR_OUTPUT. */
-	private static final String CONSTRUCTOR_MESSAGE_FOR_OUTPUT = "Using constructor ZipOutputStream(OutputStream, Charset) has failed: ";
-	/** The Constant CONSTRUCTOR_MESSAGE_FOR_INPUT. */
-	private static final String CONSTRUCTOR_MESSAGE_FOR_INPUT = "Using constructor ZipInputStream(InputStream, Charset) has failed: ";
-
 	/**
 	 * Creates the zip input stream.
 	 * 
@@ -174,6 +165,18 @@ class ZipFileUtil {
 			return false;
 		}
 	}
+
+	/** The Constant MISSING_METHOD_PLEASE_UPGRADE. */
+	private static final String MISSING_METHOD_PLEASE_UPGRADE = "Your JRE doesn't support the ZipFile Charset constructor. Please upgrade JRE to 1.7 use this feature. Tried constructor ZipFile(File, Charset).";
+
+	/** The Constant CONSTRUCTOR_MESSAGE_FOR_ZIPFILE. */
+	private static final String CONSTRUCTOR_MESSAGE_FOR_ZIPFILE = "Using constructor ZipFile(File, Charset) has failed: ";
+
+	/** The Constant CONSTRUCTOR_MESSAGE_FOR_OUTPUT. */
+	private static final String CONSTRUCTOR_MESSAGE_FOR_OUTPUT = "Using constructor ZipOutputStream(OutputStream, Charset) has failed: ";
+
+	/** The Constant CONSTRUCTOR_MESSAGE_FOR_INPUT. */
+	private static final String CONSTRUCTOR_MESSAGE_FOR_INPUT = "Using constructor ZipInputStream(InputStream, Charset) has failed: ";
 
 	// Private constructor for the utility class
 	/**

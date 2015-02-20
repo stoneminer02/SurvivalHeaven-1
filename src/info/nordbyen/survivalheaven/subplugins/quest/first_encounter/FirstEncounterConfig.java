@@ -38,9 +38,6 @@ import org.bukkit.Location;
  */
 public class FirstEncounterConfig extends CustomConfiguration {
 
-	/** The cfg. */
-	private static FirstEncounterConfig cfg;
-
 	/**
 	 * Gets the door1_1.
 	 * 
@@ -78,6 +75,9 @@ public class FirstEncounterConfig extends CustomConfiguration {
 		}
 		return cfg;
 	}
+
+	/** The cfg. */
+	private static FirstEncounterConfig cfg;
 
 	/**
 	 * Instantiates a new first encounter config.

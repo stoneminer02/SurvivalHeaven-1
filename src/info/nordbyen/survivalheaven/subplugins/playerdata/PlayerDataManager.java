@@ -146,50 +146,6 @@ public final class PlayerDataManager implements IPlayerDataManager {
 		}
 	}
 
-	/**
-	 * Update data from database.
-	 */
-	void updateDataFromDatabase() {
-		try {
-			final ResultSet rs = SH.getManager().getMysqlManager()
-					.query("SELECT * FROM `players`");
-			while (rs.next()) {
-				final int id = rs.getInt("id");
-				final ArrayList<String> ips = new ArrayList<String>();
-				for (final String ip : rs.getString("ips").split(";")) {
-					ips.add(ip);
-				}
-				final String name = rs.getString("name");
-				final String uuid = rs.getString("uuid");
-				final Date firstlogin = SH.getManager().getMysqlManager()
-						.getDate(rs.getString("firstlogin"));
-				final Date lastlogin = SH.getManager().getMysqlManager()
-						.getDate(rs.getString("lastlogin"));
-				final long timeplayed = rs.getLong("timeplayed");
-				final int rank = rs.getInt("rank");
-				final ArrayList<Integer> badges = new ArrayList<Integer>();
-				final String[] ba = rs.getString("badges").split(",");
-				for (final String badge : ba) {
-					try {
-						badges.add(Integer.parseInt(badge));
-					} catch (final Exception e) {
-					} // Ignorere errorer her
-				}
-				final Location lastlocation = SH.getManager().getMysqlManager()
-						.getLocation(rs.getString("lastlocation"));
-				final int level = rs.getInt("level");
-				final long money = rs.getInt("bank");
-				final int gamemode = rs.getInt("gamemode");
-				final PlayerData data = new PlayerData(id, name, ips, uuid,
-						firstlogin, lastlogin, timeplayed, rank, badges,
-						lastlocation, level, money, gamemode);
-				playerdatalist.put(data.getUUID(), data);
-			}
-		} catch (final SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -254,6 +210,50 @@ public final class PlayerDataManager implements IPlayerDataManager {
 			} catch (final SQLException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	/**
+	 * Update data from database.
+	 */
+	void updateDataFromDatabase() {
+		try {
+			final ResultSet rs = SH.getManager().getMysqlManager()
+					.query("SELECT * FROM `players`");
+			while (rs.next()) {
+				final int id = rs.getInt("id");
+				final ArrayList<String> ips = new ArrayList<String>();
+				for (final String ip : rs.getString("ips").split(";")) {
+					ips.add(ip);
+				}
+				final String name = rs.getString("name");
+				final String uuid = rs.getString("uuid");
+				final Date firstlogin = SH.getManager().getMysqlManager()
+						.getDate(rs.getString("firstlogin"));
+				final Date lastlogin = SH.getManager().getMysqlManager()
+						.getDate(rs.getString("lastlogin"));
+				final long timeplayed = rs.getLong("timeplayed");
+				final int rank = rs.getInt("rank");
+				final ArrayList<Integer> badges = new ArrayList<Integer>();
+				final String[] ba = rs.getString("badges").split(",");
+				for (final String badge : ba) {
+					try {
+						badges.add(Integer.parseInt(badge));
+					} catch (final Exception e) {
+					} // Ignorere errorer her
+				}
+				final Location lastlocation = SH.getManager().getMysqlManager()
+						.getLocation(rs.getString("lastlocation"));
+				final int level = rs.getInt("level");
+				final long money = rs.getInt("bank");
+				final int gamemode = rs.getInt("gamemode");
+				final PlayerData data = new PlayerData(id, name, ips, uuid,
+						firstlogin, lastlogin, timeplayed, rank, badges,
+						lastlocation, level, money, gamemode);
+				playerdatalist.put(data.getUUID(), data);
+			}
+		} catch (final SQLException e) {
+			e.printStackTrace();
 		}
 	}
 }

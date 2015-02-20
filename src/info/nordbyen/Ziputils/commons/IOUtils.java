@@ -43,31 +43,6 @@ import java.io.Writer;
  */
 public class IOUtils {
 
-	// NOTE: This class is focused on InputStream, OutputStream, Reader and
-	// Writer. Each method should take at least one of these as a parameter,
-	// or return one of them.
-	/** The Constant DIR_SEPARATOR_UNIX. */
-	public static final char DIR_SEPARATOR_UNIX = '/';
-	/** The Constant DIR_SEPARATOR_WINDOWS. */
-	public static final char DIR_SEPARATOR_WINDOWS = '\\';
-	/** The Constant DIR_SEPARATOR. */
-	public static final char DIR_SEPARATOR = File.separatorChar;
-	/** The Constant LINE_SEPARATOR_UNIX. */
-	public static final String LINE_SEPARATOR_UNIX = "\n";
-	/** The Constant LINE_SEPARATOR_WINDOWS. */
-	public static final String LINE_SEPARATOR_WINDOWS = "\r\n";
-	/** The Constant LINE_SEPARATOR. */
-	public static final String LINE_SEPARATOR;
-	static {
-		// avoid security issues
-		StringWriter buf = new StringWriter(4);
-		PrintWriter out = new PrintWriter(buf);
-		out.println();
-		LINE_SEPARATOR = buf.toString();
-	}
-	/** The Constant DEFAULT_BUFFER_SIZE. */
-	private static final int DEFAULT_BUFFER_SIZE = 1024 * 4;
-
 	/**
 	 * Close quietly.
 	 * 
@@ -294,6 +269,38 @@ public class IOUtils {
 		copy(input, sw, encoding);
 		return sw.toString();
 	}
+
+	// NOTE: This class is focused on InputStream, OutputStream, Reader and
+	// Writer. Each method should take at least one of these as a parameter,
+	// or return one of them.
+	/** The Constant DIR_SEPARATOR_UNIX. */
+	public static final char DIR_SEPARATOR_UNIX = '/';
+
+	/** The Constant DIR_SEPARATOR_WINDOWS. */
+	public static final char DIR_SEPARATOR_WINDOWS = '\\';
+
+	/** The Constant DIR_SEPARATOR. */
+	public static final char DIR_SEPARATOR = File.separatorChar;
+
+	/** The Constant LINE_SEPARATOR_UNIX. */
+	public static final String LINE_SEPARATOR_UNIX = "\n";
+
+	/** The Constant LINE_SEPARATOR_WINDOWS. */
+	public static final String LINE_SEPARATOR_WINDOWS = "\r\n";
+
+	/** The Constant LINE_SEPARATOR. */
+	public static final String LINE_SEPARATOR;
+
+	static {
+		// avoid security issues
+		StringWriter buf = new StringWriter(4);
+		PrintWriter out = new PrintWriter(buf);
+		out.println();
+		LINE_SEPARATOR = buf.toString();
+	}
+
+	/** The Constant DEFAULT_BUFFER_SIZE. */
+	private static final int DEFAULT_BUFFER_SIZE = 1024 * 4;
 
 	/**
 	 * Instantiates a new IO utils.

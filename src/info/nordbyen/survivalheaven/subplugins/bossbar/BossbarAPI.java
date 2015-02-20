@@ -45,25 +45,6 @@ import org.bukkit.scheduler.BukkitRunnable;
  */
 public class BossbarAPI extends SubPlugin implements Listener {
 
-	/** The plugin. */
-	public static Plugin plugin;
-	/** The playerdragonbartask. */
-	public static Map<Player, String> playerdragonbartask = new HashMap<Player, String>();
-	/** The healthdragonbartask. */
-	public static Map<Player, Float> healthdragonbartask = new HashMap<Player, Float>();
-	/** The cooldownsdragonbar. */
-	public static Map<Player, Integer> cooldownsdragonbar = new HashMap<Player, Integer>();
-	/** The starttimerdragonbar. */
-	public static Map<Player, Integer> starttimerdragonbar = new HashMap<Player, Integer>();
-	/** The playerwitherbartask. */
-	public static Map<Player, String> playerwitherbartask = new HashMap<Player, String>();
-	/** The healthwitherbartask. */
-	public static Map<Player, Float> healthwitherbartask = new HashMap<Player, Float>();
-	/** The cooldownswitherbar. */
-	public static Map<Player, Integer> cooldownswitherbar = new HashMap<Player, Integer>();
-	/** The starttimerwitherbar. */
-	public static Map<Player, Integer> starttimerwitherbar = new HashMap<Player, Integer>();
-
 	/**
 	 * Gets the single instance of BossbarAPI.
 	 * 
@@ -399,6 +380,33 @@ public class BossbarAPI extends SubPlugin implements Listener {
 		final int unite = Math.round(300 / starttimerwitherbar.get(p));
 		FWither.setBossBar(p, text, unite * timer);
 	}
+
+	/** The plugin. */
+	public static Plugin plugin;
+
+	/** The playerdragonbartask. */
+	public static Map<Player, String> playerdragonbartask = new HashMap<Player, String>();
+
+	/** The healthdragonbartask. */
+	public static Map<Player, Float> healthdragonbartask = new HashMap<Player, Float>();
+
+	/** The cooldownsdragonbar. */
+	public static Map<Player, Integer> cooldownsdragonbar = new HashMap<Player, Integer>();
+
+	/** The starttimerdragonbar. */
+	public static Map<Player, Integer> starttimerdragonbar = new HashMap<Player, Integer>();
+
+	/** The playerwitherbartask. */
+	public static Map<Player, String> playerwitherbartask = new HashMap<Player, String>();
+
+	/** The healthwitherbartask. */
+	public static Map<Player, Float> healthwitherbartask = new HashMap<Player, Float>();
+
+	/** The cooldownswitherbar. */
+	public static Map<Player, Integer> cooldownswitherbar = new HashMap<Player, Integer>();
+
+	/** The starttimerwitherbar. */
+	public static Map<Player, Integer> starttimerwitherbar = new HashMap<Player, Integer>();
 
 	/**
 	 * Instantiates a new bossbar api.

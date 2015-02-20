@@ -47,9 +47,6 @@ import org.bukkit.entity.Player;
  */
 public class ServerCommand extends AbstractCommand {
 
-	/** The instance. */
-	static ServerCommand instance = null;
-
 	/**
 	 * Clear command.
 	 */
@@ -65,6 +62,9 @@ public class ServerCommand extends AbstractCommand {
 			instance = new ServerCommand();
 		}
 	}
+
+	/** The instance. */
+	static ServerCommand instance = null;
 
 	/** The feil syntax. */
 	private final String FEIL_SYNTAX = ChatColor.RED

@@ -49,7 +49,7 @@ public class RankManager implements IRankManager {
 	public RankManager() {
 		Bukkit.getPluginManager().registerEvents(new RankManagerListener(),
 				SH.getPlugin());
-		SH.getPlugin().getCommand( "rank" ).setExecutor( new RankManagerCommand() );
+		SH.getPlugin().getCommand("rank").setExecutor(new RankManagerCommand());
 	}
 
 	/*
@@ -130,12 +130,20 @@ public class RankManager implements IRankManager {
 			o.setPlayerListName(getRank(o.getUniqueId().toString()).getColor()
 					+ o.getName());
 			o.setDisplayName(getRank(o.getUniqueId().toString()).getPrefix()
-					+ o.getName());	
-			IRegionData rd = SH.getManager().getRegionManager().getRegionAt( o.getLocation() );
-			if( rd == null ) 
+					+ o.getName());
+			IRegionData rd = SH.getManager().getRegionManager()
+					.getRegionAt(o.getLocation());
+			if (rd == null)
 				FancyMessages.sendTabTitle(o, SH.NAME, SH.MOTTO);
 			else
-				FancyMessages.sendTabTitle(o, SH.NAME, ChatColor.BLUE + "Område: " + ChatColor.GREEN + rd.getName() + ChatColor.BLUE + "\nPvP: " + (rd.isPvp() ? ChatColor.RED + "Ja" : ChatColor.GREEN + "Nei") );
+				FancyMessages.sendTabTitle(o, SH.NAME, ChatColor.BLUE
+						+ "Område: "
+						+ ChatColor.GREEN
+						+ rd.getName()
+						+ ChatColor.BLUE
+						+ "\nPvP: "
+						+ (rd.isPvp() ? ChatColor.RED + "Ja" : ChatColor.GREEN
+								+ "Nei"));
 		}
 	}
 }

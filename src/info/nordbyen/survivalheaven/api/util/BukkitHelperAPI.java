@@ -132,29 +132,6 @@ public class BukkitHelperAPI {
 	}
 
 	/**
-	 * Save inventory.
-	 * 
-	 * @param inventory
-	 *            the inventory
-	 * @param file
-	 *            the file
-	 * @param path
-	 *            the path
-	 */
-	public void saveInventory(final Inventory inventory,
-			final FileConfiguration file, final String path) {
-		int i = 0;
-		for (final ItemStack im : inventory.getContents()) {
-			file.set(path + ".contents." + i, im);
-			i++;
-		}
-		file.set(path + ".maxstacksize", inventory.getMaxStackSize());
-		file.set(path + ".inventorytitle", inventory.getTitle());
-		file.set(path + ".inventorysize", inventory.getSize());
-		file.set(path + ".inventoryholder", inventory.getHolder());
-	}
-
-	/**
 	 * Gets the inventory.
 	 * 
 	 * @param file
@@ -179,5 +156,28 @@ public class BukkitHelperAPI {
 			return inv;
 		}
 		return null;
+	}
+
+	/**
+	 * Save inventory.
+	 * 
+	 * @param inventory
+	 *            the inventory
+	 * @param file
+	 *            the file
+	 * @param path
+	 *            the path
+	 */
+	public void saveInventory(final Inventory inventory,
+			final FileConfiguration file, final String path) {
+		int i = 0;
+		for (final ItemStack im : inventory.getContents()) {
+			file.set(path + ".contents." + i, im);
+			i++;
+		}
+		file.set(path + ".maxstacksize", inventory.getMaxStackSize());
+		file.set(path + ".inventorytitle", inventory.getTitle());
+		file.set(path + ".inventorysize", inventory.getSize());
+		file.set(path + ".inventoryholder", inventory.getHolder());
 	}
 }

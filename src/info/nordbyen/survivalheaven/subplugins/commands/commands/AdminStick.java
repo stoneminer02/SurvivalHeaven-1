@@ -13,10 +13,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class AdminStick implements CommandExecutor{
+public class AdminStick implements CommandExecutor {
 
 	public AdminStickWand asw = null;
-	
+
 	/** The hashmap. */
 	public static List<String> hashmap = new ArrayList<String>();
 
@@ -30,15 +30,16 @@ public class AdminStick implements CommandExecutor{
 	@Override
 	public boolean onCommand(final CommandSender sender, final Command cmd,
 			final String label, final String[] args) {
-		if( asw == null ) asw = new AdminStickWand(); 
-		
-		if( !(sender instanceof Player) ) {
+		if (asw == null)
+			asw = new AdminStickWand();
+
+		if (!(sender instanceof Player)) {
 			sender.sendMessage(ChatColor.RED + "Bare spillere kan gjøre dette!");
 		}
-		Player p = ( Player )sender;
-		if( p.hasPermission("sh.adminstick") ) {
-			ItemStack item = new ItemStack( Material.STICK, 1 );
-			SH.getManager().getWandManager().createWand( item, asw, p);
+		Player p = (Player) sender;
+		if (p.hasPermission("sh.adminstick")) {
+			ItemStack item = new ItemStack(Material.STICK, 1);
+			SH.getManager().getWandManager().createWand(item, asw, p);
 		}
 		return true;
 	}

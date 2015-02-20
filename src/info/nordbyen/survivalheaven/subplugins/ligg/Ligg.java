@@ -55,9 +55,6 @@ import com.comphenix.protocol.reflect.StructureModifier;
 @SuppressWarnings("deprecation")
 public class Ligg extends SubPlugin implements Listener {
 
-	/** The instance. */
-	private static Ligg instance;
-
 	/**
 	 * Gets the single instance of Ligg.
 	 * 
@@ -66,6 +63,9 @@ public class Ligg extends SubPlugin implements Listener {
 	public static Ligg getInstance() {
 		return instance;
 	}
+
+	/** The instance. */
+	private static Ligg instance;
 
 	/** The use bed constructor. */
 	private PacketConstructor useBedConstructor;

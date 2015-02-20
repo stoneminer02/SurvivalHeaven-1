@@ -33,18 +33,6 @@ import java.io.File;
  */
 public class FilenameUtils {
 
-	/** The Constant EXTENSION_SEPARATOR. */
-	public static final char EXTENSION_SEPARATOR = '.';
-	/** The Constant EXTENSION_SEPARATOR_STR. */
-	public static final String EXTENSION_SEPARATOR_STR = (new Character(
-			EXTENSION_SEPARATOR)).toString();
-	/** The Constant UNIX_SEPARATOR. */
-	private static final char UNIX_SEPARATOR = '/';
-	/** The Constant WINDOWS_SEPARATOR. */
-	private static final char WINDOWS_SEPARATOR = '\\';
-	/** The Constant SYSTEM_SEPARATOR. */
-	private static final char SYSTEM_SEPARATOR = File.separatorChar;
-
 	// -----------------------------------------------------------------------
 	/**
 	 * Gets the prefix length.
@@ -121,6 +109,21 @@ public class FilenameUtils {
 	static boolean isSystemWindows() {
 		return SYSTEM_SEPARATOR == WINDOWS_SEPARATOR;
 	}
+
+	/** The Constant EXTENSION_SEPARATOR. */
+	public static final char EXTENSION_SEPARATOR = '.';
+	/** The Constant EXTENSION_SEPARATOR_STR. */
+	public static final String EXTENSION_SEPARATOR_STR = (new Character(
+			EXTENSION_SEPARATOR)).toString();
+
+	/** The Constant UNIX_SEPARATOR. */
+	private static final char UNIX_SEPARATOR = '/';
+
+	/** The Constant WINDOWS_SEPARATOR. */
+	private static final char WINDOWS_SEPARATOR = '\\';
+
+	/** The Constant SYSTEM_SEPARATOR. */
+	private static final char SYSTEM_SEPARATOR = File.separatorChar;
 
 	/**
 	 * Instantiates a new filename utils.

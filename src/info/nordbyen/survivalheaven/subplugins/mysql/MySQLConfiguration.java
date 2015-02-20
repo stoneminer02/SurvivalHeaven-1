@@ -35,9 +35,6 @@ import java.io.File;
  */
 public class MySQLConfiguration extends CustomConfiguration {
 
-	/** The cfg. */
-	private static MySQLConfiguration cfg;
-
 	/**
 	 * Gets the database name.
 	 * 
@@ -99,6 +96,9 @@ public class MySQLConfiguration extends CustomConfiguration {
 		getInstance().reload();
 		return getInstance().getString("pass");
 	}
+
+	/** The cfg. */
+	private static MySQLConfiguration cfg;
 
 	/**
 	 * Instantiates a new my sql configuration.

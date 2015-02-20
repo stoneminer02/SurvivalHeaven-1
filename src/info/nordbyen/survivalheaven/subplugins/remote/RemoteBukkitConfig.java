@@ -37,9 +37,6 @@ import java.util.Map;
  */
 public class RemoteBukkitConfig extends CustomConfiguration {
 
-	/** The cfg. */
-	private static RemoteBukkitConfig cfg;
-
 	/**
 	 * Gets the single instance of RemoteBukkitConfig.
 	 * 
@@ -51,6 +48,9 @@ public class RemoteBukkitConfig extends CustomConfiguration {
 		}
 		return cfg;
 	}
+
+	/** The cfg. */
+	private static RemoteBukkitConfig cfg;
 
 	/**
 	 * Instantiates a new remote bukkit config.

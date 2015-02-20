@@ -43,72 +43,6 @@ import org.bukkit.entity.Player;
  */
 public class FWither {
 
-	/** The packet play out spawn entity living. */
-	private static Constructor<?> packetPlayOutSpawnEntityLiving;
-	/** The entity entity wither. */
-	private static Constructor<?> entityEntityWither;
-	/** The set location. */
-	private static Method setLocation;
-	/** The set custom name. */
-	private static Method setCustomName;
-	/** The set health. */
-	private static Method setHealth;
-	/** The set invisible. */
-	private static Method setInvisible;
-	/** The get world handle. */
-	private static Method getWorldHandle;
-	/** The get player handle. */
-	private static Method getPlayerHandle;
-	/** The player connection. */
-	private static Field playerConnection;
-	/** The send packet. */
-	private static Method sendPacket;
-	/** The get datawatcher. */
-	private static Method getDatawatcher;
-	/** The a. */
-	private static Method a;
-	/** The d. */
-	private static Field d;
-	/** The player withers. */
-	private static Map<String, Object> playerWithers = new HashMap<String, Object>();
-	/** The player withers2. */
-	private static Map<String, Object> playerWithers2 = new HashMap<String, Object>();
-	/** The player text wither. */
-	private static Map<String, String> playerTextWither = new HashMap<String, String>();
-	static {
-		try {
-			packetPlayOutSpawnEntityLiving = getMCClass(
-					"PacketPlayOutSpawnEntityLiving").getConstructor(
-					getMCClass("EntityLiving"));
-			entityEntityWither = getMCClass("EntityWither").getConstructor(
-					getMCClass("World"));
-			setLocation = getMCClass("EntityWither").getMethod("setLocation",
-					double.class, double.class, double.class, float.class,
-					float.class);
-			setCustomName = getMCClass("EntityWither").getMethod(
-					"setCustomName", new Class<?>[] { String.class });
-			setHealth = getMCClass("EntityWither").getMethod("setHealth",
-					new Class<?>[] { float.class });
-			setInvisible = getMCClass("EntityWither").getMethod("setInvisible",
-					new Class<?>[] { boolean.class });
-			getWorldHandle = getCraftClass("CraftWorld").getMethod("getHandle");
-			getPlayerHandle = getCraftClass("entity.CraftPlayer").getMethod(
-					"getHandle");
-			playerConnection = getMCClass("EntityPlayer").getDeclaredField(
-					"playerConnection");
-			sendPacket = getMCClass("PlayerConnection").getMethod("sendPacket",
-					getMCClass("Packet"));
-			getDatawatcher = getMCClass("EntityWither").getMethod(
-					"getDataWatcher");
-			a = getMCClass("DataWatcher").getMethod("a", int.class,
-					Object.class);
-			d = getMCClass("DataWatcher").getDeclaredField("d");
-			d.setAccessible(true);
-		} catch (final Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	/**
 	 * Change watcher.
 	 * 
@@ -422,5 +356,82 @@ public class FWither {
 		 * playerConnection.get(nms_player); sendPacket.invoke(nms_connection,
 		 * nms_packet); } catch (Exception e) { e.printStackTrace(); }
 		 */
+	}
+
+	/** The packet play out spawn entity living. */
+	private static Constructor<?> packetPlayOutSpawnEntityLiving;
+	/** The entity entity wither. */
+	private static Constructor<?> entityEntityWither;
+	/** The set location. */
+	private static Method setLocation;
+	/** The set custom name. */
+	private static Method setCustomName;
+	/** The set health. */
+	private static Method setHealth;
+	/** The set invisible. */
+	private static Method setInvisible;
+
+	/** The get world handle. */
+	private static Method getWorldHandle;
+
+	/** The get player handle. */
+	private static Method getPlayerHandle;
+
+	/** The player connection. */
+	private static Field playerConnection;
+
+	/** The send packet. */
+	private static Method sendPacket;
+
+	/** The get datawatcher. */
+	private static Method getDatawatcher;
+
+	/** The a. */
+	private static Method a;
+
+	/** The d. */
+	private static Field d;
+
+	/** The player withers. */
+	private static Map<String, Object> playerWithers = new HashMap<String, Object>();
+
+	/** The player withers2. */
+	private static Map<String, Object> playerWithers2 = new HashMap<String, Object>();
+
+	/** The player text wither. */
+	private static Map<String, String> playerTextWither = new HashMap<String, String>();
+
+	static {
+		try {
+			packetPlayOutSpawnEntityLiving = getMCClass(
+					"PacketPlayOutSpawnEntityLiving").getConstructor(
+					getMCClass("EntityLiving"));
+			entityEntityWither = getMCClass("EntityWither").getConstructor(
+					getMCClass("World"));
+			setLocation = getMCClass("EntityWither").getMethod("setLocation",
+					double.class, double.class, double.class, float.class,
+					float.class);
+			setCustomName = getMCClass("EntityWither").getMethod(
+					"setCustomName", new Class<?>[] { String.class });
+			setHealth = getMCClass("EntityWither").getMethod("setHealth",
+					new Class<?>[] { float.class });
+			setInvisible = getMCClass("EntityWither").getMethod("setInvisible",
+					new Class<?>[] { boolean.class });
+			getWorldHandle = getCraftClass("CraftWorld").getMethod("getHandle");
+			getPlayerHandle = getCraftClass("entity.CraftPlayer").getMethod(
+					"getHandle");
+			playerConnection = getMCClass("EntityPlayer").getDeclaredField(
+					"playerConnection");
+			sendPacket = getMCClass("PlayerConnection").getMethod("sendPacket",
+					getMCClass("Packet"));
+			getDatawatcher = getMCClass("EntityWither").getMethod(
+					"getDataWatcher");
+			a = getMCClass("DataWatcher").getMethod("a", int.class,
+					Object.class);
+			d = getMCClass("DataWatcher").getDeclaredField("d");
+			d.setAccessible(true);
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

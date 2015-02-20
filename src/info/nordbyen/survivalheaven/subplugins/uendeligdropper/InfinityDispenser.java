@@ -44,17 +44,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 @SurvivalHeavenSubPlugin(name = "InfDisp")
 public class InfinityDispenser {
 
-	/** The plugin. */
-	public static Plugin plugin;
-	/** The instance. */
-	public static InfinityDispenser instance;
-	/** The config. */
-	public static FileConfiguration config;
-	/** The Constant log. */
-	public static final Logger log = Logger.getLogger("Minecraft");
-	/** The dispensers. */
-	private static Dispensers dispensers;
-
 	/**
 	 * Disable.
 	 * 
@@ -89,4 +78,18 @@ public class InfinityDispenser {
 	public static Dispensers getDispensers() {
 		return dispensers;
 	}
+
+	/** The plugin. */
+	public static Plugin plugin;
+	/** The instance. */
+	public static InfinityDispenser instance;
+
+	/** The config. */
+	public static FileConfiguration config;
+
+	/** The Constant log. */
+	public static final Logger log = Logger.getLogger("Minecraft");
+
+	/** The dispensers. */
+	private static Dispensers dispensers;
 }

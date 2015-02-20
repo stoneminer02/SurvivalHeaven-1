@@ -111,7 +111,7 @@ public class Commands extends SubPlugin {
 		getPlugin().getCommand("sitt").setExecutor(new Sitt());
 		getPlugin().getCommand("sudo").setExecutor(new Sudo());
 		getPlugin().getCommand("adminstick").setExecutor(new AdminStick());
-		
+
 		ServerCommand.initCommand();
 	}
 }

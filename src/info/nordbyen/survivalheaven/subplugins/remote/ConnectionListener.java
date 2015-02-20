@@ -30,6 +30,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import javax.sql.ConnectionEvent;
+
 /**
  * The listener interface for receiving connection events. The class that is
  * interested in processing a connection event implements this interface, and

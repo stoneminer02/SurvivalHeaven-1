@@ -39,13 +39,6 @@ import org.bukkit.scheduler.BukkitTask;
  */
 public class L0lTaskManager extends BukkitRunnable {
 
-	/** The instance. */
-	private static BukkitTask instance;
-	/** The task map_r. */
-	private static HashMap<L0lTaskWrapper, Plugin> taskMap_r;
-	/** The task map_o. */
-	private static HashMap<L0lTaskWrapper, Plugin> taskMap_o;
-
 	/**
 	 * Adds the task.
 	 * 
@@ -104,6 +97,15 @@ public class L0lTaskManager extends BukkitRunnable {
 			// Repeat every tick
 		}
 	}
+
+	/** The instance. */
+	private static BukkitTask instance;
+
+	/** The task map_r. */
+	private static HashMap<L0lTaskWrapper, Plugin> taskMap_r;
+
+	/** The task map_o. */
+	private static HashMap<L0lTaskWrapper, Plugin> taskMap_o;
 
 	/** The plugin. */
 	private final Plugin plugin;

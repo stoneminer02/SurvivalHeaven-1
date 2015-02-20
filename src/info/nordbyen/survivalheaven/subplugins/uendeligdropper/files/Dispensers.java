@@ -39,11 +39,6 @@ import org.bukkit.Location;
  */
 public class Dispensers extends CustomConfiguration {
 
-	/** The dispensers. */
-	private static Dispensers dispensers;
-	/** The empty list. */
-	private static List<String> emptyList = new ArrayList<String>();
-
 	/**
 	 * Gets the single instance of Dispensers.
 	 * 
@@ -82,6 +77,12 @@ public class Dispensers extends CustomConfiguration {
 				.toString());
 		getInstance().save();
 	}
+
+	/** The dispensers. */
+	private static Dispensers dispensers;
+
+	/** The empty list. */
+	private static List<String> emptyList = new ArrayList<String>();
 
 	/**
 	 * Instantiates a new dispensers.

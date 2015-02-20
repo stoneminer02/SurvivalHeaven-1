@@ -36,9 +36,6 @@ import org.bukkit.Location;
  */
 public class FirstEncounter {
 
-	/** The Constant waiting. */
-	private static final List<String> waiting = new ArrayList<String>();
-
 	/**
 	 * Adds the waiting player.
 	 * 
@@ -98,4 +95,7 @@ public class FirstEncounter {
 	public static void removeWaitingPlayer(final String uuid) {
 		waiting.remove(uuid);
 	}
+
+	/** The Constant waiting. */
+	private static final List<String> waiting = new ArrayList<String>();
 }

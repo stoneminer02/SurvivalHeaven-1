@@ -40,11 +40,6 @@ import org.bukkit.entity.Player;
  */
 public class Godta_Command extends AbstractCommand {
 
-	/** The Constant players. */
-	public static final HashMap<String, Acceptable> players = new HashMap<String, Acceptable>();
-	/** The instance. */
-	private static Godta_Command instance = null;
-
 	/**
 	 * Clear command.
 	 */
@@ -60,6 +55,12 @@ public class Godta_Command extends AbstractCommand {
 			instance = new Godta_Command();
 		}
 	}
+
+	/** The Constant players. */
+	public static final HashMap<String, Acceptable> players = new HashMap<String, Acceptable>();
+
+	/** The instance. */
+	private static Godta_Command instance = null;
 
 	/**
 	 * Instantiates a new godta_ command.

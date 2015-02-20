@@ -66,6 +66,32 @@ public class PlayerDatalistener implements Listener {
 		}
 	}
 
+	@EventHandler
+	public void onJoin2(final PlayerJoinEvent e) {
+		e.setJoinMessage(null);
+		if (e.getPlayer().hasPlayedBefore())
+			Bukkit.broadcastMessage(ChatColor.GREEN + e.getPlayer().getName()
+					+ " logget inn");
+		else {
+			Bukkit.broadcastMessage(ChatColor.GREEN + e.getPlayer().getName()
+					+ " logget inn for første gang!");
+			Bukkit.broadcastMessage(ChatColor.BLUE + "Ønsk "
+					+ e.getPlayer().getName() + " velkommen");
+		}
+
+		FancyMessages.sendActionBar(e.getPlayer(), ChatColor.GREEN + ""
+				+ ChatColor.BOLD + "VELKOMMEN TIL " + SH.NAME);
+		FancyMessages.sendTitle(e.getPlayer(), 10, 70, 40, ChatColor.GREEN
+				+ "Velkommen til " + SH.NAME, SH.MOTTO);
+	}
+
+	@EventHandler
+	public void onPing(final ServerListPingEvent e) {
+		e.setMotd(ChatColor.GOLD + "X--===[ " + ChatColor.RED + "Survival"
+				+ ChatColor.GRAY + "Heaven " + ChatColor.DARK_GREEN + "1.8"
+				+ ChatColor.GOLD + " ]===--X");
+	}
+
 	/**
 	 * On quit.
 	 * 
@@ -87,34 +113,12 @@ public class PlayerDatalistener implements Listener {
 			SH.getManager().getPlayerDataManager().createPlayerData(p);
 		}
 	}
-	
-	@EventHandler
-	public void onJoin2(final PlayerJoinEvent e) {
-		e.setJoinMessage(null);
-		if( e.getPlayer().hasPlayedBefore() )
-			Bukkit.broadcastMessage( ChatColor.GREEN + e.getPlayer().getName() + " logget inn" );
-		else {
-			Bukkit.broadcastMessage( ChatColor.GREEN + e.getPlayer().getName() + " logget inn for første gang!" );
-			Bukkit.broadcastMessage( ChatColor.BLUE + "Ønsk " + e.getPlayer().getName() + " velkommen" );
-		}
-		
-		FancyMessages.sendActionBar(e.getPlayer(), ChatColor.GREEN + ""
-				+ ChatColor.BOLD + "VELKOMMEN TIL " + SH.NAME);
-		FancyMessages.sendTitle(e.getPlayer(), 10, 70, 40, ChatColor.GREEN
-				+ "Velkommen til " + SH.NAME, SH.MOTTO);
-	}
-
-	@EventHandler
-	public void onPing(final ServerListPingEvent e) {
-		e.setMotd(ChatColor.GOLD + "X--===[ " + ChatColor.RED + "Survival"
-				+ ChatColor.GRAY + "Heaven " + ChatColor.DARK_GREEN + "1.8"
-				+ ChatColor.GOLD + " ]===--X");
-	}
 
 	@EventHandler
 	public void onQuit2(final PlayerQuitEvent e) {
 		e.setQuitMessage(null);
-		Bukkit.broadcastMessage(ChatColor.RED + e.getPlayer().getName() + " logget av");
+		Bukkit.broadcastMessage(ChatColor.RED + e.getPlayer().getName()
+				+ " logget av");
 	}
 
 }

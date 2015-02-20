@@ -1,5 +1,7 @@
 package info.nordbyen.survivalheaven.subplugins.commands.commands;
 
+import info.nordbyen.survivalheaven.SH;
+import info.nordbyen.survivalheaven.api.wand.Wand;
 
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
@@ -7,11 +9,8 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import info.nordbyen.survivalheaven.SH;
-import info.nordbyen.survivalheaven.api.wand.Wand;
-
 public class AdminStickWand implements Wand {
-	
+
 	public AdminStickWand() {
 		SH.getManager().getWandManager().add(this);
 	}

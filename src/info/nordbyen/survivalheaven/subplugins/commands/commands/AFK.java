@@ -47,13 +47,31 @@ import org.bukkit.event.player.PlayerMoveEvent;
  */
 public class AFK implements CommandExecutor {
 
+	public class AFKListener implements Listener {
+		@EventHandler
+		public void onMove(PlayerMoveEvent e) {
+			Location from = e.getFrom();
+			Location to = e.getTo();
+			if (from.getX() == to.getX())
+				return;
+			if (from.getY() == to.getY())
+				return;
+			if (from.getZ() == to.getZ())
+				return;
+			if (from.getWorld().getName().equals(to.getWorld().getName()))
+				return;
+			hashmap.remove(e.getPlayer().getName());
+		}
+	}
+
 	/** The hashmap. */
 	public static List<String> hashmap = new ArrayList<String>();
 
 	public AFK() {
-		Bukkit.getPluginManager().registerEvents( new AFKListener(), SH.getPlugin() );
+		Bukkit.getPluginManager().registerEvents(new AFKListener(),
+				SH.getPlugin());
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -83,18 +101,5 @@ public class AFK implements CommandExecutor {
 			}
 		}
 		return false;
-	}
-	
-	public class AFKListener implements Listener {
-		@EventHandler
-		public void onMove( PlayerMoveEvent e ) {
-			Location from = e.getFrom();
-			Location to = e.getTo();
-			if( from.getX() == to.getX() ) return;
-			if( from.getY() == to.getY() ) return;
-			if( from.getZ() == to.getZ() ) return;
-			if( from.getWorld().getName().equals( to.getWorld().getName() ) ) return;
-			hashmap.remove( e.getPlayer().getName() );
-		}
 	}
 }

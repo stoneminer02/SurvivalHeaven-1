@@ -41,17 +41,17 @@ public interface Nameable {
 	public String getFirstName();
 
 	/**
+	 * Gets the last name.
+	 * 
+	 * @return the last name
+	 */
+	public String getLastName();
+
+	/**
 	 * Gets the middle names.
 	 * 
 	 * @return the middle names
 	 */
 	@Nullable
 	public String[] getMiddleNames();
-
-	/**
-	 * Gets the last name.
-	 * 
-	 * @return the last name
-	 */
-	public String getLastName();
 }

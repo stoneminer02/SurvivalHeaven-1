@@ -40,15 +40,6 @@ import org.apache.logging.log4j.LogManager;
  */
 public class RemoteBukkitPlugin extends SubPlugin {
 
-	/** The Constant log. */
-	private static final java.util.logging.Logger log = java.util.logging.Logger
-			.getLogger("Minecraft-Server");
-	/** The Constant logger. */
-	private static final org.apache.logging.log4j.core.Logger logger = (org.apache.logging.log4j.core.Logger) LogManager
-			.getRootLogger();
-	/** The Constant oldMsgs. */
-	private static final ArrayList<String> oldMsgs = new ArrayList<String>();
-
 	/**
 	 * Log.
 	 * 
@@ -70,6 +61,17 @@ public class RemoteBukkitPlugin extends SubPlugin {
 	public static void log(final String msg, final IOException ex) {
 		log.log(Level.INFO, "[REMOTE] " + msg, ex);
 	}
+
+	/** The Constant log. */
+	private static final java.util.logging.Logger log = java.util.logging.Logger
+			.getLogger("Minecraft-Server");
+
+	/** The Constant logger. */
+	private static final org.apache.logging.log4j.core.Logger logger = (org.apache.logging.log4j.core.Logger) LogManager
+			.getRootLogger();
+
+	/** The Constant oldMsgs. */
+	private static final ArrayList<String> oldMsgs = new ArrayList<String>();
 
 	/** The verbose. */
 	private boolean verbose;

@@ -42,66 +42,6 @@ import org.bukkit.entity.LivingEntity;
 @SuppressWarnings("deprecation")
 public class Util {
 
-	/** The Constant STANDING_MATERIALS. */
-	private static final Set<Integer> STANDING_MATERIALS = new HashSet<Integer>();
-	/** The Constant STANDING_MATERIALS_TARGET. */
-	private static final HashSet<Byte> STANDING_MATERIALS_TARGET = new HashSet<Byte>();
-	static {
-		STANDING_MATERIALS.add(Integer.valueOf(Material.AIR.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.SAPLING.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.POWERED_RAIL.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.DETECTOR_RAIL.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.LONG_GRASS.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.DEAD_BUSH.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.YELLOW_FLOWER.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.RED_ROSE.getId()));
-		STANDING_MATERIALS
-				.add(Integer.valueOf(Material.BROWN_MUSHROOM.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.RED_MUSHROOM.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.TORCH.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.REDSTONE_WIRE.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.SEEDS.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.SIGN_POST.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.WOODEN_DOOR.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.LADDER.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.RAILS.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.WALL_SIGN.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.LEVER.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.STONE_PLATE.getId()));
-		STANDING_MATERIALS
-				.add(Integer.valueOf(Material.IRON_DOOR_BLOCK.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.WOOD_PLATE.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.REDSTONE_TORCH_OFF
-				.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.REDSTONE_TORCH_ON
-				.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.STONE_BUTTON.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.SNOW.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.SUGAR_CANE_BLOCK
-				.getId()));
-		STANDING_MATERIALS
-				.add(Integer.valueOf(Material.DIODE_BLOCK_OFF.getId()));
-		STANDING_MATERIALS
-				.add(Integer.valueOf(Material.DIODE_BLOCK_ON.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.TRAP_DOOR.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.PUMPKIN_STEM.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.MELON_STEM.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.VINE.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.FENCE_GATE.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.WATER_LILY.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.NETHER_FENCE.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.NETHER_WARTS.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.TRIPWIRE_HOOK.getId()));
-		STANDING_MATERIALS.add(Integer.valueOf(Material.TRIPWIRE.getId()));
-		for (final Integer integer : STANDING_MATERIALS) {
-			STANDING_MATERIALS_TARGET.add(Byte.valueOf(integer.byteValue()));
-		}
-		STANDING_MATERIALS_TARGET.add(Byte.valueOf((byte) Material.WATER
-				.getId()));
-		STANDING_MATERIALS_TARGET.add(Byte
-				.valueOf((byte) Material.STATIONARY_WATER.getId()));
-	}
-
 	/**
 	 * Gets the block target.
 	 * 
@@ -161,5 +101,67 @@ public class Util {
 		final Block block = entity.getTargetBlock(STANDING_MATERIALS_TARGET,
 				300);
 		return block.getLocation();
+	}
+
+	/** The Constant STANDING_MATERIALS. */
+	private static final Set<Integer> STANDING_MATERIALS = new HashSet<Integer>();
+
+	/** The Constant STANDING_MATERIALS_TARGET. */
+	private static final HashSet<Byte> STANDING_MATERIALS_TARGET = new HashSet<Byte>();
+
+	static {
+		STANDING_MATERIALS.add(Integer.valueOf(Material.AIR.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.SAPLING.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.POWERED_RAIL.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.DETECTOR_RAIL.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.LONG_GRASS.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.DEAD_BUSH.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.YELLOW_FLOWER.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.RED_ROSE.getId()));
+		STANDING_MATERIALS
+				.add(Integer.valueOf(Material.BROWN_MUSHROOM.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.RED_MUSHROOM.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.TORCH.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.REDSTONE_WIRE.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.SEEDS.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.SIGN_POST.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.WOODEN_DOOR.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.LADDER.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.RAILS.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.WALL_SIGN.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.LEVER.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.STONE_PLATE.getId()));
+		STANDING_MATERIALS
+				.add(Integer.valueOf(Material.IRON_DOOR_BLOCK.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.WOOD_PLATE.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.REDSTONE_TORCH_OFF
+				.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.REDSTONE_TORCH_ON
+				.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.STONE_BUTTON.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.SNOW.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.SUGAR_CANE_BLOCK
+				.getId()));
+		STANDING_MATERIALS
+				.add(Integer.valueOf(Material.DIODE_BLOCK_OFF.getId()));
+		STANDING_MATERIALS
+				.add(Integer.valueOf(Material.DIODE_BLOCK_ON.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.TRAP_DOOR.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.PUMPKIN_STEM.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.MELON_STEM.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.VINE.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.FENCE_GATE.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.WATER_LILY.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.NETHER_FENCE.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.NETHER_WARTS.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.TRIPWIRE_HOOK.getId()));
+		STANDING_MATERIALS.add(Integer.valueOf(Material.TRIPWIRE.getId()));
+		for (final Integer integer : STANDING_MATERIALS) {
+			STANDING_MATERIALS_TARGET.add(Byte.valueOf(integer.byteValue()));
+		}
+		STANDING_MATERIALS_TARGET.add(Byte.valueOf((byte) Material.WATER
+				.getId()));
+		STANDING_MATERIALS_TARGET.add(Byte
+				.valueOf((byte) Material.STATIONARY_WATER.getId()));
 	}
 }

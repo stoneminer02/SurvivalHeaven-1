@@ -35,9 +35,6 @@ import org.bukkit.plugin.Plugin;
  */
 public class LoggerAPI {
 
-	/** The logger. */
-	private static LoggerAPI logger = new LoggerAPI();
-
 	/**
 	 * Gets the logger.
 	 * 
@@ -46,6 +43,9 @@ public class LoggerAPI {
 	public static LoggerAPI getLogger() {
 		return logger;
 	}
+
+	/** The logger. */
+	private static LoggerAPI logger = new LoggerAPI();
 
 	/**
 	 * Info.

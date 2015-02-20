@@ -26,6 +26,10 @@
 
 package info.nordbyen.Ziputils.transform;
 
+import info.nordbyen.Ziputils.FileSource;
+import info.nordbyen.Ziputils.commons.FileUtils;
+import info.nordbyen.Ziputils.commons.IOUtils;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,10 +38,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import info.nordbyen.Ziputils.FileSource;
-import info.nordbyen.Ziputils.commons.FileUtils;
-import info.nordbyen.Ziputils.commons.IOUtils;
 
 /**
  * The Class FileZipEntryTransformer.

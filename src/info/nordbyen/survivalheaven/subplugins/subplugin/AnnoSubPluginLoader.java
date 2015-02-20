@@ -46,14 +46,6 @@ import org.bukkit.Bukkit;
  */
 public class AnnoSubPluginLoader {
 
-	/** The Constant jars. */
-	private static final ArrayList<File> jars = new ArrayList<File>();
-	/** The Constant folder. */
-	private static final File folder = new File(
-			"./plugins/SurvivalHeaven-CORE/SubPlugins/");
-	/** The Constant parameters. */
-	private static final Class<?>[] parameters = new Class[] { URL.class };
-
 	/**
 	 * Adds the file.
 	 * 
@@ -204,4 +196,14 @@ public class AnnoSubPluginLoader {
 			}
 		}
 	}
+
+	/** The Constant jars. */
+	private static final ArrayList<File> jars = new ArrayList<File>();
+
+	/** The Constant folder. */
+	private static final File folder = new File(
+			"./plugins/SurvivalHeaven-CORE/SubPlugins/");
+
+	/** The Constant parameters. */
+	private static final Class<?>[] parameters = new Class[] { URL.class };
 }

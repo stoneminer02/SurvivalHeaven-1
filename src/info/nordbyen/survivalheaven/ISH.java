@@ -37,6 +37,7 @@ import info.nordbyen.survivalheaven.api.subplugin.ISubPluginManager;
 import info.nordbyen.survivalheaven.api.wand.IWandManager;
 import info.nordbyen.survivalheaven.subplugins.blockdata.IBlockManager;
 import info.nordbyen.survivalheaven.subplugins.groupmanager.FriendManager;
+import info.nordbyen.survivalheaven.subplugins.homes.HomeManager;
 
 /**
  * The Interface ISH.
@@ -67,6 +68,10 @@ public interface ISH {
 	 */
 	IBlockManager getBlockManager();
 
+	FriendManager getFriendManager();
+
+	HomeManager getHomeManager();
+
 	/**
 	 * Gets the mysql manager.
 	 * 
@@ -87,6 +92,13 @@ public interface ISH {
 	 * @return the player data manager
 	 */
 	IPlayerDataManager getPlayerDataManager();
+
+	/**
+	 * Gets the plugin name.
+	 * 
+	 * @return the plugin name
+	 */
+	String getPluginName();
 
 	/**
 	 * Gets the rank manager.
@@ -110,6 +122,13 @@ public interface ISH {
 	ISubPluginManager getSubPluginManager();
 
 	/**
+	 * Gets the version.
+	 * 
+	 * @return the version
+	 */
+	String getVersion();
+
+	/**
 	 * Gets the wand manager.
 	 * 
 	 * @return the wand manager
@@ -122,20 +141,4 @@ public interface ISH {
 	 * @return the warning manager
 	 */
 	IWarningManager getWarningManager();
-
-	/**
-	 * Gets the plugin name.
-	 * 
-	 * @return the plugin name
-	 */
-	String getPluginName();
-
-	/**
-	 * Gets the version.
-	 * 
-	 * @return the version
-	 */
-	String getVersion();
-
-	FriendManager getFriendManager();
 }

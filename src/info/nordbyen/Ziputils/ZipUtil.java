@@ -26,6 +26,14 @@
 
 package info.nordbyen.Ziputils;
 
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
+import info.nordbyen.Ziputils.commons.FileUtils;
+import info.nordbyen.Ziputils.commons.FilenameUtils;
+import info.nordbyen.Ziputils.commons.IOUtils;
+import info.nordbyen.Ziputils.transform.ZipEntryTransformer;
+import info.nordbyen.Ziputils.transform.ZipEntryTransformerEntry;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -49,14 +57,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
-
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-import info.nordbyen.Ziputils.commons.FileUtils;
-import info.nordbyen.Ziputils.commons.FilenameUtils;
-import info.nordbyen.Ziputils.commons.IOUtils;
-import info.nordbyen.Ziputils.transform.ZipEntryTransformer;
-import info.nordbyen.Ziputils.transform.ZipEntryTransformerEntry;
 
 /**
  * The Class ZipUtil.
@@ -447,11 +447,6 @@ public final class ZipUtil {
 			}
 		}
 	}
-
-	/** The Constant PATH_SEPARATOR. */
-	private static final String PATH_SEPARATOR = "/";
-	/** The Constant DEFAULT_COMPRESSION_LEVEL. */
-	public static final int DEFAULT_COMPRESSION_LEVEL = Deflater.DEFAULT_COMPRESSION;
 
 	/**
 	 * Adds the entries.
@@ -2697,6 +2692,12 @@ public final class ZipUtil {
 		// log.debug("Unwraping {} into '{}'.", is, outputDir);
 		iterate(is, new Unwraper(outputDir, mapper));
 	}
+
+	/** The Constant PATH_SEPARATOR. */
+	private static final String PATH_SEPARATOR = "/";
+
+	/** The Constant DEFAULT_COMPRESSION_LEVEL. */
+	public static final int DEFAULT_COMPRESSION_LEVEL = Deflater.DEFAULT_COMPRESSION;
 
 	/**
 	 * Instantiates a new zip util.

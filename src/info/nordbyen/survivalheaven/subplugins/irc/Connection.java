@@ -511,9 +511,6 @@ public class Connection implements Runnable {
 				String[] arguments) throws Exception;
 	}
 
-	/** The Constant mutex. */
-	public static final Object mutex = new Object();
-
 	/**
 	 * Delimited.
 	 * 
@@ -535,6 +532,18 @@ public class Connection implements Runnable {
 			response.append(s);
 		}
 		return response.toString();
+	}
+
+	/**
+	 * Filter allowed nick.
+	 * 
+	 * @param theNick
+	 *            the the nick
+	 * @return the string
+	 */
+	public static String filterAllowedNick(final String theNick) {
+		return theNick.replace(":", "").replace(" ", "").replace("!", "")
+				.replace("@", "").replace("#", "");
 	}
 
 	/**
@@ -583,6 +592,8 @@ public class Connection implements Runnable {
 		}
 	}
 
+	/** The Constant mutex. */
+	public static final Object mutex = new Object();
 	/** The socket. */
 	private final Socket socket;
 	/** The username. */
@@ -597,20 +608,9 @@ public class Connection implements Runnable {
 	public static Map<String, Connection> connectionMap = new HashMap<String, Connection>();
 	/** The channel map. */
 	public static Map<String, Channel> channelMap = new HashMap<String, Channel>();
+
 	/** The global server name. */
 	private static String globalServerName;
-
-	/**
-	 * Filter allowed nick.
-	 * 
-	 * @param theNick
-	 *            the the nick
-	 * @return the string
-	 */
-	public static String filterAllowedNick(final String theNick) {
-		return theNick.replace(":", "").replace(" ", "").replace("!", "")
-				.replace("@", "").replace("#", "");
-	}
 
 	/** The out queue. */
 	private LinkedBlockingQueue<String> outQueue = new LinkedBlockingQueue<String>(
