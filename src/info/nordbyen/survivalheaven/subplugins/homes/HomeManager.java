@@ -47,6 +47,48 @@ public class HomeManager {
 	}
 
 	/**
+	 * Creates the table.
+	 *
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
+	private void createTable() throws SQLException {
+		IMysqlManager sql = SH.getManager().getMysqlManager();
+		sql.query("CREATE TABLE IF NOT EXISTS home ( "
+				+ "`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, "
+				+ "`name` VARCHAR(45) NOT NULL, "
+				+ "`uuid` VARCHAR(45) NOT NULL, "
+				+ "`world` VARCHAR(45) NOT NULL, " + "`x` INT(11) NOT NULL,"
+				+ "`y` INT(11) NOT NULL," + "`z` INT(11) NOT NULL );");
+	}
+	
+	/**
+	 * Update from database.
+	 *
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
+	public void updateFromDatabase() throws SQLException {
+		IMysqlManager sql = SH.getManager().getMysqlManager();
+		ResultSet rs = sql
+				.query("SELECT name, uuid, world, x, y, z FROM home;");
+		while (rs != null && rs.next()) {
+			String name = rs.getString("name");
+			String uuid = rs.getString("uuid");
+			World w = Bukkit.getWorld(rs.getString("world"));
+			int x = rs.getInt("x");
+			int y = rs.getInt("y");
+			int z = rs.getInt("z");
+			Location loc = new Location(w, x, y, z);
+			Home home = new Home(name, uuid, loc);
+			if (homesOfPlayer.get(uuid) == null) {
+				homesOfPlayer.put(uuid, new ArrayList<Home>());
+			}
+			homesOfPlayer.get(uuid).add(home);
+		}
+	}
+	
+	/**
 	 * Adds the home.
 	 *
 	 * @param home
@@ -72,22 +114,6 @@ public class HomeManager {
 				+ home.getLocation().getBlockZ() + " )");
 		homesOfPlayer.get(uuid).add(home);
 		return true;
-	}
-
-	/**
-	 * Creates the table.
-	 *
-	 * @throws SQLException
-	 *             the SQL exception
-	 */
-	public void createTable() throws SQLException {
-		IMysqlManager sql = SH.getManager().getMysqlManager();
-		sql.query("CREATE TABLE IF NOT EXISTS home ( "
-				+ "`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, "
-				+ "`name` VARCHAR(45) NOT NULL, "
-				+ "`uuid` VARCHAR(45) NOT NULL, "
-				+ "`world` VARCHAR(45) NOT NULL, " + "`x` INT(11) NOT NULL,"
-				+ "`y` INT(11) NOT NULL," + "`z` INT(11) NOT NULL );");
 	}
 
 	/**
@@ -174,31 +200,5 @@ public class HomeManager {
 	 */
 	public ArrayList<Home> getHomesFromPlayer(String uuid) {
 		return homesOfPlayer.get(uuid);
-	}
-
-	/**
-	 * Update from database.
-	 *
-	 * @throws SQLException
-	 *             the SQL exception
-	 */
-	public void updateFromDatabase() throws SQLException {
-		IMysqlManager sql = SH.getManager().getMysqlManager();
-		ResultSet rs = sql
-				.query("SELECT name, uuid, world, x, y, z FROM home;");
-		while (rs != null && rs.next()) {
-			String name = rs.getString("name");
-			String uuid = rs.getString("uuid");
-			World w = Bukkit.getWorld(rs.getString("world"));
-			int x = rs.getInt("x");
-			int y = rs.getInt("y");
-			int z = rs.getInt("z");
-			Location loc = new Location(w, x, y, z);
-			Home home = new Home(name, uuid, loc);
-			if (homesOfPlayer.get(uuid) == null) {
-				homesOfPlayer.put(uuid, new ArrayList<Home>());
-			}
-			homesOfPlayer.get(uuid).add(home);
-		}
 	}
 }

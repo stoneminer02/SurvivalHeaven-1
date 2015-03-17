@@ -114,7 +114,7 @@ public final class MysqlManager implements IMysqlManager {
 		try {
 			statement = this.connection.createStatement();
 			query = "DELETE FROM " + table;
-			SH.getManager().debug(query);
+			SH.debug(query);
 			statement.executeUpdate(query);
 			return true;
 		} catch (final SQLException e) {
@@ -150,7 +150,7 @@ public final class MysqlManager implements IMysqlManager {
 		Statement statement = null;
 		try {
 			statement = connection.createStatement();
-			SH.getManager().debug("DROP TABLE " + table);
+			SH.debug("DROP TABLE " + table);
 			statement.executeUpdate("DROP TABLE " + table);
 			return true;
 		} catch (final SQLException e) {
@@ -259,7 +259,7 @@ public final class MysqlManager implements IMysqlManager {
 				sb2.toString().length() - 1);
 		try {
 			statement = this.connection.createStatement();
-			SH.getManager().debug(
+			SH.debug(
 					"INSERT INTO " + table + "(" + columns + ") VALUES ("
 							+ values + ")");
 			statement.execute("INSERT INTO " + table + "(" + columns
@@ -310,7 +310,7 @@ public final class MysqlManager implements IMysqlManager {
 		ResultSet result = null;
 		try {
 			statement = connection.createStatement();
-			SH.getManager().debug(query); /* Debug */
+			SH.debug(query); /* Debug */
 			result = statement.executeQuery(query);
 			return result;
 		} catch (final SQLException e) {
@@ -357,7 +357,7 @@ public final class MysqlManager implements IMysqlManager {
 		ResultSet result = null;
 		try {
 			statement = connection.prepareStatement(query, ret);
-			SH.getManager().debug(query); /* Debug */
+			SH.debug(query); /* Debug */
 			statement.executeUpdate();
 			result = statement.getGeneratedKeys();
 			return result;

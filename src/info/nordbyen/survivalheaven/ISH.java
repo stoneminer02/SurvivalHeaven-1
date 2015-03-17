@@ -27,14 +27,6 @@ import info.nordbyen.survivalheaven.subplugins.homes.HomeManager;
 public interface ISH {
 
 	/**
-	 * Debug.
-	 *
-	 * @param strings
-	 *            the strings
-	 */
-	void debug(final Object... strings);
-
-	/**
 	 * Gets the anno sub plugin manager.
 	 *
 	 * @return the anno sub plugin manager

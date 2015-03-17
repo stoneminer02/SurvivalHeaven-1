@@ -55,7 +55,6 @@ import java.net.URLConnection;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.HashMap;
-import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -70,65 +69,8 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class SH extends JavaPlugin implements ISH {
 
-	/**
-	 * Download plugin.
-	 *
-	 * @param id
-	 *            the id
-	 * @return true, if successful
-	 */
-	public static boolean downloadPlugin(String id) {
-		InputStreamReader in = null;
-		try {
-			URL url = new URL(
-					"https://api.curseforge.com/servermods/files?projectIds="
-							+ id);
-			URLConnection urlConnection = url.openConnection();
-			in = new InputStreamReader(urlConnection.getInputStream());
-			int numCharsRead;
-			char[] charArray = new char[1024];
-			StringBuilder sb = new StringBuilder();
-			while ((numCharsRead = in.read(charArray)) > 0) {
-				sb.append(charArray, 0, numCharsRead);
-			}
-			String result = sb.toString();
-			result = result.replace("\\/", "/")
-					.replaceAll(".*\"downloadUrl\":\"", "").split("\",\"")[0];
-			String[] split = result.split("/");
-			url = new URL(result);
-			final String path = plugin.getDataFolder().getParentFile()
-					.getAbsoluteFile()
-					+ "/" + split[split.length - 1];
-			ReadableByteChannel rbc = Channels.newChannel(url.openStream());
-			FileOutputStream fos = new FileOutputStream(path);
-			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-			Bukkit.getServer()
-					.getLogger()
-					.log(Level.INFO,
-							"Finished downloading " + split[split.length - 1]
-									+ ". Loading dependecy");
-			Bukkit.getServer().getPluginManager().loadPlugin(new File(path));
-			fos.close();
-			return true;
-		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} catch (InvalidPluginException ex) {
-			ex.printStackTrace();
-		} catch (InvalidDescriptionException ex) {
-			ex.printStackTrace();
-		} catch (UnknownDependencyException ex) {
-			ex.printStackTrace();
-		} finally {
-			try {
-				in.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		}
-		return false;
-	}
+	/** The debug. */
+	private final static boolean DEBUG = false; // TODO
 
 	/**
 	 * Gets the manager.
@@ -150,64 +92,58 @@ public class SH extends JavaPlugin implements ISH {
 
 	/** The commands. */
 	public HashMap<String, AbstractCommand> commands = new HashMap<String, AbstractCommand>();
-	
+
 	/** The Constant MOTTO. */
 	public static final String MOTTO = ChatColor.LIGHT_PURPLE
 			+ "Skapt for spillerne";
-	
+
 	/** The Constant PREFIX. */
 	public static final String PREFIX = ChatColor.RED + "S" + ChatColor.GRAY
 			+ "H ";
-	
+
 	/** The Constant PATH_TO_CONFIG_FOLDER. */
 	public static final String PATH_TO_CONFIG_FOLDER = "./plugins/SurvivalHeaven/";
-	
+
 	/** The Constant NAME. */
 	public static final String NAME = ChatColor.RED + "Survival"
 			+ ChatColor.GRAY + "Heaven" + ChatColor.RESET;
-	
+
 	/** The i survival heaven. */
 	private static ISH iSurvivalHeaven;
-	
+
 	/** The plugin. */
 	private static JavaPlugin plugin;
-	
-	/** The debug. */
-	private final boolean debug = false; // TODO
-	
-	/** The spam. */
-	private final boolean spam = false; // TODO
-	
+
 	/** The version. */
 	private String version = null;
-	
+
 	/** The name. */
 	private String name = null;
-	
+
 	/** The note manager. */
 	private INoteManager noteManager;
-	
+
 	/** The warning manager. */
 	private IWarningManager warningManager;
-	
+
 	/** The block manager. */
 	private IBlockManager blockManager;
-	
+
 	/** The mysql manager. */
 	private IMysqlManager mysqlManager;
-	
+
 	/** The wand manager. */
 	private IWandManager wandManager;
-	
+
 	/** The player data manager. */
 	private IPlayerDataManager playerDataManager;
-	
+
 	/** The rank manager. */
 	private IRankManager rankManager;
-	
+
 	/** The subplugin manager. */
 	private ISubPluginManager subpluginManager;
-	
+
 	/** The anno sub plugin manager. */
 	private IAnnoSubPluginManager annoSubPluginManager;
 
@@ -219,19 +155,6 @@ public class SH extends JavaPlugin implements ISH {
 
 	/** The home manager. */
 	private HomeManager homeManager;
-
-	/* (non-Javadoc)
-	 * @see info.nordbyen.survivalheaven.ISH#debug(java.lang.Object[])
-	 */
-	@Override
-	public void debug(final Object... strings) {
-		if (!debug)
-			return;
-		for (final Object s : strings) {
-			Bukkit.getConsoleSender().sendMessage(
-					ChatColor.LIGHT_PURPLE + "[DEBUG] " + ChatColor.GRAY + s);
-		}
-	}
 
 	/**
 	 * Disable sub plugins.
@@ -396,6 +319,60 @@ public class SH extends JavaPlugin implements ISH {
 		}
 		return warningManager;
 	}
+	
+	/**
+	 * Download plugin.
+	 *
+	 * @param id
+	 *            the id
+	 * @return true, if successful
+	 */
+	public static boolean downloadPlugin(String id) {
+		InputStreamReader in = null;
+		try {
+			URL url = new URL("https://api.curseforge.com/servermods/files?projectIds=" + id);
+			URLConnection urlConnection = url.openConnection();
+			in = new InputStreamReader(urlConnection.getInputStream());
+			int numCharsRead;
+			char[] charArray = new char[1024];
+			StringBuilder sb = new StringBuilder();
+			while ((numCharsRead = in.read(charArray)) > 0) {
+				sb.append(charArray, 0, numCharsRead);
+			}
+			String result = sb.toString();
+			result = result.replace("\\/", "/")
+					.replaceAll(".*\"downloadUrl\":\"", "").split("\",\"")[0];
+			String[] split = result.split("/");
+			url = new URL(result);
+			final String path = plugin.getDataFolder().getParentFile()
+					.getAbsoluteFile()
+					+ "/" + split[split.length - 1];
+			ReadableByteChannel rbc = Channels.newChannel(url.openStream());
+			FileOutputStream fos = new FileOutputStream(path);
+			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+			log("Finished downloading " + split[split.length - 1] + ". Loading dependecy");
+			Bukkit.getServer().getPluginManager().loadPlugin(new File(path));
+			fos.close();
+			return true;
+		} catch (MalformedURLException ex) {
+			ex.printStackTrace();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} catch (InvalidPluginException ex) {
+			ex.printStackTrace();
+		} catch (InvalidDescriptionException ex) {
+			ex.printStackTrace();
+		} catch (UnknownDependencyException ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				in.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * Load dependencies.
@@ -414,83 +391,14 @@ public class SH extends JavaPlugin implements ISH {
 	private void loadJars() {
 		AnnoSubPluginLoader.testLoadJars();
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.bukkit.plugin.java.JavaPlugin#onDisable()
-	 */
-	@Override
-	public void onDisable() {
-		Bukkit.getConsoleSender().sendMessage(
-				ChatColor.YELLOW + "STOPPER PLUGIN " + this.toString());
-		disableSubPlugins();
-		unregisterSubPlugins();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.bukkit.plugin.java.JavaPlugin#onEnable()
-	 */
-	@Override
-	public void onEnable() {
-		plugin = this;
-		iSurvivalHeaven = this;
-		version = this.getDescription().getVersion();
-		name = this.getDescription().getName();
-		Bukkit.getConsoleSender().sendMessage(
-				ChatColor.YELLOW + "STARTER PLUGIN " + this.toString());
-		Bukkit.getConsoleSender()
-				.sendMessage(
-						ChatColor.GREEN
-								+ "******************************************************************");
-		Bukkit.getConsoleSender().sendMessage(
-				ChatColor.RESET + "Starter " + NAME + ChatColor.RESET + " v. "
-						+ ChatColor.YELLOW + version);
-		Bukkit.getConsoleSender()
-				.sendMessage(
-						ChatColor.GREEN
-								+ "------------------------------------------------------------------");
-		getAnnoSubPluginManager();
-		getBlockManager();
-		getMysqlManager();
-		getNoteManager();
-		getPlayerDataManager();
-		getWandManager();
-		getWarningManager();
-		getFriendManager();
-		getHomeManager();
-		// loadJars(); TODO Fikse error her
-		registerSubPlugins();
-		enableSubPlugins();
-		Bukkit.getConsoleSender()
-				.sendMessage(
-						ChatColor.GOLD
-								+ "Sjekker om alle nødvendige plugins er her...");
-		Plugin pex = Bukkit.getPluginManager().getPlugin("PermissionsEx");
-		if (pex == null) {
-			Bukkit.getConsoleSender().sendMessage(
-					ChatColor.GOLD
-							+ "PermissionsEx mangler. Starter nedlasting....");
-			try {
-				downloadPlugin("31279");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		Bukkit.getConsoleSender()
-				.sendMessage(
-						ChatColor.GREEN
-								+ "******************************************************************");
-	}
+	
 
 	/**
 	 * Register sub plugins.
 	 */
 	private void registerSubPlugins() {
 		getSubPluginManager()
-				.addSubPlugin(new DenyPlayerMode("DenyPlayerMode"));
+		.addSubPlugin(new DenyPlayerMode("DenyPlayerMode"));
 		getSubPluginManager().addSubPlugin(new Merchant("Merchant"));
 		getSubPluginManager().addSubPlugin(new ShopHandler("Shop"));
 		getSubPluginManager().addSubPlugin(new BossbarAPI("BossbarAPI"));
@@ -511,26 +419,77 @@ public class SH extends JavaPlugin implements ISH {
 		// AnnoSubPluginManager.addClass(EmployeeTest.class);
 		// AnnoSubPluginManager.addClass( QuestHandler.class );
 	}
-
-	/**
-	 * Spam.
-	 *
-	 * @param strings
-	 *            the strings
-	 */
-	public void spam(final Object... strings) {
-		if (!spam)
-			return;
-		for (final Object s : strings) {
-			Bukkit.getConsoleSender().sendMessage(
-					ChatColor.DARK_PURPLE + "[SPAM] " + ChatColor.GRAY + s);
-		}
-	}
-
+	
 	/**
 	 * Unregister sub plugins.
 	 */
 	private void unregisterSubPlugins() {
 		getSubPluginManager().unregisterAll();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.bukkit.plugin.java.JavaPlugin#onEnable()
+	 */
+	@Override
+	public void onEnable() {
+		plugin = this;
+		iSurvivalHeaven = this;
+		version = this.getDescription().getVersion();
+		name = this.getDescription().getName();
+		log(ChatColor.YELLOW + "STARTER PLUGIN " + this.toString());
+		log(ChatColor.GREEN + "******************************************************************");
+		log(ChatColor.RESET + "Starter " + NAME + ChatColor.RESET + " v. " + ChatColor.YELLOW + version);
+		log(ChatColor.GREEN + "------------------------------------------------------------------");
+		getAnnoSubPluginManager();
+		getBlockManager();
+		getMysqlManager();
+		getNoteManager();
+		getPlayerDataManager();
+		getWandManager();
+		getWarningManager();
+		getFriendManager();
+		getHomeManager();
+		// loadJars(); TODO Fikse error her
+		registerSubPlugins();
+		enableSubPlugins();
+		log(ChatColor.GOLD + "Sjekker om alle nødvendige plugins er her...");
+		Plugin pex = Bukkit.getPluginManager().getPlugin("PermissionsEx");
+		if (pex == null) {
+			log(ChatColor.GOLD + "PermissionsEx mangler. Starter nedlasting....");
+			try {
+				downloadPlugin("31279");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		log(ChatColor.GREEN + "******************************************************************");
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.bukkit.plugin.java.JavaPlugin#onDisable()
+	 */
+	@Override
+	public void onDisable() {
+		log(ChatColor.YELLOW + "STOPPER PLUGIN " + this.toString());
+		disableSubPlugins();
+		unregisterSubPlugins();
+	}
+
+	public static void log(final Object... strings) {
+		for (final Object s : strings) {
+			Bukkit.getConsoleSender().sendMessage(PREFIX + ChatColor.WHITE + s);
+		}
+	}
+	
+	public static void debug(final Object... strings) {
+		if (!DEBUG)
+			return;
+		for (final Object s : strings) {
+			log(ChatColor.LIGHT_PURPLE + "[DEBUG] " + ChatColor.GRAY + s);
+		}
 	}
 }

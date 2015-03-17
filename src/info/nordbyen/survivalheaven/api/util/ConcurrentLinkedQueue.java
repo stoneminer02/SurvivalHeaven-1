@@ -243,10 +243,12 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 	private static final long serialVersionUID = 196745693267521676L;
 	
 	/** The Constant tailUpdater. */
+	@SuppressWarnings("rawtypes")
 	private static final AtomicReferenceFieldUpdater<ConcurrentLinkedQueue, Node> tailUpdater = AtomicReferenceFieldUpdater
 			.newUpdater(ConcurrentLinkedQueue.class, Node.class, "tail");
 
 	/** The Constant headUpdater. */
+	@SuppressWarnings("rawtypes")
 	private static final AtomicReferenceFieldUpdater<ConcurrentLinkedQueue, Node> headUpdater = AtomicReferenceFieldUpdater
 			.newUpdater(ConcurrentLinkedQueue.class, Node.class, "head");
 

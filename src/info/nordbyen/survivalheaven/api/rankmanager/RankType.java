@@ -48,9 +48,9 @@ public enum RankType {
 			return MODERATOR;
 		if (id == 3)
 			return ADMINISTRATOR;
-		SH.getManager().debug("Fant ikke rank med id: " + id,
+		SH.debug("Fant ikke rank med id: " + id,
 				"Printer stackstrace under...");
-		SH.getManager().debug((Object[]) (new Throwable()).getStackTrace());
+		SH.debug((Object[]) (new Throwable()).getStackTrace());
 		return BRUKER;
 	}
 
