@@ -1,29 +1,11 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
 package info.nordbyen.survivalheaven.subplugins.bossbar;
 
 import info.nordbyen.survivalheaven.api.subplugin.SubPlugin;
@@ -47,7 +29,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Gets the single instance of BossbarAPI.
-	 * 
+	 *
 	 * @return single instance of BossbarAPI
 	 */
 	public static Plugin getInstance() {
@@ -56,7 +38,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Gets the message.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @return the message
@@ -70,7 +52,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Gets the message dragon.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @return the message dragon
@@ -84,7 +66,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Gets the message wither.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @return the message wither
@@ -98,7 +80,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Checks for bar.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @return true, if successful
@@ -116,7 +98,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Checks for bar dragon.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @return true, if successful
@@ -127,7 +109,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Checks for bar wither.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @return true, if successful
@@ -139,7 +121,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 	// dragon
 	/**
 	 * Mc version.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @return true, if successful
@@ -150,7 +132,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Removes the bar.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 */
@@ -171,7 +153,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Removes the bar dragon.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 */
@@ -185,7 +167,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Removes the bar wither.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 */
@@ -199,7 +181,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Sets the bar.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @param text
@@ -216,7 +198,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Sets the bar dragon.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @param text
@@ -230,7 +212,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 	// wither
 	/**
 	 * Sets the bar dragon health.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @param text
@@ -251,7 +233,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Sets the bar dragon timer.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @param text
@@ -272,7 +254,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Sets the bar health.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @param text
@@ -297,7 +279,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Sets the bar timer.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @param text
@@ -327,7 +309,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Sets the bar wither.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @param text
@@ -340,7 +322,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Sets the bar wither health.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @param text
@@ -362,7 +344,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 	// both
 	/**
 	 * Sets the bar wither timer.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @param text
@@ -410,7 +392,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Instantiates a new bossbar api.
-	 * 
+	 *
 	 * @param name
 	 *            the name
 	 */
@@ -504,7 +486,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Player kick.
-	 * 
+	 *
 	 * @param event
 	 *            the event
 	 */
@@ -518,7 +500,7 @@ public class BossbarAPI extends SubPlugin implements Listener {
 
 	/**
 	 * Player quit.
-	 * 
+	 *
 	 * @param event
 	 *            the event
 	 */

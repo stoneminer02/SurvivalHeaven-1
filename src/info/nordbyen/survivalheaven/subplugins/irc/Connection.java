@@ -1,29 +1,11 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
 package info.nordbyen.survivalheaven.subplugins.irc;
 
 import java.io.BufferedReader;
@@ -52,14 +34,16 @@ public class Connection implements Runnable {
 
 		/** The channel members. */
 		private final ArrayList<Connection> channelMembers = new ArrayList<Connection>();
+		
 		/** The topic. */
 		private String topic;
+		
 		/** The name. */
 		protected String name;
 
 		/**
 		 * Member quit.
-		 * 
+		 *
 		 * @param nick
 		 *            the nick
 		 */
@@ -68,7 +52,7 @@ public class Connection implements Runnable {
 
 		/**
 		 * Send.
-		 * 
+		 *
 		 * @param toSend
 		 *            the to send
 		 */
@@ -78,7 +62,7 @@ public class Connection implements Runnable {
 
 		/**
 		 * Send not.
-		 * 
+		 *
 		 * @param not
 		 *            the not
 		 * @param toSend
@@ -99,6 +83,7 @@ public class Connection implements Runnable {
 	 * The Enum Command.
 	 */
 	public enum Command {
+		
 		/** The nick. */
 		NICK(1, 1) {
 
@@ -144,6 +129,7 @@ public class Connection implements Runnable {
 				}
 			}
 		},
+		
 		/** The user. */
 		USER(1, 4) {
 
@@ -177,6 +163,7 @@ public class Connection implements Runnable {
 				con.sendGlobal("376 " + con.nick + " :End of /MOTD command.");
 			}
 		},
+		
 		/** The ping. */
 		PING(1, 1) {
 
@@ -187,6 +174,7 @@ public class Connection implements Runnable {
 						+ " :" + arguments[0]);
 			}
 		},
+		
 		/** The join. */
 		JOIN(1, 2) {
 
@@ -267,6 +255,7 @@ public class Connection implements Runnable {
 				}
 			}
 		},
+		
 		/** The who. */
 		WHO(0, 2) {
 
@@ -303,6 +292,7 @@ public class Connection implements Runnable {
 						+ " :End of /WHO list.");
 			}
 		},
+		
 		/** The userhost. */
 		USERHOST(1, 5) {
 
@@ -321,6 +311,7 @@ public class Connection implements Runnable {
 						+ delimited(replies.toArray(new String[0]), " "));
 			}
 		},
+		
 		/** The mode. */
 		MODE(0, 2) {
 
@@ -355,6 +346,7 @@ public class Connection implements Runnable {
 				}
 			}
 		},
+		
 		/** The part. */
 		PART(1, 2) {
 
@@ -380,6 +372,7 @@ public class Connection implements Runnable {
 				}
 			}
 		},
+		
 		/** The quit. */
 		QUIT(1, 1) {
 
@@ -389,6 +382,7 @@ public class Connection implements Runnable {
 				con.sendQuit("Quit: " + arguments[0]);
 			}
 		},
+		
 		/** The privmsg. */
 		PRIVMSG(2, 2) {
 
@@ -425,6 +419,7 @@ public class Connection implements Runnable {
 				}
 			}
 		},
+		
 		/** The topic. */
 		TOPIC(1, 2) {
 
@@ -461,12 +456,13 @@ public class Connection implements Runnable {
 
 		/** The min argument count. */
 		private int minArgumentCount;
+		
 		/** The max argument count. */
 		private int maxArgumentCount;
 
 		/**
 		 * Instantiates a new command.
-		 * 
+		 *
 		 * @param min
 		 *            the min
 		 * @param max
@@ -479,7 +475,7 @@ public class Connection implements Runnable {
 
 		/**
 		 * Gets the max.
-		 * 
+		 *
 		 * @return the max
 		 */
 		public int getMax() {
@@ -488,7 +484,7 @@ public class Connection implements Runnable {
 
 		/**
 		 * Gets the min.
-		 * 
+		 *
 		 * @return the min
 		 */
 		public int getMin() {
@@ -497,7 +493,7 @@ public class Connection implements Runnable {
 
 		/**
 		 * Run.
-		 * 
+		 *
 		 * @param con
 		 *            the con
 		 * @param prefix
@@ -513,7 +509,7 @@ public class Connection implements Runnable {
 
 	/**
 	 * Delimited.
-	 * 
+	 *
 	 * @param items
 	 *            the items
 	 * @param delimiter
@@ -536,7 +532,7 @@ public class Connection implements Runnable {
 
 	/**
 	 * Filter allowed nick.
-	 * 
+	 *
 	 * @param theNick
 	 *            the the nick
 	 * @return the string
@@ -548,7 +544,7 @@ public class Connection implements Runnable {
 
 	/**
 	 * The main method.
-	 * 
+	 *
 	 * @param args
 	 *            the arguments
 	 * @throws Throwable
@@ -573,7 +569,7 @@ public class Connection implements Runnable {
 
 	/**
 	 * Start server.
-	 * 
+	 *
 	 * @param name
 	 *            the name
 	 * @throws Throwable
@@ -594,18 +590,25 @@ public class Connection implements Runnable {
 
 	/** The Constant mutex. */
 	public static final Object mutex = new Object();
+	
 	/** The socket. */
 	private final Socket socket;
+	
 	/** The username. */
 	private String username;
+	
 	/** The hostname. */
 	private String hostname;
+	
 	/** The nick. */
 	private String nick;
+	
 	/** The description. */
 	private String description;
+	
 	/** The connection map. */
 	public static Map<String, Connection> connectionMap = new HashMap<String, Connection>();
+	
 	/** The channel map. */
 	public static Map<String, Channel> channelMap = new HashMap<String, Channel>();
 
@@ -615,6 +618,7 @@ public class Connection implements Runnable {
 	/** The out queue. */
 	private LinkedBlockingQueue<String> outQueue = new LinkedBlockingQueue<String>(
 			1000);
+	
 	/** The out thread. */
 	private final Thread outThread = new Thread() {
 
@@ -645,7 +649,7 @@ public class Connection implements Runnable {
 
 	/**
 	 * Instantiates a new connection.
-	 * 
+	 *
 	 * @param socket
 	 *            the socket
 	 */
@@ -655,7 +659,7 @@ public class Connection implements Runnable {
 
 	/**
 	 * Do server.
-	 * 
+	 *
 	 * @throws Exception
 	 *             the exception
 	 */
@@ -676,7 +680,7 @@ public class Connection implements Runnable {
 
 	/**
 	 * Gets the representation.
-	 * 
+	 *
 	 * @return the representation
 	 */
 	public String getRepresentation() {
@@ -685,7 +689,7 @@ public class Connection implements Runnable {
 
 	/**
 	 * Pad split.
-	 * 
+	 *
 	 * @param line
 	 *            the line
 	 * @param regex
@@ -710,7 +714,7 @@ public class Connection implements Runnable {
 
 	/**
 	 * Process line.
-	 * 
+	 *
 	 * @param line
 	 *            the line
 	 * @throws Exception
@@ -799,7 +803,7 @@ public class Connection implements Runnable {
 
 	/**
 	 * Send.
-	 * 
+	 *
 	 * @param s
 	 *            the s
 	 */
@@ -813,7 +817,7 @@ public class Connection implements Runnable {
 
 	/**
 	 * Send global.
-	 * 
+	 *
 	 * @param string
 	 *            the string
 	 */
@@ -823,7 +827,7 @@ public class Connection implements Runnable {
 
 	/**
 	 * Send quit.
-	 * 
+	 *
 	 * @param quitMessage
 	 *            the quit message
 	 */
@@ -844,7 +848,7 @@ public class Connection implements Runnable {
 
 	/**
 	 * Send self notice.
-	 * 
+	 *
 	 * @param string
 	 *            the string
 	 */

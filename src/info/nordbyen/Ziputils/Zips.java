@@ -1,29 +1,11 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
 package info.nordbyen.Ziputils;
 
 import info.nordbyen.Ziputils.commons.FileUtils;
@@ -68,16 +50,19 @@ public class Zips {
 
 		/** The entry by path. */
 		private final Map<?, ?> entryByPath;
+		
 		/** The out. */
 		private final ZipOutputStream out;
+		
 		/** The visited names. */
 		private final Set<String> visitedNames;
+		
 		/** The preserve timestapms. */
 		private final boolean preserveTimestapms;
 
 		/**
 		 * Instantiates a new copying callback.
-		 * 
+		 *
 		 * @param entries
 		 *            the entries
 		 * @param out
@@ -125,14 +110,16 @@ public class Zips {
 
 		/** The entry by path. */
 		private final Map<?, ?> entryByPath;
+		
 		/** The visited names. */
 		private final Set<String> visitedNames;
+		
 		/** The destination. */
 		private final File destination;
 
 		/**
 		 * Instantiates a new unpacking callback.
-		 * 
+		 *
 		 * @param entries
 		 *            the entries
 		 * @param destination
@@ -179,7 +166,7 @@ public class Zips {
 
 		/**
 		 * Transform into file.
-		 * 
+		 *
 		 * @param transformer
 		 *            the transformer
 		 * @param entryIn
@@ -231,7 +218,7 @@ public class Zips {
 
 	/**
 	 * Creates the.
-	 * 
+	 *
 	 * @return the zips
 	 */
 	public static Zips create() {
@@ -240,7 +227,7 @@ public class Zips {
 
 	/**
 	 * Gets the.
-	 * 
+	 *
 	 * @param src
 	 *            the src
 	 * @return the zips
@@ -251,16 +238,22 @@ public class Zips {
 
 	/** The src. */
 	private final File src;
+	
 	/** The dest. */
 	private File dest;
+	
 	/** The charset. */
 	private Charset charset;
+	
 	/** The preserve timestamps. */
 	private boolean preserveTimestamps;
+	
 	/** The changed entries. */
 	private List<ZipEntrySource> changedEntries = new ArrayList<ZipEntrySource>();
+	
 	/** The removed entries. */
 	private Set<String> removedEntries = new HashSet<String>();
+	
 	/** The transformers. */
 	private List<ZipEntryTransformerEntry> transformers = new ArrayList<ZipEntryTransformerEntry>();
 	/*
@@ -271,12 +264,13 @@ public class Zips {
 	 */
 	/** The name mapper. */
 	private NameMapper nameMapper;
+	
 	/** The unpacked result. */
 	private boolean unpackedResult;
 
 	/**
 	 * Instantiates a new zips.
-	 * 
+	 *
 	 * @param src
 	 *            the src
 	 */
@@ -286,7 +280,7 @@ public class Zips {
 
 	/**
 	 * Adds the entries.
-	 * 
+	 *
 	 * @param entries
 	 *            the entries
 	 * @return the zips
@@ -298,7 +292,7 @@ public class Zips {
 
 	/**
 	 * Adds the entry.
-	 * 
+	 *
 	 * @param entry
 	 *            the entry
 	 * @return the zips
@@ -310,7 +304,7 @@ public class Zips {
 
 	/**
 	 * Adds the file.
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @return the zips
@@ -321,7 +315,7 @@ public class Zips {
 
 	/**
 	 * Adds the file.
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @param preserveRoot
@@ -334,7 +328,7 @@ public class Zips {
 
 	/**
 	 * Adds the file.
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @param preserveRoot
@@ -373,7 +367,7 @@ public class Zips {
 
 	/**
 	 * Adds the file.
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @param filter
@@ -386,7 +380,7 @@ public class Zips {
 
 	/**
 	 * Adds the transformer.
-	 * 
+	 *
 	 * @param path
 	 *            the path
 	 * @param transformer
@@ -400,7 +394,7 @@ public class Zips {
 
 	/**
 	 * Charset.
-	 * 
+	 *
 	 * @param charset
 	 *            the charset
 	 * @return the zips
@@ -412,7 +406,7 @@ public class Zips {
 
 	/**
 	 * Contains entry.
-	 * 
+	 *
 	 * @param name
 	 *            the name
 	 * @return true, if successful
@@ -426,7 +420,7 @@ public class Zips {
 
 	/**
 	 * Destination.
-	 * 
+	 *
 	 * @param destination
 	 *            the destination
 	 * @return the zips
@@ -438,7 +432,7 @@ public class Zips {
 
 	/**
 	 * Gets the destination file.
-	 * 
+	 *
 	 * @return the destination file
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
@@ -481,7 +475,7 @@ public class Zips {
 
 	/**
 	 * Gets the entry.
-	 * 
+	 *
 	 * @param name
 	 *            the name
 	 * @return the entry
@@ -495,7 +489,7 @@ public class Zips {
 
 	/**
 	 * Gets the relative path.
-	 * 
+	 *
 	 * @param parent
 	 *            the parent
 	 * @param file
@@ -514,7 +508,7 @@ public class Zips {
 
 	/**
 	 * Gets the transformers array.
-	 * 
+	 *
 	 * @return the transformers array
 	 */
 	private ZipEntryTransformerEntry[] getTransformersArray() {
@@ -530,7 +524,7 @@ public class Zips {
 
 	/**
 	 * Gets the zip file.
-	 * 
+	 *
 	 * @return the zip file
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
@@ -541,7 +535,7 @@ public class Zips {
 
 	/**
 	 * Handle in place actions.
-	 * 
+	 *
 	 * @param result
 	 *            the result
 	 * @throws IOException
@@ -561,7 +555,7 @@ public class Zips {
 
 	/**
 	 * Checks if is entry in dir.
-	 * 
+	 *
 	 * @param dirNames
 	 *            the dir names
 	 * @param entryName
@@ -584,7 +578,7 @@ public class Zips {
 
 	/**
 	 * Checks if is in place.
-	 * 
+	 *
 	 * @return true, if is in place
 	 */
 	private boolean isInPlace() {
@@ -593,7 +587,7 @@ public class Zips {
 
 	/**
 	 * Checks if is unpack.
-	 * 
+	 *
 	 * @return true, if is unpack
 	 */
 	private boolean isUnpack() {
@@ -602,7 +596,7 @@ public class Zips {
 
 	/**
 	 * Iterate.
-	 * 
+	 *
 	 * @param zipEntryCallback
 	 *            the zip entry callback
 	 */
@@ -614,7 +608,7 @@ public class Zips {
 
 	/**
 	 * Iterate.
-	 * 
+	 *
 	 * @param callback
 	 *            the callback
 	 */
@@ -626,7 +620,7 @@ public class Zips {
 
 	/**
 	 * Iterate changed and added.
-	 * 
+	 *
 	 * @param zipEntryCallback
 	 *            the zip entry callback
 	 */
@@ -656,7 +650,7 @@ public class Zips {
 
 	/**
 	 * Iterate existing except removed.
-	 * 
+	 *
 	 * @param zipEntryCallback
 	 *            the zip entry callback
 	 */
@@ -710,7 +704,7 @@ public class Zips {
 	// ///////////// private api ///////////////
 	/**
 	 * Name mapper.
-	 * 
+	 *
 	 * @param nameMapper
 	 *            the name mapper
 	 * @return the zips
@@ -722,7 +716,7 @@ public class Zips {
 
 	/**
 	 * Preserve timestamps.
-	 * 
+	 *
 	 * @return the zips
 	 */
 	public Zips preserveTimestamps() {
@@ -774,7 +768,7 @@ public class Zips {
 
 	/**
 	 * Process all entries.
-	 * 
+	 *
 	 * @param zipEntryAdapter
 	 *            the zip entry adapter
 	 */
@@ -785,7 +779,7 @@ public class Zips {
 
 	/**
 	 * Removes the entries.
-	 * 
+	 *
 	 * @param entries
 	 *            the entries
 	 * @return the zips
@@ -797,7 +791,7 @@ public class Zips {
 
 	/**
 	 * Removes the entry.
-	 * 
+	 *
 	 * @param entry
 	 *            the entry
 	 * @return the zips
@@ -809,7 +803,7 @@ public class Zips {
 
 	/**
 	 * Sets the preserve timestamps.
-	 * 
+	 *
 	 * @param preserve
 	 *            the preserve
 	 * @return the zips
@@ -821,7 +815,7 @@ public class Zips {
 
 	/**
 	 * Unpack.
-	 * 
+	 *
 	 * @return the zips
 	 */
 	public Zips unpack() {

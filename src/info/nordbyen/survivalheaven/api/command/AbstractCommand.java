@@ -1,29 +1,11 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
 package info.nordbyen.survivalheaven.api.command;
 
 import info.nordbyen.survivalheaven.SH;
@@ -54,7 +36,7 @@ public abstract class AbstractCommand implements TabExecutor {
 
 		/**
 		 * Instantiates a new reflect command.
-		 * 
+		 *
 		 * @param command
 		 *            the command
 		 */
@@ -80,7 +62,7 @@ public abstract class AbstractCommand implements TabExecutor {
 
 		/**
 		 * Sets the executor.
-		 * 
+		 *
 		 * @param exe
 		 *            the new executor
 		 */
@@ -106,20 +88,25 @@ public abstract class AbstractCommand implements TabExecutor {
 
 	/** The command. */
 	protected final String command;
+	
 	/** The description. */
 	protected final String description;
+	
 	/** The alias. */
 	protected final List<String> alias;
+	
 	/** The usage. */
 	protected final String usage;
+	
 	/** The perm message. */
 	protected final String permMessage;
+	
 	/** The cmap. */
 	protected static CommandMap cmap;
 
 	/**
 	 * Instantiates a new abstract command.
-	 * 
+	 *
 	 * @param command
 	 *            the command
 	 */
@@ -129,7 +116,7 @@ public abstract class AbstractCommand implements TabExecutor {
 
 	/**
 	 * Instantiates a new abstract command.
-	 * 
+	 *
 	 * @param command
 	 *            the command
 	 * @param usage
@@ -141,7 +128,7 @@ public abstract class AbstractCommand implements TabExecutor {
 
 	/**
 	 * Instantiates a new abstract command.
-	 * 
+	 *
 	 * @param command
 	 *            the command
 	 * @param usage
@@ -156,7 +143,7 @@ public abstract class AbstractCommand implements TabExecutor {
 
 	/**
 	 * Instantiates a new abstract command.
-	 * 
+	 *
 	 * @param command
 	 *            the command
 	 * @param usage
@@ -173,7 +160,7 @@ public abstract class AbstractCommand implements TabExecutor {
 
 	/**
 	 * Instantiates a new abstract command.
-	 * 
+	 *
 	 * @param command
 	 *            the command
 	 * @param usage
@@ -190,7 +177,7 @@ public abstract class AbstractCommand implements TabExecutor {
 
 	/**
 	 * Instantiates a new abstract command.
-	 * 
+	 *
 	 * @param command
 	 *            the command
 	 * @param usage
@@ -215,7 +202,7 @@ public abstract class AbstractCommand implements TabExecutor {
 
 	/**
 	 * Gets the command map.
-	 * 
+	 *
 	 * @return the command map
 	 */
 	final CommandMap getCommandMap() {
@@ -236,7 +223,7 @@ public abstract class AbstractCommand implements TabExecutor {
 
 	/**
 	 * Checks if is authorized.
-	 * 
+	 *
 	 * @param sender
 	 *            the sender
 	 * @param perm
@@ -250,7 +237,7 @@ public abstract class AbstractCommand implements TabExecutor {
 
 	/**
 	 * Checks if is authorized.
-	 * 
+	 *
 	 * @param sender
 	 *            the sender
 	 * @param permission
@@ -264,7 +251,7 @@ public abstract class AbstractCommand implements TabExecutor {
 
 	/**
 	 * Checks if is authorized.
-	 * 
+	 *
 	 * @param player
 	 *            the player
 	 * @param perm
@@ -277,7 +264,7 @@ public abstract class AbstractCommand implements TabExecutor {
 
 	/**
 	 * Checks if is authorized.
-	 * 
+	 *
 	 * @param player
 	 *            the player
 	 * @param permission
@@ -290,7 +277,7 @@ public abstract class AbstractCommand implements TabExecutor {
 
 	/**
 	 * Checks if is player.
-	 * 
+	 *
 	 * @param sender
 	 *            the sender
 	 * @return true, if is player

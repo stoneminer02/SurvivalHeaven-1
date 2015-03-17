@@ -1,29 +1,11 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
 package info.nordbyen.survivalheaven.api.util;
 
 import org.bukkit.Material;
@@ -38,7 +20,7 @@ public class InventoryAPI {
 
 	/**
 	 * Adds the.
-	 * 
+	 *
 	 * @param inventory
 	 *            the inventory
 	 * @param material
@@ -52,7 +34,7 @@ public class InventoryAPI {
 
 	/**
 	 * Adds the.
-	 * 
+	 *
 	 * @param inventory
 	 *            the inventory
 	 * @param material
@@ -72,7 +54,7 @@ public class InventoryAPI {
 
 	/**
 	 * Adds the.
-	 * 
+	 *
 	 * @param player
 	 *            the player
 	 * @param inventory
@@ -99,7 +81,7 @@ public class InventoryAPI {
 
 	/**
 	 * Adds the stack.
-	 * 
+	 *
 	 * @param inventory
 	 *            the inventory
 	 * @param material
@@ -118,7 +100,7 @@ public class InventoryAPI {
 
 	/**
 	 * Clear.
-	 * 
+	 *
 	 * @param inventory
 	 *            the inventory
 	 */
@@ -128,7 +110,7 @@ public class InventoryAPI {
 
 	/**
 	 * Contains.
-	 * 
+	 *
 	 * @param inventory
 	 *            the inventory
 	 * @param itemstack
@@ -143,7 +125,7 @@ public class InventoryAPI {
 
 	/**
 	 * Contains.
-	 * 
+	 *
 	 * @param inventory
 	 *            the inventory
 	 * @param material
@@ -158,7 +140,7 @@ public class InventoryAPI {
 
 	/**
 	 * Contains.
-	 * 
+	 *
 	 * @param inventory
 	 *            the inventory
 	 * @param material
@@ -176,7 +158,7 @@ public class InventoryAPI {
 
 	/**
 	 * Copy.
-	 * 
+	 *
 	 * @param source
 	 *            the source
 	 * @param target
@@ -189,7 +171,7 @@ public class InventoryAPI {
 
 	/**
 	 * Copy.
-	 * 
+	 *
 	 * @param source
 	 *            the source
 	 * @param target
@@ -202,7 +184,7 @@ public class InventoryAPI {
 
 	/**
 	 * Copy.
-	 * 
+	 *
 	 * @param player
 	 *            the player
 	 * @param target
@@ -216,7 +198,7 @@ public class InventoryAPI {
 
 	/**
 	 * Gets the name.
-	 * 
+	 *
 	 * @param inventory
 	 *            the inventory
 	 * @return the name
@@ -227,7 +209,7 @@ public class InventoryAPI {
 
 	/**
 	 * Gets the title.
-	 * 
+	 *
 	 * @param inventory
 	 *            the inventory
 	 * @return the title
@@ -238,7 +220,7 @@ public class InventoryAPI {
 
 	/**
 	 * Checks for empty slot.
-	 * 
+	 *
 	 * @param inventory
 	 *            the inventory
 	 * @return true, if successful
@@ -253,7 +235,7 @@ public class InventoryAPI {
 
 	/**
 	 * Checks if is full.
-	 * 
+	 *
 	 * @param inventory
 	 *            the inventory
 	 * @return true, if is full
@@ -266,7 +248,7 @@ public class InventoryAPI {
 
 	/**
 	 * Removes the.
-	 * 
+	 *
 	 * @param inventory
 	 *            the inventory
 	 * @param material
@@ -286,7 +268,7 @@ public class InventoryAPI {
 
 	/**
 	 * Removes the all.
-	 * 
+	 *
 	 * @param inventory
 	 *            the inventory
 	 * @param material

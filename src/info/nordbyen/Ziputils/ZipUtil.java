@@ -1,29 +1,11 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
 package info.nordbyen.Ziputils;
 
 //import org.slf4j.Logger;
@@ -73,7 +55,7 @@ public final class ZipUtil {
 
 		/**
 		 * Gets the bytes.
-		 * 
+		 *
 		 * @return the bytes
 		 */
 		public byte[] getBytes() {
@@ -104,7 +86,7 @@ public final class ZipUtil {
 
 		/**
 		 * Instantiates a new file unpacker.
-		 * 
+		 *
 		 * @param file
 		 *            the file
 		 */
@@ -137,7 +119,7 @@ public final class ZipUtil {
 
 		/**
 		 * Act.
-		 * 
+		 *
 		 * @param tmpFile
 		 *            the tmp file
 		 * @return true, if successful
@@ -157,7 +139,7 @@ public final class ZipUtil {
 
 		/**
 		 * Instantiates a new repack zip entry callback.
-		 * 
+		 *
 		 * @param dstZip
 		 *            the dst zip
 		 * @param compressionLevel
@@ -201,14 +183,16 @@ public final class ZipUtil {
 
 		/** The name. */
 		private final String name;
+		
 		/** The action. */
 		private final ZipEntryCallback action;
+		
 		/** The found. */
 		private boolean found;
 
 		/**
 		 * Instantiates a new single zip entry callback.
-		 * 
+		 *
 		 * @param name
 		 *            the name
 		 * @param action
@@ -221,7 +205,7 @@ public final class ZipUtil {
 
 		/**
 		 * Found.
-		 * 
+		 *
 		 * @return true, if successful
 		 */
 		public boolean found() {
@@ -253,16 +237,19 @@ public final class ZipUtil {
 
 		/** The entry by path. */
 		private final Map<String, ZipEntryTransformer> entryByPath;
+		
 		/** The entry count. */
 		private final int entryCount;
+		
 		/** The out. */
 		private final ZipOutputStream out;
+		
 		/** The names. */
 		private final Set<String> names = new HashSet<String>();
 
 		/**
 		 * Instantiates a new transformer zip entry callback.
-		 * 
+		 *
 		 * @param entries
 		 *            the entries
 		 * @param out
@@ -277,7 +264,7 @@ public final class ZipUtil {
 
 		/**
 		 * Found.
-		 * 
+		 *
 		 * @return true, if successful
 		 */
 		public boolean found() {
@@ -316,12 +303,13 @@ public final class ZipUtil {
 
 		/** The output dir. */
 		private final File outputDir;
+		
 		/** The mapper. */
 		private final NameMapper mapper;
 
 		/**
 		 * Instantiates a new unpacker.
-		 * 
+		 *
 		 * @param outputDir
 		 *            the output dir
 		 * @param mapper
@@ -365,14 +353,16 @@ public final class ZipUtil {
 
 		/** The output dir. */
 		private final File outputDir;
+		
 		/** The mapper. */
 		private final NameMapper mapper;
+		
 		/** The root dir. */
 		private String rootDir;
 
 		/**
 		 * Instantiates a new unwraper.
-		 * 
+		 *
 		 * @param outputDir
 		 *            the output dir
 		 * @param mapper
@@ -385,7 +375,7 @@ public final class ZipUtil {
 
 		/**
 		 * Gets the root name.
-		 * 
+		 *
 		 * @param name
 		 *            the name
 		 * @return the root name
@@ -403,7 +393,7 @@ public final class ZipUtil {
 
 		/**
 		 * Gets the unrooted name.
-		 * 
+		 *
 		 * @param root
 		 *            the root
 		 * @param name
@@ -450,7 +440,7 @@ public final class ZipUtil {
 
 	/**
 	 * Adds the entries.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entries
@@ -469,7 +459,7 @@ public final class ZipUtil {
 
 	/**
 	 * Adds the entries.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entries
@@ -500,7 +490,7 @@ public final class ZipUtil {
 
 	/**
 	 * Adds the entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param path
@@ -522,7 +512,7 @@ public final class ZipUtil {
 
 	/**
 	 * Adds the entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param path
@@ -539,7 +529,7 @@ public final class ZipUtil {
 
 	/**
 	 * Adds the entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param path
@@ -562,7 +552,7 @@ public final class ZipUtil {
 	/* Traversing ZIP files */
 	/**
 	 * Adds the entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param path
@@ -578,7 +568,7 @@ public final class ZipUtil {
 
 	/**
 	 * Adds the entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entry
@@ -597,7 +587,7 @@ public final class ZipUtil {
 
 	/**
 	 * Adds the entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entry
@@ -611,7 +601,7 @@ public final class ZipUtil {
 
 	/**
 	 * Adds the entry.
-	 * 
+	 *
 	 * @param entry
 	 *            the entry
 	 * @param out
@@ -635,7 +625,7 @@ public final class ZipUtil {
 
 	/**
 	 * Adds the or replace entries.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entries
@@ -655,7 +645,7 @@ public final class ZipUtil {
 
 	/**
 	 * Adds the or replace entries.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entries
@@ -711,7 +701,7 @@ public final class ZipUtil {
 
 	/**
 	 * Archive equals.
-	 * 
+	 *
 	 * @param f1
 	 *            the f1
 	 * @param f2
@@ -740,7 +730,7 @@ public final class ZipUtil {
 
 	/**
 	 * Archive equals internal.
-	 * 
+	 *
 	 * @param f1
 	 *            the f1
 	 * @param f2
@@ -808,7 +798,7 @@ public final class ZipUtil {
 
 	/**
 	 * By path.
-	 * 
+	 *
 	 * @param entries
 	 *            the entries
 	 * @return the map
@@ -825,7 +815,7 @@ public final class ZipUtil {
 
 	/**
 	 * By path.
-	 * 
+	 *
 	 * @param entries
 	 *            the entries
 	 * @return the map
@@ -841,7 +831,7 @@ public final class ZipUtil {
 
 	/**
 	 * By path.
-	 * 
+	 *
 	 * @param entries
 	 *            the entries
 	 * @return the map
@@ -859,7 +849,7 @@ public final class ZipUtil {
 	/* Extracting whole ZIP files. */
 	/**
 	 * Close quietly.
-	 * 
+	 *
 	 * @param zf
 	 *            the zf
 	 */
@@ -874,7 +864,7 @@ public final class ZipUtil {
 
 	/**
 	 * Contains any entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param names
@@ -901,7 +891,7 @@ public final class ZipUtil {
 
 	/**
 	 * Contains entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param name
@@ -922,7 +912,7 @@ public final class ZipUtil {
 
 	/**
 	 * Copy entries.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param out
@@ -950,7 +940,7 @@ public final class ZipUtil {
 
 	/**
 	 * Copy entries.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param out
@@ -990,7 +980,7 @@ public final class ZipUtil {
 
 	/**
 	 * Do entry equals.
-	 * 
+	 *
 	 * @param zf1
 	 *            the zf1
 	 * @param zf2
@@ -1033,7 +1023,7 @@ public final class ZipUtil {
 
 	/**
 	 * Do unpack entry.
-	 * 
+	 *
 	 * @param zf
 	 *            the zf
 	 * @param name
@@ -1058,7 +1048,7 @@ public final class ZipUtil {
 
 	/**
 	 * Do unpack entry.
-	 * 
+	 *
 	 * @param zf
 	 *            the zf
 	 * @param name
@@ -1090,7 +1080,7 @@ public final class ZipUtil {
 
 	/**
 	 * Entry equals.
-	 * 
+	 *
 	 * @param f1
 	 *            the f1
 	 * @param f2
@@ -1105,7 +1095,7 @@ public final class ZipUtil {
 
 	/**
 	 * Entry equals.
-	 * 
+	 *
 	 * @param f1
 	 *            the f1
 	 * @param f2
@@ -1134,7 +1124,7 @@ public final class ZipUtil {
 
 	/**
 	 * Entry equals.
-	 * 
+	 *
 	 * @param zf1
 	 *            the zf1
 	 * @param zf2
@@ -1157,7 +1147,7 @@ public final class ZipUtil {
 	/* Compressing single entries to ZIP files. */
 	/**
 	 * Explode.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 */
@@ -1181,7 +1171,7 @@ public final class ZipUtil {
 	/* Compressing ZIP files. */
 	/**
 	 * Filter dir entries.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param names
@@ -1217,7 +1207,7 @@ public final class ZipUtil {
 
 	/**
 	 * Handle.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param name
@@ -1250,7 +1240,7 @@ public final class ZipUtil {
 
 	/**
 	 * Handle.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param name
@@ -1268,7 +1258,7 @@ public final class ZipUtil {
 
 	/**
 	 * Iterate.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entryNames
@@ -1307,7 +1297,7 @@ public final class ZipUtil {
 
 	/**
 	 * Iterate.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entryNames
@@ -1344,7 +1334,7 @@ public final class ZipUtil {
 
 	/**
 	 * Iterate.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param action
@@ -1378,7 +1368,7 @@ public final class ZipUtil {
 
 	/**
 	 * Iterate.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param action
@@ -1410,7 +1400,7 @@ public final class ZipUtil {
 
 	/**
 	 * Iterate.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param entryNames
@@ -1425,7 +1415,7 @@ public final class ZipUtil {
 
 	/**
 	 * Iterate.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param entryNames
@@ -1470,7 +1460,7 @@ public final class ZipUtil {
 
 	/**
 	 * Iterate.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param action
@@ -1482,7 +1472,7 @@ public final class ZipUtil {
 
 	/**
 	 * Iterate.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param action
@@ -1517,7 +1507,7 @@ public final class ZipUtil {
 
 	/**
 	 * Meta data equals.
-	 * 
+	 *
 	 * @param path
 	 *            the path
 	 * @param e1
@@ -1578,7 +1568,7 @@ public final class ZipUtil {
 
 	/**
 	 * Operate in place.
-	 * 
+	 *
 	 * @param src
 	 *            the src
 	 * @param action
@@ -1604,7 +1594,7 @@ public final class ZipUtil {
 
 	/**
 	 * Pack.
-	 * 
+	 *
 	 * @param rootDir
 	 *            the root dir
 	 * @param zip
@@ -1616,7 +1606,7 @@ public final class ZipUtil {
 
 	/**
 	 * Pack.
-	 * 
+	 *
 	 * @param sourceDir
 	 *            the source dir
 	 * @param targetZipFile
@@ -1642,7 +1632,7 @@ public final class ZipUtil {
 
 	/**
 	 * Pack.
-	 * 
+	 *
 	 * @param rootDir
 	 *            the root dir
 	 * @param zip
@@ -1656,7 +1646,7 @@ public final class ZipUtil {
 
 	/**
 	 * Pack.
-	 * 
+	 *
 	 * @param sourceDir
 	 *            the source dir
 	 * @param targetZip
@@ -1670,7 +1660,7 @@ public final class ZipUtil {
 
 	/**
 	 * Pack.
-	 * 
+	 *
 	 * @param sourceDir
 	 *            the source dir
 	 * @param targetZip
@@ -1702,7 +1692,7 @@ public final class ZipUtil {
 
 	/**
 	 * Pack.
-	 * 
+	 *
 	 * @param dir
 	 *            the dir
 	 * @param out
@@ -1762,7 +1752,7 @@ public final class ZipUtil {
 
 	/**
 	 * Pack.
-	 * 
+	 *
 	 * @param entries
 	 *            the entries
 	 * @param zip
@@ -1786,7 +1776,7 @@ public final class ZipUtil {
 
 	/**
 	 * Pack entries.
-	 * 
+	 *
 	 * @param filesToPack
 	 *            the files to pack
 	 * @param destZipFile
@@ -1798,7 +1788,7 @@ public final class ZipUtil {
 
 	/**
 	 * Pack entries.
-	 * 
+	 *
 	 * @param filesToPack
 	 *            the files to pack
 	 * @param destZipFile
@@ -1834,7 +1824,7 @@ public final class ZipUtil {
 
 	/**
 	 * Pack entry.
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @return the byte[]
@@ -1862,7 +1852,7 @@ public final class ZipUtil {
 
 	/**
 	 * Pack entry.
-	 * 
+	 *
 	 * @param fileToPack
 	 *            the file to pack
 	 * @param destZipFile
@@ -1874,7 +1864,7 @@ public final class ZipUtil {
 
 	/**
 	 * Pack entry.
-	 * 
+	 *
 	 * @param fileToPack
 	 *            the file to pack
 	 * @param destZipFile
@@ -1889,7 +1879,7 @@ public final class ZipUtil {
 
 	/**
 	 * Pack entry.
-	 * 
+	 *
 	 * @param fileToPack
 	 *            the file to pack
 	 * @param destZipFile
@@ -1910,7 +1900,7 @@ public final class ZipUtil {
 
 	/**
 	 * Removes the entries.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param paths
@@ -1929,7 +1919,7 @@ public final class ZipUtil {
 
 	/**
 	 * Removes the entries.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param paths
@@ -1956,7 +1946,7 @@ public final class ZipUtil {
 
 	/**
 	 * Removes the entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param path
@@ -1975,7 +1965,7 @@ public final class ZipUtil {
 
 	/**
 	 * Removes the entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param path
@@ -1989,7 +1979,7 @@ public final class ZipUtil {
 
 	/**
 	 * Repack.
-	 * 
+	 *
 	 * @param srcZip
 	 *            the src zip
 	 * @param dstZip
@@ -2010,7 +2000,7 @@ public final class ZipUtil {
 
 	/**
 	 * Repack.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param compressionLevel
@@ -2033,7 +2023,7 @@ public final class ZipUtil {
 
 	/**
 	 * Repack.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param dstZip
@@ -2054,7 +2044,7 @@ public final class ZipUtil {
 
 	/**
 	 * Replace entries.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entries
@@ -2074,7 +2064,7 @@ public final class ZipUtil {
 
 	/**
 	 * Replace entries.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entries
@@ -2126,7 +2116,7 @@ public final class ZipUtil {
 
 	/**
 	 * Replace entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param path
@@ -2148,7 +2138,7 @@ public final class ZipUtil {
 
 	/**
 	 * Replace entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param path
@@ -2166,7 +2156,7 @@ public final class ZipUtil {
 
 	/**
 	 * Replace entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param path
@@ -2188,7 +2178,7 @@ public final class ZipUtil {
 
 	/**
 	 * Replace entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param path
@@ -2206,7 +2196,7 @@ public final class ZipUtil {
 
 	/**
 	 * Replace entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entry
@@ -2226,7 +2216,7 @@ public final class ZipUtil {
 
 	/**
 	 * Replace entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entry
@@ -2242,7 +2232,7 @@ public final class ZipUtil {
 
 	/**
 	 * Transform entries.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entries
@@ -2262,7 +2252,7 @@ public final class ZipUtil {
 
 	/**
 	 * Transform entries.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entries
@@ -2294,7 +2284,7 @@ public final class ZipUtil {
 
 	/**
 	 * Transform entries.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param entries
@@ -2325,7 +2315,7 @@ public final class ZipUtil {
 
 	/**
 	 * Transform entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param path
@@ -2347,7 +2337,7 @@ public final class ZipUtil {
 
 	/**
 	 * Transform entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param path
@@ -2366,7 +2356,7 @@ public final class ZipUtil {
 
 	/**
 	 * Transform entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entry
@@ -2386,7 +2376,7 @@ public final class ZipUtil {
 
 	/**
 	 * Transform entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param entry
@@ -2403,7 +2393,7 @@ public final class ZipUtil {
 
 	/**
 	 * Transform entry.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param path
@@ -2422,7 +2412,7 @@ public final class ZipUtil {
 
 	/**
 	 * Transform entry.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param entry
@@ -2439,7 +2429,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unexplode.
-	 * 
+	 *
 	 * @param dir
 	 *            the dir
 	 */
@@ -2449,7 +2439,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unexplode.
-	 * 
+	 *
 	 * @param dir
 	 *            the dir
 	 * @param compressionLevel
@@ -2472,7 +2462,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unpack.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param outputDir
@@ -2484,7 +2474,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unpack.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param outputDir
@@ -2499,7 +2489,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unpack.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param outputDir
@@ -2511,7 +2501,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unpack.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param outputDir
@@ -2526,7 +2516,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unpack entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param name
@@ -2548,7 +2538,7 @@ public final class ZipUtil {
 	/* Comparing two ZIP files. */
 	/**
 	 * Unpack entry.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param name
@@ -2571,7 +2561,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unpack entry.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param name
@@ -2587,7 +2577,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unpack entry.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param name
@@ -2605,7 +2595,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unpack entry.
-	 * 
+	 *
 	 * @param zf
 	 *            the zf
 	 * @param name
@@ -2622,7 +2612,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unpack entry.
-	 * 
+	 *
 	 * @param zf
 	 *            the zf
 	 * @param name
@@ -2641,7 +2631,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unwrap.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param outputDir
@@ -2653,7 +2643,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unwrap.
-	 * 
+	 *
 	 * @param zip
 	 *            the zip
 	 * @param outputDir
@@ -2668,7 +2658,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unwrap.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param outputDir
@@ -2680,7 +2670,7 @@ public final class ZipUtil {
 
 	/**
 	 * Unwrap.
-	 * 
+	 *
 	 * @param is
 	 *            the is
 	 * @param outputDir

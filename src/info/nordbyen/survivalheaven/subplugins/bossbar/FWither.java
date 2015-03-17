@@ -1,29 +1,11 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
 package info.nordbyen.survivalheaven.subplugins.bossbar;
 
 import java.lang.reflect.Constructor;
@@ -45,7 +27,7 @@ public class FWither {
 
 	/**
 	 * Change watcher.
-	 * 
+	 *
 	 * @param nms_entity
 	 *            the nms_entity
 	 * @param text
@@ -68,7 +50,7 @@ public class FWither {
 
 	/**
 	 * Gets the cardinal direction.
-	 * 
+	 *
 	 * @param player
 	 *            the player
 	 * @return the cardinal direction
@@ -102,7 +84,7 @@ public class FWither {
 
 	/**
 	 * Gets the craft class.
-	 * 
+	 *
 	 * @param name
 	 *            the name
 	 * @return the craft class
@@ -120,7 +102,7 @@ public class FWither {
 
 	/**
 	 * Gets the MC class.
-	 * 
+	 *
 	 * @param name
 	 *            the name
 	 * @return the MC class
@@ -138,7 +120,7 @@ public class FWither {
 
 	/**
 	 * Gets the player loc.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @return the player loc
@@ -176,7 +158,7 @@ public class FWither {
 
 	/**
 	 * Gets the wither.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @return the wither
@@ -204,7 +186,7 @@ public class FWither {
 
 	/**
 	 * Gets the wither2.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @return the wither2
@@ -232,7 +214,7 @@ public class FWither {
 
 	/**
 	 * Removes the boss bar.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 */
@@ -258,7 +240,7 @@ public class FWither {
 
 	/**
 	 * Removehorligne w.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 */
@@ -269,7 +251,7 @@ public class FWither {
 
 	/**
 	 * Sets the boss bar.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @param text
@@ -316,7 +298,7 @@ public class FWither {
 
 	/**
 	 * Sets the boss bartext.
-	 * 
+	 *
 	 * @param p
 	 *            the p
 	 * @param text
@@ -360,14 +342,19 @@ public class FWither {
 
 	/** The packet play out spawn entity living. */
 	private static Constructor<?> packetPlayOutSpawnEntityLiving;
+	
 	/** The entity entity wither. */
 	private static Constructor<?> entityEntityWither;
+	
 	/** The set location. */
 	private static Method setLocation;
+	
 	/** The set custom name. */
 	private static Method setCustomName;
+	
 	/** The set health. */
 	private static Method setHealth;
+	
 	/** The set invisible. */
 	private static Method setInvisible;
 

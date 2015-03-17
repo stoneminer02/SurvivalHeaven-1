@@ -1,3 +1,11 @@
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
+ */
 package info.nordbyen.survivalheaven.subplugins.homes;
 
 import info.nordbyen.survivalheaven.SH;
@@ -12,8 +20,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * The Class HomeManagerCommand.
+ */
 public class HomeManagerCommand implements CommandExecutor {
 
+	/* (non-Javadoc)
+	 * @see org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender, org.bukkit.command.Command, java.lang.String, java.lang.String[])
+	 */
 	@Override
 	public boolean onCommand(CommandSender sender, Command command,
 			String label, String[] args) {
@@ -82,15 +96,7 @@ public class HomeManagerCommand implements CommandExecutor {
 			StringBuilder sb = new StringBuilder(ChatColor.GREEN
 					+ "Du har følgende hjem:\n" + ChatColor.AQUA);
 			for (Home home : homes) {
-				sb.append(home.getName()); // + "(" +
-											// home.getLocation().getWorld().getName()
-											// + "," +
-											// home.getLocation().getBlockX() +
-											// "," +
-											// home.getLocation().getBlockY() +
-											// "," +
-											// home.getLocation().getBlockZ() +
-											// "), ");
+				sb.append(home.getName() + ", ");
 			}
 			p.sendMessage(sb.substring(0, sb.length() - 2));
 			return true;

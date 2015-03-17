@@ -1,82 +1,27 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
 package info.nordbyen.survivalheaven.api.util;
 
 import java.io.IOException;
 import java.util.AbstractQueue;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 
 /**
- * An unbounded thread-safe {@linkplain Queue queue} based on linked nodes. This
- * queue orders elements FIFO (first-in-first-out). The <em>head</em> of the
- * queue is that element that has been on the queue the longest time. The
- * <em>tail</em> of the queue is that element that has been on the queue the
- * shortest time. New elements are inserted at the tail of the queue, and the
- * queue retrieval operations obtain elements at the head of the queue. A
- * <tt>ConcurrentLinkedQueue</tt> is an appropriate choice when many threads
- * will share access to a common collection. This queue does not permit
- * <tt>null</tt> elements.
- * 
- * <p>
- * This implementation employs an efficient "wait-free" algorithm based on one
- * described in <a href="http://www.cs.rochester.edu/u/michael/PODC96.html">
- * Simple, Fast, and Practical Non-Blocking and Blocking Concurrent Queue
- * Algorithms</a> by Maged M. Michael and Michael L. Scott.
- * 
- * <p>
- * Beware that, unlike in most collections, the <tt>size</tt> method is
- * <em>NOT</em> a constant-time operation. Because of the asynchronous nature of
- * these queues, determining the current number of elements requires a traversal
- * of the elements.
- * 
- * <p>
- * This class and its iterator implement all of the <em>optional</em> methods of
- * the {@link Collection} and {@link Iterator} interfaces.
- * 
- * <p>
- * Memory consistency effects: As with other concurrent collections, actions in
- * a thread prior to placing an object into a {@code ConcurrentLinkedQueue} <a
- * href="package-summary.html#MemoryVisibility"><i>happen-before</i></a> actions
- * subsequent to the access or removal of that element from the
- * {@code ConcurrentLinkedQueue} in another thread.
- * 
- * <p>
- * This class is a member of the <a href="{@docRoot}
- * /../technotes/guides/collections/index.html"> Java Collections Framework</a>.
- * 
+ * The Class ConcurrentLinkedQueue.
+ *
  * @param <E>
- *            the type of elements held in this collection
- * 
+ *            the element type
  */
 public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 		Queue<E>, java.io.Serializable {
@@ -86,20 +31,13 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 	 */
 	private class Itr implements Iterator<E> {
 
-		/**
-		 * Next node to return item for.
-		 */
+		/** The next node. */
 		private Node<E> nextNode;
-		/**
-		 * nextItem holds on to item fields because once we claim that an
-		 * element exists in hasNext(), we must return it in the following
-		 * next() call even if it was in the process of being removed when
-		 * hasNext() was called.
-		 */
+		
+		/** The next item. */
 		private E nextItem;
-		/**
-		 * Node of the last returned item, to support remove.
-		 */
+		
+		/** The last ret. */
 		private Node<E> lastRet;
 
 		/**
@@ -110,9 +48,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 		}
 
 		/**
-		 * Moves to next valid node and returns item to return for next(), or
-		 * null if no such.
-		 * 
+		 * Advance.
+		 *
 		 * @return the e
 		 */
 		private E advance() {
@@ -190,7 +127,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 	 */
 	/**
 	 * The Class Node.
-	 * 
+	 *
 	 * @param <E>
 	 *            the element type
 	 */
@@ -198,12 +135,15 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 
 		/** The item. */
 		private volatile E item;
+		
 		/** The next. */
 		private volatile Node<E> next;
+		
 		/** The Constant nextUpdater. */
 		@SuppressWarnings("rawtypes")
 		private static final AtomicReferenceFieldUpdater<Node, Node> nextUpdater = AtomicReferenceFieldUpdater
 				.newUpdater(Node.class, Node.class, "next");
+		
 		/** The Constant itemUpdater. */
 		@SuppressWarnings("rawtypes")
 		private static final AtomicReferenceFieldUpdater<Node, Object> itemUpdater = AtomicReferenceFieldUpdater
@@ -211,7 +151,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 
 		/**
 		 * Instantiates a new node.
-		 * 
+		 *
 		 * @param x
 		 *            the x
 		 */
@@ -222,7 +162,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 
 		/**
 		 * Instantiates a new node.
-		 * 
+		 *
 		 * @param x
 		 *            the x
 		 * @param n
@@ -235,7 +175,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 
 		/**
 		 * Cas item.
-		 * 
+		 *
 		 * @param cmp
 		 *            the cmp
 		 * @param val
@@ -248,7 +188,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 
 		/**
 		 * Cas next.
-		 * 
+		 *
 		 * @param cmp
 		 *            the cmp
 		 * @param val
@@ -261,7 +201,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 
 		/**
 		 * Gets the item.
-		 * 
+		 *
 		 * @return the item
 		 */
 		E getItem() {
@@ -270,7 +210,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 
 		/**
 		 * Gets the next.
-		 * 
+		 *
 		 * @return the next
 		 */
 		Node<E> getNext() {
@@ -279,7 +219,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 
 		/**
 		 * Sets the item.
-		 * 
+		 *
 		 * @param val
 		 *            the new item
 		 */
@@ -289,7 +229,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 
 		/**
 		 * Sets the next.
-		 * 
+		 *
 		 * @param val
 		 *            the new next
 		 */
@@ -301,38 +241,32 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 196745693267521676L;
+	
 	/** The Constant tailUpdater. */
-	@SuppressWarnings("rawtypes")
 	private static final AtomicReferenceFieldUpdater<ConcurrentLinkedQueue, Node> tailUpdater = AtomicReferenceFieldUpdater
 			.newUpdater(ConcurrentLinkedQueue.class, Node.class, "tail");
 
 	/** The Constant headUpdater. */
-	@SuppressWarnings("rawtypes")
 	private static final AtomicReferenceFieldUpdater<ConcurrentLinkedQueue, Node> headUpdater = AtomicReferenceFieldUpdater
 			.newUpdater(ConcurrentLinkedQueue.class, Node.class, "head");
 
-	/**
-	 * Pointer to header node, initialized to a dummy node. The first actual
-	 * node is at head.getNext().
-	 */
+	/** The head. */
 	private transient volatile Node<E> head = new Node<E>(null, null);
 
-	/** Pointer to last node on list *. */
+	/** The tail. */
 	private transient volatile Node<E> tail = head;
 
 	/**
-	 * Creates a <tt>ConcurrentLinkedQueue</tt> that is initially empty.
+	 * Instantiates a new concurrent linked queue.
 	 */
 	public ConcurrentLinkedQueue() {
 	}
 
 	/**
-	 * Creates a <tt>ConcurrentLinkedQueue</tt> initially containing the
-	 * elements of the given collection, added in traversal order of the
-	 * collection's iterator.
-	 * 
+	 * Instantiates a new concurrent linked queue.
+	 *
 	 * @param c
-	 *            the collection of elements to initially contain
+	 *            the c
 	 */
 	public ConcurrentLinkedQueue(final Collection<? extends E> c) {
 		for (final Iterator<? extends E> it = c.iterator(); it.hasNext();) {
@@ -341,12 +275,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 	}
 
 	// Have to override just to update the javadoc
-	/**
-	 * Inserts the specified element at the tail of this queue.
-	 * 
-	 * @param e
-	 *            the e
-	 * @return <tt>true</tt> (as specified by {@link Collection#add})
+	/* (non-Javadoc)
+	 * @see java.util.AbstractQueue#add(java.lang.Object)
 	 */
 	@Override
 	public boolean add(final E e) {
@@ -355,7 +285,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 
 	/**
 	 * Cas head.
-	 * 
+	 *
 	 * @param cmp
 	 *            the cmp
 	 * @param val
@@ -368,7 +298,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 
 	/**
 	 * Cas tail.
-	 * 
+	 *
 	 * @param cmp
 	 *            the cmp
 	 * @param val
@@ -379,14 +309,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 		return tailUpdater.compareAndSet(this, cmp, val);
 	}
 
-	/**
-	 * Returns <tt>true</tt> if this queue contains the specified element. More
-	 * formally, returns <tt>true</tt> if and only if this queue contains at
-	 * least one element <tt>e</tt> such that <tt>o.equals(e)</tt>.
-	 * 
-	 * @param o
-	 *            object to be checked for containment in this queue
-	 * @return <tt>true</tt> if this queue contains the specified element
+	/* (non-Javadoc)
+	 * @see java.util.AbstractCollection#contains(java.lang.Object)
 	 */
 	@Override
 	public boolean contains(final Object o) {
@@ -401,10 +325,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 	}
 
 	/**
-	 * Returns the first actual (non-header) node on list. This is yet another
-	 * variant of poll/peek; here returning out the first node, not element (so
-	 * we cannot collapse with peek() without introducing race.)
-	 * 
+	 * First.
+	 *
 	 * @return the node
 	 */
 	Node<E> first() {
@@ -430,37 +352,24 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 		}
 	}
 
-	/**
-	 * Returns <tt>true</tt> if this queue contains no elements.
-	 * 
-	 * @return <tt>true</tt> if this queue contains no elements
+	/* (non-Javadoc)
+	 * @see java.util.AbstractCollection#isEmpty()
 	 */
 	@Override
 	public boolean isEmpty() {
 		return first() == null;
 	}
 
-	/**
-	 * Returns an iterator over the elements in this queue in proper sequence.
-	 * The returned iterator is a "weakly consistent" iterator that will never
-	 * throw {@link ConcurrentModificationException}, and guarantees to traverse
-	 * elements as they existed upon construction of the iterator, and may (but
-	 * is not guaranteed to) reflect any modifications subsequent to
-	 * construction.
-	 * 
-	 * @return an iterator over the elements in this queue in proper sequence
+	/* (non-Javadoc)
+	 * @see java.util.AbstractCollection#iterator()
 	 */
 	@Override
 	public Iterator<E> iterator() {
 		return new Itr();
 	}
 
-	/**
-	 * Inserts the specified element at the tail of this queue.
-	 * 
-	 * @param e
-	 *            the e
-	 * @return <tt>true</tt> (as specified by {@link Queue#offer})
+	/* (non-Javadoc)
+	 * @see java.util.Queue#offer(java.lang.Object)
 	 */
 	@Override
 	public boolean offer(final E e) {
@@ -544,10 +453,10 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 	}
 
 	/**
-	 * Reconstitute the Queue instance from a stream (that is, deserialize it).
-	 * 
+	 * Read object.
+	 *
 	 * @param s
-	 *            the stream
+	 *            the s
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 * @throws ClassNotFoundException
@@ -571,16 +480,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 		}
 	}
 
-	/**
-	 * Removes a single instance of the specified element from this queue, if it
-	 * is present. More formally, removes an element <tt>e</tt> such that
-	 * <tt>o.equals(e)</tt>, if this queue contains one or more such elements.
-	 * Returns <tt>true</tt> if this queue contained the specified element (or
-	 * equivalently, if this queue changed as a result of the call).
-	 * 
-	 * @param o
-	 *            element to be removed from this queue, if present
-	 * @return <tt>true</tt> if this queue changed as a result of the call
+	/* (non-Javadoc)
+	 * @see java.util.AbstractCollection#remove(java.lang.Object)
 	 */
 	@Override
 	public boolean remove(final Object o) {
@@ -594,18 +495,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 		return false;
 	}
 
-	/**
-	 * Returns the number of elements in this queue. If this queue contains more
-	 * than <tt>Integer.MAX_VALUE</tt> elements, returns
-	 * <tt>Integer.MAX_VALUE</tt>.
-	 * 
-	 * <p>
-	 * Beware that, unlike in most collections, this method is <em>NOT</em> a
-	 * constant-time operation. Because of the asynchronous nature of these
-	 * queues, determining the current number of elements requires an O(n)
-	 * traversal.
-	 * 
-	 * @return the number of elements in this queue
+	/* (non-Javadoc)
+	 * @see java.util.AbstractCollection#size()
 	 */
 	@Override
 	public int size() {
@@ -621,19 +512,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 		return count;
 	}
 
-	/**
-	 * Returns an array containing all of the elements in this queue, in proper
-	 * sequence.
-	 * 
-	 * <p>
-	 * The returned array will be "safe" in that no references to it are
-	 * maintained by this queue. (In other words, this method must allocate a
-	 * new array). The caller is thus free to modify the returned array.
-	 * 
-	 * <p>
-	 * This method acts as bridge between array-based and collection-based APIs.
-	 * 
-	 * @return an array containing all of the elements in this queue
+	/* (non-Javadoc)
+	 * @see java.util.AbstractCollection#toArray()
 	 */
 	@Override
 	public Object[] toArray() {
@@ -648,54 +528,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 		return al.toArray();
 	}
 
-	/**
-	 * Returns an array containing all of the elements in this queue, in proper
-	 * sequence; the runtime type of the returned array is that of the specified
-	 * array. If the queue fits in the specified array, it is returned therein.
-	 * Otherwise, a new array is allocated with the runtime type of the
-	 * specified array and the size of this queue.
-	 * 
-	 * <p>
-	 * If this queue fits in the specified array with room to spare (i.e., the
-	 * array has more elements than this queue), the element in the array
-	 * immediately following the end of the queue is set to <tt>null</tt>.
-	 * 
-	 * <p>
-	 * Like the {@link #toArray()} method, this method acts as bridge between
-	 * array-based and collection-based APIs. Further, this method allows
-	 * precise control over the runtime type of the output array, and may, under
-	 * certain circumstances, be used to save allocation costs.
-	 * 
-	 * <p>
-	 * Suppose <tt>x</tt> is a queue known to contain only strings. The
-	 * following code can be used to dump the queue into a newly allocated array
-	 * of <tt>String</tt>:
-	 * 
-	 * <pre>
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * String[] y = x.toArray(new String[0]);
-	 * </pre>
-	 * 
-	 * Note that <tt>toArray(new Object[0])</tt> is identical in function to
-	 * <tt>toArray()</tt>.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param a
-	 *            the array into which the elements of the queue are to be
-	 *            stored, if it is big enough; otherwise, a new array of the
-	 *            same runtime type is allocated for this purpose
-	 * @return an array containing all of the elements in this queue
+	/* (non-Javadoc)
+	 * @see java.util.AbstractCollection#toArray(java.lang.Object[])
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -727,14 +561,12 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements
 	}
 
 	/**
-	 * Save the state to a stream (that is, serialize it).
-	 * 
+	 * Write object.
+	 *
 	 * @param s
-	 *            the stream
+	 *            the s
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
-	 * @serialData All of the elements (each an <tt>E</tt>) in the proper order,
-	 *             followed by a null
 	 */
 	private void writeObject(final java.io.ObjectOutputStream s)
 			throws java.io.IOException {

@@ -1,29 +1,11 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
 package info.nordbyen.survivalheaven.subplugins.regions;
 
 import info.nordbyen.survivalheaven.SH;
@@ -38,7 +20,7 @@ public class RegionData implements IRegionData {
 
 	/**
 	 * Creates the region.
-	 * 
+	 *
 	 * @param center
 	 *            the center
 	 * @param name
@@ -55,38 +37,55 @@ public class RegionData implements IRegionData {
 	 *            the monsters
 	 * @param invincible
 	 *            the invincible
+	 * @param bp
+	 *            the bp
+	 * @param auto_door
+	 *            the auto_door
 	 * @return the region data
 	 */
 	public static RegionData createRegion(final Location center,
 			final String name, final double radius, final int zVal,
 			final boolean pvp, final boolean breakable, final boolean monsters,
-			final boolean invincible) {
+			final boolean invincible, final boolean bp, final boolean auto_door) {
 		final RegionData region = new RegionData(center, name, radius, zVal,
-				pvp, breakable, monsters, invincible);
+				pvp, breakable, monsters, invincible, bp, auto_door);
 		SH.getManager().getRegionManager().addRegion(region);
 		return region;
 	}
 
 	/** The center. */
 	private Location center;
+	
 	/** The name. */
 	private final String name;
+	
 	/** The radius. */
 	private double radius;
+	
 	/** The z val. */
 	private final int zVal;
+	
 	/** The pvp. */
 	private boolean pvp;
+	
 	/** The breakable. */
 	private boolean breakable;
+	
 	/** The monsters. */
 	private boolean monsters;
+	
 	/** The invincible. */
 	private boolean invincible;
+	
+	/** The bp. */
+	private boolean bp;
+	
+	/** The auto_door. */
+	private boolean auto_door;
 
 	/**
 	 * Instantiates a new region data.
-	 * 
+	 *
 	 * @param center
 	 *            the center
 	 * @param name
@@ -103,11 +102,15 @@ public class RegionData implements IRegionData {
 	 *            the monsters
 	 * @param invincible
 	 *            the invincible
+	 * @param bp
+	 *            the bp
+	 * @param auto_door
+	 *            the auto_door
 	 */
-	private RegionData(final Location center, final String name,
+	protected RegionData(final Location center, final String name,
 			final double radius, final int zVal, final boolean pvp,
 			final boolean breakable, final boolean monsters,
-			final boolean invincible) {
+			final boolean invincible, final boolean bp, final boolean auto_door) {
 		this.setCenter(center);
 		this.name = name;
 		this.setRadius(radius);
@@ -116,6 +119,8 @@ public class RegionData implements IRegionData {
 		this.setBreakable(breakable);
 		this.setMonsters(monsters);
 		this.setInvincible(invincible);
+		this.setBp(bp);
+		this.setAuto_door(auto_door);
 	}
 
 	/*
@@ -129,6 +134,10 @@ public class RegionData implements IRegionData {
 	public boolean containsLocation(final Location loc) {
 		final Location copy = loc.clone();
 		copy.setY(0);
+		if( center == null ) 
+			return false;
+		if( loc.getWorld() == null || center.getWorld() == null ) 
+			return false;
 		if (!loc.getWorld().getName().equals(center.getWorld().getName()))
 			return false;
 		if (copy.distance(center) > radius)
@@ -237,6 +246,8 @@ public class RegionData implements IRegionData {
 	 */
 	@Override
 	public void setCenter(final Location center) {
+		if( center == null )
+			return;
 		center.setY(0);
 		this.center = center;
 	}
@@ -283,5 +294,43 @@ public class RegionData implements IRegionData {
 	@Override
 	public void setRadius(final double radius) {
 		this.radius = radius;
+	}
+
+	/**
+	 * Checks if is bp.
+	 *
+	 * @return true, if is bp
+	 */
+	public boolean isBp() {
+		return bp;
+	}
+
+	/**
+	 * Sets the bp.
+	 *
+	 * @param bp
+	 *            the new bp
+	 */
+	public void setBp(boolean bp) {
+		this.bp = bp;
+	}
+
+	/**
+	 * Checks if is auto_door.
+	 *
+	 * @return true, if is auto_door
+	 */
+	public boolean isAuto_door() {
+		return auto_door;
+	}
+
+	/**
+	 * Sets the auto_door.
+	 *
+	 * @param auto_door
+	 *            the new auto_door
+	 */
+	public void setAuto_door(boolean auto_door) {
+		this.auto_door = auto_door;
 	}
 }

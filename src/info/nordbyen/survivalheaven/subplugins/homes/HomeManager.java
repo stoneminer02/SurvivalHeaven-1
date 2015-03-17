@@ -1,3 +1,11 @@
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
+ */
 package info.nordbyen.survivalheaven.subplugins.homes;
 
 import info.nordbyen.survivalheaven.SH;
@@ -13,10 +21,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 
+/**
+ * The Class HomeManager.
+ */
 public class HomeManager {
 
+	/** The homes of player. */
 	private HashMap<String, ArrayList<Home>> homesOfPlayer = new HashMap<String, ArrayList<Home>>();
 
+	/**
+	 * Instantiates a new home manager.
+	 */
 	public HomeManager() {
 		try {
 			HomeManagerCommand hcm = new HomeManagerCommand();
@@ -31,6 +46,15 @@ public class HomeManager {
 		}
 	}
 
+	/**
+	 * Adds the home.
+	 *
+	 * @param home
+	 *            the home
+	 * @return true, if successful
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
 	public boolean addHome(Home home) throws SQLException {
 		String uuid = home.getUuid();
 		if (getHomeFromPlayer(home.getName(), uuid) != null) {
@@ -50,6 +74,12 @@ public class HomeManager {
 		return true;
 	}
 
+	/**
+	 * Creates the table.
+	 *
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
 	public void createTable() throws SQLException {
 		IMysqlManager sql = SH.getManager().getMysqlManager();
 		sql.query("CREATE TABLE IF NOT EXISTS home ( "
@@ -60,6 +90,16 @@ public class HomeManager {
 				+ "`y` INT(11) NOT NULL," + "`z` INT(11) NOT NULL );");
 	}
 
+	/**
+	 * Delete home from player.
+	 *
+	 * @param home
+	 *            the home
+	 * @param uuid
+	 *            the uuid
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
 	public void deleteHomeFromPlayer(String home, String uuid)
 			throws SQLException {
 		Home toBeDel = null;
@@ -79,10 +119,28 @@ public class HomeManager {
 		homes.remove(toBeDel);
 	}
 
+	/**
+	 * Gets the home from player.
+	 *
+	 * @param home
+	 *            the home
+	 * @param pd
+	 *            the pd
+	 * @return the home from player
+	 */
 	public Home getHomeFromPlayer(String home, PlayerData pd) {
 		return getHomeFromPlayer(home, pd.getUUID());
 	}
 
+	/**
+	 * Gets the home from player.
+	 *
+	 * @param home
+	 *            the home
+	 * @param uuid
+	 *            the uuid
+	 * @return the home from player
+	 */
 	public Home getHomeFromPlayer(String home, String uuid) {
 		if (getHomesFromPlayer(uuid) == null)
 			homesOfPlayer.put(uuid, new ArrayList<Home>());
@@ -95,15 +153,35 @@ public class HomeManager {
 		return null;
 	}
 
+	/**
+	 * Gets the homes from player.
+	 *
+	 * @param pd
+	 *            the pd
+	 * @return the homes from player
+	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Home> getHomesFromPlayer(PlayerData pd) {
 		return (ArrayList<Home>) getHomesFromPlayer(pd.getUUID()).clone();
 	}
 
+	/**
+	 * Gets the homes from player.
+	 *
+	 * @param uuid
+	 *            the uuid
+	 * @return the homes from player
+	 */
 	public ArrayList<Home> getHomesFromPlayer(String uuid) {
 		return homesOfPlayer.get(uuid);
 	}
 
+	/**
+	 * Update from database.
+	 *
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
 	public void updateFromDatabase() throws SQLException {
 		IMysqlManager sql = SH.getManager().getMysqlManager();
 		ResultSet rs = sql

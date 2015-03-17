@@ -1,29 +1,11 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
 package info.nordbyen.survivalheaven.api.playerdata.note;
 
 import info.nordbyen.survivalheaven.api.playerdata.IPlayerData;
@@ -44,35 +26,35 @@ public interface INoteManager {
 
 		/**
 		 * Gets the date.
-		 * 
+		 *
 		 * @return the date
 		 */
 		Date getDate();
 
 		/**
 		 * Gets the id.
-		 * 
+		 *
 		 * @return the id
 		 */
 		int getId();
 
 		/**
 		 * Gets the message.
-		 * 
+		 *
 		 * @return the message
 		 */
 		String getMessage();
 
 		/**
 		 * Gets the player.
-		 * 
+		 *
 		 * @return the player
 		 */
 		IPlayerData getPlayer();
 
 		/**
 		 * Gets the setter.
-		 * 
+		 *
 		 * @return the setter
 		 */
 		IPlayerData getSetter();
@@ -80,7 +62,7 @@ public interface INoteManager {
 
 	/**
 	 * Adds the note.
-	 * 
+	 *
 	 * @param date
 	 *            the date
 	 * @param player
@@ -99,14 +81,14 @@ public interface INoteManager {
 
 	/**
 	 * Gets the every notes.
-	 * 
+	 *
 	 * @return the every notes
 	 */
 	public List<INote> getEveryNotes();
 
 	/**
 	 * Gets the note from id.
-	 * 
+	 *
 	 * @param id
 	 *            the id
 	 * @return the note from id
@@ -115,7 +97,7 @@ public interface INoteManager {
 
 	/**
 	 * Gets the notes from name.
-	 * 
+	 *
 	 * @param name
 	 *            the name
 	 * @return the notes from name
@@ -124,7 +106,7 @@ public interface INoteManager {
 
 	/**
 	 * Gets the notes from player.
-	 * 
+	 *
 	 * @param pd
 	 *            the pd
 	 * @return the notes from player
@@ -133,7 +115,7 @@ public interface INoteManager {
 
 	/**
 	 * Gets the notes from uuid.
-	 * 
+	 *
 	 * @param uuid
 	 *            the uuid
 	 * @return the notes from uuid
@@ -142,7 +124,7 @@ public interface INoteManager {
 
 	/**
 	 * Removes the note.
-	 * 
+	 *
 	 * @param note
 	 *            the note
 	 * @throws SQLException
@@ -152,7 +134,7 @@ public interface INoteManager {
 
 	/**
 	 * Removes the note.
-	 * 
+	 *
 	 * @param id
 	 *            the id
 	 * @throws SQLException

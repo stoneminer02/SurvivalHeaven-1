@@ -1,29 +1,11 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
 package info.nordbyen.survivalheaven.subplugins.blockprotection;
 
 import info.nordbyen.survivalheaven.SH;
@@ -51,16 +33,38 @@ import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+/**
+ * The listener interface for receiving blockProtection events. The class that
+ * is interested in processing a blockProtection event implements this
+ * interface, and the object created with that class is registered with a
+ * component using the component's
+ * <code>addBlockProtectionListener<code> method. When
+ * the blockProtection event occurs, that object's appropriate
+ * method is invoked.
+ *
+ * @see BlockProtectionEvent
+ */
 public class BlockProtectionListener implements Listener {
 
+	/**
+	 * On break.
+	 *
+	 * @param e
+	 *            the e
+	 */
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBreak(final BlockBreakEvent e) {
 		final Block b = e.getBlock();
 		final Player p = e.getPlayer();
+		
+		if( !SH.getManager().getRegionManager().getRegionAt( b.getLocation() ).isBp() ) {
+			return;
+		}
+		
 		if ((b.getType() != Material.AIR) && (b.getType() != Material.WATER)
 				&& (b.getType() != Material.LAVA)) {
 			final IPlayerData pd = SH.getManager().getBlockManager()
-					.getOwner(b);
+					.getBlockOwner(b);
 			if (pd != null) // Har en eier
 			{
 				final String uuid = pd.getUUID();
@@ -85,12 +89,22 @@ public class BlockProtectionListener implements Listener {
 		}
 	}
 
+	/**
+	 * On interact.
+	 *
+	 * @param e
+	 *            the e
+	 */
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
 		final Block b = e.getClickedBlock();
 		final Player p = e.getPlayer();
 		if (b == null)
 			return;
+		
+		if( !SH.getManager().getRegionManager().getRegionAt( b.getLocation() ).isBp() ) {
+			return;
+		}
 
 		if (e.getAction() == Action.PHYSICAL) {
 			if (e.getClickedBlock().getType() == Material.CROPS
@@ -148,7 +162,7 @@ public class BlockProtectionListener implements Listener {
 				|| b.getType() == Material.STONE_PLATE
 				|| b.getType() == Material.ITEM_FRAME) {
 			final IPlayerData pd = SH.getManager().getBlockManager()
-					.getOwner(b);
+					.getBlockOwner(b);
 			if (pd != null) // Har en eier
 			{
 				final String uuid = pd.getUUID();
@@ -173,6 +187,12 @@ public class BlockProtectionListener implements Listener {
 		}
 	}
 
+	/**
+	 * On item break.
+	 *
+	 * @param e
+	 *            the e
+	 */
 	@EventHandler
 	public void onItemBreak(final HangingBreakByEntityEvent e) {
 		if (e.getEntity().getType() != EntityType.ITEM_FRAME)
@@ -187,9 +207,14 @@ public class BlockProtectionListener implements Listener {
 		ItemFrame frame = (ItemFrame) e.getEntity();
 		Block block = frame.getLocation().getWorld()
 				.getBlockAt(frame.getLocation());
+		
+		if(! SH.getManager().getRegionManager().getRegionAt( block.getLocation() ).isBp() ) {
+			return;
+		}
+		
 		Block back = block.getRelative(frame.getAttachedFace());
 
-		final IPlayerData pd = SH.getManager().getBlockManager().getOwner(back);
+		final IPlayerData pd = SH.getManager().getBlockManager().getBlockOwner(back);
 		if (pd != null) // Har en eier
 		{
 			final String uuid = pd.getUUID();
@@ -213,6 +238,12 @@ public class BlockProtectionListener implements Listener {
 		}
 	}
 
+	/**
+	 * On item frame interact.
+	 *
+	 * @param e
+	 *            the e
+	 */
 	@EventHandler
 	public void onItemFrameInteract(PlayerInteractEntityEvent e) {
 		if (e.getRightClicked().getType() != EntityType.ITEM_FRAME)
@@ -225,9 +256,14 @@ public class BlockProtectionListener implements Listener {
 		ItemFrame frame = (ItemFrame) e.getRightClicked();
 		Block block = frame.getLocation().getWorld()
 				.getBlockAt(frame.getLocation());
+		
+		if( !SH.getManager().getRegionManager().getRegionAt( block.getLocation() ).isBp() ) {
+			return;
+		}
+		
 		Block back = block.getRelative(frame.getAttachedFace());
 
-		final IPlayerData pd = SH.getManager().getBlockManager().getOwner(back);
+		final IPlayerData pd = SH.getManager().getBlockManager().getBlockOwner(back);
 		if (pd != null) // Har en eier
 		{
 			final String uuid = pd.getUUID();
@@ -251,6 +287,12 @@ public class BlockProtectionListener implements Listener {
 		}
 	}
 
+	/**
+	 * On item remove.
+	 *
+	 * @param e
+	 *            the e
+	 */
 	@EventHandler
 	public void onItemRemove(EntityDamageByEntityEvent e) {
 		if (e.getEntity().getType() != EntityType.ITEM_FRAME)
@@ -265,9 +307,14 @@ public class BlockProtectionListener implements Listener {
 		ItemFrame frame = (ItemFrame) e.getEntity();
 		Block block = frame.getLocation().getWorld()
 				.getBlockAt(frame.getLocation());
+		
+		if( !SH.getManager().getRegionManager().getRegionAt( block.getLocation() ).isBp() ) {
+			return;
+		}
+		
 		Block back = block.getRelative(frame.getAttachedFace());
 
-		final IPlayerData pd = SH.getManager().getBlockManager().getOwner(back);
+		final IPlayerData pd = SH.getManager().getBlockManager().getBlockOwner(back);
 		if (pd != null) // Har en eier
 		{
 			final String uuid = pd.getUUID();
@@ -291,18 +338,28 @@ public class BlockProtectionListener implements Listener {
 		}
 	}
 
+	/**
+	 * On place.
+	 *
+	 * @param e
+	 *            the e
+	 */
 	@EventHandler
 	public void onPlace(final BlockPlaceEvent e) {
 		final Block b = e.getBlock();
 		final Player p = e.getPlayer();
 
+		if(! SH.getManager().getRegionManager().getRegionAt( b.getLocation() ).isBp() ) {
+			return;
+		}
+		
 		if (b.getType() == Material.HOPPER) {
 			Location aboveL = b.getLocation();
 			aboveL.add(0, 1, 0);
 			Block above = aboveL.getWorld().getBlockAt(aboveL);
 
 			final IPlayerData pd = SH.getManager().getBlockManager()
-					.getOwner(above);
+					.getBlockOwner(above);
 			if (pd != null) // Har en eier
 			{
 				final String uuid = pd.getUUID();
@@ -335,7 +392,7 @@ public class BlockProtectionListener implements Listener {
 				Block bs = b.getRelative(bf);
 				if (b.getType() == bs.getType()) {
 					final IPlayerData pd = SH.getManager().getBlockManager()
-							.getOwner(bs);
+							.getBlockOwner(bs);
 					if (pd != null) // Har en eier
 					{
 						final String uuid = pd.getUUID();
@@ -374,7 +431,7 @@ public class BlockProtectionListener implements Listener {
 		if (bel.getType() == Material.CHEST
 				|| bel.getType() == Material.TRAPPED_CHEST) {
 			final IPlayerData pd = SH.getManager().getBlockManager()
-					.getOwner(bel);
+					.getBlockOwner(bel);
 			if (pd != null) // Har en eier
 			{
 				final String uuid = pd.getUUID();

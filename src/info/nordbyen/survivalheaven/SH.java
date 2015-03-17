@@ -1,29 +1,11 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
 package info.nordbyen.survivalheaven;
 
 import info.nordbyen.survivalheaven.api.command.AbstractCommand;
@@ -72,7 +54,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.logging.Level;
 
@@ -85,15 +66,17 @@ import org.bukkit.plugin.UnknownDependencyException;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * The Class SurvivalHeaven.
- * 
- * Ask l0lkj about this plugin or if you plan to use it in any way! Contact
- * l0lkj on: Phone: 0047 48073448 Email: alexmsagen@gmail.com Skype: alex.l0lkj
- * 
- * @author l0lkj
+ * The Class SH.
  */
 public class SH extends JavaPlugin implements ISH {
 
+	/**
+	 * Download plugin.
+	 *
+	 * @param id
+	 *            the id
+	 * @return true, if successful
+	 */
 	public static boolean downloadPlugin(String id) {
 		InputStreamReader in = null;
 		try {
@@ -149,7 +132,7 @@ public class SH extends JavaPlugin implements ISH {
 
 	/**
 	 * Gets the manager.
-	 * 
+	 *
 	 * @return the manager
 	 */
 	public static ISH getManager() {
@@ -158,7 +141,7 @@ public class SH extends JavaPlugin implements ISH {
 
 	/**
 	 * Gets the plugin.
-	 * 
+	 *
 	 * @return the plugin
 	 */
 	public static JavaPlugin getPlugin() {
@@ -167,45 +150,64 @@ public class SH extends JavaPlugin implements ISH {
 
 	/** The commands. */
 	public HashMap<String, AbstractCommand> commands = new HashMap<String, AbstractCommand>();
+	
 	/** The Constant MOTTO. */
 	public static final String MOTTO = ChatColor.LIGHT_PURPLE
 			+ "Skapt for spillerne";
+	
 	/** The Constant PREFIX. */
 	public static final String PREFIX = ChatColor.RED + "S" + ChatColor.GRAY
 			+ "H ";
+	
 	/** The Constant PATH_TO_CONFIG_FOLDER. */
 	public static final String PATH_TO_CONFIG_FOLDER = "./plugins/SurvivalHeaven/";
+	
 	/** The Constant NAME. */
 	public static final String NAME = ChatColor.RED + "Survival"
 			+ ChatColor.GRAY + "Heaven" + ChatColor.RESET;
+	
 	/** The i survival heaven. */
 	private static ISH iSurvivalHeaven;
+	
 	/** The plugin. */
 	private static JavaPlugin plugin;
-	/** The Constant debug. */
+	
+	/** The debug. */
 	private final boolean debug = false; // TODO
-	/** The Constant spam. */
+	
+	/** The spam. */
 	private final boolean spam = false; // TODO
+	
 	/** The version. */
 	private String version = null;
+	
 	/** The name. */
 	private String name = null;
+	
 	/** The note manager. */
 	private INoteManager noteManager;
+	
 	/** The warning manager. */
 	private IWarningManager warningManager;
+	
 	/** The block manager. */
 	private IBlockManager blockManager;
+	
 	/** The mysql manager. */
 	private IMysqlManager mysqlManager;
+	
 	/** The wand manager. */
 	private IWandManager wandManager;
+	
 	/** The player data manager. */
 	private IPlayerDataManager playerDataManager;
+	
 	/** The rank manager. */
 	private IRankManager rankManager;
+	
 	/** The subplugin manager. */
 	private ISubPluginManager subpluginManager;
+	
 	/** The anno sub plugin manager. */
 	private IAnnoSubPluginManager annoSubPluginManager;
 
@@ -218,11 +220,8 @@ public class SH extends JavaPlugin implements ISH {
 	/** The home manager. */
 	private HomeManager homeManager;
 
-	/**
-	 * Debug.
-	 * 
-	 * @param strings
-	 *            the strings
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#debug(java.lang.Object[])
 	 */
 	@Override
 	public void debug(final Object... strings) {
@@ -250,10 +249,8 @@ public class SH extends JavaPlugin implements ISH {
 		getAnnoSubPluginManager().enableAll();
 	}
 
-	/**
-	 * Gets the anno sub plugin manager.
-	 * 
-	 * @return the anno sub plugin manager
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#getAnnoSubPluginManager()
 	 */
 	@Override
 	public IAnnoSubPluginManager getAnnoSubPluginManager() {
@@ -263,10 +260,8 @@ public class SH extends JavaPlugin implements ISH {
 		return annoSubPluginManager;
 	}
 
-	/**
-	 * Gets the block manager.
-	 * 
-	 * @return the block manager
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#getBlockManager()
 	 */
 	@Override
 	public IBlockManager getBlockManager() {
@@ -276,10 +271,8 @@ public class SH extends JavaPlugin implements ISH {
 		return blockManager;
 	}
 
-	/**
-	 * Gets the friend manager.
-	 * 
-	 * @return the friend manager
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#getFriendManager()
 	 */
 	@Override
 	public FriendManager getFriendManager() {
@@ -289,11 +282,8 @@ public class SH extends JavaPlugin implements ISH {
 		return friendManager;
 	}
 
-	/**
-	 * Gets the friend manager.
-	 * 
-	 * @return the friend manager
-	 * @throws SQLException
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#getHomeManager()
 	 */
 	@Override
 	public HomeManager getHomeManager() {
@@ -303,10 +293,8 @@ public class SH extends JavaPlugin implements ISH {
 		return homeManager;
 	}
 
-	/**
-	 * Gets the mysql manager.
-	 * 
-	 * @return the mysql manager
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#getMysqlManager()
 	 */
 	@Override
 	public IMysqlManager getMysqlManager() {
@@ -316,10 +304,8 @@ public class SH extends JavaPlugin implements ISH {
 		return mysqlManager;
 	}
 
-	/**
-	 * Gets the note manager.
-	 * 
-	 * @return the note manager
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#getNoteManager()
 	 */
 	@Override
 	public INoteManager getNoteManager() {
@@ -329,10 +315,8 @@ public class SH extends JavaPlugin implements ISH {
 		return noteManager;
 	}
 
-	/**
-	 * Gets the player data manager.
-	 * 
-	 * @return the player data manager
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#getPlayerDataManager()
 	 */
 	@Override
 	public IPlayerDataManager getPlayerDataManager() {
@@ -342,20 +326,16 @@ public class SH extends JavaPlugin implements ISH {
 		return playerDataManager;
 	}
 
-	/**
-	 * Gets the plugin name.
-	 * 
-	 * @return the plugin name
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#getPluginName()
 	 */
 	@Override
 	public String getPluginName() {
 		return name;
 	}
 
-	/**
-	 * Gets the rank manager.
-	 * 
-	 * @return the rank manager
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#getRankManager()
 	 */
 	@Override
 	public IRankManager getRankManager() {
@@ -365,10 +345,8 @@ public class SH extends JavaPlugin implements ISH {
 		return rankManager;
 	}
 
-	/**
-	 * Gets the region manager.
-	 * 
-	 * @return the region manager
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#getRegionManager()
 	 */
 	@Override
 	public IRegionManager getRegionManager() {
@@ -378,10 +356,8 @@ public class SH extends JavaPlugin implements ISH {
 		return regionManager;
 	}
 
-	/**
-	 * Gets the sub plugin manager.
-	 * 
-	 * @return the sub plugin manager
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#getSubPluginManager()
 	 */
 	@Override
 	public ISubPluginManager getSubPluginManager() {
@@ -391,20 +367,16 @@ public class SH extends JavaPlugin implements ISH {
 		return subpluginManager;
 	}
 
-	/**
-	 * Gets the version.
-	 * 
-	 * @return the version
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#getVersion()
 	 */
 	@Override
 	public String getVersion() {
 		return version;
 	}
 
-	/**
-	 * Gets the wand manager.
-	 * 
-	 * @return the wand manager
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#getWandManager()
 	 */
 	@Override
 	public IWandManager getWandManager() {
@@ -414,10 +386,8 @@ public class SH extends JavaPlugin implements ISH {
 		return wandManager;
 	}
 
-	/**
-	 * Gets the warning manager.
-	 * 
-	 * @return the warning manager
+	/* (non-Javadoc)
+	 * @see info.nordbyen.survivalheaven.ISH#getWarningManager()
 	 */
 	@Override
 	public IWarningManager getWarningManager() {
@@ -427,6 +397,9 @@ public class SH extends JavaPlugin implements ISH {
 		return warningManager;
 	}
 
+	/**
+	 * Load dependencies.
+	 */
 	public void loadDependencies() {
 
 	}
@@ -541,9 +514,9 @@ public class SH extends JavaPlugin implements ISH {
 
 	/**
 	 * Spam.
-	 * 
+	 *
 	 * @param strings
-	 *            the stringse
+	 *            the strings
 	 */
 	public void spam(final Object... strings) {
 		if (!spam)

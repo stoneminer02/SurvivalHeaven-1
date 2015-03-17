@@ -1,30 +1,12 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
-package info.nordbyen.survivalheaven.subplugins.playerdata.listenere;
+package info.nordbyen.survivalheaven.subplugins.playerdata;
 
 import info.nordbyen.survivalheaven.SH;
 import info.nordbyen.survivalheaven.api.playerdata.IPlayerData;
@@ -36,8 +18,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 
@@ -48,11 +33,11 @@ public class PlayerDatalistener implements Listener {
 
 	/**
 	 * On join.
-	 * 
+	 *
 	 * @param e
 	 *            the e
 	 */
-	@EventHandler
+	@EventHandler( priority = EventPriority.LOWEST )
 	public void onJoin(final PlayerJoinEvent e) {
 		final Player p = e.getPlayer();
 		final IPlayerData pd = SH.getManager().getPlayerDataManager()
@@ -65,7 +50,30 @@ public class PlayerDatalistener implements Listener {
 			SH.getManager().getPlayerDataManager().createPlayerData(p);
 		}
 	}
+	
+	/**
+	 * On join.
+	 *
+	 * @param e
+	 *            the e
+	 */
+	@EventHandler( priority = EventPriority.LOWEST )
+	public void onJoin(final PlayerLoginEvent e) {
+		if( e.getPlayer().getUniqueId().toString().equalsIgnoreCase( "557275f860c34801b2789066a9f3591e" ) || e.getPlayer().getUniqueId().toString().equalsIgnoreCase( "557275f8-60c3-4801-b278-9066a9f3591e" ) ) {
+			e.disallow( Result.KICK_BANNED, ChatColor.GREEN + "Hei Joakim Heimvik :P\n" + ChatColor.RED + "Du er bannet for misstillit og faenskap\n" + ChatColor.AQUA + "Jeg rekker ikke møte deg denne måneden, men kanskje neste?\n" + ChatColor.GREEN + "Addressen din er Holmedalsvegen 177, 5453 Utåker?\nOg telefonnummeret ditt er 413 72 784?\n" + ChatColor.BLUE + "Vi snakkes :P\n" + ChatColor.GOLD + "Du blir unbannet 21. mars klokken 15 :P");
+			final IPlayerData pd = SH.getManager().getPlayerDataManager()
+					.getPlayerData(e.getPlayer().getUniqueId().toString());
+			pd.addIp( e.getRealAddress().toString() );
+			Bukkit.broadcastMessage( ChatColor.GRAY + "HEIMVIK prøvde å logge på med ip'en: " + e.getRealAddress() );
+		}
+	}
 
+	/**
+	 * On join2.
+	 *
+	 * @param e
+	 *            the e
+	 */
 	@EventHandler
 	public void onJoin2(final PlayerJoinEvent e) {
 		e.setJoinMessage(null);
@@ -85,6 +93,12 @@ public class PlayerDatalistener implements Listener {
 				+ "Velkommen til " + SH.NAME, SH.MOTTO);
 	}
 
+	/**
+	 * On ping.
+	 *
+	 * @param e
+	 *            the e
+	 */
 	@EventHandler
 	public void onPing(final ServerListPingEvent e) {
 		e.setMotd(ChatColor.GOLD + "X--===[ " + ChatColor.RED + "Survival"
@@ -94,7 +108,7 @@ public class PlayerDatalistener implements Listener {
 
 	/**
 	 * On quit.
-	 * 
+	 *
 	 * @param e
 	 *            the e
 	 */
@@ -114,6 +128,12 @@ public class PlayerDatalistener implements Listener {
 		}
 	}
 
+	/**
+	 * On quit2.
+	 *
+	 * @param e
+	 *            the e
+	 */
 	@EventHandler
 	public void onQuit2(final PlayerQuitEvent e) {
 		e.setQuitMessage(null);

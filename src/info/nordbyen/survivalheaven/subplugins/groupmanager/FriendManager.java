@@ -1,29 +1,11 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
 package info.nordbyen.survivalheaven.subplugins.groupmanager;
 
 import info.nordbyen.survivalheaven.SH;
@@ -36,14 +18,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * The Class FriendManagerPlugin.
+ * The Class FriendManager.
  */
 public class FriendManager {
 
+	/** The friend requests. */
 	private HashMap<String, ArrayList<String>> friendRequests = new HashMap<String, ArrayList<String>>();
 
+	/** The friends. */
 	private ArrayList<String[]> friends = new ArrayList<String[]>();
 
+	/**
+	 * Instantiates a new friend manager.
+	 */
 	public FriendManager() {
 		SH.getPlugin().getCommand("venn")
 				.setExecutor(new FriendManagerCommand());
@@ -55,6 +42,14 @@ public class FriendManager {
 		}
 	}
 
+	/**
+	 * Adds the friendrequest.
+	 *
+	 * @param from
+	 *            the from
+	 * @param to
+	 *            the to
+	 */
 	public void addFriendrequest(String from, String to) {
 		if (!friendRequests.containsKey(to) || friendRequests.get(to) == null) {
 			ArrayList<String> list = new ArrayList<String>();
@@ -65,6 +60,12 @@ public class FriendManager {
 		friendRequests.get(to).add(from);
 	}
 
+	/**
+	 * Creates the tables.
+	 *
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
 	public void createTables() throws SQLException {
 		IMysqlManager sql = SH.getManager().getMysqlManager();
 		sql.query("CREATE TABLE IF NOT EXISTS friend ( "
@@ -73,14 +74,35 @@ public class FriendManager {
 				+ "`player2` VARCHAR(45) NOT NULL " + ")");
 	}
 
+	/**
+	 * Gets the friendrequests to.
+	 *
+	 * @param name
+	 *            the name
+	 * @return the friendrequests to
+	 */
 	public ArrayList<String> getFriendrequestsTo(String name) {
 		return friendRequests.get(name);
 	}
 
+	/**
+	 * Gets the friends with.
+	 *
+	 * @param pd
+	 *            the pd
+	 * @return the friends with
+	 */
 	public ArrayList<IPlayerData> getFriendsWith(IPlayerData pd) {
 		return getFriendsWith(pd.getUUID());
 	}
 
+	/**
+	 * Gets the friends with.
+	 *
+	 * @param uuid
+	 *            the uuid
+	 * @return the friends with
+	 */
 	public ArrayList<IPlayerData> getFriendsWith(String uuid) {
 		ArrayList<IPlayerData> ret = new ArrayList<IPlayerData>();
 		for (String[] friendship : friends) {
@@ -99,10 +121,28 @@ public class FriendManager {
 		return ret;
 	}
 
+	/**
+	 * Checks if is friends.
+	 *
+	 * @param pd1
+	 *            the pd1
+	 * @param pd2
+	 *            the pd2
+	 * @return true, if is friends
+	 */
 	public boolean isFriends(IPlayerData pd1, IPlayerData pd2) {
 		return isFriends(pd1.getUUID(), pd2.getUUID());
 	}
 
+	/**
+	 * Checks if is friends.
+	 *
+	 * @param uuid1
+	 *            the uuid1
+	 * @param uuid2
+	 *            the uuid2
+	 * @return true, if is friends
+	 */
 	public boolean isFriends(String uuid1, String uuid2) {
 		if (uuid1.equals(uuid2))
 			return true;
@@ -115,6 +155,14 @@ public class FriendManager {
 		return false;
 	}
 
+	/**
+	 * Removes the friend request.
+	 *
+	 * @param from
+	 *            the from
+	 * @param to
+	 *            the to
+	 */
 	public void removeFriendRequest(String from, String to) {
 		if (!friendRequests.containsKey(to) || friendRequests.get(to) == null) {
 			return;
@@ -122,6 +170,16 @@ public class FriendManager {
 		friendRequests.get(to).remove(from);
 	}
 
+	/**
+	 * Removes the friendship.
+	 *
+	 * @param uuid1
+	 *            the uuid1
+	 * @param uuid2
+	 *            the uuid2
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
 	public void removeFriendship(String uuid1, String uuid2)
 			throws SQLException {
 		IMysqlManager sql = SH.getManager().getMysqlManager();
@@ -141,6 +199,12 @@ public class FriendManager {
 		friends.remove(rem);
 	}
 
+	/**
+	 * Save friends list.
+	 *
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
 	public void saveFriendsList() throws SQLException {
 		IMysqlManager sql = SH.getManager().getMysqlManager();
 		for (String[] friendship : friends) {
@@ -151,15 +215,43 @@ public class FriendManager {
 		}
 	}
 
+	/**
+	 * Sets the friendrequests to.
+	 *
+	 * @param name
+	 *            the name
+	 * @param list
+	 *            the list
+	 */
 	public void setFriendrequestsTo(String name, ArrayList<String> list) {
 		friendRequests.put(name, list);
 	}
 
+	/**
+	 * Sets the friends.
+	 *
+	 * @param one
+	 *            the one
+	 * @param two
+	 *            the two
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
 	public void setFriends(IPlayerData one, IPlayerData two)
 			throws SQLException {
 		setFriends(one.getUUID(), two.getUUID());
 	}
 
+	/**
+	 * Sets the friends.
+	 *
+	 * @param uuid1
+	 *            the uuid1
+	 * @param uuid2
+	 *            the uuid2
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
 	public void setFriends(String uuid1, String uuid2) throws SQLException {
 		IMysqlManager sql = SH.getManager().getMysqlManager();
 		sql.query("INSERT INTO friend( player1, player2 ) VALUES ( '" + uuid1
@@ -168,6 +260,12 @@ public class FriendManager {
 		friends.add(friendship);
 	}
 
+	/**
+	 * Update friends list.
+	 *
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
 	public void updateFriendsList() throws SQLException {
 		ArrayList<String[]> friends = new ArrayList<String[]>();
 		IMysqlManager sql = SH.getManager().getMysqlManager();

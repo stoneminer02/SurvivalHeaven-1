@@ -1,29 +1,11 @@
-/**
- * This file is part of survivalheaven.org, licensed under the MIT License (MIT).
- *
- * Copyright (c) SurvivalHeaven.org <http://www.survivalheaven.org>
- * Copyright (c) NordByen.info <http://www.nordbyen.info>
- * Copyright (c) l0lkj.info <http://www.l0lkj.info>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <alexmsagen@gmail.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Alexander Sagen
+ * ----------------------------------------------------------------------------
  */
-
 package info.nordbyen.Ziputils.commons;
 
 import java.io.BufferedInputStream;
@@ -46,7 +28,7 @@ public class FileUtils {
 
 	/**
 	 * Clean directory.
-	 * 
+	 *
 	 * @param directory
 	 *            the directory
 	 * @throws IOException
@@ -79,7 +61,7 @@ public class FileUtils {
 
 	/**
 	 * Clean directory on exit.
-	 * 
+	 *
 	 * @param directory
 	 *            the directory
 	 * @throws IOException
@@ -114,7 +96,7 @@ public class FileUtils {
 	// -----------------------------------------------------------------------
 	/**
 	 * Content equals.
-	 * 
+	 *
 	 * @param file1
 	 *            the file1
 	 * @param file2
@@ -154,7 +136,7 @@ public class FileUtils {
 
 	/**
 	 * Copy.
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @param out
@@ -174,7 +156,7 @@ public class FileUtils {
 
 	/**
 	 * Copy.
-	 * 
+	 *
 	 * @param in
 	 *            the in
 	 * @param file
@@ -195,7 +177,7 @@ public class FileUtils {
 
 	/**
 	 * Copy directory.
-	 * 
+	 *
 	 * @param srcDir
 	 *            the src dir
 	 * @param destDir
@@ -210,7 +192,7 @@ public class FileUtils {
 
 	/**
 	 * Copy directory.
-	 * 
+	 *
 	 * @param srcDir
 	 *            the src dir
 	 * @param destDir
@@ -227,7 +209,7 @@ public class FileUtils {
 
 	/**
 	 * Copy directory.
-	 * 
+	 *
 	 * @param srcDir
 	 *            the src dir
 	 * @param destDir
@@ -276,7 +258,7 @@ public class FileUtils {
 
 	/**
 	 * Copy file.
-	 * 
+	 *
 	 * @param srcFile
 	 *            the src file
 	 * @param destFile
@@ -291,7 +273,7 @@ public class FileUtils {
 
 	/**
 	 * Copy file.
-	 * 
+	 *
 	 * @param srcFile
 	 *            the src file
 	 * @param destFile
@@ -331,7 +313,7 @@ public class FileUtils {
 	// -----------------------------------------------------------------------
 	/**
 	 * Copy file to directory.
-	 * 
+	 *
 	 * @param srcFile
 	 *            the src file
 	 * @param destDir
@@ -346,7 +328,7 @@ public class FileUtils {
 
 	/**
 	 * Copy file to directory.
-	 * 
+	 *
 	 * @param srcFile
 	 *            the src file
 	 * @param destDir
@@ -371,7 +353,7 @@ public class FileUtils {
 	// -----------------------------------------------------------------------
 	/**
 	 * Delete directory.
-	 * 
+	 *
 	 * @param directory
 	 *            the directory
 	 * @throws IOException
@@ -390,7 +372,7 @@ public class FileUtils {
 
 	/**
 	 * Delete directory on exit.
-	 * 
+	 *
 	 * @param directory
 	 *            the directory
 	 * @throws IOException
@@ -406,7 +388,7 @@ public class FileUtils {
 
 	/**
 	 * Delete quietly.
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @return true, if successful
@@ -429,7 +411,7 @@ public class FileUtils {
 
 	/**
 	 * Do copy directory.
-	 * 
+	 *
 	 * @param srcDir
 	 *            the src dir
 	 * @param destDir
@@ -482,7 +464,7 @@ public class FileUtils {
 
 	/**
 	 * Do copy file.
-	 * 
+	 *
 	 * @param srcFile
 	 *            the src file
 	 * @param destFile
@@ -519,7 +501,7 @@ public class FileUtils {
 	// -----------------------------------------------------------------------
 	/**
 	 * Force delete.
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @throws IOException
@@ -542,7 +524,7 @@ public class FileUtils {
 
 	/**
 	 * Force delete on exit.
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @throws IOException
@@ -558,7 +540,7 @@ public class FileUtils {
 
 	/**
 	 * Force mkdir.
-	 * 
+	 *
 	 * @param directory
 	 *            the directory
 	 * @throws IOException
@@ -582,7 +564,7 @@ public class FileUtils {
 
 	/**
 	 * Gets the temp file for.
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @return the temp file for
@@ -600,7 +582,7 @@ public class FileUtils {
 
 	/**
 	 * Move directory.
-	 * 
+	 *
 	 * @param srcDir
 	 *            the src dir
 	 * @param destDir
@@ -634,7 +616,7 @@ public class FileUtils {
 
 	/**
 	 * Move file.
-	 * 
+	 *
 	 * @param srcFile
 	 *            the src file
 	 * @param destFile
@@ -673,7 +655,7 @@ public class FileUtils {
 	// -----------------------------------------------------------------------
 	/**
 	 * Open input stream.
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @return the file input stream
@@ -697,7 +679,7 @@ public class FileUtils {
 	// -----------------------------------------------------------------------
 	/**
 	 * Open output stream.
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @return the file output stream
@@ -726,7 +708,7 @@ public class FileUtils {
 
 	/**
 	 * Read file to string.
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @return the string
@@ -740,7 +722,7 @@ public class FileUtils {
 	// -----------------------------------------------------------------------
 	/**
 	 * Read file to string.
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @param encoding
@@ -763,7 +745,7 @@ public class FileUtils {
 	// -----------------------------------------------------------------------
 	/**
 	 * Size of directory.
-	 * 
+	 *
 	 * @param directory
 	 *            the directory
 	 * @return the long
