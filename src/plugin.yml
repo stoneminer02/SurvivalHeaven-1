@@ -1,0 +1,97 @@
+name: SurvivalHeaven-CORE
+version: '0.1.5-SNAPSHOT ( impl: v1_8_R1 )'
+main: info.nordbyen.survivalheaven.SH
+depend: [ WorldEdit, BlocksHub ] 
+commands:
+  infdisp: 
+    description: "Lager en uendelig dispenser"
+    aliases: ["infinitedisp","infdispenser","infinitedispenser"]
+  jobb:
+    description: "Jobb kommando med ting som ledelsen vil trenge."
+    aliases: ["work"]
+  fix:
+    description: "Fikser alt i inventorien din."
+    aliases: ["fiks","reparer","repair"]
+  wb:
+    description: "Åpner et håndverksbord."
+    aliases: ["workbench","håndverk","hvbord","hv"]
+  blokker:
+    description: "Åpner et stort panel med blokker."
+    aliases: ["blocks","block","blokk"]
+  inv:
+    description: "Åpner en annen spillers inventory."
+    aliases: ["invsee","seeinv","openinv","invopen"]
+  kick:
+    description: "Kaster ut en annen spiller med spesifisert grunn."
+    aliases: ["spark","sparkut"]
+  afk:
+    description: "Bli endret til AFK modus. Du må røre deg eller skrive noe som helst i chatten for å slutte å være AFK."
+  ss:
+    description: "StabSamtale kommandoen."
+    aliases: ["stabsamtale","ssamtale"]
+  tp:
+    description: "Teleporterer deg til en spiller/posisjon eller en spiller til en annen spiller/posisjon."
+    aliases: ["teleport","teleporter","teleportering"]
+  tph:
+    description: "Teleporterer en annen spiller til deg."
+    aliases: ["teleporthere","teleporterher","tpher","tphere"]
+  k:
+    description: "Endrer ditt eller en annen spiller sitt spillermodus."
+    aliases: ["gm","gamemode","kreativ","survival","overlevelse","creative"]
+  h:
+    description: "Handel kommandoen. Skriver du inn noe, kommer det opp med en kjøp eller salg tag."
+    aliases: ["handel","kjøp","salg","kjop"]
+  s:
+    description: "Teleporterer deg til blokken som er høyest opp over deg."
+    aliases: ["top","topp","tpopp"]
+  smelt:
+    description: "Smelter alt i inventorien din uten at du trenger å bruke en furnace og det tar ikke tid."
+    aliases: ["smeltitem","smeltinv"]
+  hatt:
+    description: "Setter tingen du har i hånda til det du har på hodet."
+    aliases: ["hat"]
+  ec:
+    description: "Åpner enderkisten din."
+    aliases: ["enderchest","enderkiste","ekiste","echest"]
+  who:
+    description: "Viser en liste over alle som er online."
+    aliases: ["list"]
+  fspeed:
+    description: "Endrer farten du flyr på."
+    aliases: ["flyspeed"]
+  killall:
+    description: "Dreper alle mobs & items i verdenen du er i. Ekskluderer item frames, minecarts og spillere."
+    aliases: ["drepalt"]
+  bug:
+    description: "Sender en melding med buggen du har funnet som du spesifiserer til alle stab medlemmer som er på."
+    aliases: ["rapporter","bugg","feil","pluginfeil","pluginbug"]
+  fly:
+    description: "Slår på fly modus."
+    aliases: ["flight","flying","flymodus"]
+  sitt:
+    description: "Du setter deg."
+	aliases: ["sit","settmeg"]
+  sudo:
+    description: "Får en annen spiller til å gjøre kommandoen du spesifiserer."
+    aliases: ["styr","overta"]
+  adminstick:
+    description: "Gir deg en pinne som kan fjerne hvilken som helst blokk du vil."
+    aliases: ["astick","adminpinne"]
+  rank:
+    description: "Endrer ranken til en spiller."
+    aliases: ["admin","mod","bruker","promoter","degrader"]
+  venn:
+    description: "Lar deg legge til, fjerne eller vise alle vennene du har."
+    aliases: ["friend"]
+  homes:
+    description: "Lister alle hjemmene du har."
+    aliases: ["listhome","listhomes","listhjem","hjemmene"]
+  home:
+    description: "Teleporterer deg til hjemmet ditt som heter det spesifiserte navnet."
+    aliases: ["hjem","tphjem","tphome"]
+  sethome:
+    description: "Setter et hjem med spesifisert navn."
+    aliases: ["laghjem","setthjem"]
+  delhome:
+    description: "Sletter et hjem med spesifisert navn."
+    aliases: ["fjernhjem","sletthjem"]

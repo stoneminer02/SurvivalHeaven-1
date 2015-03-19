@@ -21,11 +21,12 @@ import org.bukkit.entity.Player;
 /**
  * The Class Sol.
  */
-public class Sol implements CommandExecutor {
+public class Sol implements CommandExecutor
+{
 
 	/** The i. */
 	int i = 0;
-	
+
 	/** The sol. */
 	ArrayList<String> sol = new ArrayList<String>();
 
@@ -38,15 +39,22 @@ public class Sol implements CommandExecutor {
 	 */
 	@Override
 	public boolean onCommand(final CommandSender Sender, final Command command,
-			final String commandLabel, final String args[]) {
-		if (Sender instanceof Player) {
-			if (!(sol.contains(Sender.getName()))) {
-				if (command.getName().equalsIgnoreCase("sol")) {
-					if (args.length == 0) {
-						if (((Player) Sender).getWorld().hasStorm() == true) {
+			final String commandLabel, final String args[])
+	{
+		if (Sender instanceof Player)
+		{
+			if (!(sol.contains(Sender.getName())))
+			{
+				if (command.getName().equalsIgnoreCase("sol"))
+				{
+					if (args.length == 0)
+					{
+						if (((Player) Sender).getWorld().hasStorm() == true)
+						{
 							i += 1;
 							sol.add(Sender.getName());
-							if (i < (Bukkit.getOnlinePlayers().size() / 2)) {
+							if (i < (Bukkit.getOnlinePlayers().size() / 2))
+							{
 								Bukkit.broadcastMessage(ChatColor.BLUE
 										+ Sender.getName()
 										+ ChatColor.AQUA
@@ -54,9 +62,11 @@ public class Sol implements CommandExecutor {
 										+ i
 										+ "/"
 										+ (Bukkit.getOnlinePlayers().size() / 2)
-										+ ". Skriv /sol for å stemme");
-							} else {
-								for (final World w : Bukkit.getWorlds()) {
+										+ "har stemt. Skriv /sol for å stemme");
+							} else
+							{
+								for (final World w : Bukkit.getWorlds())
+								{
 									w.setStorm(false);
 									w.setThundering(false);
 								}
@@ -69,16 +79,18 @@ public class Sol implements CommandExecutor {
 										+ "/"
 										+ (Bukkit.getOnlinePlayers().size() / 2));
 								Bukkit.broadcastMessage(ChatColor.AQUA
-										+ "Været ble satt til sol!!");
+										+ "Været ble satt til sol!");
 								i = 0;
 							}
-						} else {
+						} else
+						{
 							Sender.sendMessage(ChatColor.RED
 									+ "Det er allerede sol i din verden");
 						}
 					}
 				}
-			} else {
+			} else
+			{
 				Sender.sendMessage(ChatColor.AQUA + "Du har allerede stemt!");
 			}
 		}

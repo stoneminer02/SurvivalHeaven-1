@@ -32,7 +32,7 @@ public class Hatt implements CommandExecutor {
 			final String label, final String[] args) {
 		if (!(sender instanceof Player)) {
 			sender.sendMessage(ChatColor.RED
-					+ "Kan bare utfï¿½res av In game spillere");
+					+ "Kan bare utføres av In game spillere");
 			return true;
 		}
 		final Player p = (Player) sender;

@@ -22,12 +22,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 /**
  * The Class AFK.
  */
-public class AFK implements CommandExecutor {
+@SuppressWarnings("deprecation")
+public class AFK implements CommandExecutor
+{
 
 	/**
 	 * The listener interface for receiving AFK events. The class that is
@@ -39,8 +42,9 @@ public class AFK implements CommandExecutor {
 	 *
 	 * @see AFKEvent
 	 */
-	public class AFKListener implements Listener {
-		
+	public class AFKListener implements Listener
+	{
+
 		/**
 		 * On move.
 		 *
@@ -48,16 +52,25 @@ public class AFK implements CommandExecutor {
 		 *            the e
 		 */
 		@EventHandler
-		public void onMove(PlayerMoveEvent e) {
+		public void onMove(PlayerMoveEvent e)
+		{
 			Location from = e.getFrom();
 			Location to = e.getTo();
-			if (from.getX() == to.getX())
+			if (from == to)
 				return;
-			if (from.getY() == to.getY())
-				return;
-			if (from.getZ() == to.getZ())
-				return;
-			if (from.getWorld().getName().equals(to.getWorld().getName()))
+			hashmap.remove(e.getPlayer().getName());
+		}
+
+		/**
+		 * On chat.
+		 * 
+		 * @param e
+		 *            the event
+		 */
+		@EventHandler
+		public void onChat(PlayerChatEvent e)
+		{
+			if (e.getMessage() == null)
 				return;
 			hashmap.remove(e.getPlayer().getName());
 		}
@@ -69,7 +82,8 @@ public class AFK implements CommandExecutor {
 	/**
 	 * Instantiates a new afk.
 	 */
-	public AFK() {
+	public AFK()
+	{
 		Bukkit.getPluginManager().registerEvents(new AFKListener(),
 				SH.getPlugin());
 	}
@@ -83,19 +97,24 @@ public class AFK implements CommandExecutor {
 	 */
 	@Override
 	public boolean onCommand(final CommandSender sender, final Command cmd,
-			final String label, final String[] args) {
-		if (!(sender instanceof Player)) {
+			final String label, final String[] args)
+	{
+		if (!(sender instanceof Player))
+		{
 			sender.sendMessage(ChatColor.RED + "Du må være en spiller.");
 			return true;
 		}
-		if ((sender instanceof Player)) {
+		if ((sender instanceof Player))
+		{
 			final String player = sender.getName();
-			if (!hashmap.contains(player)) {
+			if (!hashmap.contains(player))
+			{
 				hashmap.add(player);
 				Bukkit.broadcastMessage(ChatColor.DARK_RED + player
 						+ ChatColor.RED + " er nå AFK.");
 				return true;
-			} else {
+			} else
+			{
 				hashmap.remove(player);
 				Bukkit.broadcastMessage(ChatColor.DARK_GREEN + player
 						+ ChatColor.GREEN + " er ikke lenger AFK.");

@@ -23,30 +23,39 @@ import org.bukkit.entity.Player;
 /**
  * The Class HomeManagerCommand.
  */
-public class HomeManagerCommand implements CommandExecutor {
+public class HomeManagerCommand implements CommandExecutor
+{
 
-	/* (non-Javadoc)
-	 * @see org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender, org.bukkit.command.Command, java.lang.String, java.lang.String[])
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.bukkit.command.CommandExecutor#onCommand(org.bukkit.command.CommandSender
+	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
 	 */
 	@Override
 	public boolean onCommand(CommandSender sender, Command command,
-			String label, String[] args) {
-		if (!(sender instanceof Player)) {
-			sender.sendMessage(ChatColor.RED + "Bare spillere kan ha kjem!");
-			;
+			String label, String[] args)
+	{
+		if (!(sender instanceof Player))
+		{
+			sender.sendMessage(ChatColor.RED + "Bare spillere kan ha hjem!");
 			return true;
 		}
 		Player p = (Player) sender;
 		HomeManager hm = SH.getManager().getHomeManager();
 		IPlayerData pd = SH.getManager().getPlayerDataManager()
 				.getPlayerData(p.getUniqueId().toString());
-		if (command.getName().equalsIgnoreCase("home")) {
-			if (args.length != 1) {
+		if (command.getName().equalsIgnoreCase("home"))
+		{
+			if (args.length != 1)
+			{
 				p.sendMessage(ChatColor.RED + "Feil syntax: /home <navn>");
 				return true;
 			}
 			Home home = hm.getHomeFromPlayer(args[0], pd.getUUID());
-			if (home == null) {
+			if (home == null)
+			{
 				p.sendMessage(ChatColor.RED + "Fant ikke hjemmet " + args[0]);
 				return true;
 			}
@@ -54,23 +63,28 @@ public class HomeManagerCommand implements CommandExecutor {
 			p.sendMessage(ChatColor.GREEN + "Du ble teleportert til hjemmet "
 					+ home.getName());
 			return true;
-		} else if (command.getName().equalsIgnoreCase("sethome")) {
-			if (args.length != 1) {
+		} else if (command.getName().equalsIgnoreCase("sethome"))
+		{
+			if (args.length != 1)
+			{
 				p.sendMessage(ChatColor.RED + "Feil syntax: /sethome <navn>");
 				return true;
 			}
 			String name = args[0];
 			Home home = new Home(name, pd.getUUID(), p.getLocation());
 			boolean done = false;
-			try {
+			try
+			{
 				done = hm.addHome(home);
-			} catch (SQLException e) {
+			} catch (SQLException e)
+			{
 				e.printStackTrace();
 				p.sendMessage(ChatColor.RED
-						+ "En feil sjedde. Si ifra til stab!");
+						+ "En feil skjedde. Si ifra til stab!");
 				return true;
 			}
-			if (!done) {
+			if (!done)
+			{
 				p.sendMessage(ChatColor.RED
 						+ "Du har allerede et hjem ved navn " + home.getName());
 				return true;
@@ -81,50 +95,62 @@ public class HomeManagerCommand implements CommandExecutor {
 					+ home.getLocation().getBlockY() + " "
 					+ home.getLocation().getBlockZ());
 			return true;
-		} else if (command.getName().equalsIgnoreCase("homes")) {
-			if (args.length != 0) {
+		} else if (command.getName().equalsIgnoreCase("homes"))
+		{
+			if (args.length != 0)
+			{
 				p.sendMessage(ChatColor.RED + "Feil syntax: /homes");
 				return true;
 			}
 			ArrayList<Home> homes = hm.getHomesFromPlayer(p.getUniqueId()
 					.toString());
-			if (homes == null || homes.size() == 0) {
+			if (homes == null || homes.size() == 0)
+			{
 				p.sendMessage(ChatColor.RED
 						+ "Du har ingen hjem, men kan lage et hjem med /sethome <navn>");
 				return true;
 			}
 			StringBuilder sb = new StringBuilder(ChatColor.GREEN
 					+ "Du har følgende hjem:\n" + ChatColor.AQUA);
-			for (Home home : homes) {
+			for (Home home : homes)
+			{
 				sb.append(home.getName() + ", ");
 			}
 			p.sendMessage(sb.substring(0, sb.length() - 2));
 			return true;
-		} else if (command.getName().equalsIgnoreCase("delhome")) {
-			if (args.length != 1) {
+		} else if (command.getName().equalsIgnoreCase("delhome"))
+		{
+			if (args.length != 1)
+			{
 				p.sendMessage(ChatColor.RED + "Feil syntax: /delhome <navn>");
 				return true;
 			}
 			String name = args[0];
 			ArrayList<Home> homes = hm.getHomesFromPlayer(p.getUniqueId()
 					.toString());
-			if (homes == null || homes.size() == 0) {
+			if (homes == null || homes.size() == 0)
+			{
 				p.sendMessage(ChatColor.RED + "Du har ingen hjem å slette");
 				return true;
 			}
 			boolean hasHome = false;
-			for (Home home : homes) {
-				if (home.getName().equalsIgnoreCase(name)) {
+			for (Home home : homes)
+			{
+				if (home.getName().equalsIgnoreCase(name))
+				{
 					hasHome = true;
 				}
 			}
-			if (!hasHome) {
+			if (!hasHome)
+			{
 				p.sendMessage(ChatColor.RED + "Finner ikke hjemmet " + name);
 				return true;
 			}
-			try {
+			try
+			{
 				hm.deleteHomeFromPlayer(name, p.getUniqueId().toString());
-			} catch (SQLException e) {
+			} catch (SQLException e)
+			{
 				e.printStackTrace();
 				p.sendMessage(ChatColor.RED
 						+ "Noe galt skjedde. Si ifra til staben!");

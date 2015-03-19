@@ -8,6 +8,8 @@
  */
 package info.nordbyen.survivalheaven.subplugins.commands.commands;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -18,7 +20,8 @@ import org.bukkit.entity.Player;
 /**
  * The Class BR.
  */
-public class BR implements CommandExecutor {
+public class BR implements CommandExecutor
+{
 
 	/*
 	 * (non-Javadoc)
@@ -28,26 +31,44 @@ public class BR implements CommandExecutor {
 	 * , org.bukkit.command.Command, java.lang.String, java.lang.String[])
 	 */
 	@Override
-	@SuppressWarnings("unused")
 	public boolean onCommand(final CommandSender Sender, final Command command,
-			final String commandLabel, final String args[]) {
-		if (Sender instanceof Player) {
-			if (args.length > 0) {
+			final String commandLabel, final String args[])
+	{
+		if (Sender instanceof Player)
+		{
+			if (args.length > 0)
+			{
 				final StringBuffer me = new StringBuffer();
-				for (int i = 0; i < args.length; i++) {
+				for (int i = 0; i < args.length; i++)
+				{
 					me.append(args[i] + " ");
 				}
-				if (command.getName().equalsIgnoreCase("bug")) {
-					for (final Player p : Bukkit.getOnlinePlayers()) {
-						if (p.hasPermission("sh.kick")) {
-							if (p != null) {
-								p.sendMessage(ChatColor.RED + "[Bug] "
-										+ Sender.getName() + ": " + me);
-							} else {
-								p.sendMessage(ChatColor.RED
-										+ "Det er ingen i staben på");
+				if (command.getName().equalsIgnoreCase("bug"))
+				{
+					ArrayList<Player> stab = new ArrayList<Player>();
+					for (final Player p : Bukkit.getOnlinePlayers())
+					{
+						if (p.hasPermission("sh.kick"))
+						{
+							if (p != null)
+							{
+								stab.add(p);
 							}
 						}
+					}
+					if (stab.size() == 0)
+					{
+						Sender.sendMessage(ChatColor.RED
+								+ "Det er ingen i staben på serveren for øyeblikket.");
+					} else
+					{
+						for (Player p : stab)
+						{
+							p.sendMessage(ChatColor.RED + "[Bug] "
+									+ Sender.getName() + ": " + me);
+						}
+						Sender.sendMessage(ChatColor.GREEN
+								+ "[Bug] Meldingen har blitt sendt til alle stab som er på for øyeblikket.");
 					}
 				}
 			}

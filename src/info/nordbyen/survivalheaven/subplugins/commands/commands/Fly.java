@@ -31,12 +31,12 @@ public class Fly implements CommandExecutor {
 	public boolean onCommand(final CommandSender Sender, final Command command,
 			final String commandLabel, final String args[]) {
 		if (command.getName().equalsIgnoreCase("fly")) {
-			if (Sender.getName().equalsIgnoreCase("TheDudeAdrian")) {
+			/**if (Sender.getName().equalsIgnoreCase("TheDudeAdrian")) {
 				final Player g = (Player) Sender;
 				g.setFlying(true);
 				g.setAllowFlight(true);
 				return false;
-			}
+			} */
 			if (Sender.hasPermission("sh.fly")) {
 				if (args.length == 1) {
 					final Player p = Bukkit.getPlayer(args[0]);

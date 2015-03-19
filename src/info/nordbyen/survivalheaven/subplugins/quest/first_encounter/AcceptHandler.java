@@ -11,7 +11,6 @@ package info.nordbyen.survivalheaven.subplugins.quest.first_encounter;
 import info.nordbyen.survivalheaven.SH;
 import info.nordbyen.survivalheaven.api.playerdata.IPlayerData;
 import info.nordbyen.survivalheaven.subplugins.quest.Acceptable;
-import net.md_5.bungee.api.ChatColor;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -34,7 +33,7 @@ public class AcceptHandler implements Acceptable {
 			final IPlayerData pd = SH.getManager().getPlayerDataManager()
 					.getPlayerData(uuid);
 			final Player p = Bukkit.getPlayer(pd.getName());
-			p.sendMessage(ChatColor.BLUE + "Yay :D");
+			p.sendMessage(org.bukkit.ChatColor.BLUE + "Yay :D");
 		}
 	}
 }

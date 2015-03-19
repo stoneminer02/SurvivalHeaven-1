@@ -34,8 +34,6 @@ public class Sitt implements CommandExecutor {
 				if (Sender.hasPermission("sh.kick")) {
 					if (args.length == 1) {
 						final Player p = Bukkit.getPlayer(args[0]);
-						@SuppressWarnings("unused")
-						final Player tg = (Player) Sender;
 						p.setPassenger(p);
 					}
 				}
