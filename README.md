@@ -1,2 +1,2 @@
 # SurvivalHeaven
-En plugin til Sponge 1.8 til SurvivalHeaven serveren
+En plugin til Spigot 1.8 til SurvivalHeaven serveren
